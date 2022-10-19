@@ -1,9 +1,9 @@
-# AirBnB
-# `<name of application here>`
+
+# `AirBnB by Annika McPeek`
 
 ## Database Schema Design
 
-`<insert database schema design here>`
+![alt text for screen readers](dbImage.png "Still in production").
 
 ## API Documentation
 
