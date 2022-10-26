@@ -68,6 +68,14 @@ router.get(
     }
   );
 
+    router.get(
+    '/allUsers',
+    async (req, res, next) => {
+      const allUsers = await User.findAll({})
+      return res.json({allUsers})
+    }
+  )
+
   // ...
 
   // backend/routes/api/session.js
@@ -117,5 +125,7 @@ router.post(
       });
     }
   );
+
+
 
 module.exports = router;

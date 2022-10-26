@@ -2,33 +2,11 @@
 // const express = require('express')
 // const router = express.Router();
 
-
 const express = require('express');
+const router = express.Router();
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User } = require('../../db/models');
-
-const router = express.Router();
-
-
-// backend/routes/api/users.js
-// ...
-
-// Sign up
-router.post(
-    '/',
-    async (req, res) => {
-      const { firstName, lastName, email, password, username } = req.body;
-      const user = await User.signup({ firstName, lastName, email, username, password });
-
-      await setTokenCookie(res, user);
-
-      return res.json({
-        user
-      });
-    }
-  );
-
   // backend/routes/api/users.js
 // ...
 const { check } = require('express-validator');
@@ -59,6 +37,7 @@ const validateSignup = [
 
   // backend/routes/api/users.js
 // ...
+
 
 // Sign up
 router.post(

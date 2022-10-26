@@ -6,11 +6,15 @@ const csurf = require('csurf');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 
+  // backend/app.js
+// ...
+const { ValidationError } = require('sequelize');
+
 const { environment } = require('./config');
 const isProduction = environment === 'production';
 
 const app = express();
-app.use(morgan('dev'));
+app.use(morgan('dev')); //just prints info about reqs to terminal
 app.use(cookieParser());
 app.use(express.json());
 
@@ -39,7 +43,7 @@ if (!isProduction) {
   );
 
   // backend/app.js
-const routes = require('./routes');
+const routes = require('./routes'); //implies index.js 
 
 // ...
 
@@ -59,9 +63,7 @@ app.use((_req, _res, next) => {
     next(err);
   });
 
-  // backend/app.js
-// ...
-const { ValidationError } = require('sequelize');
+
 
 // ...
 
