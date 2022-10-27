@@ -14,11 +14,16 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'Spots'
-        }
+        },
+        onDelete: 'CASCADE'
       },
       url: {
         type: Sequelize.STRING,
         allowNull: false,
+      },
+      preview: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,

@@ -55,4 +55,12 @@ router.post(
     }
   );
 
+  router.get(
+    '/allUsers',
+    async (req, res, next) => {
+      const allUsers = await User.findAll({})
+      return res.json({allUsers})
+    }
+  )
+
 module.exports = router;

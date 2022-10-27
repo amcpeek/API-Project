@@ -33,12 +33,24 @@ module.exports = (sequelize, DataTypes) => {
     country: DataTypes.STRING,
     lat: DataTypes.DECIMAL,
     lng: DataTypes.DECIMAL,
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      validate: {
+        len: [1,50]
+      }
+
+    } ,
     description: DataTypes.STRING,
     price: DataTypes.DECIMAL
   }, {
     sequelize,
     modelName: 'Spot',
+    // defaultScope: {
+    //   attributes: {
+    //     exclude: ['createdAt', 'updatedAt']
+    //   }
+
+    // }
   });
   return Spot;
 };
