@@ -30,59 +30,170 @@ router.get('/testt', async (req, res, next) => {
 
 //**GET ALL SPOTS **DONE
 router.get('/', async (req, res, next) => {
-    //eager loading causes issues
-    // const allSpots = await Spot.findAll({
-    //     include:[
-    //         {
-    //             model: SpotImage,
-    //          //   as: 'previewImage',
-    //             attributes: ['url']
-    //         },
-    //         {
-    //             model: Review,
-    //         //    as:'Reviews',
-    //             attributes: [ ]
-    //              //
-    //         }
-    //     ],
-    //     attributes:  {
-    //         include:[
-    //             [sequelize.fn('AVG', sequelize.col('Reviews.stars')),'avgRating']
-    //             ] }
-    // })
-    //  return res.json({allSpots})
+    let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query
 
-    //lazy loading is correct
-     const allSpotz = await Spot.findAll({})
-     const newSpotz = []
-     for (let spot of allSpotz) {
-        let newVar = spot.toJSON()
-        const avgRating = await Review.findAll({
-            attributes: [[sequelize.fn('AVG', sequelize.col('stars')),'avgRating']],
-            where: {spotId : spot.id},
-            raw: true
+
+    const errorStrings = {
+        "page": "Page must be greater than or equal to 1",
+        "size": "Size must be greater than or equal to 1",
+        "maxLat": "Maximum latitude is invalid",
+        "minLat": "Minimum latitude is invalid",
+        "minLng": "Maximum longitude is invalid",
+        "maxLng": "Minimum longitude is invalid",
+        "minPrice": "Maximum price must be greater than or equal to 0",
+        "maxPrice": "Minimum price must be greater than or equal to 0"
+    }
+     const errObj = {}
+    // if(!page) {errObj['page'] = errorStrings['page']}
+    // if(!size) {errObj['size'] = errorStrings['size']}
+    // if(!minLat) {errObj['minLat'] = errorStrings['minLat']}
+    // if(!maxLat) {errObj['maxLat'] = errorStrings['maxLat']}
+    // if(!minLng) {errObj['minLng'] = errorStrings['minLng']}
+    // if(!maxLng) {errObj['maxLng'] = errorStrings['maxLng']}
+    // if(!minPrice) {errObj['minPrice'] = errorStrings['minPrice']}
+    // if(!maxPrice) {errObj['maxPrice'] = errorStrings['maxPrice']}
+
+
+
+    try{
+       //Im not sure if any of this error handling is working
+        if(page && Number.isNaN(page))  {errObj['page'] = errorStrings['page']}
+        if(size && Number.isNaN(size))   {errObj['size'] = errorStrings['size']}
+        if(minLat && Number.isNaN(minLat)) {errObj['minLat'] = errorStrings['minLat']}
+        if(maxLat && Number.isNaN(maxLat)) {errObj['maxLat'] = errorStrings['maxLat']}
+        if(minLng && !(minLng > -180)) {errObj['minLng'] = errorStrings['minLng']}
+        if(maxLng && !(maxLng < 180)) {errObj['maxLng'] = errorStrings['maxLng']}
+        if(minPrice && !(minPrice > 0)) {errObj['minPrice'] = errorStrings['minPrice']}
+        if( maxPrice && Number.isNaN(maxPrice)) {errObj['maxPrice'] = errorStrings['maxPrice']}
+        page = parseInt(page)
+        size = parseInt(size)
+        minLat = parseFloat(minLat)
+        maxLat = parseFloat(maxLat)
+        minLng = parseFloat(maxLng)
+        maxLng = parseFloat(maxLng)
+        minPrice = parseFloat(minPrice)
+        maxPrice = parseFloat(maxPrice)
+
+        if(size > 20) size = 20
+        if(size < 1) size = 1
+        if(page > 10 ) page = 10
+        if(page < 1) page = 1
+        if(!page) page = 1
+        if(!size) size = 20
+        const where = {} //im not using this
+        const allSpots = await Spot.findAll({
+             limit: size,
+                offset: (page -1) * size,
+            // where: {
+
+            //      lat: {
+            //          [Op.gte]: minLat || 35, //this OR thing doesn't work
+            //          [Op.lte]: maxLat || 90
+            //      },
+            //      lng: {
+            //          [Op.gte]: minLng || -180,
+            //          [Op.lte]: maxLng || 180,
+            //      },
+            //      price: {
+            //          [Op.gte]: minPrice || 0 ,
+            //          [Op.lte]: maxPrice || 99999999999999
+            //      }
+
+            // }
+          })
+          const newSpots = []
+        for (let spot of allSpots) {
+            let newVar = spot.toJSON()
+            const avgRating = await Review.findAll({
+                attributes: [[sequelize.fn('AVG', sequelize.col('stars')),'avgRating']],
+                where: {spotId : spot.id},
+                raw: true
+            })
+
+            newVar.avgRating = avgRating[0].avgRating
+
+
+            const allSpots = await SpotImage.findOne({
+                where: {
+                    preview: true,
+                    spotId : spot.id,},
+                attributes: ['url'],
+
+
+                raw: true
+            })
+            if(allSpots) {
+                newVar.previewImage = allSpots.url
+            }
+            newSpots.push(newVar)
+
+        }
+        res.json({
+            newSpots,
+            size,
+            page
         })
+
+    } catch(error) {
+        console.log(error)
+        // error.errors.map(er => {
+        //     errObj[er.path] = errorStrings[er.path]
+       // })
+        res.statusCode = 400
+        res.json({
+            message: 'Validation Error',
+            statusCode: 400,
+            errors: errObj
+        })
+
+    }
+
+
+
+
+        //eager loading causes issues
+        // const allSpots = await Spot.findAll({
+        //     include:[
+        //         {
+        //             model: SpotImage,
+        //          //   as: 'previewImage',
+        //             attributes: ['url']
+        //         },
+        //         {
+        //             model: Review,
+        //         //    as:'Reviews',
+        //             attributes: [ ]
+        //              //
+        //         }
+        //     ],
+        //     attributes:  {
+        //         include:[
+        //             [sequelize.fn('AVG', sequelize.col('Reviews.stars')),'avgRating']
+        //             ] }
+        // })
+        //  return res.json({allSpots})
+
+
+
+
+
+
+
+
+        // if(minLat && !Number.isNaN(minLat)) {
+        //     where.minLat = minLat
+        // }
+
+
+       //lazy loading is correct
+
+
         // if(!avgRating[0].toJSON().avgRating) {
         //     newVar.avgRating = null
         // } else {
 
         // }
 
-            newVar.avgRating = avgRating[0].avgRating
-
-
-        const imagez = await SpotImage.findOne({
-            attributes: ['url'],
-            where: {preview: true, spotId : spot.id},
-            raw: true
-        })
-        if(imagez) {
-            newVar.previewImage = imagez.url
-        }
-        newSpotz.push(newVar)
-
-     }
-     res.json(newSpotz)
 
 })
 
@@ -92,12 +203,12 @@ router.get('/', async (req, res, next) => {
 // **GET ALL SPOTS BY CURRENT OWNER **DONE
 router.get('/current', requireAuth, async (req, res, next) => {
     const userId = req.user.id
-    const allSpotz = await Spot.findAll({
+    const allSpots = await Spot.findAll({
         where: {ownerId: userId}
     })
 
-    const newSpotz = []
-    for (let spot of allSpotz) {
+    const newSpots = []
+    for (let spot of allSpots) {
        let newVar = spot.toJSON()
        const avgRating = await Review.findAll({
            attributes: [[sequelize.fn('AVG', sequelize.col('stars')),'avgRating']],
@@ -110,19 +221,19 @@ router.get('/current', requireAuth, async (req, res, next) => {
 
        // }
        newVar.avgRating = avgRating[0].avgRating
-       const imagez = await SpotImage.findOne({
+       const allSpots = await SpotImage.findOne({
            attributes: ['url'],
            where: {preview: true, spotId : spot.id},
            raw: true
        })
-       if(imagez) {
-        newVar.previewImage = imagez.url
+       if(allSpots) {
+        newVar.previewImage = allSpots.url
 
        }
 
-       newSpotz.push(newVar)
+       newSpots.push(newVar)
     }
-    res.json(newSpotz)
+    res.json(newSpots)
 
 })
 
@@ -314,8 +425,8 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
         }
 
         const allReviewsOfThisSpot = await Review.findAll({
-             where: { userId: userId},
-            //     spotId: spotId },
+             where: { userId: userId,
+                spotId: spotId },
         })
    //    console.log('ALL JOWSIEFNESIODFN',allReviewsOfThisSpot)
 
