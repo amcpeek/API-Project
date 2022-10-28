@@ -6,7 +6,7 @@ const router = express.Router();
 //const express = require('express');
 
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
-const { Spot, User, SpotImage, Review, sequelize, ReviewImage } = require('../../db/models');
+const { Spot, User, SpotImage, Review, sequelize, ReviewImage, Booking } = require('../../db/models');
 const { Op, json } = require('sequelize');
 
 
@@ -616,12 +616,112 @@ router.get('/:spotId/reviews', async (req, res, next) => {
   })
 
 
+  router.post('/:spotIdForBooking/bookings', requireAuth, async (req, res, next) => {
+    const spotIdForBooking =  req.params.spotIdForBooking
+    const userId = req.user.id
+    let { startDate, endDate } = req.body
 
-//NOT A REAL ROUTE JUST FOR TESTING
-// router.get('/spotImages', async (req, res, next) => {
-//     const allImages = await SpotImage.findAll({})
-//     res.json(allImages)
-// })
+    const doesThisSpotExist = await Spot.findByPk(spotIdForBooking)
+    if (!doesThisSpotExist) {
+
+        res.statusCode = 404
+        res.json({
+        message: "Couldn't find a Spot with the specified id", ////DONE
+        statusCode: 404,
+        })
+    }
+
+    const errorStrings1 = {
+        "endDate": "endDate cannot be on or before startDate"
+    }
+    const errorStrings2 = {
+    "startDate": "Start date conflicts with an existing booking",
+    "endDate": "End date conflicts with an existing booking"
+    }
+
+     const errObj = {}
+
+     startDate = startDate + 'T00:00:00.000Z'
+     endDate = endDate + 'T00:00:00.000Z'
+
+     const alreadyBookedSpot = await Booking.findOne({
+        where: {
+            startDate: startDate,
+            endDate: endDate,
+            spotId: spotIdForBooking
+        } })
+
+        //res.json(alreadyBookedSpot)
+
+     if (alreadyBookedSpot) {
+        //  throw new Error("Sorry, this spot is already booked for the specified dates")
+        errObj['startDate'] = errorStrings2['startDate']
+        errObj['endDate'] = errorStrings2['endDate']
+          res.statusCode = 403
+          res.json({
+          message: "Sorry, this spot is already booked for the specified dates",
+          statusCode: 403,
+          errors: errObj
+          })
+
+      }
+
+
+
+
+    if( endDate <= startDate ) { //needs errors ////THIS CODE IS NOT DONE
+       // res.statusCode = 400
+        // res.json({
+        // message: "endDate cannot be on or before startDate",
+        // statusCode: 400
+        // })
+     //   const err = new Error("Spot couldn't be found")
+        //err.status = 404
+      //  next(err)
+        errObj['endDate'] = errorStrings1['endDate']
+        res.statusCode = 400
+        res.json({
+       // message: "Sorry, this spot is already booked for the specified dates",
+        statusCode: 400,
+        errors: errObj
+        })
+  } else {
+    try{
+        const newBooking = await Booking.create({
+
+            spotId: spotIdForBooking,
+            userId: userId,
+            startDate: startDate,
+            endDate: endDate
+
+    })
+    res.json(newBooking)
+
+} catch(error) {
+
+res.statusCode = 400
+res.json({
+    message: 'Validation Error',
+    statusCode: 400,
+    errors: errObj
+})
+
+}
+
+  }
+
+
+
+
+
+
+    })
+
+
+
+
+
+
 
 
 
