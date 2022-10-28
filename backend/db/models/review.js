@@ -29,9 +29,20 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'CASCADE'
     },
     userId: DataTypes.INTEGER,
-    review: DataTypes.STRING,
-    stars: DataTypes.INTEGER
-  }, {
+    review: {
+      type: DataTypes.STRING,
+      validate: {
+        len: [1,255]
+      }
+    } ,
+    stars:  {
+      type: DataTypes.INTEGER,
+      validate: {
+      min: 1,
+       max: 5
+      }
+  }
+}, {
     sequelize,
     modelName: 'Review',
   });
