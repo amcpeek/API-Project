@@ -26,8 +26,8 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'CASCADE'
     },
     userId: DataTypes.INTEGER,
-    startDate: DataTypes.DATE,
-    endDate: DataTypes.DATE
+    startDate: DataTypes.DATEONLY,
+    endDate: DataTypes.DATEONLY
   }, {
     sequelize,
     modelName: 'Booking',

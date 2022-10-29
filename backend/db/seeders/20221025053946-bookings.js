@@ -6,31 +6,31 @@ const validBookings = [
   {
     spotId: 1,
     userId:1,
-    startDate:  `2023-01-01 23:59:57.979 +00:00` ,
-    endDate: `2023-01-02 23:59:57.979 +00:00`
+    startDate:  `2023-01-01` ,
+    endDate: `2023-01-02`
   },
   {
     spotId: 2,
     userId:2,
-    startDate:  `2023-02-01 23:59:57.979 +00:00` ,
-    endDate: `2023-02-02 23:59:57.979 +00:00`
+    startDate:  `2023-02-01` ,
+    endDate: `2023-02-02`
   },
   {
     spotId: 3,
     userId:3,
-    startDate:  `2023-03-01 23:59:57.979 +00:00` ,
-    endDate: `2023-03-02 23:59:57.979 +00:00`
+    startDate:  `2023-03-01` ,
+    endDate: `2023-03-02`
   } ,   {
     spotId: 4,
     userId:4,
-    startDate:  `2023-04-01 23:59:57.979 +00:00` ,
-    endDate: `2023-04-02 23:59:57.979 +00:00`
+    startDate:  `2023-04-01` ,
+    endDate: `2023-04-02`
   },
   {
     spotId: 5,
     userId: 5,
-    startDate:  `2023-05-01 23:59:57.979 +00:00` ,
-    endDate: `2023-05-02 23:59:57.979 +00:00`
+    startDate:  `2023-05-01` ,
+    endDate: `2023-05-02`
   }
 ]
 

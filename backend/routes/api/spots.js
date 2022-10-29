@@ -101,7 +101,7 @@ router.get('/', async (req, res, next) => {
 
             // }
           })
-          const newSpots = []
+          const Spots = []
         for (let spot of allSpots) {
             let newVar = spot.toJSON()
             const avgRating = await Review.findAll({
@@ -125,11 +125,11 @@ router.get('/', async (req, res, next) => {
             if(allSpots) {
                 newVar.previewImage = allSpots.url
             }
-            newSpots.push(newVar)
+            Spots.push(newVar)
 
         }
         res.json({
-            newSpots,
+            Spots,
             size,
             page
         })
@@ -634,15 +634,15 @@ router.get('/:spotId/reviews', async (req, res, next) => {
     const errorStrings1 = {
         "endDate": "endDate cannot be on or before startDate"
     }
-    const errorStrings2 = {
+    const errorStrings2 = { //i dont have this set up for them to work independently
     "startDate": "Start date conflicts with an existing booking",
     "endDate": "End date conflicts with an existing booking"
     }
 
      const errObj = {}
 
-     startDate = startDate + 'T00:00:00.000Z' //REMEMBER TO CHANGE THIS
-     endDate = endDate + 'T00:00:00.000Z'
+     startDate = startDate //+ 'T00:00:00.000Z' //REMEMBER TO CHANGE THIS
+     endDate = endDate //+ 'T00:00:00.000Z'
 
      const alreadyBookedSpot = await Booking.findOne({
         where: {
@@ -663,11 +663,7 @@ router.get('/:spotId/reviews', async (req, res, next) => {
           statusCode: 403,
           errors: errObj
           })
-
       }
-
-
-
 
     if( endDate <= startDate ) { //needs errors ////THIS CODE IS NOT DONE
        // res.statusCode = 400
@@ -681,7 +677,7 @@ router.get('/:spotId/reviews', async (req, res, next) => {
         errObj['endDate'] = errorStrings1['endDate']
         res.statusCode = 400
         res.json({
-       // message: "Sorry, this spot is already booked for the specified dates",
+       
         statusCode: 400,
         errors: errObj
         })
@@ -697,24 +693,24 @@ router.get('/:spotId/reviews', async (req, res, next) => {
     })
     res.json(newBooking)
 
-} catch(error) {
+        } catch(error) {
 
-res.statusCode = 400
-res.json({
-    message: 'Validation Error',
-    statusCode: 400,
-    errors: errObj
-})
-}
-  }
-    })
+        res.statusCode = 400
+        res.json({
+            message: 'Validation Error',
+            statusCode: 400,
+            errors: errObj
+        })
+        }
+        }
+            })
 
 
-//NOT STARTED
+
   router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
-    const userId =  42 //req.user.id
+    const userId =  req.user.id
     const spotId = req.params.spotId
-    console.log('OOOOOOOOOOOOOOOOOOOOOOOOOO',userId, spotId)
+
 
     const desiredSpot = await Spot.findByPk(spotId)
     if(!desiredSpot) {
@@ -725,12 +721,10 @@ res.json({
                 })
 
     }
+       console.log('OOOOOOOOOOOOOOOOOOOOOOOOOO userId, spotId desiredSpotOwner',userId, spotId, desiredSpot.ownerId)
 
      //if you are NOT spotOwner
     if(userId !== desiredSpot.ownerId) {
-
-        //////LOOK HERE
-
 
         //res.json(desiredSpot.ownerId)
             let desiredBookingAll = await Booking.findOne({
@@ -746,34 +740,52 @@ res.json({
             let newVar = desiredBooking.toJSON()
           //  res.json(newVar)
 
-            const user = await User.findOne({
-                where: {id: desiredBookingAll.userId},
-                attributes: ['id', 'firstName', 'lastName']
-              })
-              newVar.User = user
+            // const user = await User.findOne({
+            //     where: {id: desiredBookingAll.userId},
+            //     attributes: ['id', 'firstName', 'lastName']
+            //   })
+            //   newVar.User = user
 
         Bookings.push(newVar)
       //  Bookings = Bookings.toJSON()
        // Bookings.desiredBooking
         res.json({Bookings})
 
-
-
-//////LOOK HERE
-
     }
-
-
 
     //if you are spotOwner
     if(userId === desiredSpot.ownerId) {
-       // res.json(desiredSpot.ownerId)
-       const desiredBooking2 = await Booking.findOne({
-        where: {spotId: spotId}
+    //    // res.json(desiredSpot.ownerId)
+    //    const desiredBooking2 = await Booking.findOne({
+    //     where: {spotId: spotId}
+      //res.json(desiredSpot.ownerId)
+                    let desiredBookingAll = await Booking.findOne({
+                        where: { spotId: spotId}
+                    })
+                let desiredBooking = await Booking.findOne({
+                    where: {spotId: spotId},
+                  //  attributes: [ 'spotId', 'startDate', 'endDate' ]
+                })
 
-    })
-    res.json(desiredBooking2)
-    }
+                let Bookings = []
+
+                    let newVar = desiredBooking.toJSON()
+                //  res.json(newVar)
+
+                    const user = await User.findOne({
+                        where: {id: desiredBookingAll.userId},
+                        attributes: ['id', 'firstName', 'lastName']
+                    })
+                    newVar.User = user
+
+                Bookings.push(newVar)
+                //  Bookings = Bookings.toJSON()
+                // Bookings.desiredBooking
+                res.json({Bookings})
+
+                    }
+
+
 
 
   })

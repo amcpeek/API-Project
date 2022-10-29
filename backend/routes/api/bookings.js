@@ -73,18 +73,176 @@ router.get('/testt', async (req, res, next) => {
 
   })
 
-  //NOT STARTED
-  router.put('/:bookingsId', requireAuth, async (req, res, next) => {
+
+
+
+
+
+
+
+
+
+
+
+
+  //NOT STARTED - DO SATURDAY
+  router.put('/:bookingId', requireAuth, async (req, res, next) => {
+    const desiredBookingId =  req.params.bookingId
     const userId = req.user.id
-    //if you are NOT spotOwner
-    //if you are spotOwner
+    let { startDate, endDate } = req.body
+
+    //make currentDateTotal
+    let currentDate = new Date()
+    let currentYear = currentDate.getFullYear()
+    let currentMonth = currentDate.getMonth() + 1
+    if (currentMonth < 10) {
+        currentMonth = '0' + currentMonth.toString()
+    }
+    let currentDay = currentDate.getDate()
+    if( currentDay < 10) {
+        currentDay = '0' + currentDay.toString()
+    }
+    //currentDate = currentDate.toString()
+    let currentDateTotal = (currentYear + '-' + currentMonth + '-' + currentDay)
+    //res.json(desiredBookingId)
+    // console.log('QQQQQQQQQQQQQQQQQ', currentDateTotal )
+
+    const errorStrings1 = {
+        "endDate": "endDate cannot be on or before startDate"
+    }
+    const errorStrings2 = { //i dont have this set up for them to work independently
+    "startDate": "Start date conflicts with an existing booking",
+    "endDate": "End date conflicts with an existing booking"
+    }
+     const errObj = {}
+
+     const currentBooking = await Booking.findByPk(desiredBookingId)
+     if(!currentBooking) {
+        res.statusCode = 404
+        res.json({
+        message: " Couldn't find a Booking with the specified id",
+        statusCode: 404,
+        })
+
+     }
+
+     const alreadyBookedSpot = await Booking.findOne({
+        where: {
+            startDate: startDate,
+            endDate: endDate,
+            id: desiredBookingId
+        } })
+
+      //  res.json(alreadyBookedSpot)
+
+     if (alreadyBookedSpot) {
+        //  throw new Error("Sorry, this spot is already booked for the specified dates")
+        errObj['startDate'] = errorStrings2['startDate']
+        errObj['endDate'] = errorStrings2['endDate']
+          res.statusCode = 403
+          res.json({
+          message: "Sorry, this spot is already booked for the specified dates",
+          statusCode: 403,
+          errors: errObj
+          })
+      } else if ( endDate <= startDate ) { //needs errors ////THIS CODE IS NOT DONE
+       // res.statusCode = 400
+        // res.json({
+        // message: "endDate cannot be on or before startDate",
+        // statusCode: 400
+        // })
+     //   const err = new Error("Spot couldn't be found")
+        //err.status = 404
+      //  next(err)
+        errObj['endDate'] = errorStrings1['endDate']
+        res.statusCode = 400
+        res.json({
+
+        statusCode: 400,
+        errors: errObj
+        })
+
+    } else if ( startDate < currentDateTotal ) {
+         //   errObj['endDate'] = errorStrings1['endDate']
+            res.statusCode = 403
+            res.json({
+            message: "Past bookings can't be modified",
+            statusCode: 403,
+          //  errors: errObj
+            })
+
+
+  } else {
+    try{
+        const newBooking = await currentBooking.update({
+            startDate,
+            endDate
+   })
+    res.json(newBooking)
+    // currentBooking.startDate = startDate
+    // currentBooking.endDate = endDate
+
+    // res.json(currentBooking)
+
+        } catch(error) {
+
+        res.statusCode = 400
+        res.json({
+            message: 'Validation Error',
+            statusCode: 400,
+            errors: errObj
+        })
+        }
+        }
+
   })
 
-  //NOT STARTED
-  router.delete('/:bookingsId', requireAuth, async (req, res, next) => {
+
+  //Current
+  router.delete('/:bookingId', requireAuth, async (req, res, next) => {
     const userId = req.user.id
-    //if you are NOT spotOwner
-    //if you are spotOwner
+    const desiredBookingId =  req.params.bookingId
+
+    //make currentDateTotal
+    let currentDate = new Date()
+    let currentYear = currentDate.getFullYear()
+    let currentMonth = currentDate.getMonth() + 1
+    if (currentMonth < 10) {
+        currentMonth = '0' + currentMonth.toString()
+    }
+    let currentDay = currentDate.getDate()
+    if( currentDay < 10) {
+        currentDay = '0' + currentDay.toString()
+    }
+    //currentDate = currentDate.toString()
+    let currentDateTotal = (currentYear + '-' + currentMonth + '-' + currentDay)
+    //res.json(desiredBookingId)
+    // console.log('QQQQQQQQQQQQQQQQQ', currentDateTotal )
+
+    const currentBooking = await Booking.findByPk(desiredBookingId)
+    if(!currentBooking) {
+       res.statusCode = 404
+       res.json({
+       message: "Couldn't find a Booking with the specified id",
+       statusCode: 404,
+       })
+    } else if ( currentBooking.startDate < currentDateTotal && currentBooking.endDate > currentDateTotal ) {
+        //   errObj['endDate'] = errorStrings1['endDate']
+           res.statusCode = 403
+           res.json({
+           message: "Bookings that have been started can't be deleted",
+           statusCode: 403,
+         //  errors: errObj
+           })
+        } else {
+            await currentBooking.destroy()
+            res.json({
+                message: "Successfully deleted",
+                statusCode: 200
+            })
+        }
+
+
   })
 
 
@@ -133,45 +291,45 @@ router.get('/testt', async (req, res, next) => {
 
 // }
 
-router.get('/:spotId/reviews', async (req, res, next) => {
-    const spotId = req.params.spotId
-    const allReviews = await Review.findAll({
-        where: { spotId: spotId  }
-    })
+// router.get('/:spotId/reviews', async (req, res, next) => {
+//     const spotId = req.params.spotId
+//     const allReviews = await Review.findAll({
+//         where: { spotId: spotId  }
+//     })
 
-    if(allReviews.length === 0) {
-        res.statusCode = 404
-        res.json({
-            message: "Spot couldn't be found",
-            statusCode: 404
+//     if(allReviews.length === 0) {
+//         res.statusCode = 404
+//         res.json({
+//             message: "Spot couldn't be found",
+//             statusCode: 404
 
-        })
+//         })
 
-    }
-    // console.log(spotId)
-     const Reviews = []
-     for (let rev of allReviews) {
-        let newVar = rev.toJSON()
+//     }
+//     // console.log(spotId)
+//      const Reviews = []
+//      for (let rev of allReviews) {
+//         let newVar = rev.toJSON()
 
-       const user = await User.findOne({
-        where: {id: rev.userId},
-        attributes: ['id', 'firstName', 'lastName']
-      })
-      newVar.User = user
+//        const user = await User.findOne({
+//         where: {id: rev.userId},
+//         attributes: ['id', 'firstName', 'lastName']
+//       })
+//       newVar.User = user
 
-    //   const spot = await Spot.findOne({
-    //     where: {id: rev.spotId},
-    //     attributes: {exclude: ['createdAt', 'updatedAt'] }
-    //    })
+//     //   const spot = await Spot.findOne({
+//     //     where: {id: rev.spotId},
+//     //     attributes: {exclude: ['createdAt', 'updatedAt'] }
+//     //    })
 
-       const ReviewImages = await ReviewImage.findAll({
-        where: {reviewId: rev.id},
-        attributes: ['id','url']
-       })
+//        const ReviewImages = await ReviewImage.findAll({
+//         where: {reviewId: rev.id},
+//         attributes: ['id','url']
+//        })
 
-       newVar.ReviewImages = ReviewImages
-        Reviews.push(newVar)
-     }
+//        newVar.ReviewImages = ReviewImages
+//         Reviews.push(newVar)
+//      }
 
-    res.json({Reviews})
-  })
+//     res.json({Reviews})
+//   })
