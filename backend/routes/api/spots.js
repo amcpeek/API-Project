@@ -616,8 +616,8 @@ router.get('/:spotId/reviews', async (req, res, next) => {
   })
 
 
-  router.post('/:spotIdForBooking/bookings', requireAuth, async (req, res, next) => {
-    const spotIdForBooking =  req.params.spotIdForBooking
+  router.post('/:spotId/bookings', requireAuth, async (req, res, next) => { //in postman its spotIdForBooking
+    const spotIdForBooking =  req.params.spotId
     const userId = req.user.id
     let { startDate, endDate } = req.body
 
@@ -641,7 +641,7 @@ router.get('/:spotId/reviews', async (req, res, next) => {
 
      const errObj = {}
 
-     startDate = startDate + 'T00:00:00.000Z'
+     startDate = startDate + 'T00:00:00.000Z' //REMEMBER TO CHANGE THIS
      endDate = endDate + 'T00:00:00.000Z'
 
      const alreadyBookedSpot = await Booking.findOne({
@@ -705,19 +705,78 @@ res.json({
     statusCode: 400,
     errors: errObj
 })
-
 }
-
   }
-
-
-
-
-
-
     })
 
 
+//NOT STARTED
+  router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
+    const userId =  42 //req.user.id
+    const spotId = req.params.spotId
+    console.log('OOOOOOOOOOOOOOOOOOOOOOOOOO',userId, spotId)
+
+    const desiredSpot = await Spot.findByPk(spotId)
+    if(!desiredSpot) {
+        res.statusCode = 404
+                res.json({
+                    message: "Spot couldn't be found",
+                    statusCode: 404
+                })
+
+    }
+
+     //if you are NOT spotOwner
+    if(userId !== desiredSpot.ownerId) {
+
+        //////LOOK HERE
+
+
+        //res.json(desiredSpot.ownerId)
+            let desiredBookingAll = await Booking.findOne({
+                where: { spotId: spotId}
+            })
+           let desiredBooking = await Booking.findOne({
+            where: {spotId: spotId},
+            attributes: [ 'spotId', 'startDate', 'endDate' ]
+        })
+
+        let Bookings = []
+
+            let newVar = desiredBooking.toJSON()
+          //  res.json(newVar)
+
+            const user = await User.findOne({
+                where: {id: desiredBookingAll.userId},
+                attributes: ['id', 'firstName', 'lastName']
+              })
+              newVar.User = user
+
+        Bookings.push(newVar)
+      //  Bookings = Bookings.toJSON()
+       // Bookings.desiredBooking
+        res.json({Bookings})
+
+
+
+//////LOOK HERE
+
+    }
+
+
+
+    //if you are spotOwner
+    if(userId === desiredSpot.ownerId) {
+       // res.json(desiredSpot.ownerId)
+       const desiredBooking2 = await Booking.findOne({
+        where: {spotId: spotId}
+
+    })
+    res.json(desiredBooking2)
+    }
+
+
+  })
 
 
 
