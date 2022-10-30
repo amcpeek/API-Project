@@ -13,7 +13,7 @@ const { Op, json } = require('sequelize');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { requireAuth } = require('../../utils/auth.js');
-const reviewImage = require('../../db/models/reviewImage');
+//const reviewImage = require('../../db/models/reviewImage');
 
 router.get('/test', requireAuth, (req, res) => {
   res.json({message: 'success'})
