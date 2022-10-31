@@ -2,74 +2,50 @@
 const express = require('express')
 const router = express.Router();
 
-// backend/routes/api/session.js
-//const express = require('express');
-
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { Spot, User, SpotImage, Review, sequelize, ReviewImage } = require('../../db/models');
 const { Op, json } = require('sequelize');
 
-
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { requireAuth } = require('../../utils/auth.js');
-const review = require('../../db/models/review');
 
-// router.get('/test', requireAuth, (req, res) => {
-//   res.json({message: 'success'})
-// })
+router.get('/test', requireAuth, (req, res) => {
+  res.json({message: 'success'})
+})
 
-// router.get('/', async (req, res, next) => {
-//   // const message = 'hi-'
-//   // res.json(message)
-//   const reviewsOfCurrentUser = await Review.findAll({})
-//   res.json(reviewsOfCurrentUser)
-// })
-
+//**// 13 - Get all Reviews of the Current User  - DONE
 router.get('/current',requireAuth, async (req, res, next) => {
-  const userId = 1//req.user.id
+  const userId = req.user.id
   const allReviews = await Review.findAll({
       where: {userId: userId}
   })
 
+  if(!allReviews[0]) {
+    res.statusCode = 403
+    res.json({
+        message: "Forbidden",
+        statusCode: 403
+    })
+  }
+
   const Reviews = []
   for (let rev of allReviews) {
      let newVar = rev.toJSON()
-    //  const avgRating = await Review.findAll({
-    //      attributes: [[sequelize.fn('AVG', sequelize.col('stars')),'avgRating']],
-    //      where: {spotId : spot.id},
-    //      raw: true
-    //  })
-     // if(!avgRating[0].toJSON().avgRating) {
-     //     newVar.avgRating = null
-     // } else {
 
-     // }
-    // newVar.avgRating = avgRating[0].avgRating
-
-    //  const imagez = await SpotImage.findOne({
-    //      attributes: ['url'],
-    //      where: {preview: true, spotId : spot.id},
-    //      raw: true
-    //  })
-    //  if(imagez) {
-    //   newVar.previewImage = imagez.url
-
-    //  }
     const user = await User.findOne({
       where: {id: userId},
       attributes: ['id', 'firstName', 'lastName']
     })
     newVar.User = user
 
-   // modelName: 'Spot',
+    //extra code: code have done this with default scope
+    // modelName: 'Spot',
     // defaultScope: {
     //   attributes: {
     //     exclude: ['createdAt', 'updatedAt']
     //   }
-
     // }
-
 
      let spot = await Spot.findOne({
       where: {id: rev.spotId},
@@ -77,64 +53,33 @@ router.get('/current',requireAuth, async (req, res, next) => {
      })
      spot = spot.toJSON()
 
-    //  res.json(spot)
      const previewImage = await SpotImage.findOne({
       where: { spotId: spot.id},
       attributes: ['url']
      })
-     //res.json(previewImage)
-     if(previewImage) {
+
+     if(previewImage) { // this code is set up so if there isn't a previewImage it is excluded completely rather than null
       spot.previewImage = previewImage.url
      }
 
-    // const neareowijg = previewImage
-   //  console.log('OOOOOOOOOOOOOOOOOOOOOOOOOO', spot)
-     //res.json()
-
-    //  spot.previewImage = previewImage
      newVar.Spot = spot
-      //**couldnt get the previewImage: image url to attach to the spot object,  */
-
-    //  newVar.Spot.previewImage = previewImage.url
-   // newVar.previewImage =  previewImage.url
-
      const ReviewImages = await ReviewImage.findAll({
       where: {reviewId: rev.id},
       attributes: ['id','url']
      })
-      // console.log('OOOOOOOOOOOOOOOOOOOOOOOOOO', rev.id)
 
      newVar.ReviewImages = ReviewImages
-
      Reviews.push(newVar)
   }
   res.json({Reviews})
-
-  //////////////////////////////////////
-  //res.json(userId)
-//   const reviewsOfCurrentUser = await Review.findAll({
-//     where: {userId: userId}
-//   })
-//   const final = []
-//   for (let review of reviewsOfCurrentUser) {
-//     let newVar = review.toJSON()
-
-//     const spots = await Spot.findOne({
-//       where: {userId: userId}
-//     })
-//     if(spots) {
-//       newVar.Spot = spots
-//     }
-//     final.push(spots)
-//   }
-// res.json(final)
 })
 
+//**// 16 - Add an Image to a Review based on the Review's id - DONE
 router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
   const userId = req.user.id
   const { url } = req.body
   const reviewId = req.params.reviewId
-  //res.json(reviewId)
+
 
   const theReview = await Review.findOne({
     where: {
@@ -142,6 +87,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
       userId: userId
     }
   })
+ 
   if(!theReview ) {
     res.statusCode = 404
     res.json({
@@ -171,6 +117,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
   res.json(findNewestReviewImage)
 })
 
+//**// 17 - Edit a Review - DONE
 router.put('/:reviewId', requireAuth, async (req, res, next) => {
   const userId = req.user.id
   const reviewId = req.params.reviewId
@@ -217,6 +164,7 @@ router.put('/:reviewId', requireAuth, async (req, res, next) => {
 
 })
 
+//**// 18 - Delete a Review - DONE
 router.delete('/:reviewId', requireAuth, async (req, res, next) => {
   const reviewId = req.params.reviewId
   const userId = req.user.id
