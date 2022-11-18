@@ -66,6 +66,7 @@ router.get('/test', requireAuth, (req, res) => {
     let { startDate, endDate } = req.body
 
     //make currentDateTotal
+    //note Alec did it a different way and his notes I stored in the AirBnb Clone
     let currentDate = new Date()
     let currentYear = currentDate.getFullYear()
     let currentMonth = currentDate.getMonth() + 1
