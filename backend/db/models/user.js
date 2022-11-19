@@ -11,9 +11,17 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     toSafeObject() {
-      const { id, firstName, lastName, username, email } = this;
-      return { id, firstName, lastName,username, email };
+      const { id, firstName, lastName, email, username} = this;
+      return { id, firstName, lastName, email, username };
     }
+    //based on the frontend auth me phase 1 instructions,
+    //they want a user obj that is createdAt, email, id, updatedAt, username
+    newSessionObj() {
+      const { id, firstName, lastName, username, email, createdAt, updatedAt } = this;
+      return { createdAt, email, id, updatedAt, username};
+    }
+
+
     validatePassword(password) {
       return bcrypt.compareSync(password, this.hashedPassword.toString())
     }

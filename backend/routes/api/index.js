@@ -25,9 +25,10 @@ router.use('/bookings', bookingsRouter);
 // backend/routes/api/index.js
 // ...
 
-router.post('/test', function(req, res) {
-    res.json({ requestBody: req.body });
-  });
+//said could remove it after testing is set up
+// router.post('/test', function(req, res) {
+//     res.json({ requestBody: req.body });
+//   });
 
   // ...
 

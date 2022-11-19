@@ -27,7 +27,7 @@ router.post(
       await setTokenCookie(res, user);
 
       return res.json({
-        user
+        user: user.newSessionObj()
       });
     }
   );
@@ -59,7 +59,7 @@ router.get(
         return res.json({
           user: user.toSafeObject()
         });
-      } else return res.json({});
+      } else return res.json({"user": null});
     }
   );
 
