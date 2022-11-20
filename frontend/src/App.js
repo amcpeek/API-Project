@@ -5,17 +5,21 @@ import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import AllSpots from "./components/Spots/AllSpots/Index";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  useEffect(() => {
+  useEffect(() => { //dont show the sign up page until it is loaded and
+    //confirmed if the sign up page is needed bc the person isn't logged in
+    //gives it some time to load
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+
       {isLoaded && (
         <Switch>
           <Route path="/signup">
@@ -23,6 +27,14 @@ function App() {
           </Route>
         </Switch>
       )}
+
+      <Switch>
+         <Route path="/spots">
+            <AllSpots/>
+          </Route>
+          {/* <h2>this should work</h2> */}
+      </Switch>
+
     </>
   );
 }
