@@ -107,6 +107,12 @@ const AddSpotForm = () => {
                  value={price}
                  onChange={(e) => setPrice(e.target.value)}
                 />
+                {/* <input //this doesn't work because I don't have the associated spot id yet
+                type='text'
+                placeholder='link to photo'
+                value={photo}
+                onChange={(e) => dispatch(addSpotPhoto())}
+                /> */}
                 <button type='submit'>Submit</button>
             </form>
 

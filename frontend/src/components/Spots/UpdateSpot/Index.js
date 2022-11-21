@@ -33,7 +33,7 @@ const UpdateSpotForm = ({singleSpot}) => {
             lat, lng, //might need a way to leave out lat and lng
             name, description, price
         }
-        console.log('what is payload', payload)
+       // console.log('what is payload', payload)
 
         let updatedSpot
 
@@ -45,10 +45,6 @@ const UpdateSpotForm = ({singleSpot}) => {
         // }
 
     }
-
-
-
-
        //await reset()
 
     // const handleCancelClick = (e) => {
@@ -73,6 +69,14 @@ const UpdateSpotForm = ({singleSpot}) => {
             {/* can later put in className in the div */}
             <h1>Update Spot</h1>
             <form onSubmit={handleSubmit}>
+                {/* <input
+                 type='text'
+                 value={image}
+                 onChange={() => dispatch(addSpotImage(spot.id, image))}
+                 placeholder='Image URL'
+                 name='image'
+                >
+                </input> */}
                 <input
                  type='text'
                  onChange={(e)=>setAddress(e.target.value)}

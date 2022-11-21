@@ -11,7 +11,7 @@ import AllSpots from "./components/Spots/AllSpots/Index";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  useEffect(() => { //dont show the sign up page until it is loaded and
+  useEffect(() => { //don't show the sign up page until it is loaded and
     //confirmed if the sign up page is needed bc the person isn't logged in
     //gives it some time to load
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));

@@ -5,10 +5,12 @@ const ADD_SPOT = 'spots/ADD_SPOT'
 const UPDATE_SPOT = 'spots/UPDATE_SPOT'
 const REMOVE_SPOT = 'spots/REMOVE_SPOT'
 
+
 /* -- actions -- */
 //6 get all /spots
 //7 get all by current user /spots/current
 //8 get one spot /spots/:spotId
+
 export const getSpotsAction = (spots) => {
     return {
         type: GET_SPOTS,
@@ -16,7 +18,7 @@ export const getSpotsAction = (spots) => {
     }
 }
 //9 post /spots
-//10 post /:spotId/images
+
 export const addSpotAction = (spot) => {
     return {
         type: ADD_SPOT,
@@ -83,7 +85,7 @@ export const updateSpot = (spot) => async dispatch => {
 }
 
 export const removeSpot = (spotId) => async dispatch => {
-     await fetch(`/api/spots/${spotId}`, {
+     await csrfFetch(`/api/spots/${spotId}`, {
         method: 'DELETE'
     })
 }
@@ -94,7 +96,6 @@ export const removeSpot = (spotId) => async dispatch => {
 // }
 
 /* -- reducer -- */
-
 
 export default function spotsReducer (state = {}, action) {
     switch(action.type) {

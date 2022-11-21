@@ -30,7 +30,7 @@ const AllSpots = () => {
       <AddSpotForm/>
 
       <Switch>
-        <Route path='/spots/:id'>
+        <Route exact path='/spots/:id'>
           <SingleSpot spots={spots} />
         </Route>
       </Switch>
