@@ -76,9 +76,9 @@ export const updateSpot = (spot) => async dispatch => {
     })
     if(response.ok) {
         const spot = await response.json()
-        console.log('return from backend of spot', spot)
+       // console.log('return from backend of spot', spot)
         dispatch(updateSpotAction(spot))
-        return spot
+      //  return spot
     }
 }
 
