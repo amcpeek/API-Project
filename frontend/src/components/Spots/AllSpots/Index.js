@@ -5,6 +5,7 @@ import SingleSpot from '../SingleSpot/Index'
 import { getSpots } from '../../../store/spot'
 import './AllSpots.css'
 import AddSpotForm from '../AddSpot/Index';
+import CurrentOwnersSpots from '../CurrentOwnersSpots';
 
 const AllSpots = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,13 @@ const AllSpots = () => {
    // console.log('what is state', state)
     return Object.values(state.spots)});
   //console.log('All spots', spots)
+
+  // const ownerId = useSelector(state=> {
+  //   return state.session.user.id
+  // })
+
+  //  const ownersSpots = spots.filter((spot) => ownerId === spot.ownerId)
+  //   console.log('does ownersSpots work', ownersSpots)
 
   useEffect(() => {
     dispatch(getSpots());
@@ -28,12 +36,14 @@ const AllSpots = () => {
         ))}
       </ol>
       <AddSpotForm/>
+      {/* <CurrentOwnersSpots/> */}
 
       <Switch>
         <Route exact path='/spots/:id'>
           <SingleSpot spots={spots} />
         </Route>
       </Switch>
+      <CurrentOwnersSpots/>
     </div>
   );
 };
