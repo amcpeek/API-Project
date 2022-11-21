@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 //import './SingleSpot.css'; stopped the run
+import UpdateSpotForm from '../UpdateSpot/Index';
 
 const SingleSpot = ({ spots }) => {
   const { id } = useParams();
@@ -23,6 +24,7 @@ const SingleSpot = ({ spots }) => {
         <h4>{singleSpot.city}</h4>
         <h4>{singleSpot.state}</h4>
         <h4>{singleSpot.country}</h4>
+        <UpdateSpotForm singleSpot={singleSpot}/>
       </div>
     );
   }

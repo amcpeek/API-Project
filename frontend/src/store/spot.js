@@ -1,3 +1,5 @@
+import { csrfFetch } from './csrf';
+
 const GET_SPOTS = 'spots/GET_SPOTS'
 const ADD_SPOT = 'spots/ADD_SPOT'
 const UPDATE_SPOT = 'spots/UPDATE_SPOT'
@@ -43,31 +45,38 @@ export const getSpots = () => async dispatch => {
 
     if(response.ok) {
         const spots = await response.json()
-        console.log('are there spots in here', spots) // works
+      //  console.log('are there spots in here', spots) // works
         dispatch(getSpotsAction(spots.Spots))
     }
 }
 
 export const addSpot = (spot) => async dispatch => {
-     await fetch(`/api/spots`, {
+  //  console.log('fetchAddSpot', spot)
+    const response = await csrfFetch(`/api/spots`, {
         method: 'POST',
-        headers: {
-            'Content-type': 'application/json'
-        },
-        body: JSON.stringify(spot)
+        // headers: {
+        //     'Content-Type': 'application/json'
+        // },
+       body: JSON.stringify(spot)
     })
+    //const data = await response.json()
+   // dispatch(getSpots())
+    return response
+
 }
 
 export const updateSpot = (spot) => async dispatch => {
-    const response = await fetch(`/api/spots/${spot.id}`, {
+    //console.log('what is getting to updateSpot fetch',spot)
+    const response = await csrfFetch(`/api/spots/${spot.id}`, {
         method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        // headers: {
+        //     'Content-Type': 'application/json'
+        // },
         body: JSON.stringify(spot)
     })
     if(response.ok) {
         const spot = await response.json()
+        console.log('return from backend of spot', spot)
         dispatch(updateSpotAction(spot))
         return spot
     }
@@ -91,7 +100,7 @@ export default function spotsReducer (state = {}, action) {
     switch(action.type) {
         case GET_SPOTS:
             const allSpots = {}
-            console.log('what is action',action)
+           // console.log('what is action',action)
             action.spots.forEach(spot => { //wont work if spots isn't an array
                 allSpots[spot.id] = spot
             })

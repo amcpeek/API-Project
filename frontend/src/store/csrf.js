@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 
 export async function csrfFetch(url, options = {}) {
   // set options.method to 'GET' if there is no method
+  //console.log('what is options.method', options.method)
   options.method = options.method || 'GET';
   // set options.headers to an empty object if there is no headers
   options.headers = options.headers || {};
@@ -16,6 +17,7 @@ export async function csrfFetch(url, options = {}) {
     options.headers['XSRF-Token'] = Cookies.get('XSRF-TOKEN');
   }
   // call the default window's fetch with the url and the options passed in
+  //console.log('is this object correct', options)
   const res = await window.fetch(url, options);
 
   // if the response status code is 400 or above, then throw an error with the

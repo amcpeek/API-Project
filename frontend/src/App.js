@@ -6,6 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import AllSpots from "./components/Spots/AllSpots/Index";
+// import AddSpotForm from "./components/Spots/AddSpot/Index";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,8 +32,9 @@ function App() {
       <Switch>
          <Route path="/spots">
             <AllSpots/>
+            {/* <AddSpotForm/> */}
           </Route>
-          {/* <h2>this should work</h2> */}
+          {/* <h2>I think this would show on all pages</h2> */}
       </Switch>
 
     </>

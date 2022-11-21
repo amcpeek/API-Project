@@ -4,11 +4,12 @@ import { Route, Switch, NavLink } from 'react-router-dom';
 import SingleSpot from '../SingleSpot/Index'
 import { getSpots } from '../../../store/spot'
 import './AllSpots.css'
+import AddSpotForm from '../AddSpot/Index';
 
 const AllSpots = () => {
   const dispatch = useDispatch();
   const spots = useSelector(state=> {
-    console.log('what is state', state)
+   // console.log('what is state', state)
     return Object.values(state.spots)});
   //console.log('All spots', spots)
 
@@ -19,11 +20,14 @@ const AllSpots = () => {
   return (
     <div>
       <h1>All Spots</h1>
+
+
       <ol>
         {spots.map(({ id, name }) => (
           <li key={id}><NavLink to={`/spots/${id}`}>{name}</NavLink></li>
         ))}
       </ol>
+      <AddSpotForm/>
 
       <Switch>
         <Route path='/spots/:id'>
