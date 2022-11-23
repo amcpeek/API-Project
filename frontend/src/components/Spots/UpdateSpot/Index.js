@@ -1,13 +1,25 @@
+////GOOD WORKING CODE/////
+////////////////////////////
+//////////////////////////
+
 import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getSpots, updateSpot } from '../../../store/spot'
+import { addSpotImage } from '../../../store/spotImage'
 //import './AddSpot.css'
 
-const UpdateSpotForm = ({singleSpot}) => {
-    //they also passed in hideForm
-    //let spot = useSelector(state => state.spots[spotId])
-    //console.log('is spot info accessible form updatedSpotForm', singleSpot)
-    let spot = singleSpot
+const UpdateSpotForm = ({spots}) => {
+    const { id } = useParams()
+    const dispatch = useDispatch()
+    // const spotImages = useSelector(state=> {
+    //     return Object.values(state.spotImages)
+    // })
+
+
+
+
+const spot = spots.find(spot => spot.id.toString() === id);
     const [address, setAddress] = useState(spot.address)
     const [city, setCity] = useState(spot.city)
     const [state, setState] = useState(spot.state)
@@ -17,8 +29,35 @@ const UpdateSpotForm = ({singleSpot}) => {
     const [name, setName] = useState(spot.name)
     const [description, setDescription] = useState(spot.description)
     const [price, setPrice] = useState(spot.price)
+    const [url, setUrl] = useState('https://img.freepik.com/free-photo/fireplace-with-red-socks-hanging-christmas-tree_1252-402.jpg')
+    const [preview, setPreview] = useState(false)
+//    const [address, setAddress] = useState('')
+//    const [city, setCity] = useState('')
+//    const [state, setState] = useState('')
+//    const [country, setCountry] = useState('')
+//    const [lat, setLat] = useState(0)
+//    const [lng, setLng] = useState(0)
+//    const [name, setName] = useState('')
+//    const [description, setDescription] = useState('')
+//    const [price, setPrice] = useState(0)
+//    const [url, setUrl] = useState('')
+//    const [preview, setPreview] = useState(false)
 
-    const dispatch = useDispatch()
+
+
+//    if(!spots) {
+//     return 0
+//   }
+
+//    if(spot) {
+//        // setAddress(spot.address)
+//        console.log('this is the spot 11/23',spot)
+//    }
+
+
+
+
+
 
     // useEffect(() => {
     //     dispatch(getSpots())
@@ -43,6 +82,12 @@ const UpdateSpotForm = ({singleSpot}) => {
         //     await dispatch(getSpots())
         //   //  hideForm()
         // }
+        const imagePayload = {
+            spotId: id,
+            url, preview
+        }
+        let spotImage
+        spotImage = await dispatch(addSpotImage(imagePayload))
 
     }
        //await reset()
@@ -138,6 +183,17 @@ const UpdateSpotForm = ({singleSpot}) => {
                  value={price}
                  onChange={(e) => setPrice(e.target.value)}
                 />
+                 <input
+                 type='text'
+                 onChange={(e)=>setUrl(e.target.value)}
+                 value={url}
+                 placeholder='ImageUrl'
+                 name='imageUrl'
+                />
+                <label><input
+                type="checkbox"
+                onChange={(e) => setPreview(e.currentTarget.checked)}
+                 />Do you want this to be your preview image?</label>
                 <button type='submit'>Submit</button>
             </form>
 

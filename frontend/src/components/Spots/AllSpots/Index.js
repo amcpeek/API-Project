@@ -12,7 +12,7 @@ const AllSpots = () => {
   const spots = useSelector(state=> {
    // console.log('what is state', state)
     return Object.values(state.spots)});
-  //console.log('All spots', spots)
+  console.log('All spotszzz', spots)
 
   // const ownerId = useSelector(state=> {
   //   return state.session.user.id
@@ -33,17 +33,11 @@ const AllSpots = () => {
       <ol>
         {spots.map(({ id, name }) => (
           <li key={id}><NavLink to={`/spots/${id}`}>{name}</NavLink></li>
+
+
         ))}
       </ol>
-      <AddSpotForm/>
-      {/* <CurrentOwnersSpots/> */}
 
-      <Switch>
-        <Route exact path='/spots/:id'>
-          <SingleSpot spots={spots} />
-        </Route>
-      </Switch>
-      <CurrentOwnersSpots/>
     </div>
   );
 };

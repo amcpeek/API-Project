@@ -1,12 +1,17 @@
 // frontend/src/App.js
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import AllSpots from "./components/Spots/AllSpots/Index";
-// import AddSpotForm from "./components/Spots/AddSpot/Index";
+import AddSpotForm from "./components/Spots/AddSpot/Index";
+import AddSpotImageForm from "./components/Spots/AddSpotImage/Index";
+import CurrentOwnersSpots from "./components/Spots/CurrentOwnersSpots";
+import SingleSpot from "./components/Spots/SingleSpot/Index";
+import UpdateSpotForm from "./components/Spots/UpdateSpot/Index";
+import { getSpots } from './store/spot'
 
 function App() {
   const dispatch = useDispatch();
@@ -15,7 +20,11 @@ function App() {
     //confirmed if the sign up page is needed bc the person isn't logged in
     //gives it some time to load
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    dispatch(getSpots())
   }, [dispatch]);
+  const spots = useSelector(state=> {
+    // console.log('what is state', state)
+     return Object.values(state.spots)});
 
   return (
     <>
@@ -30,11 +39,31 @@ function App() {
       )}
 
       <Switch>
-         <Route path="/spots">
+        <Route exact path="/">
+        </Route>
+         <Route exact path="/spots">
             <AllSpots/>
-            {/* <AddSpotForm/> */}
+            {/* <AddSpotForm/>  this makes it show up more times than it needs to*/}
           </Route>
-          {/* <h2>I think this would show on all pages</h2> */}
+          <Route exact path="/spots/create">
+            <AddSpotForm spots={spots}/>
+          </Route>
+          <Route exact path="/spots/current">
+            <CurrentOwnersSpots/>
+          </Route>
+          <Route exact path="/spots/:id/edit">
+               <UpdateSpotForm spots={spots}/>
+           </Route>
+          <Route exact path="/spots/:id">
+            <SingleSpot spots={spots}/>
+           </Route>
+            <Route exact path="/spots/:spotId/images">
+            <AddSpotImageForm/>
+          </Route>
+          <Route>
+            <h2>"Page not found?"</h2>
+          </Route>
+
       </Switch>
 
     </>

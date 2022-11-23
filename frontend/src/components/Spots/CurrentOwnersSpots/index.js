@@ -11,11 +11,17 @@ const CurrentOwnersSpots = () => {
     const spots = useSelector(state=> {
      // console.log('what is state', state)
       return Object.values(state.spots)});
-    //console.log('All spots', spots)
+    console.log('current owner spots', spots)
 
     const ownerId = useSelector(state=> {
+       // console.log('what is state',state)
+       if(!state.session.user) {
+        return null //could also pass is loading as a prop
+       }
       return state.session.user.id
     })
+
+
 
      const ownersSpots = spots.filter((spot) => ownerId === spot.ownerId)
       console.log('does ownersSpots work', ownersSpots)
@@ -26,7 +32,7 @@ const CurrentOwnersSpots = () => {
 
     return (
       <div>
-        <h1>Owner's Spots</h1>
+        <h1>Current Owners Spots</h1>
 
 
         <ol>
@@ -34,14 +40,14 @@ const CurrentOwnersSpots = () => {
             <li key={id}><NavLink to={`/spots/${id}`}>{name}</NavLink></li>
           ))}
         </ol>
-        <AddSpotForm/>
-        {/* <CurrentOwnersSpots/> */}
+         {/* <AddSpotForm/>
+        <CurrentOwnersSpots/> */}
 
-        <Switch>
+        {/* <Switch>
           <Route exact path='/spots/:id'>
             <SingleSpot spots={spots} />
           </Route>
-        </Switch>
+        </Switch> */}
       </div>
     );
 }

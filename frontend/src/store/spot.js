@@ -63,7 +63,7 @@ export const addSpot = (spot) => async dispatch => {
     })
     //const data = await response.json()
    // dispatch(getSpots())
-    return response
+    return await response.json()
 
 }
 
