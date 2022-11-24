@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { getSpots, addSpot } from '../../../store/spot'
+import { addSpot } from '../../../store/spot'
 import { addSpotImage } from '../../../store/spotImage'
 //import './AddSpot.css'
-import { Redirect } from 'react-router-dom'
+
 
 const AddSpotForm = () => {
     const [address, setAddress] = useState('testAddress')
@@ -37,23 +37,23 @@ const AddSpotForm = () => {
             spotId: response.id,
             url, preview
         }
-        let spotImage
-        spotImage = await dispatch(addSpotImage(payload))
+
+        await dispatch(addSpotImage(payload))
 
 
     }
 
-    const reset = () => {
-        setAddress('')
-        setCity('')
-        setState('')
-        setCountry('')
-        setLat(0)
-        setLng(0)
-        setName('')
-        setDescription('')
-        setPrice(0)
-    }
+    // const reset = () => {
+    //     setAddress('')
+    //     setCity('')
+    //     setState('')
+    //     setCountry('')
+    //     setLat(0)
+    //     setLng(0)
+    //     setName('')
+    //     setDescription('')
+    //     setPrice(0)
+    // }
 
     return (
         <div>

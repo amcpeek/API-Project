@@ -258,11 +258,21 @@ router.get('/:spotId', requireAuth, async (req, res, next) => {
     nextPiece.numReviews = numReviews[0].numReviews
 
     //SpotImages
-    const allImages = await SpotImage.findAll({
+    let allImages = await SpotImage.findAll({
         attributes: ['id','url', 'preview'],
-        where: {preview: true, spotId : spotId},
+        where: {spotId : spotId},
         raw: true
     })
+    if(!allImages.length) {
+       // allImages.url[0] = 'https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg'
+       console.log('what is allImages.url//////////////////////////////', allImages)
+       //allImages.push()
+       allImages = [ {
+        id:0,
+        url:'https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg',
+        previewImage:true
+        }]
+    }
     nextPiece.SpotImages = allImages
 
     //owner info
@@ -274,8 +284,8 @@ router.get('/:spotId', requireAuth, async (req, res, next) => {
     nextPiece.Owner = spotOwner
 
 
-    finalSpot.push(nextPiece)
-    res.json(finalSpot)
+    //finalSpot.push(nextPiece)
+    res.json(nextPiece)
 })
 
 //**// 9 - Create a Spot - DONE

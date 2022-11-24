@@ -1,47 +1,68 @@
-////GOOD WORKING CODE/////
-////////////////////////////
-//////////////////////////
-
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { getSpots, updateSpot } from '../../../store/spot'
+import { useDispatch } from 'react-redux'
+import { updateSpot, getSpots } from '../../../store/spot'
 import { addSpotImage } from '../../../store/spotImage'
 //import './AddSpot.css'
 
 const UpdateSpotForm = ({spots}) => {
     const { id } = useParams()
     const dispatch = useDispatch()
-    // const spotImages = useSelector(state=> {
-    //     return Object.values(state.spotImages)
-    // })
+
+   const [address, setAddress] = useState('')
+   const [city, setCity] = useState('')
+   const [state, setState] = useState('')
+   const [country, setCountry] = useState('')
+   const [lat, setLat] = useState(0)
+   const [lng, setLng] = useState(0)
+   const [name, setName] = useState('')
+   const [description, setDescription] = useState('')
+   const [price, setPrice] = useState(0)
+   const [url, setUrl] = useState('')
+   const [preview, setPreview] = useState(false)
+
+   useEffect(() => {
+    dispatch(getSpots())
+   }, [dispatch])
+
+   let spot
+   useEffect(() => {
+    spot = spots.find(spot => spot.id.toString() === id);
+    console.log('checking spots here', spots,id)
+    if(spot) {
+        setAddress(spot.address)
+        setCity(spot.city)
+        setState(spot.state)
+        setCountry(spot.country)
+        setLat(spot.lat)
+        setLng(spot.lng)
+        setName(spot.name)
+        setDescription(spot.description)
+        setPrice(spot.price)
+        setUrl(spot.url || '')
+        setPreview(spot.preview)
+    }
+   }, [spots])
+
+   console.log('just spot', spots)
 
 
 
 
-const spot = spots.find(spot => spot.id.toString() === id);
-    const [address, setAddress] = useState(spot.address)
-    const [city, setCity] = useState(spot.city)
-    const [state, setState] = useState(spot.state)
-    const [country, setCountry] = useState(spot.country)
-    const [lat, setLat] = useState(spot.lat)
-    const [lng, setLng] = useState(spot.lng)
-    const [name, setName] = useState(spot.name)
-    const [description, setDescription] = useState(spot.description)
-    const [price, setPrice] = useState(spot.price)
-    const [url, setUrl] = useState('https://img.freepik.com/free-photo/fireplace-with-red-socks-hanging-christmas-tree_1252-402.jpg')
-    const [preview, setPreview] = useState(false)
-//    const [address, setAddress] = useState('')
-//    const [city, setCity] = useState('')
-//    const [state, setState] = useState('')
-//    const [country, setCountry] = useState('')
-//    const [lat, setLat] = useState(0)
-//    const [lng, setLng] = useState(0)
-//    const [name, setName] = useState('')
-//    const [description, setDescription] = useState('')
-//    const [price, setPrice] = useState(0)
-//    const [url, setUrl] = useState('')
-//    const [preview, setPreview] = useState(false)
+
+// const spot = spots.find(spot => spot.id.toString() === id);
+//     const [address, setAddress] = useState(spot.address)
+//     const [city, setCity] = useState(spot.city)
+//     const [state, setState] = useState(spot.state)
+//     const [country, setCountry] = useState(spot.country)
+//     const [lat, setLat] = useState(spot.lat)
+//     const [lng, setLng] = useState(spot.lng)
+//     const [name, setName] = useState(spot.name)
+//     const [description, setDescription] = useState(spot.description)
+//     const [price, setPrice] = useState(spot.price)
+//     const [url, setUrl] = useState('https://img.freepik.com/free-photo/fireplace-with-red-socks-hanging-christmas-tree_1252-402.jpg')
+//     const [preview, setPreview] = useState(false)
+
 
 
 
@@ -74,9 +95,7 @@ const spot = spots.find(spot => spot.id.toString() === id);
         }
        // console.log('what is payload', payload)
 
-        let updatedSpot
-
-        updatedSpot = await dispatch(updateSpot(payload))
+        await dispatch(updateSpot(payload))
        // await dispatch(getSpots())
         //  if(updatedSpot) {
         //     await dispatch(getSpots())
@@ -86,8 +105,9 @@ const spot = spots.find(spot => spot.id.toString() === id);
             spotId: id,
             url, preview
         }
-        let spotImage
-        spotImage = await dispatch(addSpotImage(imagePayload))
+        console.log('what is the image payload ', imagePayload)
+
+        await dispatch(addSpotImage(imagePayload))
 
     }
        //await reset()

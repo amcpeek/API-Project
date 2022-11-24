@@ -4,19 +4,17 @@ const GET_SPOTS = 'spots/GET_SPOTS'
 const ADD_SPOT = 'spots/ADD_SPOT'
 const UPDATE_SPOT = 'spots/UPDATE_SPOT'
 const REMOVE_SPOT = 'spots/REMOVE_SPOT'
-
+const GET_CURRENT_OWNERS_SPOTS = 'spots/GET_CURRENT_OWNERS_SPOTS'
 
 /* -- actions -- */
 //6 get all /spots
-//7 get all by current user /spots/current
-//8 get one spot /spots/:spotId
-
 export const getSpotsAction = (spots) => {
     return {
         type: GET_SPOTS,
         spots
     }
 }
+
 //9 post /spots
 
 export const addSpotAction = (spot) => {
@@ -40,47 +38,41 @@ export const removeSpotAction = (spotId) => {
     }
 }
 
+//7 get all by current user /spots/current
+export const getCurrentOwnersSpotsAction = (spots) => {
+    return {
+        type: GET_CURRENT_OWNERS_SPOTS,
+        spots
+    }
+}
+
+
 /* -- thunk action creators */
 
 export const getSpots = () => async dispatch => {
     const response = await fetch(`/api/spots`)
-
     if(response.ok) {
         const spots = await response.json()
-      //  console.log('are there spots in here', spots) // works
         dispatch(getSpotsAction(spots.Spots))
     }
 }
 
 export const addSpot = (spot) => async dispatch => {
-  //  console.log('fetchAddSpot', spot)
     const response = await csrfFetch(`/api/spots`, {
         method: 'POST',
-        // headers: {
-        //     'Content-Type': 'application/json'
-        // },
        body: JSON.stringify(spot)
     })
-    //const data = await response.json()
-   // dispatch(getSpots())
     return await response.json()
-
 }
 
 export const updateSpot = (spot) => async dispatch => {
-    //console.log('what is getting to updateSpot fetch',spot)
     const response = await csrfFetch(`/api/spots/${spot.id}`, {
         method: 'PUT',
-        // headers: {
-        //     'Content-Type': 'application/json'
-        // },
         body: JSON.stringify(spot)
     })
     if(response.ok) {
         const spot = await response.json()
-       // console.log('return from backend of spot', spot)
         dispatch(updateSpotAction(spot))
-      //  return spot
     }
 }
 
@@ -88,6 +80,15 @@ export const removeSpot = (spotId) => async dispatch => {
      await csrfFetch(`/api/spots/${spotId}`, {
         method: 'DELETE'
     })
+}
+
+export const getCurrentOwnersSpots = () => async dispatch => {
+    const response = await csrfFetch('/api/spots/current')
+    if(response.ok) {
+        const spots = await response.json()
+        dispatch(getCurrentOwnersSpotsAction(spots))
+    }
+
 }
 
 /* -- selectors */ //not sure if this is needed with thunk action creators?
@@ -106,8 +107,8 @@ export default function spotsReducer (state = {}, action) {
                 allSpots[spot.id] = spot
             })
             return {
+                ...state,
                 ...allSpots,
-                ...state
             }
         case ADD_SPOT:
         if(!state[action.spot.id]) {
@@ -126,6 +127,19 @@ export default function spotsReducer (state = {}, action) {
             const newState = {...state}
             delete newState[action.spotId]
             return newState
+        case GET_CURRENT_OWNERS_SPOTS:
+            const nextLevel = {}
+
+            //const currentOwnersSpots = {}
+            console.log('action', action)
+            action.spots.forEach(spot => {
+                nextLevel[spot.id] = spot
+            })
+            console.log('does next level run', nextLevel)
+            return {
+                ...state,
+                ['currentOwnersSpots']: nextLevel
+            }
         default:
             return state
     }

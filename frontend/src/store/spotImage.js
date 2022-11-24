@@ -14,7 +14,7 @@ export const addSpotImageAction = (image) => { //example doesn't have spotImageI
 /* -- thunk action creators */
 
 export const addSpotImage = (spotImage) => async dispatch => {
-    const response = await csrfFetch(`/api/spots/${spotImage.spotId}/images`, {
+     await csrfFetch(`/api/spots/${spotImage.spotId}/images`, {
         method: 'POST',
         body: JSON.stringify(spotImage)
     })
@@ -33,6 +33,7 @@ export default function spotImagesReducer (state = {}, action) {
             // [action.spot.spotId]: {
             //     ...state[action.spot.spotId],
             // }
+            
             default:
                 return state
      }

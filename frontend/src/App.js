@@ -7,7 +7,6 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import AllSpots from "./components/Spots/AllSpots/Index";
 import AddSpotForm from "./components/Spots/AddSpot/Index";
-import AddSpotImageForm from "./components/Spots/AddSpotImage/Index";
 import CurrentOwnersSpots from "./components/Spots/CurrentOwnersSpots";
 import SingleSpot from "./components/Spots/SingleSpot/Index";
 import UpdateSpotForm from "./components/Spots/UpdateSpot/Index";
@@ -57,9 +56,9 @@ function App() {
           <Route exact path="/spots/:id">
             <SingleSpot spots={spots}/>
            </Route>
-            <Route exact path="/spots/:spotId/images">
+            {/* <Route exact path="/spots/:spotId/images">
             <AddSpotImageForm/>
-          </Route>
+          </Route> */}
           <Route>
             <h2>"Page not found?"</h2>
           </Route>

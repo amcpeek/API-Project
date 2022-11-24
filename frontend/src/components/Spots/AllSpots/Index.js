@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Switch, NavLink } from 'react-router-dom';
-import SingleSpot from '../SingleSpot/Index'
+import { NavLink } from 'react-router-dom';
+
 import { getSpots } from '../../../store/spot'
 import './AllSpots.css'
-import AddSpotForm from '../AddSpot/Index';
-import CurrentOwnersSpots from '../CurrentOwnersSpots';
+
 
 const AllSpots = () => {
   const dispatch = useDispatch();
