@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {  NavLink } from 'react-router-dom';
-//import './SingleSpot.css'; stopped the run
+import './SingleSpot.css'
 // import UpdateSpotForm from '../UpdateSpot/Index';
 import { removeSpot } from '../../../store/spot';
 //import { AddSpotImage } from '../../../store/spotImage';
@@ -41,10 +41,12 @@ const SingleSpot = ({ spots }) => {
       <div >
       {/* className='singleSpot' this doesn't exist yet ^ */}
         <h1>{singleSpot.name}</h1>
+        <div ClassName='SingleSpot'>
         <img
           src={singleSpot.SpotImages[0].url}
           alt={singleSpot.name}
         />
+        </div>
         <p>
           {singleSpot.description}
         </p>
@@ -55,12 +57,14 @@ const SingleSpot = ({ spots }) => {
         <h4>{singleSpot.country}</h4>
         <h4><NavLink to={`/spots/${id}/edit`}>Edit Spot</NavLink></h4>
         <button onClick={()=> dispatch(removeSpot(singleSpot.id))}>Delete Spot</button>
-        <div>
+        <div >
         {singleSpot.SpotImages.slice(1).map(({url, id}) => (
+          <div>
           <img
           src={url}
           alt={singleSpot.name}
           />
+          </div>
          ))}
          </div>
 

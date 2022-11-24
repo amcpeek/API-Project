@@ -27,7 +27,7 @@ const AllSpots = () => {
   return (
     <div className="HomePage">
       <div>
-        <h1> </h1>
+        <h1 className="Crazy">. </h1>
       </div>
       <div className="HomeNavBar">
           <div>
