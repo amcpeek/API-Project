@@ -25,17 +25,91 @@ const AllSpots = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      <h1>All Spots</h1>
+    <div className="HomePage">
+      <div>
+        <h1> </h1>
+      </div>
+      <div className="HomeNavBar">
+          <div>
+            <button>
+            <i className="material-symbols-outlined">key</i></button>
+            <h5>New</h5>
+          </div>
 
+          <div>
+            <button>
+            <i className="material-symbols-outlined">landscape</i></button>
+            <h5>Top of the world</h5>
+          </div>
+          <div>
+            <button>
+            <i className="material-symbols-outlined">local_fire_department</i></button>
+            <h5>Trending</h5>
+          </div>
+          <div>
+            <button>
+            <i className="material-symbols-outlined">accessible_forward</i></button>
+            <h5>Adapted</h5>
+          </div>
+          <div>
+            <button>
+            <i className="material-symbols-outlined">sports_tennis</i></button>
+            <h5>Play</h5>
+          </div>
+          <div>
+            <button>
+            <i className="material-symbols-outlined">downhill_skiing</i></button>
+            <h5>Skiing</h5>
+          </div>
+          <div>
+            <button>
+            <i className="material-symbols-outlined">bed</i></button>
+            <h5>Private rooms</h5>
+          </div>
+          <div>
+            <button>
+            <i className="material-symbols-outlined">houseboat</i></button>
+            <h5>Houseboats</h5>
+          </div>
+          <div>
+            <button>
+            <i className="material-symbols-outlined">cottage</i></button>
+            <h5>Cabins</h5>
+          </div>
+          <div>
+            <button>
+            <i className="material-symbols-outlined">castle</i></button>
+            <h5>Castles</h5>
+          </div>
+          <div>
+            <button>
+            <i className="material-symbols-outlined">beach_access</i></button>
+            <h5>Beachfront</h5>
+          </div>
+          <div>
+            <button>
+            <i className="material-symbols-outlined">key</i></button>
+            <h5>Treehouses</h5>
+          </div>
+          <div>
+            <button>
+            <i className="material-symbols-outlined">key</i></button>
+            <h5>Filters</h5>
+          </div>
+        </div>
 
-      <ol>
-        {spots.map(({ id, name }) => (
-          <li key={id}><NavLink to={`/spots/${id}`}>{name}</NavLink></li>
+        <div className="HomeList">
+                {spots.map(({ id, name, previewImage }) => (
+                  <div class="AllSpotsImages">
+                  <img
+                  src={previewImage}
+                  alt={name}
+                  />
+                  <h2 key={id}><NavLink to={`/spots/${id}`}>{name}</NavLink></h2>
+                  </div>
+                ))}
 
-
-        ))}
-      </ol>
+        </div>
 
     </div>
   );

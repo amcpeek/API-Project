@@ -27,8 +27,8 @@ function App() {
 
   return (
     <>
+     <header>
       <Navigation isLoaded={isLoaded} />
-
       {isLoaded && (
         <Switch>
           <Route path="/signup">
@@ -36,7 +36,7 @@ function App() {
           </Route>
         </Switch>
       )}
-
+      </header>
       <Switch>
         {/* <Route exact path="/">
         </Route> */}

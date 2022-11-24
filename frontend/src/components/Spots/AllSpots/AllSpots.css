@@ -1,0 +1,54 @@
+.HomePage {
+    /* position: sticky; */
+
+    background-color: aquamarine;
+    /* display: flex; */
+    /* justify-content: flex-end; */
+    /* flex-direction: column; */
+    /* align-items: center; */
+}
+
+.HomeNavBar {
+    /* position: fixed;
+    top: 20px;
+
+
+     */
+    background-color: lightyellow;
+    display: flex;
+    justify-content: space-between;
+    /* align-content: center; */
+}
+
+.HomeList {
+   background-color: lightblue;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+}
+
+.HomeNavBar h5 {
+    background-color: pink;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
+.HomeNavBar button {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
+.HomeNavBar > div {
+    background-color: lightgreen;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.AllSpotsImages img {
+    height: 300px;
+    width: 300px;
+
+}

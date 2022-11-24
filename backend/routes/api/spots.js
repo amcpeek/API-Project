@@ -102,12 +102,12 @@ router.get('/', async (req, res, next) => {
                     preview: true,
                     spotId : spot.id,},
                 attributes: ['url'],
-
-
                 raw: true
             })
             if(allSpots) {
                 newVar.previewImage = allSpots.url
+            } else {
+                newVar.previewImage = 'https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg'
             }
             Spots.push(newVar)
 
