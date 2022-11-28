@@ -60,16 +60,13 @@ const AllSpots = () => {
 
         <div className="HomeList">
                 {spots.map(({ id, name, previewImage, city, state, description, price }) => (
-
                   <div className="AllSpotsImages" key={id}>
                     <NavLink to={`/spots/${id}`}>
                                 <div>
                                 <img
                             src={previewImage}
-                            alt={name}
-                            />
+                            alt={name}/>
                                 </div >
-
 
                       <div className='greyText' id="CityState">{city}, {state}</div>
                       <div className='greyText'>{name}</div>

@@ -215,8 +215,9 @@ router.get('/current', requireAuth, async (req, res, next) => {
        })
        if(allSpots) {
         newVar.previewImage = allSpots.url
-
-       }
+       } else {
+        newVar.previewImage = 'https://www.jetsetter.com//uploads/sites/7/2018/04/ye1G3gcr-1380x1035.jpeg'
+    }
 
        newSpots.push(newVar)
     }

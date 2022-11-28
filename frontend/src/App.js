@@ -27,7 +27,7 @@ function App() {
 
   return (
     <>
-     <header>
+     
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
@@ -36,7 +36,7 @@ function App() {
           </Route>
         </Switch>
       )}
-      </header>
+
       <Switch>
         {/* <Route exact path="/">
         </Route> */}

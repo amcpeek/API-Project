@@ -21,7 +21,7 @@ function Navigation({ isLoaded }){
     sessionLinks = (
       <>
         <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink to="/signup"><h5>Sign Up</h5></NavLink>
 
       </>
     );
@@ -48,7 +48,7 @@ function Navigation({ isLoaded }){
 
   return (
     <div id="wholeNav">
-      <div>
+      <div id="HomeNavId">
       <NavLink exact to="/">
         <button id="HomeButton" className='noBorder'>
         <i className="material-symbols-outlined"> home</i>
@@ -57,26 +57,29 @@ function Navigation({ isLoaded }){
         </NavLink>
 
       </div>
-      <div>
+      <div className='wtf'>
         {/* <button>Anywhere</button>
         <button> Any week</button>
         <button>
         Add guest   <i className="material-symbols-outlined">search</i>
           </button> */}
-          <button id="CenterButton">Anywhere | Any week | Add guest   <i className="material-symbols-outlined">search</i></button>
+        <button id="CenterButton">Anywhere | Any week | Add guest   <i className="material-symbols-outlined">search</i></button>
 
       </div>
-      <div id='rightNav'>
-        <button className='noBorder' onClick={openMenu}>Switch to hosting</button>
+      <div  className="dropdownNav">
+      {/* id='rightNav' */}
+        <button className='dropButtonNav' onClick={openMenu}>Switch to hosting</button>
+        {/* noBorder */}
         {showMenu && (
-          <ul className='profile-dropdown' id='hostDropdown'>
-            <li>
+          <div className='dropdownContentNav'>
+          {/* <ul className='profile-dropdown' id='hostDropdown'> */}
+            <div>
             <NavLink exact to="/spots/current">Your Homes</NavLink>
-            </li>
-            <li>
+            </div>
+            <div>
             <NavLink exact to="/spots/create" id="navBar">List Your Home</NavLink>
-            </li>
-          </ul>
+            </div>
+          </div>
         )}
         <button className='noBorder'>
         <i className="material-symbols-outlined">language</i>

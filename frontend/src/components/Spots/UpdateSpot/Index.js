@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { updateSpot, getSpots } from '../../../store/spot'
 import { addSpotImage } from '../../../store/spotImage'
+import { NavLink } from 'react-router-dom'
 //import './AddSpot.css'
 
 const UpdateSpotForm = ({spots}) => {
@@ -130,18 +131,28 @@ const UpdateSpotForm = ({spots}) => {
     // }
 
     return (
-        <div>
+        <div className="modalOutside">
+        <div className="modalContent">
             {/* can later put in className in the div */}
+
+            <form onSubmit={handleSubmit} className="CreateSpotForm">
             <h1>Update Spot</h1>
-            <form onSubmit={handleSubmit}>
-                {/* <input
+            <div>
+                    <div>
+                    Name
+                    </div>
+                 <input
                  type='text'
-                 value={image}
-                 onChange={() => dispatch(addSpotImage(spot.id, image))}
-                 placeholder='Image URL'
-                 name='image'
-                >
-                </input> */}
+                 onChange={(e)=>setName(e.target.value)}
+                 value={name}
+                 placeholder='Name'
+                 name='name'
+                />
+                </div>
+                <div>
+                    <div>
+                    Address
+                    </div>
                 <input
                  type='text'
                  onChange={(e)=>setAddress(e.target.value)}
@@ -149,6 +160,11 @@ const UpdateSpotForm = ({spots}) => {
                  placeholder='Address'
                  name='address'
                 />
+                </div>
+                <div>
+                    <div>
+                    City
+                    </div>
                  <input
                  type='text'
                  onChange={(e)=>setCity(e.target.value)}
@@ -156,6 +172,11 @@ const UpdateSpotForm = ({spots}) => {
                  placeholder='City'
                  name='city'
                 />
+                </div>
+                <div>
+                    <div>
+                    State
+                    </div>
                  <input
                  type='text'
                  onChange={(e)=>setState(e.target.value)}
@@ -163,6 +184,11 @@ const UpdateSpotForm = ({spots}) => {
                  placeholder='State'
                  name='state'
                 />
+                </div>
+                <div>
+                    <div>
+                    Country
+                    </div>
                  <input
                  type='text'
                  onChange={(e)=>setCountry(e.target.value)}
@@ -170,7 +196,8 @@ const UpdateSpotForm = ({spots}) => {
                  placeholder='Country'
                  name='country'
                 />
-                 <input
+                </div>
+                 {/* <input
                  type='number'
                  placeholder='Latitude'
                  value={lat}
@@ -181,21 +208,28 @@ const UpdateSpotForm = ({spots}) => {
                  placeholder='Longitude'
                  value={lng}
                  onChange={(e) => setLng(e.target.value)}
-                />
-                 <input
-                 type='text'
-                 onChange={(e)=>setName(e.target.value)}
-                 value={name}
-                 placeholder='Name'
-                 name='name'
-                />
-                <textarea
+                /> */}
+
+
+
+                <div>
+                    Description
+                </div>
+                <div id="why">
+                    <div></div>
+                <textarea id="CreateSpotDescriptionBox"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     name='description'
-                    placeholder='Add your description'
-                    rows='10'
+                    placeholder='Please write about your home here...'
+                    rows='5'
                 ></textarea>
+                <div></div>
+                </div>
+                <div>
+                    <div>
+                    Price
+                    </div>
                 <input
                  type='number'
                  placeholder='Price'
@@ -203,6 +237,11 @@ const UpdateSpotForm = ({spots}) => {
                  value={price}
                  onChange={(e) => setPrice(e.target.value)}
                 />
+                </div>
+                <div>
+                    <div>
+                    Image Url
+                    </div>
                  <input
                  type='text'
                  onChange={(e)=>setUrl(e.target.value)}
@@ -210,13 +249,29 @@ const UpdateSpotForm = ({spots}) => {
                  placeholder='ImageUrl'
                  name='imageUrl'
                 />
-                <label><input
+                </div>
+
+                <div>
+                    <div>
+                    Preview image?
+                    </div>
+                    <input
                 type="checkbox"
                 onChange={(e) => setPreview(e.currentTarget.checked)}
-                 />Do you want this to be your preview image?</label>
-                <button type='submit'>Submit</button>
-            </form>
+                 /></div>
+                 <div>
 
+                <button type='submit' className="createButton">Submit</button>
+                {/* <button >Cancel
+                   <NavLink exact to="/"></NavLink>
+                </button> */}
+                <button className="createButton"><NavLink to={'/'}>Cancel</NavLink></button>
+
+
+                </div>
+
+            </form>
+        </div>
         </div>
     )
 }

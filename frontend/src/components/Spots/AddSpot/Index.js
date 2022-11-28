@@ -2,19 +2,20 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addSpot } from '../../../store/spot'
 import { addSpotImage } from '../../../store/spotImage'
-//import './AddSpot.css'
+import './AddSpot.css'
+import { NavLink } from 'react-router-dom'
 
 
 const AddSpotForm = () => {
-    const [address, setAddress] = useState('testAddress')
-    const [city, setCity] = useState('testCity')
-    const [state, setState] = useState('testState')
-    const [country, setCountry] = useState('testCountry')
-    const [lat, setLat] = useState(30)
-    const [lng, setLng] = useState(30)
-    const [name, setName] = useState('testName')
-    const [description, setDescription] = useState('testDescription')
-    const [price, setPrice] = useState(100)
+    const [address, setAddress] = useState('')
+    const [city, setCity] = useState('')
+    const [state, setState] = useState('')
+    const [country, setCountry] = useState('')
+    const [lat, setLat] = useState(0)
+    const [lng, setLng] = useState(0)
+    const [name, setName] = useState('')
+    const [description, setDescription] = useState('')
+    const [price, setPrice] = useState(0)
     const [url, setUrl] = useState('https://jweekly.com/wp-content/uploads/2021/12/Christmas-Tree-Snow-drawing-1080x675-1.jpeg')
     const [preview, setPreview] = useState(false)
 
@@ -56,10 +57,28 @@ const AddSpotForm = () => {
     // }
 
     return (
-        <div>
+        <div className="modalOutside">
+        <div className="modalContent">
             {/* can later put in className in the div */}
-            <h1>Create Spot</h1>
-            <form onSubmit={handleSubmit}>
+
+            <form onSubmit={handleSubmit} className="CreateSpotForm">
+                <h1>List Your Home</h1>
+                <div>
+                    <div>
+                    Name
+                    </div>
+                 <input
+                 type='text'
+                 onChange={(e)=>setName(e.target.value)}
+                 value={name}
+                 placeholder='Name'
+                 name='name'
+                />
+                </div>
+                <div>
+                    <div>
+                    Address
+                    </div>
                 <input
                  type='text'
                  onChange={(e)=>setAddress(e.target.value)}
@@ -67,6 +86,11 @@ const AddSpotForm = () => {
                  placeholder='Address'
                  name='address'
                 />
+                </div>
+                <div>
+                    <div>
+                    City
+                    </div>
                  <input
                  type='text'
                  onChange={(e)=>setCity(e.target.value)}
@@ -74,6 +98,11 @@ const AddSpotForm = () => {
                  placeholder='City'
                  name='city'
                 />
+                </div>
+                <div>
+                    <div>
+                    State
+                    </div>
                  <input
                  type='text'
                  onChange={(e)=>setState(e.target.value)}
@@ -81,6 +110,11 @@ const AddSpotForm = () => {
                  placeholder='State'
                  name='state'
                 />
+                </div>
+                <div>
+                    <div>
+                    Country
+                    </div>
                  <input
                  type='text'
                  onChange={(e)=>setCountry(e.target.value)}
@@ -88,7 +122,8 @@ const AddSpotForm = () => {
                  placeholder='Country'
                  name='country'
                 />
-                 <input
+                </div>
+                 {/* <input
                  type='number'
                  placeholder='Latitude'
                  value={lat}
@@ -99,21 +134,28 @@ const AddSpotForm = () => {
                  placeholder='Longitude'
                  value={lng}
                  onChange={(e) => setLng(e.target.value)}
-                />
-                 <input
-                 type='text'
-                 onChange={(e)=>setName(e.target.value)}
-                 value={name}
-                 placeholder='Name'
-                 name='name'
-                />
-                <textarea
+                /> */}
+
+
+
+                <div>
+                    Description
+                </div>
+                <div id="why">
+                    <div></div>
+                <textarea id="CreateSpotDescriptionBox"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     name='description'
-                    placeholder='Add your description'
-                    rows='10'
+                    placeholder='Please write about your home here...'
+                    rows='5'
                 ></textarea>
+                <div></div>
+                </div>
+                <div>
+                    <div>
+                    Price
+                    </div>
                 <input
                  type='number'
                  placeholder='Price'
@@ -121,6 +163,11 @@ const AddSpotForm = () => {
                  value={price}
                  onChange={(e) => setPrice(e.target.value)}
                 />
+                </div>
+                <div>
+                    <div>
+                    Image Url
+                    </div>
                  <input
                  type='text'
                  onChange={(e)=>setUrl(e.target.value)}
@@ -128,13 +175,27 @@ const AddSpotForm = () => {
                  placeholder='ImageUrl'
                  name='imageUrl'
                 />
-                <label><input
+                </div>
+
+                <div>
+                    <div>
+                    Preview image?
+                    </div>
+                    <input
                 type="checkbox"
                 onChange={(e) => setPreview(e.currentTarget.checked)}
-                 />Do you want this to be your preview image? Click yes this isn't working currently</label>
-                <button type='submit'>Submit</button>
+                 /></div>
+                 <div>
+
+                <button type='submit' className="createButton">Submit</button>
+                {/* <button >Cancel
+                   <NavLink exact to="/"></NavLink>
+                </button> */}
+                <button className="createButton"><NavLink to={'/'}>Cancel</NavLink></button>
+                </div>
             </form>
 
+        </div>
         </div>
     )
 }

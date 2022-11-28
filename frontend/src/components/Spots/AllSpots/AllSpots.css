@@ -5,7 +5,7 @@
     position: fixed;
     top: 80px;
     right: 0;
-    z-index: 99;
+    z-index: 2;
     width: 100%;
     justify-content: space-around;
     background-color: white;
@@ -34,7 +34,7 @@
    justify-content: space-between;
    position: relative;
    top: 200px;
-   z-index: 2;
+   z-index: 1;
 }
 
 

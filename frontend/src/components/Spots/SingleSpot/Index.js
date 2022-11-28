@@ -94,6 +94,7 @@ const SingleSpot = ({ spots }) => {
             </div>
             <p>Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</p>
           </div>
+          <div>
 
           <div id="SingleSpotBooking">
             <div className='JCSpaceBetween'>
@@ -129,7 +130,7 @@ const SingleSpot = ({ spots }) => {
 
                   <i className="material-symbols-outlined">arrow_drop_down</i>
                   </button>
-                <div className="dropdown-content">
+                <div className="dropdownContent">
                   <a> 1 guest </a>
                   <a> 2 guests </a>
                   <a> 3 guests </a>
@@ -141,12 +142,15 @@ const SingleSpot = ({ spots }) => {
             </div>
             <button id="checkAvailabilityButton"> Check availability</button>
           </div>
+          <h4 className="underlined"><NavLink to={`/spots/${id}/edit`}>Edit Spot</NavLink></h4>
+        <button className='deleteButton' onClick={()=> dispatch(removeSpot(singleSpot.id))}>Delete Spot</button>
+
+          </div>
 
         </div>
 
 
-        <h4><NavLink to={`/spots/${id}/edit`}>Edit Spot</NavLink></h4>
-        <button onClick={()=> dispatch(removeSpot(singleSpot.id))}>Delete Spot</button>
+
 
 
 
