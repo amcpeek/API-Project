@@ -11,7 +11,7 @@ const AllSpots = () => {
   const spots = useSelector(state=> {
    // console.log('what is state', state)
     return Object.values(state.spots)});
-  //console.log('All spotszzz', spots)
+  console.log('All spotszzz', spots)
 
   // const ownerId = useSelector(state=> {
   //   return state.session.user.id

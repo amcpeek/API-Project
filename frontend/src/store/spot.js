@@ -1,10 +1,14 @@
 import { csrfFetch } from './csrf';
 
-const GET_SPOTS = 'spots/GET_SPOTS'
-const ADD_SPOT = 'spots/ADD_SPOT'
-const UPDATE_SPOT = 'spots/UPDATE_SPOT'
-const REMOVE_SPOT = 'spots/REMOVE_SPOT'
-const GET_CURRENT_OWNERS_SPOTS = 'spots/GET_CURRENT_OWNERS_SPOTS'
+const GET_SPOTS = 'spots/GET_SPOTS' //#6
+const GET_CURRENT_OWNERS_SPOTS = 'spots/GET_CURRENT_OWNERS_SPOTS' //#7
+//#8  one spot is in the oneSpot store, eventually move it here
+const ADD_SPOT = 'spots/ADD_SPOT' // #9
+// #10 add image by spot id is in the spotImage reducer
+const UPDATE_SPOT = 'spots/UPDATE_SPOT' //#11
+const REMOVE_SPOT = 'spots/REMOVE_SPOT' //#12
+
+
 
 /* -- actions -- */
 //6 get all /spots
@@ -131,11 +135,11 @@ export default function spotsReducer (state = {}, action) {
             const nextLevel = {}
 
             //const currentOwnersSpots = {}
-            console.log('action', action)
+            //console.log('action', action)
             action.spots.forEach(spot => {
                 nextLevel[spot.id] = spot
             })
-            console.log('does next level run', nextLevel)
+            //console.log('does next level run', nextLevel)
             return {
                 ...state,
                 ['currentOwnersSpots']: nextLevel

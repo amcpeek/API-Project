@@ -9,6 +9,7 @@ import { removeSpot } from '../../../store/spot';
 //import UpdateSpotForm from '../UpdateSpot/Index';
 import { getOneSpot } from '../../../store/oneSpot';
 import { useEffect } from 'react';
+import { getSpotReviews } from '../../../store/review'
 
 const SingleSpot = ({ spots }) => {
   const { id } = useParams();
@@ -17,6 +18,7 @@ const SingleSpot = ({ spots }) => {
   // const singleSpot = 0
   useEffect(() => {
      dispatch(getOneSpot(id))
+     dispatch(getSpotReviews(id))
   }, [dispatch])
 
 
@@ -24,7 +26,14 @@ const SingleSpot = ({ spots }) => {
     return state.oneSpot[id]
   })
 
-  console.log(id,'one Spot????', oneSpot)
+  const allReviews = useSelector(state => {
+    return Object.values(state.reviews)
+
+  })
+
+  console.log('what is all reviews', allReviews)
+
+  //console.log(id,'one Spot????', oneSpot)
 
   //const objOfSpots = Object.values(spots)
   //console.log('is the single file running', objOfSpots)
@@ -32,6 +41,8 @@ const SingleSpot = ({ spots }) => {
   if(!spots) {
     return 0
   }
+
+
 
   // const singleSpot = spots.find(spot => spot.id.toString() === id);
   // if(singleSpot) {
@@ -65,7 +76,7 @@ const SingleSpot = ({ spots }) => {
         </div>
         <div className='SingleSpotFourImages'>
         {singleSpot.SpotImages.slice(1, 5).map(({url, id}) => (
-          <div className='SingleSpotFourImagesOne'>
+          <div className='SingleSpotFourImagesOne' key={id}>
           <img
           src={url}
           alt={singleSpot.name}
@@ -148,11 +159,27 @@ const SingleSpot = ({ spots }) => {
           </div>
 
         </div>
+
         <div id="SingleSpotReviews">
-            <div>
+
+
+
+           {allReviews.map(({id, review, stars, User }) => (
+
+
+             <div className="SingleSpotReviewBox" key={id}>
+               <div><i className="material-symbols-outlined">star </i> {stars} stars</div>
+                <div> <i className="material-symbols-outlined">face</i> {User.firstName} </div>
+                <p>Review: {review}</p>
+                <button>Edit</button>
+                <button>Delete</button>
+             </div>
+            ))}
+
+            {/* <div>
                 <i className="material-symbols-outlined">star </i>
                 {singleSpot.avgStarRating}.0  ·  {singleSpot.numReviews} reviews
-              </div>
+               </div>
               <div>
                   <div>Erik</div>
                   <i className="material-symbols-outlined">face</i>
@@ -182,7 +209,7 @@ const SingleSpot = ({ spots }) => {
                   </p>
                   <button>Edit</button>
                   <button>Delete</button>
-              </div>
+              </div> */}
 
 
           </div>
