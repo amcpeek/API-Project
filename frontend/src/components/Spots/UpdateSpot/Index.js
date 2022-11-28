@@ -39,8 +39,8 @@ const UpdateSpotForm = ({spots}) => {
         setName(spot.name)
         setDescription(spot.description)
         setPrice(spot.price)
-        setUrl(spot.url || '')
-        setPreview(spot.preview)
+        setUrl(spot.url || 'https://jweekly.com/wp-content/uploads/2021/12/Christmas-Tree-Snow-drawing-1080x675-1.jpeg')
+        setPreview(false)
     }
    }, [spots])
 
@@ -88,7 +88,7 @@ const UpdateSpotForm = ({spots}) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const payload = {
-            id: spot.id,
+            id,
             address, city, state, country,
             lat, lng, //might need a way to leave out lat and lng
             name, description, price

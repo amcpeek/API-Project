@@ -10,6 +10,18 @@
 
 } */
 
+body {
+    margin-left: 40px;
+    margin-right: 40px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 90%;
+}
+
+header > div {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
 li {
     font-size: 20px;
 }
@@ -17,11 +29,21 @@ li {
 #wholeNav {
     position: fixed;
     top: 0;
-    width: 100%;
+    right: 0;
+    width: 96%;
     display: flex;
     justify-content: space-between;
-    background-color: lightcoral;
+    background-color: white;
+    z-index: 100;
+    border-bottom-color: lightgray;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    height: 80px;
+}
 
+#wholeNav div {
+    display: flex;
+    align-items: center;
 
 }
 
@@ -37,4 +59,45 @@ li {
 
 #rightNav {
     display: flex;
+}
+
+
+
+#CenterButton {
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    box-shadow:  1px 1px 2px 2px lightgrey;
+    border-color: white;
+    border-style: solid;
+
+
+}
+
+#HomeButton {
+    display: flex;
+    align-items: center;
+    color: red;
+    font-size: 25px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+}
+
+
+
+#LoginButton {
+    border-radius: 18px;
+    background-color: white;
+    box-shadow:  1px 1px 2px 2px lightgrey;
+    border-color: white;
+    border-style: solid;
+
+}
+
+.noBorder {
+    padding: 0;
+border: none;
+background: none;
+
 }

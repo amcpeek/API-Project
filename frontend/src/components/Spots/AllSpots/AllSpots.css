@@ -1,40 +1,47 @@
-.HomePage {
-    /* position: sticky; */
 
-    background-color: aquamarine;
-    /* display: flex; */
-    /* justify-content: flex-end; */
-    /* flex-direction: column; */
-    /* align-items: center; */
-}
 
 .HomeNavBar {
-    /* position: fixed;
-    top: 20px;
-
-
-     */
-    background-color: lightyellow;
     display: flex;
-    justify-content: space-between;
-    /* align-content: center; */
-}
-
-.HomeList {
-   background-color: lightblue;
-   display: flex;
-   flex-direction: row;
-   flex-wrap: wrap;
-}
-
-.HomeNavBar h5 {
-    background-color: pink;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
+    position: fixed;
+    top: 80px;
+    right: 0;
+    z-index: 99;
+    width: 100%;
+    justify-content: space-around;
+    background-color: white;
+    height: 90px;
+    align-items: center;
+    border-bottom-color: lightgray;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    box-shadow: 0px 1px 3px lightgrey;
+    overflow: scroll;
 }
 
 .HomeNavBar button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: white;
+    background: white;
+}
+
+.HomeList {
+   /* background-color: lightblue; */
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   position: relative;
+   top: 200px;
+   z-index: 2;
+}
+
+
+.HomeNavBar div button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     /* display: flex;
     justify-content: center;
     align-items: center; */
@@ -50,9 +57,29 @@
 .AllSpotsImages img {
     height: 300px;
     width: 300px;
+    border-radius: 10px;;
+}
+
+.AllSpotsImages {
+    border-bottom-color: white;
+    border-bottom-width: 50px;
+    border-bottom-style: solid;
+}
+
+
+
+a, a:visited, a:hover, a:active {
+    color: black;
+    text-decoration: none;
+
 
 }
 
-.Crazy {
-    color:aquamarine;
+#CityState {
+    color: black;
+    font-weight: 800;
+}
+
+.greyText {
+    color: rgb(147, 143, 143)
 }

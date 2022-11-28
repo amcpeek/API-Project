@@ -49,24 +49,25 @@ function Navigation({ isLoaded }){
   return (
     <div id="wholeNav">
       <div>
-        <button>
+      <NavLink exact to="/">
+        <button id="HomeButton" className='noBorder'>
         <i className="material-symbols-outlined"> home</i>
-        <NavLink exact to="/"> aibnb</NavLink>
+        aibnb
         </button>
+        </NavLink>
 
       </div>
       <div>
-        <button>Anywhere</button>
+        {/* <button>Anywhere</button>
         <button> Any week</button>
         <button>
         Add guest   <i className="material-symbols-outlined">search</i>
-          </button>
+          </button> */}
+          <button id="CenterButton">Anywhere | Any week | Add guest   <i className="material-symbols-outlined">search</i></button>
 
       </div>
       <div id='rightNav'>
-
-        <div>
-        <button onClick={openMenu}>Switch to hosting</button>
+        <button className='noBorder' onClick={openMenu}>Switch to hosting</button>
         {showMenu && (
           <ul className='profile-dropdown' id='hostDropdown'>
             <li>
@@ -77,10 +78,8 @@ function Navigation({ isLoaded }){
             </li>
           </ul>
         )}
-        </div>
-
-        <button>
-        <i class="material-symbols-outlined">language</i>
+        <button className='noBorder'>
+        <i className="material-symbols-outlined">language</i>
         </button>
          {isLoaded && sessionLinks}
       </div>

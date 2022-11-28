@@ -31,7 +31,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
+      <button onClick={openMenu} id="LoginButton">
       <i className="material-symbols-outlined">menu</i>
       <i className="material-symbols-outlined"> account_circle</i>
       </button>

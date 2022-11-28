@@ -107,7 +107,7 @@ router.get('/', async (req, res, next) => {
             if(allSpots) {
                 newVar.previewImage = allSpots.url
             } else {
-                newVar.previewImage = 'https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg'
+                newVar.previewImage = 'https://www.jetsetter.com//uploads/sites/7/2018/04/ye1G3gcr-1380x1035.jpeg'
             }
             Spots.push(newVar)
 
@@ -263,14 +263,15 @@ router.get('/:spotId', requireAuth, async (req, res, next) => {
         where: {spotId : spotId},
         raw: true
     })
+    console.log('what is allImages.url//////////////////////////////', allImages)
     if(!allImages.length) {
        // allImages.url[0] = 'https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg'
        console.log('what is allImages.url//////////////////////////////', allImages)
        //allImages.push()
        allImages = [ {
         id:0,
-        url:'https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg',
-        previewImage:true
+        url:'https://www.jetsetter.com//uploads/sites/7/2018/04/ye1G3gcr-1380x1035.jpeg',
+        previewImage: true
         }]
     }
     nextPiece.SpotImages = allImages

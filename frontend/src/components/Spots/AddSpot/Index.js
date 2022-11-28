@@ -131,7 +131,7 @@ const AddSpotForm = () => {
                 <label><input
                 type="checkbox"
                 onChange={(e) => setPreview(e.currentTarget.checked)}
-                 />Do you want this to be your preview image?</label>
+                 />Do you want this to be your preview image? Click yes this isn't working currently</label>
                 <button type='submit'>Submit</button>
             </form>
 
