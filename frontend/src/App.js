@@ -27,19 +27,15 @@ function App() {
 
   return (
     <>
-     
+
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/signup">
+          <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-        </Switch>
-      )}
+       
 
-      <Switch>
-        {/* <Route exact path="/">
-        </Route> */}
          <Route exact path={["/","/spots"]}>
             <AllSpots/>
             {/* <AddSpotForm/>  this makes it show up more times than it needs to*/}
@@ -60,10 +56,11 @@ function App() {
             <AddSpotImageForm/>
           </Route> */}
           <Route>
-            <h2>"Page not found?"</h2>
+            <h2>Page not found</h2>
           </Route>
 
       </Switch>
+       )}
 
     </>
   );

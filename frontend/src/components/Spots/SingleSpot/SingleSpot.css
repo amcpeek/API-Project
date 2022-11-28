@@ -53,9 +53,13 @@
     display: flex;
     font-size: 150%;
     font-weight: 1200;
+    /* height: 50px; */
+    align-items: flex-end;
+
+
 }
 
-#AirCover h2:first-child {
+#AirCover div:first-child {
     color: red
 }
 
@@ -197,7 +201,7 @@
     height: 40px;
     border-radius: 10px;
     font-size: 15px;
-    margin-top: 20px;;
+    margin-top: 20px;
 
   }
 

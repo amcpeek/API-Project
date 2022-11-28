@@ -90,7 +90,7 @@ const SingleSpot = ({ spots }) => {
             <p>100% of recent guests gave the check-in process a 5-star rating.</p>
             <h3><i className="material-symbols-outlined">calendar_month</i>  Free cancellation for 48 hours.</h3>
             <div id="AirCover">
-            <h2>ai</h2><h2>cover</h2>
+            <div>ai</div><div>cover</div>
             </div>
             <p>Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</p>
           </div>
@@ -141,13 +141,51 @@ const SingleSpot = ({ spots }) => {
 
             </div>
             <button id="checkAvailabilityButton"> Check availability</button>
-          </div>
-          <h4 className="underlined"><NavLink to={`/spots/${id}/edit`}>Edit Spot</NavLink></h4>
-        <button className='deleteButton' onClick={()=> dispatch(removeSpot(singleSpot.id))}>Delete Spot</button>
+           </div>
+           <h4 className="underlined"><NavLink to={`/spots/${id}/edit`}>Edit Spot</NavLink></h4>
+           <button className='deleteButton' onClick={()=> dispatch(removeSpot(singleSpot.id))}>Delete Spot</button>
 
           </div>
 
         </div>
+        <div id="SingleSpotReviews">
+            <div>
+                <i className="material-symbols-outlined">star </i>
+                {singleSpot.avgStarRating}.0  ·  {singleSpot.numReviews} reviews
+              </div>
+              <div>
+                  <div>Erik</div>
+                  <i className="material-symbols-outlined">face</i>
+                  <div>11/11/22</div>
+                  <p>
+                    This place was wonderful. We had a fantastic stay. Everything was epic. We highly suggest it. The host was extremely helpful.
+                  </p>
+                  <button>Edit</button>
+                  <button>Delete</button>
+              </div>
+              <div>
+                  <div>Annika</div>
+                  <i className="material-symbols-outlined">face</i>
+                  <div>12/12/22</div>
+                  <p>
+                    This place was okay. We had a fine stay. Everything was alright. We sort of suggest it. The host was average.
+                  </p>
+                  <button>Edit</button>
+                  <button>Delete</button>
+              </div>
+              <div>
+                  <div>Edward</div>
+                  <i className="material-symbols-outlined">face</i>
+                  <div>10/10/22</div>
+                  <p>
+                    This place wasn't very dog friendly.
+                  </p>
+                  <button>Edit</button>
+                  <button>Delete</button>
+              </div>
+
+
+          </div>
 
 
 

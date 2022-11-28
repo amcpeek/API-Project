@@ -1,5 +1,5 @@
 /* frontend/src/context/Modal.css */
-/* #modal {
+#modal {
     position: fixed;
     top: 0;
     right: 0;
@@ -8,9 +8,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  } */
+    z-index: 5;
+  }
 
-  /* #modal-background {
+   #modal-background {
     position: fixed;
     top: 0;
     right: 0;
@@ -22,4 +23,6 @@
   #modal-content {
     position: absolute;
     background-color:white;
-  } */
+    border-radius: 10px;
+
+  }
