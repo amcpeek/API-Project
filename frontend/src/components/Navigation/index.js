@@ -57,7 +57,7 @@ function Navigation({ isLoaded }){
         </NavLink>
 
       </div>
-      <div className='wtf'>
+      <div className='AroundCenterButton'>
         {/* <button>Anywhere</button>
         <button> Any week</button>
         <button>

@@ -34,11 +34,8 @@ function App() {
           <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-       
-
          <Route exact path={["/","/spots"]}>
             <AllSpots/>
-            {/* <AddSpotForm/>  this makes it show up more times than it needs to*/}
           </Route>
           <Route exact path="/spots/create">
             <AddSpotForm spots={spots}/>
@@ -52,9 +49,6 @@ function App() {
           <Route exact path="/spots/:id">
             <SingleSpot spots={spots}/>
            </Route>
-            {/* <Route exact path="/spots/:spotId/images">
-            <AddSpotImageForm/>
-          </Route> */}
           <Route>
             <h2>Page not found</h2>
           </Route>
