@@ -42,6 +42,31 @@ const SingleSpot = ({ spots }) => {
     return 0
   }
 
+  //im not sure this is working how I think it is working
+  if(oneSpot && !oneSpot.SpotImages[1]) {
+    let newSpot = oneSpot
+    newSpot.SpotImages.push({id: 1000, url: 'https://media.istockphoto.com/id/1267541412/photo/happy-puppy-dog-celebrating-christmas-with-a-red-santa-claus-hat-and-smiling-expression.jpg?s=612x612&w=0&k=20&c=-wBVGzelUHlNcqgHo6deincDocteKEI6UbkyEonP9jc='})
+  }
+  if(oneSpot && !oneSpot.SpotImages[2]) {
+    let newSpot = oneSpot
+    newSpot.SpotImages.push({id: 1000, url: 'https://nypost.com/wp-content/uploads/sites/2/2019/12/christmas-cat-costume.jpg?quality=75&strip=all' })
+  }
+  if(oneSpot && !oneSpot.SpotImages[3]) {
+    let newSpot = oneSpot
+    newSpot.SpotImages.push({id: 1000, url: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/hedgehog-wearing-red-christmas-santa-hat-john-daniels.jpg' })
+  }
+  if(oneSpot && !oneSpot.SpotImages[4]) {
+    let newSpot = oneSpot
+    newSpot.SpotImages.push({id: 1000, url: 'https://res.cloudinary.com/fleetnation/image/private/c_fit,w_1120/g_south,l_text:style_gothic2:%C2%A9%20Natasha%20Delaney,o_20,y_10/g_center,l_watermark4,o_25,y_50/v1510636701/o1kxriotfpvzuyptnofz.jpg'})
+  }
+
+    // newSpot.SpotImages.push({id: 1001, url: 'https://nypost.com/wp-content/uploads/sites/2/2019/12/christmas-cat-costume.jpg?quality=75&strip=all'})
+    // newSpot.SpotImages.push({id: 1002, url: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/hedgehog-wearing-red-christmas-santa-hat-john-daniels.jpg'})
+    // newSpot.SpotImages.push({id: 1003, url: 'https://res.cloudinary.com/fleetnation/image/private/c_fit,w_1120/g_south,l_text:style_gothic2:%C2%A9%20Natasha%20Delaney,o_20,y_10/g_center,l_watermark4,o_25,y_50/v1510636701/o1kxriotfpvzuyptnofz.jpg'})
+
+
+// console.log('hey',oneSpot)
+
 
 
   // const singleSpot = spots.find(spot => spot.id.toString() === id);

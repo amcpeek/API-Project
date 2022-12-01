@@ -43,7 +43,7 @@ const UpdateSpotForm = ({spots}) => {
         setUrl(spot.url || 'https://jweekly.com/wp-content/uploads/2021/12/Christmas-Tree-Snow-drawing-1080x675-1.jpeg')
         setPreview(false)
     }
-   }, [spots])
+   }, [spots]) //not sure if this is the right place to listen to, if the spot level isn't changing
 
    console.log('just spot', spots)
 
@@ -109,6 +109,7 @@ const UpdateSpotForm = ({spots}) => {
         console.log('what is the image payload ', imagePayload)
 
         await dispatch(addSpotImage(imagePayload))
+        //can push something into the history
 
     }
        //await reset()

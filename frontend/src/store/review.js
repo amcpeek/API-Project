@@ -24,6 +24,9 @@ export const getSpotReviews = (spotId) => async dispatch => {
     if(response.ok) {
         const spotReviews = await response.json()
         dispatch(getSpotReviewsAction(spotReviews))
+    } else {
+        const spotReviews = {Reviews: []}
+        dispatch(getSpotReviewsAction(spotReviews))
     }
 }
 
@@ -38,7 +41,6 @@ export default function reviewsReducer (state = {}, action) {
                 allSpotReviews[review.id] = review
             })
             return {
-                ...state,
                 ...allSpotReviews
             }
 

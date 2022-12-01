@@ -38,7 +38,7 @@
 #SingleSpotTopLinks {
     display: flex;
     justify-content: space-between;
-    text-decoration: underline;
+    /* text-decoration: underline; */
     border-bottom-color: white;
     border-bottom-width: 20px;
     border-bottom-style: solid;
@@ -225,7 +225,7 @@
   }
 
   .underlined {
-    text-decoration: underline;
+     text-decoration: underline; 
   }
 
 
