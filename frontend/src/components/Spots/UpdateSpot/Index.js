@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { updateSpot, getSpots } from '../../../store/spot'
 import { addSpotImage } from '../../../store/spotImage'
-import { NavLink } from 'react-router-dom'
 //import './AddSpot.css'
 
 const UpdateSpotForm = ({spots}) => {

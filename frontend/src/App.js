@@ -11,6 +11,7 @@ import CurrentOwnersSpots from "./components/Spots/CurrentOwnersSpots";
 import SingleSpot from "./components/Spots/SingleSpot/Index";
 import UpdateSpotForm from "./components/Spots/UpdateSpot/Index";
 import { getSpots } from './store/spot'
+import AddReviewForm from './components/Reviews/AddReview/Index'
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +43,9 @@ function App() {
           </Route>
           <Route exact path="/spots/current">
             <CurrentOwnersSpots/>
+          </Route>
+          <Route exact path="/spots/:id/reviews">
+            <AddReviewForm spots={spots}/>
           </Route>
           <Route exact path="/spots/:id/edit">
                <UpdateSpotForm spots={spots}/>

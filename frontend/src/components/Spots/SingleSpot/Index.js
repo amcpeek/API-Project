@@ -186,6 +186,7 @@ const SingleSpot = ({ spots }) => {
         </div>
 
         <div id="SingleSpotReviews">
+        <button><NavLink to={`/spots/${id}/reviews`}>Add A Review</NavLink> </button>
 
 
 
@@ -196,8 +197,8 @@ const SingleSpot = ({ spots }) => {
                <div><i className="material-symbols-outlined">star </i> {stars} stars</div>
                 <div> <i className="material-symbols-outlined">face</i> {User.firstName} </div>
                 <p>Review: {review}</p>
-                <button>Edit</button>
-                <button>Delete</button>
+                {/* <button>Edit</button>
+                <button>Delete</button> */}
              </div>
             ))}
 
