@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams, NavLink } from 'react-router-dom'
+import { useParams, NavLink, Redirect } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { updateSpot, getSpots } from '../../../store/spot'
 import { addSpotImage } from '../../../store/spotImage'
@@ -86,6 +86,7 @@ const UpdateSpotForm = ({spots}) => {
     // }, [spot])
 
     const handleSubmit = async (e) => {
+        console.log('if this runs, then the NavLink isnt breaking the button')
         e.preventDefault()
         const payload = {
             id,
@@ -107,8 +108,11 @@ const UpdateSpotForm = ({spots}) => {
         }
         console.log('what is the image payload ', imagePayload)
 
-        await dispatch(addSpotImage(imagePayload))
+        const response = await dispatch(addSpotImage(imagePayload))
         //can push something into the history
+
+        //if(true === true) return   <NavLink to='/' />
+
 
     }
        //await reset()
@@ -261,11 +265,11 @@ const UpdateSpotForm = ({spots}) => {
                  /></div>
                  <div>
 
-                <button type='submit' className="createButton">Submit</button>
-                {/* <button >Cancel
+                <button type='submit' className="createButton">Update</button>
+                {/* <button >Cancel <NavLink to={`/spots/${id}`}>Cancel</NavLink>
                    <NavLink exact to="/"></NavLink>
                 </button> */}
-                <button className="createButton"><NavLink to={'/'}>Cancel</NavLink></button>
+                <button className="createButton"><NavLink to={`/spots/${id}`}>Cancel</NavLink></button>
 
 
                 </div>

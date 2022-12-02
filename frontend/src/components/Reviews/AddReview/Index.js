@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { NavLink, useParams } from 'react-router-dom'
-//import addReview
+import { addSpotReview } from '../../../store/review'
 
 const AddReviewForm = ({spots}) => {
     const [review, setReview] = useState('')
@@ -16,7 +16,8 @@ const AddReviewForm = ({spots}) => {
         const newReview = {
             review, stars
         }
-        //const response = await dispatch(addReview(newReview))
+        console.log('is the new review part working', newReview)
+        const response = await dispatch(addSpotReview(newReview, id ))
     }
     let spot
     useEffect(() => {
@@ -60,7 +61,7 @@ const AddReviewForm = ({spots}) => {
                 />
                 </div>
                 <button type='submit' className="createButton" >Submit</button>
-                <button className="createButton"><NavLink to={'/'}>Cancel</NavLink></button>
+                <button className="createButton"><NavLink to={`/spots/${id}`}>Cancel</NavLink></button>
 
                 </form>
             </div>

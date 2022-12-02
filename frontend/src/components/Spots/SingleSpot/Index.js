@@ -178,8 +178,8 @@ const SingleSpot = ({ spots }) => {
             </div>
             <button id="checkAvailabilityButton"> Check availability</button>
            </div>
-           <h4 className="underlined"><NavLink to={`/spots/${id}/edit`}>Edit Spot</NavLink></h4>
-           <button className='deleteButton' onClick={()=> dispatch(removeSpot(singleSpot.id))}>Delete Spot</button>
+           <h4 className="underlined"><NavLink to={`/spots/${id}/edit`}>Edit Home Listing</NavLink></h4>
+           <button className='deleteButton' onClick={()=> dispatch(removeSpot(singleSpot.id))}>Delete</button>
 
           </div>
 
