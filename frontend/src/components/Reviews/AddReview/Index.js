@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { NavLink, useParams } from 'react-router-dom'
 import { addSpotReview } from '../../../store/review'
+import { useHistory } from 'react-router-dom'
 
 const AddReviewForm = ({spots}) => {
     const [review, setReview] = useState('')
     const [stars, setStars] = useState(0)
     const [spotName, setSpotName] = useState('')
+    const history = useHistory()
 
     const { id } = useParams()
     const dispatch = useDispatch()
@@ -18,6 +20,7 @@ const AddReviewForm = ({spots}) => {
         }
         console.log('is the new review part working', newReview)
         const response = await dispatch(addSpotReview(newReview, id ))
+        history.push(`/spots/${id}`)
     }
     let spot
     useEffect(() => {

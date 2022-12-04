@@ -4,6 +4,7 @@ import { addSpot } from '../../../store/spot'
 import { addSpotImage } from '../../../store/spotImage'
 import './AddSpot.css'
 import { NavLink, Redirect } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 
 const AddSpotForm = () => {
@@ -18,6 +19,7 @@ const AddSpotForm = () => {
     const [price, setPrice] = useState(0)
     const [url, setUrl] = useState('https://jweekly.com/wp-content/uploads/2021/12/Christmas-Tree-Snow-drawing-1080x675-1.jpeg')
     const [preview, setPreview] = useState(false)
+    const history = useHistory()
 
     const dispatch = useDispatch()
 
@@ -41,6 +43,7 @@ const AddSpotForm = () => {
 
         await dispatch(addSpotImage(payload))
        //if (newSpot) return <Redirect to="/"/> this line didn't work
+       history.push(`/spots/${response.id}`)
 
 
     }

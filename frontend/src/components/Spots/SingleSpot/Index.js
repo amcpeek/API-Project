@@ -10,11 +10,13 @@ import { removeSpot } from '../../../store/spot';
 import { getOneSpot } from '../../../store/oneSpot';
 import { useEffect } from 'react';
 import { getSpotReviews } from '../../../store/review'
+import { useHistory } from 'react-router-dom';
 
 const SingleSpot = ({ spots }) => {
   const { id } = useParams();
   const numId = parseInt(id)
   const dispatch = useDispatch()
+  const history = useHistory()
   // const singleSpot = 0
   useEffect(() => {
      dispatch(getOneSpot(id))
@@ -179,7 +181,7 @@ const SingleSpot = ({ spots }) => {
             <button id="checkAvailabilityButton"> Check availability</button>
            </div>
            <h4 className="underlined"><NavLink to={`/spots/${id}/edit`}>Edit Home Listing</NavLink></h4>
-           <button className='deleteButton' onClick={()=> dispatch(removeSpot(singleSpot.id))}>Delete</button>
+           <button className='deleteButton' onClick={()=> {dispatch(removeSpot(singleSpot.id)); history.push('/') }}>Delete</button>
 
           </div>
 

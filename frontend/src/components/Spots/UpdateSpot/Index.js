@@ -3,11 +3,13 @@ import { useParams, NavLink, Redirect } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { updateSpot, getSpots } from '../../../store/spot'
 import { addSpotImage } from '../../../store/spotImage'
+import { useHistory } from 'react-router-dom'
 //import './AddSpot.css'
 
 const UpdateSpotForm = ({spots}) => {
     const { id } = useParams()
     const dispatch = useDispatch()
+    const history = useHistory()
 
    const [address, setAddress] = useState('')
    const [city, setCity] = useState('')
@@ -112,6 +114,7 @@ const UpdateSpotForm = ({spots}) => {
         //can push something into the history
 
         //if(true === true) return   <NavLink to='/' />
+        history.push(`/spots/${id}`)
 
 
     }
