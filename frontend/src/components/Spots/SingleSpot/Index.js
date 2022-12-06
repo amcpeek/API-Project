@@ -188,7 +188,10 @@ const SingleSpot = ({ spots }) => {
         </div>
 
         <div id="SingleSpotReviews">
-        <button><NavLink to={`/spots/${id}/reviews`}>Add A Review</NavLink> </button>
+          <div>
+          <button id="AddReviewButton"><NavLink to={`/spots/${id}/reviews`}>Add A Review</NavLink> </button>
+          </div>
+
 
 
 
