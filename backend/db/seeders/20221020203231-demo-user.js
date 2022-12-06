@@ -1,21 +1,20 @@
 'use strict';
 const bcrypt = require("bcryptjs");
 
+// NEW: add this code to each migration file
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
+// END of new code
+//review file has the old way
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-     * //can use await or return, await would work if you want to seed multiple files
-     * //return just does that current file next to di
-    */
-      await queryInterface.bulkInsert('Users', [
+
+  up: (queryInterface, Sequelize) => {
+    options.tableName = 'Users'
+      return queryInterface.bulkInsert(options, [ //they return instead of await
         {
           firstName: 'demoFirst',
           lastName: 'demoLast',
@@ -48,19 +47,12 @@ module.exports = {
       hashedPassword: bcrypt.hashSync('password5')
     }
     ]);
-
-
-
   },
 
-  async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
-     await queryInterface.bulkDelete('Users', {
-      username: ['Demo-lition', 'FakeUser2','FakeUser3', 'FakeUser4', 'FakeUser5'  ]});
+  down: (queryInterface, Sequelize) => {
+    options.tableName = 'Users'
+      return queryInterface.bulkDelete(options
+      //  {username: ['Demo-lition', 'FakeUser2','FakeUser3', 'FakeUser4', 'FakeUser5'  ]} //this line was removed
+      );
   }
 };

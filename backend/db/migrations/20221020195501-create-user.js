@@ -2,10 +2,20 @@
 
 //const { now } = require('sequelize/types/utils'); //this happened because i tried now()
 
+// NEW: add this code to each create table migration file
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
+// END of new code
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users', {
+  // async up(queryInterface, Sequelize) { //oldForHeroku
+  //   await queryInterface.createTable('Users', {
+
+      up: (queryInterface, Sequelize) => {
+        return queryInterface.createTable('Users', { //newForRender
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -36,9 +46,9 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
-    });
+    }, options);
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('Users', options);
   }
 };

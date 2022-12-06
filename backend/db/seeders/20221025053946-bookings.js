@@ -1,5 +1,7 @@
 'use strict';
 
+//bulk create files do not need to be updated for render 
+
 const { Booking } = require('../models')
 
 const validBookings = [

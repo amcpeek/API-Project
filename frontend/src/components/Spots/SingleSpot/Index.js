@@ -31,7 +31,7 @@ const SingleSpot = ({ spots }) => {
 
   })
 
-  console.log('what is all reviews', allReviews)
+  //console.log('what is all reviews', allReviews)
 
   //console.log(id,'one Spot????', oneSpot)
 

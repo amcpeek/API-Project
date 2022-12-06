@@ -29,7 +29,7 @@ const UpdateSpotForm = ({spots}) => {
    let spot
    useEffect(() => {
     spot = spots.find(spot => spot.id.toString() === id);
-    console.log('checking spots here', spots,id)
+    //console.log('checking spots here', spots,id)
     if(spot) {
         setAddress(spot.address)
         setCity(spot.city)
@@ -45,7 +45,7 @@ const UpdateSpotForm = ({spots}) => {
     }
    }, [spots]) //not sure if this is the right place to listen to, if the spot level isn't changing
 
-   console.log('just spot', spots)
+   //console.log('just spot', spots)
 
 
 

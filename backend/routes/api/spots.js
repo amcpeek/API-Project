@@ -264,10 +264,10 @@ router.get('/:spotId', async (req, res, next) => {
         where: {spotId : spotId},
         raw: true
     })
-    console.log('what is allImages.url//////////////////////////////', allImages)
+    //console.log('what is allImages.url//////////////////////////////', allImages)
     if(!allImages.length) {
        // allImages.url[0] = 'https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg'
-       console.log('what is allImages.url//////////////////////////////', allImages)
+       //console.log('what is allImages.url//////////////////////////////', allImages)
        //allImages.push()
        allImages = [ {
         id:0,

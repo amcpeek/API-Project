@@ -32,7 +32,7 @@ const AddSpotForm = () => {
         const response = await dispatch(addSpot(newSpot))
      //  await dispatch(getSpots())
        //await reset()
-       console.log('can I get the response.id', response)
+      // console.log('can I get the response.id', response)
        e.preventDefault()
         const payload = {
             spotId: response.id,

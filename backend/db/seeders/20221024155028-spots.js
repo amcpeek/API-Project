@@ -1,18 +1,17 @@
 'use strict';
 
+// NEW: add this code to each migration file
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
+// END of new code
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
-      await queryInterface.bulkInsert('Spots', [
+  up: (queryInterface, Sequelize) => {
+    options.tableName = 'Spots'
+     return queryInterface.bulkInsert(options, [
         {
         ownerId: 1,
         address: '123 A St',
@@ -73,15 +72,10 @@ module.exports = {
     ], {});
   },
 
-  async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
-     await queryInterface.bulkDelete('Spots', {
-      name: ['Arkansas Home', 'Colorado Home', 'Delaware Home', 'Florida Home', 'Georgia Home' ]
-     });
+  down: (queryInterface, Sequelize) => {
+     options.tableName = 'Spots'
+     return queryInterface.bulkDelete(options
+      // {name: ['Arkansas Home', 'Colorado Home', 'Delaware Home', 'Florida Home', 'Georgia Home' ]}
+       );
   }
 };

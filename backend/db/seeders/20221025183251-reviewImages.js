@@ -1,18 +1,15 @@
 'use strict';
 
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
-     await queryInterface.bulkInsert('ReviewImages', [
+  up: (queryInterface, Sequelize) => {
+    options.tableName = 'ReviewImages'
+     return queryInterface.bulkInsert(options, [
       {
       reviewId: 1,
       url: 'https://a0.muscache.com/im/pictures/0e09b028-1204-498f-8a87-8ae56c5abe6e.jpg?im_w=1200',
@@ -33,16 +30,10 @@ module.exports = {
   ], {});
 },
 
-async down (queryInterface, Sequelize) {
-  /**
-   * Add commands to revert seed here.
-   *
-   * Example:
-   * await queryInterface.bulkDelete('People', null, {});
-   */
-   await queryInterface.bulkDelete('ReviewImages', {
-    reviewId: [1,2,3,4,5]
-
-   });
+down: (queryInterface, Sequelize) => {
+  options.tableName = 'ReviewImages'
+   return queryInterface.bulkDelete(options
+   // {reviewId: [1,2,3,4,5] }
+    );
 }
 };

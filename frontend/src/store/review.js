@@ -35,7 +35,7 @@ export const getSpotReviews = (spotId) => async dispatch => {
 export default function reviewsReducer (state = {}, action) {
     switch(action.type) {
         case GET_SPOT_REVIEWS:
-            console.log('yepyep', action.spotReviews)
+           // console.log('yepyep', action.spotReviews)
             const allSpotReviews = {}
             action.spotReviews.Reviews.forEach(review => {
                 allSpotReviews[review.id] = review
