@@ -26,8 +26,6 @@ module.exports = {
         references: {
           model: 'Users'
         }
-
-
       },
       address: {
         type: Sequelize.STRING,
@@ -75,7 +73,7 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
-    }. options);
+    }, options);
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('Spots'. options);
