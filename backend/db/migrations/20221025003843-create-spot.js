@@ -25,7 +25,8 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'Users'
-        }
+        },
+        onDelete: 'CASCADE'
       },
       address: {
         type: Sequelize.STRING,
@@ -76,6 +77,7 @@ module.exports = {
     }, options);
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Spots', options);
+    options.tableName = 'Spots'
+    return queryInterface.dropTable(options);
   }
 };
