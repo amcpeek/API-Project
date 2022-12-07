@@ -30,7 +30,6 @@ const UpdateSpotForm = ({spots}) => {
    let spot
    useEffect(() => {
     spot = spots.find(spot => spot.id.toString() === id);
-    //console.log('checking spots here', spots,id)
     if(spot) {
         setAddress(spot.address)
         setCity(spot.city)
@@ -46,47 +45,6 @@ const UpdateSpotForm = ({spots}) => {
     }
    }, [spots]) //not sure if this is the right place to listen to, if the spot level isn't changing
 
-   //console.log('just spot', spots)
-
-
-
-
-
-// const spot = spots.find(spot => spot.id.toString() === id);
-//     const [address, setAddress] = useState(spot.address)
-//     const [city, setCity] = useState(spot.city)
-//     const [state, setState] = useState(spot.state)
-//     const [country, setCountry] = useState(spot.country)
-//     const [lat, setLat] = useState(spot.lat)
-//     const [lng, setLng] = useState(spot.lng)
-//     const [name, setName] = useState(spot.name)
-//     const [description, setDescription] = useState(spot.description)
-//     const [price, setPrice] = useState(spot.price)
-//     const [url, setUrl] = useState('https://img.freepik.com/free-photo/fireplace-with-red-socks-hanging-christmas-tree_1252-402.jpg')
-//     const [preview, setPreview] = useState(false)
-
-
-
-
-//    if(!spots) {
-//     return 0
-//   }
-
-//    if(spot) {
-//        // setAddress(spot.address)
-//        console.log('this is the spot 11/23',spot)
-//    }
-
-
-
-
-
-
-    // useEffect(() => {
-    //     dispatch(getSpots())
-    //     console.log('when does the useEffect run')
-    // }, [spot])
-
     const handleSubmit = async (e) => {
         console.log('if this runs, then the NavLink isnt breaking the button')
         e.preventDefault()
@@ -96,14 +54,8 @@ const UpdateSpotForm = ({spots}) => {
             //lat, lng, //might need a way to leave out lat and lng
             name, description, price
         }
-       // console.log('what is payload', payload)
-
         await dispatch(updateSpot(payload))
-       // await dispatch(getSpots())
-        //  if(updatedSpot) {
-        //     await dispatch(getSpots())
-        //   //  hideForm()
-        // }
+
         const imagePayload = {
             spotId: id,
             url, preview
@@ -111,37 +63,11 @@ const UpdateSpotForm = ({spots}) => {
         console.log('what is the image payload ', imagePayload)
 
         const response = await dispatch(addSpotImage(imagePayload))
-        //can push something into the history
-
-        //if(true === true) return   <NavLink to='/' />
         history.push(`/spots/${id}`)
-
-
     }
-       //await reset()
-
-    // const handleCancelClick = (e) => {
-    //     e.preventDefault()
-    //     //hideForm()
-    // }
-
-    // const reset = () => {
-    //     setAddress('')
-    //     setCity('')
-    //     setState('')
-    //     setCountry('')
-    //     setLat(0)
-    //     setLng(0)
-    //     setName('')
-    //     setDescription('')
-    //     setPrice(0)
-    // }
-
     return (
         <div className="modalOutside">
         <div className="modalContent">
-            {/* can later put in className in the div */}
-
             <form onSubmit={handleSubmit} className="CreateSpotForm">
             <h1>Update Spot</h1>
             <div>
@@ -216,9 +142,6 @@ const UpdateSpotForm = ({spots}) => {
                  value={lng}
                  onChange={(e) => setLng(e.target.value)}
                 /> */}
-
-
-
                 <div>
                     Description
                 </div>
@@ -257,7 +180,6 @@ const UpdateSpotForm = ({spots}) => {
                  name='imageUrl'
                 />
                 </div>
-
                 <div>
                     <div>
                     Preview image?
@@ -267,16 +189,9 @@ const UpdateSpotForm = ({spots}) => {
                 onChange={(e) => setPreview(e.currentTarget.checked)}
                  /></div>
                  <div>
-
                 <button type='submit' className="createButton">Update</button>
-                {/* <button >Cancel <NavLink to={`/spots/${id}`}>Cancel</NavLink>
-                   <NavLink exact to="/"></NavLink>
-                </button> */}
                 <button className="createButton"><NavLink to={`/spots/${id}`}>Cancel</NavLink></button>
-
-
                 </div>
-
             </form>
         </div>
         </div>

@@ -12,6 +12,8 @@ import SingleSpot from "./components/Spots/SingleSpot/Index";
 import UpdateSpotForm from "./components/Spots/UpdateSpot/Index";
 import { getSpots } from './store/spot'
 import AddReviewForm from './components/Reviews/AddReview/Index'
+import UpdateReviewForm from "./components/Reviews/UpdateReview/Index";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -22,9 +24,9 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
     dispatch(getSpots())
   }, [dispatch]);
-  const spots = useSelector(state=> {
-    // console.log('what is state', state)
-     return Object.values(state.spots)});
+  const spots = useSelector(state=> Object.values(state.spots));
+
+
 
   return (
     <>
@@ -53,6 +55,9 @@ function App() {
           <Route exact path="/spots/:id">
             <SingleSpot spots={spots}/>
            </Route>
+          <Route exact path='/reviews/:reviewId/:spotId'>
+            <UpdateReviewForm/>
+          </Route>
           <Route>
             <h2>Page not found</h2>
           </Route>

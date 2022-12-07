@@ -2,106 +2,60 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {  NavLink } from 'react-router-dom';
 import './SingleSpot.css'
-// import UpdateSpotForm from '../UpdateSpot/Index';
 import { removeSpot } from '../../../store/spot';
-//import { AddSpotImage } from '../../../store/spotImage';
-//import AddSpotImageForm from '../AddSpotImage/Index';
-//import UpdateSpotForm from '../UpdateSpot/Index';
 import { getOneSpot } from '../../../store/oneSpot';
 import { useEffect } from 'react';
-import { getSpotReviews, clearSpotReviewsStoreAction, removeReview } from '../../../store/review'
+import { getSpotReviews, clearSpotReviewsStoreAction, removeReview, updateSpotReview } from '../../../store/review'
 import { useHistory } from 'react-router-dom';
 import { nanoid } from 'nanoid'
-
 
 const SingleSpot = ({ spots }) => {
   const { id } = useParams();
   const numId = id
   const dispatch = useDispatch()
   const history = useHistory()
-  // const singleSpot = 0
+
+
   useEffect(() => {
      dispatch(getOneSpot(id))
      dispatch(getSpotReviews(id))
      return dispatch(clearSpotReviewsStoreAction())
-
   }, [dispatch])
 
+  const oneSpot = useSelector(state=>{return state.oneSpot[id]})
+  const allReviews = useSelector(state => {  return Object.values(state.reviews)})
+  if(!spots) { return 0}
+  //if(allReviews) console.log('at 0', allReviews[0].User)
+  //console.log('what is allReviews here',allReviews)
 
-  const oneSpot = useSelector(state=>{
-    return state.oneSpot[id]
-  })
-
-  const allReviews = useSelector(state => {
-    return Object.values(state.reviews)
-
-  })
-  //
   const handleRemoveReview = (reviewId) => {
     console.log('what is review id', reviewId)
     dispatch(removeReview(reviewId))
-    //).then(
-     // dispatch(clearSpotReviewsStoreAction())
-    //).then(
-    //  dispatch(getSpotReviews(id))
-
-    //)
-
-
-
-
+    history.go(0)
   }
 
-  //console.log('what is all reviews', allReviews)
-
-  //console.log(id,'one Spot????', oneSpot)
-
-  //const objOfSpots = Object.values(spots)
-  //console.log('is the single file running', objOfSpots)
-
-  if(!spots) {
-    return 0
-  }
-
-  //im not sure this is working how I think it is working
-  if(oneSpot && !oneSpot.SpotImages[1]) {
-    let newSpot = oneSpot
+  if(oneSpot && !oneSpot.SpotImages[1]) { let newSpot = oneSpot
     newSpot.SpotImages.push({id: nanoid(), url: 'https://media.istockphoto.com/id/1267541412/photo/happy-puppy-dog-celebrating-christmas-with-a-red-santa-claus-hat-and-smiling-expression.jpg?s=612x612&w=0&k=20&c=-wBVGzelUHlNcqgHo6deincDocteKEI6UbkyEonP9jc='})
   }
-  if(oneSpot && !oneSpot.SpotImages[2]) {
-    let newSpot = oneSpot
+  if(oneSpot && !oneSpot.SpotImages[2]) { let newSpot = oneSpot
     newSpot.SpotImages.push({id: nanoid(), url: 'https://nypost.com/wp-content/uploads/sites/2/2019/12/christmas-cat-costume.jpg?quality=75&strip=all' })
   }
-  if(oneSpot && !oneSpot.SpotImages[3]) {
-    let newSpot = oneSpot
+  if(oneSpot && !oneSpot.SpotImages[3]) { let newSpot = oneSpot
     newSpot.SpotImages.push({id: nanoid(), url: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/hedgehog-wearing-red-christmas-santa-hat-john-daniels.jpg' })
   }
-  if(oneSpot && !oneSpot.SpotImages[4]) {
-    let newSpot = oneSpot
+  if(oneSpot && !oneSpot.SpotImages[4]) { let newSpot = oneSpot
     newSpot.SpotImages.push({id: nanoid(), url: 'https://res.cloudinary.com/fleetnation/image/private/c_fit,w_1120/g_south,l_text:style_gothic2:%C2%A9%20Natasha%20Delaney,o_20,y_10/g_center,l_watermark4,o_25,y_50/v1510636701/o1kxriotfpvzuyptnofz.jpg'})
   }
 
-    // newSpot.SpotImages.push({id: 1001, url: 'https://nypost.com/wp-content/uploads/sites/2/2019/12/christmas-cat-costume.jpg?quality=75&strip=all'})
-    // newSpot.SpotImages.push({id: 1002, url: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/hedgehog-wearing-red-christmas-santa-hat-john-daniels.jpg'})
-    // newSpot.SpotImages.push({id: 1003, url: 'https://res.cloudinary.com/fleetnation/image/private/c_fit,w_1120/g_south,l_text:style_gothic2:%C2%A9%20Natasha%20Delaney,o_20,y_10/g_center,l_watermark4,o_25,y_50/v1510636701/o1kxriotfpvzuyptnofz.jpg'})
-
-
-// console.log('hey',oneSpot)
-
-
-
-  // const singleSpot = spots.find(spot => spot.id.toString() === id);
-  // if(singleSpot) {
     if(oneSpot) {
       const singleSpot = oneSpot
     return (
       <div className='SingleSpot'>
-      {/* className='singleSpot' this doesn't exist yet ^ */}
         <h2>{singleSpot.name}</h2>
         <div id='SingleSpotTopLinks'>
         <div >
         <i className="material-symbols-outlined">star </i>
-        {singleSpot.avgStarRating}.0  ·  {singleSpot.numReviews} reviews   ·
+        {singleSpot.avgStarRating} ·  {singleSpot.numReviews} reviews   ·
         <i className="material-symbols-outlined"> military_tech</i>
         Superhost  ·  {singleSpot.city}, {singleSpot.state}, {singleSpot.country}
         </div>
@@ -130,14 +84,8 @@ const SingleSpot = ({ spots }) => {
           </div>
          ))}
          </div>
-
         </div>
-
-
-
         <div id="SingleSpotBottomSection">
-
-
           <div id="SingleSpotDetails">
             <h2>{singleSpot.description}</h2>
             <p> 4 guests  ·  2 bedrooms  ·  2 beds  ·  1 bathroom</p>
@@ -160,7 +108,7 @@ const SingleSpot = ({ spots }) => {
                </div>
               <div>
               <i className="material-symbols-outlined">star </i>
-              {singleSpot.avgStarRating}.0  ·  {singleSpot.numReviews} reviews
+              {singleSpot.avgStarRating}  ·  {singleSpot.numReviews} reviews
               </div>
            </div>
             <div id="checkInOutBox">
@@ -181,10 +129,7 @@ const SingleSpot = ({ spots }) => {
                     <div>
                       1 guest
                     </div>
-
-
                   </div>
-
                   <i className="material-symbols-outlined">arrow_drop_down</i>
                   </button>
                 <div className="dropdownContent">
@@ -193,9 +138,7 @@ const SingleSpot = ({ spots }) => {
                   <a> 3 guests </a>
                   <a> 4 guests </a>
                 </div>
-
               </div>
-
             </div>
             <button id="checkAvailabilityButton"> Check availability</button>
            </div>
@@ -214,69 +157,25 @@ const SingleSpot = ({ spots }) => {
 
 
 
-           {allReviews.map(({id, review, stars, User }) => (
+           {allReviews.map((review) => (
 
 
-             <div className="SingleSpotReviewBox" key={id}>
-               <div><i className="material-symbols-outlined">star </i> {stars} stars</div>
-                <div> <i className="material-symbols-outlined">face</i> {User.firstName} </div>
-                <p>Review: {review}</p>
-                <button>Edit</button>
-                <button className='deleteButton' onClick={()=> handleRemoveReview(id) }>Delete</button>
+             <div className="SingleSpotReviewBox" key={review.id}>
+               <div><i className="material-symbols-outlined">star </i> {review.stars} stars</div>
+                {/* <div> <i className="material-symbols-outlined">face</i> {review.User.firstName} </div> */}
+                <p>Review: {review.review}</p>
+                <p>ReviewId: {review.id} SpotId: {id}</p>
+                <h4 className="underlined"><NavLink to={`/reviews/${review.id}/${id}`}>Edit Review</NavLink></h4>
+                <button className='deleteButton' onClick={()=> handleRemoveReview(review.id) }>Delete</button>
              </div>
             ))}
-
-            {/* <div>
-                <i className="material-symbols-outlined">star </i>
-                {singleSpot.avgStarRating}.0  ·  {singleSpot.numReviews} reviews
-               </div>
-              <div>
-                  <div>Erik</div>
-                  <i className="material-symbols-outlined">face</i>
-                  <div>11/11/22</div>
-                  <p>
-                    This place was wonderful. We had a fantastic stay. Everything was epic. We highly suggest it. The host was extremely helpful.
-                  </p>
-                  <button>Edit</button>
-                  <button>Delete</button>
-              </div>
-              <div>
-                  <div>Annika</div>
-                  <i className="material-symbols-outlined">face</i>
-                  <div>12/12/22</div>
-                  <p>
-                    This place was okay. We had a fine stay. Everything was alright. We sort of suggest it. The host was average.
-                  </p>
-                  <button>Edit</button>
-                  <button>Delete</button>
-              </div>
-              <div>
-                  <div>Edward</div>
-                  <i className="material-symbols-outlined">face</i>
-                  <div>10/10/22</div>
-                  <p>
-                    This place wasn't very dog friendly.
-                  </p>
-                  <button>Edit</button>
-                  <button>Delete</button>
-              </div> */}
-
-
           </div>
-
-
-
-
-
-
       </div>
     );
   }
   return (
-
     <div>Waiting - if this shows, then the single spot file is called but no prop passed in</div>
   )
-
 };
 
 export default SingleSpot;
