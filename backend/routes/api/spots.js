@@ -386,6 +386,7 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
          message:error.message,
          statusCode: 404
        })
+       return
      }
 
      const errObj = {}
@@ -394,8 +395,8 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
         "city": "City is required",
         "state": "State is required",
         "country": "Country is required",
-        "lat": "Latitude is not valid",
-        "lng": "Longitude is not valid",
+        // "lat": "Latitude is not valid",
+        // "lng": "Longitude is not valid",
         "name": "Name must be less than 50 characters",
         "description": "Description is required",
         "price": "Price per day is required"
@@ -406,13 +407,14 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
         if(!city) {errObj['city'] = errorStrings['city']}
         if(!state) {errObj['state'] = errorStrings['state']}
         if(!country) {errObj['country'] = errorStrings['country']}
-        if(!lat) {errObj['lat'] = errorStrings['lat']}
-        if(!lng) {errObj['lng'] = errorStrings['lng']}
+        // if(!lat) {errObj['lat'] = errorStrings['lat']}
+        // if(!lng) {errObj['lng'] = errorStrings['lng']}
         if(!name) {errObj['name'] = errorStrings['name']}
         if(!description) {errObj['description'] = errorStrings['description']}
         if(!price) {errObj['price'] = errorStrings['price']}
 
         if(Object.keys(errObj).length) {
+            console.log('what is this',errObj)
             throw new Error ("Validation was not met")
 
         }
@@ -423,7 +425,9 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
         // res.json(updatedSpot)
         // await updatedSpot.save()
         res.json(newSpot)
+
     } catch(error) {
+        console.log('testing for error ', error)
         if(error.errors) {
             error.errors.map(er => {
                 errObj[er.path] = errorStrings[er.path]
@@ -435,6 +439,7 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
             statusCode: 400,
             errors: errObj
         })
+        return
     }
     res.json(updatedSpot)
 })
@@ -480,6 +485,7 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
                 message: "Spot couldn't be found",
                 statusCode: 404
             })
+            return
         }
 
         const Reviews = []

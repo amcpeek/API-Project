@@ -93,7 +93,7 @@ const UpdateSpotForm = ({spots}) => {
         const payload = {
             id,
             address, city, state, country,
-            lat, lng, //might need a way to leave out lat and lng
+            //lat, lng, //might need a way to leave out lat and lng
             name, description, price
         }
        // console.log('what is payload', payload)

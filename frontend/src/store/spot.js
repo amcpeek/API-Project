@@ -8,9 +8,8 @@ const ADD_SPOT = 'spots/ADD_SPOT' // #9
 const UPDATE_SPOT = 'spots/UPDATE_SPOT' //#11
 const REMOVE_SPOT = 'spots/REMOVE_SPOT' //#12
 
-
-
 /* -- actions -- */
+
 //6 get all /spots
 export const getSpotsAction = (spots) => {
     return {
@@ -77,6 +76,8 @@ export const updateSpot = (spot) => async dispatch => {
     if(response.ok) {
         const spot = await response.json()
         dispatch(updateSpotAction(spot))
+    } else {
+        console.log('response', response)
     }
 }
 

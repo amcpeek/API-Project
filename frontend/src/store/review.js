@@ -6,6 +6,7 @@ const ADD_SPOT_REVIEW = 'reviews/ADD_REVIEW' //#15
 const ADD_REVIEW_IMAGE ='reviews/ADD_REVIEW_IMAGE' //#16 maybe in a different reducer?
 const UPDATE_REVIEW = 'reviews/UPDATE_REVIEW' //#17
 const REMOVE_REVIEW = 'reviews/REMOVE_REVIEW' //#18
+const CLEAR_REVIEWS = 'reviews/CLEAR_REVIEWS'
 
 /* -- actions -- */
 
@@ -17,6 +18,7 @@ export const getSpotReviewsAction = (spotReviews) => {
     }
 }
 
+//#15
 export const addSpotReviewAction = (spotReview) => {
    return {
     type: ADD_SPOT_REVIEW,
@@ -24,6 +26,27 @@ export const addSpotReviewAction = (spotReview) => {
    }
 }
 
+//#17
+export const updateSpotReviewAction = (review) => {
+    return {
+        type: UPDATE_REVIEW,
+        review
+    }
+}
+
+//#18
+export const removeSpotReviewAction = (reviewId) => {
+    return {
+        type: REMOVE_REVIEW,
+        reviewId
+    }
+}
+
+export const clearSpotReviewsStoreAction = () => {
+    return {
+        type: CLEAR_REVIEWS
+    }
+}
 
 /* -- thunk action creators -- */
 export const getSpotReviews = (spotId) => async dispatch => {
@@ -45,6 +68,27 @@ export const addSpotReview = (spotReview, id) => async dispatch => {
     })
 }
 
+export const updateSpotReview = (review) => async dispatch => {
+    const response = await csrfFetch(`/api/reviews/${review.id}`, {
+        method: 'PUT',
+        body: JSON.stringify(review)
+    })
+    if(response.ok) {
+        const review = await response.json()
+        dispatch(updateSpotReviewAction(review))
+    }
+}
+
+export const removeReview = (reviewId) => async dispatch => {
+    await csrfFetch(`/api/reviews/${reviewId}`, {
+    method: 'DELETE'
+    })
+    // if(response.ok) {
+    //     const reviews = await response.json()
+    //     dispatch(removeSpotReviewAction(reviewId))
+    // }
+}
+
 
 
 /* -- reducer -- */
@@ -59,7 +103,20 @@ export default function reviewsReducer (state = {}, action) {
             return {
                 ...allSpotReviews
             }
-        case ADD_SPOT_REVIEW:
+        case ADD_SPOT_REVIEW: //NOT NEEDED bc the getReviews
+        //goes to the backend and gets it there
+        case CLEAR_REVIEWS: //just for clearing the useEffect
+            return {}
+        case UPDATE_REVIEW:
+            return {
+                ...state,
+                [action.review.id]: action.review
+            }
+        case REMOVE_REVIEW:
+            const newState = {...state}
+            delete newState[action.reviewId]
+            return newState
+
 
 
         default:

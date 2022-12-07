@@ -9,18 +9,22 @@ import { removeSpot } from '../../../store/spot';
 //import UpdateSpotForm from '../UpdateSpot/Index';
 import { getOneSpot } from '../../../store/oneSpot';
 import { useEffect } from 'react';
-import { getSpotReviews } from '../../../store/review'
+import { getSpotReviews, clearSpotReviewsStoreAction, removeReview } from '../../../store/review'
 import { useHistory } from 'react-router-dom';
+import { nanoid } from 'nanoid'
+
 
 const SingleSpot = ({ spots }) => {
   const { id } = useParams();
-  const numId = parseInt(id)
+  const numId = id
   const dispatch = useDispatch()
   const history = useHistory()
   // const singleSpot = 0
   useEffect(() => {
      dispatch(getOneSpot(id))
      dispatch(getSpotReviews(id))
+     return dispatch(clearSpotReviewsStoreAction())
+
   }, [dispatch])
 
 
@@ -32,6 +36,21 @@ const SingleSpot = ({ spots }) => {
     return Object.values(state.reviews)
 
   })
+  //
+  const handleRemoveReview = (reviewId) => {
+    console.log('what is review id', reviewId)
+    dispatch(removeReview(reviewId))
+    //).then(
+     // dispatch(clearSpotReviewsStoreAction())
+    //).then(
+    //  dispatch(getSpotReviews(id))
+
+    //)
+
+
+
+
+  }
 
   //console.log('what is all reviews', allReviews)
 
@@ -47,19 +66,19 @@ const SingleSpot = ({ spots }) => {
   //im not sure this is working how I think it is working
   if(oneSpot && !oneSpot.SpotImages[1]) {
     let newSpot = oneSpot
-    newSpot.SpotImages.push({id: 1000, url: 'https://media.istockphoto.com/id/1267541412/photo/happy-puppy-dog-celebrating-christmas-with-a-red-santa-claus-hat-and-smiling-expression.jpg?s=612x612&w=0&k=20&c=-wBVGzelUHlNcqgHo6deincDocteKEI6UbkyEonP9jc='})
+    newSpot.SpotImages.push({id: nanoid(), url: 'https://media.istockphoto.com/id/1267541412/photo/happy-puppy-dog-celebrating-christmas-with-a-red-santa-claus-hat-and-smiling-expression.jpg?s=612x612&w=0&k=20&c=-wBVGzelUHlNcqgHo6deincDocteKEI6UbkyEonP9jc='})
   }
   if(oneSpot && !oneSpot.SpotImages[2]) {
     let newSpot = oneSpot
-    newSpot.SpotImages.push({id: 1000, url: 'https://nypost.com/wp-content/uploads/sites/2/2019/12/christmas-cat-costume.jpg?quality=75&strip=all' })
+    newSpot.SpotImages.push({id: nanoid(), url: 'https://nypost.com/wp-content/uploads/sites/2/2019/12/christmas-cat-costume.jpg?quality=75&strip=all' })
   }
   if(oneSpot && !oneSpot.SpotImages[3]) {
     let newSpot = oneSpot
-    newSpot.SpotImages.push({id: 1000, url: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/hedgehog-wearing-red-christmas-santa-hat-john-daniels.jpg' })
+    newSpot.SpotImages.push({id: nanoid(), url: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/hedgehog-wearing-red-christmas-santa-hat-john-daniels.jpg' })
   }
   if(oneSpot && !oneSpot.SpotImages[4]) {
     let newSpot = oneSpot
-    newSpot.SpotImages.push({id: 1000, url: 'https://res.cloudinary.com/fleetnation/image/private/c_fit,w_1120/g_south,l_text:style_gothic2:%C2%A9%20Natasha%20Delaney,o_20,y_10/g_center,l_watermark4,o_25,y_50/v1510636701/o1kxriotfpvzuyptnofz.jpg'})
+    newSpot.SpotImages.push({id: nanoid(), url: 'https://res.cloudinary.com/fleetnation/image/private/c_fit,w_1120/g_south,l_text:style_gothic2:%C2%A9%20Natasha%20Delaney,o_20,y_10/g_center,l_watermark4,o_25,y_50/v1510636701/o1kxriotfpvzuyptnofz.jpg'})
   }
 
     // newSpot.SpotImages.push({id: 1001, url: 'https://nypost.com/wp-content/uploads/sites/2/2019/12/christmas-cat-costume.jpg?quality=75&strip=all'})
@@ -202,8 +221,8 @@ const SingleSpot = ({ spots }) => {
                <div><i className="material-symbols-outlined">star </i> {stars} stars</div>
                 <div> <i className="material-symbols-outlined">face</i> {User.firstName} </div>
                 <p>Review: {review}</p>
-                {/* <button>Edit</button>
-                <button>Delete</button> */}
+                <button>Edit</button>
+                <button className='deleteButton' onClick={()=> handleRemoveReview(id) }>Delete</button>
              </div>
             ))}
 
