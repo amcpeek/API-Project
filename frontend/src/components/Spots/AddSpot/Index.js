@@ -3,7 +3,8 @@ import { useDispatch } from 'react-redux'
 import { addSpot } from '../../../store/spot'
 import { addSpotImage } from '../../../store/spotImage'
 import './AddSpot.css'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 
 const AddSpotForm = () => {
@@ -18,6 +19,7 @@ const AddSpotForm = () => {
     const [price, setPrice] = useState(0)
     const [url, setUrl] = useState('https://jweekly.com/wp-content/uploads/2021/12/Christmas-Tree-Snow-drawing-1080x675-1.jpeg')
     const [preview, setPreview] = useState(false)
+    const history = useHistory()
 
     const dispatch = useDispatch()
 
@@ -32,14 +34,16 @@ const AddSpotForm = () => {
         const response = await dispatch(addSpot(newSpot))
      //  await dispatch(getSpots())
        //await reset()
-      // console.log('can I get the response.id', response)
-       e.preventDefault()
+       //console.log('can I get the response.id', response)
+
         const payload = {
             spotId: response.id,
             url, preview
         }
 
         await dispatch(addSpotImage(payload))
+       //if (newSpot) return <Redirect to="/"/> this line didn't work
+       history.push(`/spots/${response.id}`)
 
 
     }
@@ -187,7 +191,7 @@ const AddSpotForm = () => {
                  /></div>
                  <div>
 
-                <button type='submit' className="createButton">Submit</button>
+                <button type='submit' className="createButton" >Submit</button>
                 {/* <button >Cancel
                    <NavLink exact to="/"></NavLink>
                 </button> */}

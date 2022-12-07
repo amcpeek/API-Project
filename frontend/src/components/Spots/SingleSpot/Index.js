@@ -10,11 +10,13 @@ import { removeSpot } from '../../../store/spot';
 import { getOneSpot } from '../../../store/oneSpot';
 import { useEffect } from 'react';
 import { getSpotReviews } from '../../../store/review'
+import { useHistory } from 'react-router-dom';
 
 const SingleSpot = ({ spots }) => {
   const { id } = useParams();
   const numId = parseInt(id)
   const dispatch = useDispatch()
+  const history = useHistory()
   // const singleSpot = 0
   useEffect(() => {
      dispatch(getOneSpot(id))
@@ -178,14 +180,18 @@ const SingleSpot = ({ spots }) => {
             </div>
             <button id="checkAvailabilityButton"> Check availability</button>
            </div>
-           <h4 className="underlined"><NavLink to={`/spots/${id}/edit`}>Edit Spot</NavLink></h4>
-           <button className='deleteButton' onClick={()=> dispatch(removeSpot(singleSpot.id))}>Delete Spot</button>
+           <h4 className="underlined"><NavLink to={`/spots/${id}/edit`}>Edit Home Listing</NavLink></h4>
+           <button className='deleteButton' onClick={()=> {dispatch(removeSpot(singleSpot.id)); history.push('/') }}>Delete</button>
 
           </div>
 
         </div>
 
         <div id="SingleSpotReviews">
+          <div>
+          <button id="AddReviewButton"><NavLink to={`/spots/${id}/reviews`}>Add A Review</NavLink> </button>
+          </div>
+
 
 
 
@@ -196,8 +202,8 @@ const SingleSpot = ({ spots }) => {
                <div><i className="material-symbols-outlined">star </i> {stars} stars</div>
                 <div> <i className="material-symbols-outlined">face</i> {User.firstName} </div>
                 <p>Review: {review}</p>
-                <button>Edit</button>
-                <button>Delete</button>
+                {/* <button>Edit</button>
+                <button>Delete</button> */}
              </div>
             ))}
 
