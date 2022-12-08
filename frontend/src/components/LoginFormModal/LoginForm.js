@@ -67,9 +67,6 @@ function LoginForm() {
       <div>
         <button onClick={logInDemoUser}>Login as Demo User</button>
       </div>
-      <div>
-      <button onClick={() => setShowModal(false)}>Not Working - Cancel</button>
-      </div>
       <div className='LogInErrors'>
         {errors.map((error, idx) => (
           <div key={idx}>{error}</div>

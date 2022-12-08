@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-import { getSpots } from '../../../store/spot'
+import { getSpots, clearOneSpotAction } from '../../../store/spot'
 import './AllSpots.css'
 
 
@@ -22,6 +22,7 @@ const AllSpots = () => {
 
   useEffect(() => {
     dispatch(getSpots());
+    return dispatch(clearOneSpotAction())
   }, [dispatch]);
 
   return (

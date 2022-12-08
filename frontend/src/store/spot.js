@@ -7,6 +7,8 @@ const ADD_SPOT = 'spots/ADD_SPOT' // #9
 // #10 add image by spot id is in the spotImage reducer
 const UPDATE_SPOT = 'spots/UPDATE_SPOT' //#11
 const REMOVE_SPOT = 'spots/REMOVE_SPOT' //#12
+const CLEAR_SPOTS = './spots/CLEAR_SPOTS'
+
 
 /* -- actions -- */
 
@@ -49,6 +51,11 @@ export const getCurrentOwnersSpotsAction = (spots) => {
     }
 }
 
+export const clearOneSpotAction = () => {
+    return {
+        type: CLEAR_SPOTS
+    }
+}
 
 /* -- thunk action creators */
 
@@ -145,6 +152,8 @@ export default function spotsReducer (state = {}, action) {
                 ...state,
                 ['currentOwnersSpots']: nextLevel
             }
+        case CLEAR_SPOTS:
+            return {}
         default:
             return state
     }

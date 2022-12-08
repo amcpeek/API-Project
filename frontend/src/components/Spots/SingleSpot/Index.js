@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {  NavLink } from 'react-router-dom';
 import './SingleSpot.css'
 import { removeSpot } from '../../../store/spot';
-import { getOneSpot } from '../../../store/oneSpot';
+import { getOneSpot, clearOneSpotAction } from '../../../store/oneSpot';
 import { useEffect } from 'react';
 import { getSpotReviews, clearSpotReviewsStoreAction, removeReview, updateSpotReview } from '../../../store/review'
 import { useHistory } from 'react-router-dom';
@@ -17,16 +17,18 @@ const SingleSpot = ({ spots }) => {
 
 
   useEffect(() => {
-     dispatch(getOneSpot(id))
      dispatch(getSpotReviews(id))
      return dispatch(clearSpotReviewsStoreAction())
   }, [dispatch])
 
+  useEffect(() => {
+    dispatch(getOneSpot(id))
+    return dispatch(clearOneSpotAction())
+ }, [dispatch])
+
   const oneSpot = useSelector(state=>{return state.oneSpot[id]})
   const allReviews = useSelector(state => {  return Object.values(state.reviews)})
   if(!spots) { return 0}
-  //if(allReviews) console.log('at 0', allReviews[0].User)
-  //console.log('what is allReviews here',allReviews)
 
   const handleRemoveReview = (reviewId) => {
     console.log('what is review id', reviewId)
@@ -164,7 +166,7 @@ const SingleSpot = ({ spots }) => {
                <div><i className="material-symbols-outlined">star </i> {review.stars} stars</div>
                 {/* <div> <i className="material-symbols-outlined">face</i> {review.User.firstName} </div> */}
                 <p>Review: {review.review}</p>
-                <p>ReviewId: {review.id} SpotId: {id}</p>
+                <p>ReviewId: {review.id} SpotId: {id} OwnerId: {review.userId}</p>
                 <h4 className="underlined"><NavLink to={`/reviews/${review.id}/${id}`}>Edit Review</NavLink></h4>
                 <button className='deleteButton' onClick={()=> handleRemoveReview(review.id) }>Delete</button>
              </div>

@@ -517,18 +517,20 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
      const userId = req.user.id
    const { review, stars } = req.body
 
-   const findOwnerOfSpot = await Spot.findOne({
-    where: { ownerId: userId,
-             id: spotId },
-     attributes: ['ownerId']
-  })
-         if( !findOwnerOfSpot || !(userId === findOwnerOfSpot.ownerId) ) {
-            res.statusCode = 404
-            res.json({
-            message: "Spot couldn't be found",
-            statusCode: 404,
-            })
-        }
+   //this functionality made it so only the owner of a spot could review it, so I took that out
+   //could add owner can't review their own spot
+//    const findOwnerOfSpot = await Spot.findOne({
+//     where: { ownerId: userId,
+//              id: spotId },
+//      attributes: ['ownerId']
+//   })
+//          if( !findOwnerOfSpot || !(userId === findOwnerOfSpot.ownerId) ) {
+//             res.statusCode = 404
+//             res.json({
+//             message: "Spot couldn't be found",
+//             statusCode: 404,
+//             })
+//         }
 
         const allReviewsOfThisSpot = await Review.findAll({
              where: { userId: userId,

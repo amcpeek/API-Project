@@ -1,6 +1,7 @@
 // import { csrfFetch } from './csrf';
 
 const GET_ONE_SPOT = 'spots/GET_ONE_SPOT'
+const CLEAR_ONE_SPOT = 'spots/CLEAR_ONE_SPOTS'
 
 //8 get one spot /spots/:spotId
 export const getOneSpotAction = (spot) => {
@@ -9,6 +10,14 @@ export const getOneSpotAction = (spot) => {
         spot
     }
 }
+
+export const clearOneSpotAction = () => {
+    return {
+        type: CLEAR_ONE_SPOT
+    }
+}
+
+/* - thunk - */
 
 export const getOneSpot = (spotId) => async dispatch => {
     const response = await fetch(`/api/spots/${spotId}`)
@@ -32,6 +41,8 @@ export default function oneSpotReducer (state = {}, action) {
                 ...newSpot,
                  ...state
              }
+        case CLEAR_ONE_SPOT:
+            return {}
         default:
             return state
     }
