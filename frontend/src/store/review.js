@@ -66,6 +66,7 @@ export const addSpotReview = (spotReview, id) => async dispatch => {
         method: 'POST',
         body: JSON.stringify(spotReview)
     })
+    //not getting anything back, so not recieving any errors
 }
 
 export const updateSpotReview = (review, reviewId) => async dispatch => {

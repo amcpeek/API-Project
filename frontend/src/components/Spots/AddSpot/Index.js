@@ -20,8 +20,11 @@ const AddSpotForm = () => {
     const [url, setUrl] = useState('https://jweekly.com/wp-content/uploads/2021/12/Christmas-Tree-Snow-drawing-1080x675-1.jpeg')
     const [preview, setPreview] = useState(false)
     const history = useHistory()
+    const [responseErrors, setResponseErrors] = useState([])
 
     const dispatch = useDispatch()
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -31,10 +34,14 @@ const AddSpotForm = () => {
             name, description, price
         }
 
+
+
         const response = await dispatch(addSpot(newSpot))
-     //  await dispatch(getSpots())
-       //await reset()
-       //console.log('can I get the response.id', response)
+        //.catch(error => { })
+        console.log('do the errors come through', response.errors)
+
+        setResponseErrors(response.errors)
+
 
         const payload = {
             spotId: response.id,
@@ -64,6 +71,13 @@ const AddSpotForm = () => {
         <div className="modalOutside">
         <div className="modalContent">
             {/* can later put in className in the div */}
+            <div className='LogInErrors'>
+                <ul>
+                {/* {responseErrors.name.map((error) => <li key={error}>{error}</li>  )} */}
+                {<li>{responseErrors.name}</li>}
+                </ul>
+            </div>
+
 
             <form onSubmit={handleSubmit} className="CreateSpotForm">
                 <h1>List Your Home</h1>

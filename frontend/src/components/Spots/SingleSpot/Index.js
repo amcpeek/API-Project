@@ -1,15 +1,15 @@
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import {  NavLink } from 'react-router-dom';
 import './SingleSpot.css'
 import { removeSpot } from '../../../store/spot';
 import { getOneSpot, clearOneSpotAction } from '../../../store/oneSpot';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getSpotReviews, clearSpotReviewsStoreAction, removeReview, updateSpotReview } from '../../../store/review'
 import { useHistory } from 'react-router-dom';
 import { nanoid } from 'nanoid'
 
-const SingleSpot = ({ spots }) => {
+const SingleSpot = () => {
   const { id } = useParams();
   const numId = id
   const dispatch = useDispatch()
@@ -28,7 +28,7 @@ const SingleSpot = ({ spots }) => {
 
   const oneSpot = useSelector(state=>{return state.oneSpot[id]})
   const allReviews = useSelector(state => {  return Object.values(state.reviews)})
-  if(!spots) { return 0}
+
 
   const handleRemoveReview = (reviewId) => {
     console.log('what is review id', reviewId)
@@ -49,8 +49,21 @@ const SingleSpot = ({ spots }) => {
     newSpot.SpotImages.push({id: nanoid(), url: 'https://res.cloudinary.com/fleetnation/image/private/c_fit,w_1120/g_south,l_text:style_gothic2:%C2%A9%20Natasha%20Delaney,o_20,y_10/g_center,l_watermark4,o_25,y_50/v1510636701/o1kxriotfpvzuyptnofz.jpg'})
   }
 
+  const currentUserId = useSelector(state=>{return state.session.user.id})
+  const [ matchingOwner, setMatchingOwner ] = useState(false)
+
+  useEffect(() => {
+    if(oneSpot) {
+      console.log('one spot', oneSpot)
+      setMatchingOwner(currentUserId === oneSpot.ownerId)
+    }
+  },[oneSpot])
+
+
+
     if(oneSpot) {
       const singleSpot = oneSpot
+
     return (
       <div className='SingleSpot'>
         <h2>{singleSpot.name}</h2>
@@ -145,7 +158,8 @@ const SingleSpot = ({ spots }) => {
             <button id="checkAvailabilityButton"> Check availability</button>
            </div>
            <h4 className="underlined"><NavLink to={`/spots/${id}/edit`}>Edit Home Listing</NavLink></h4>
-           <button className='deleteButton' onClick={()=> {dispatch(removeSpot(singleSpot.id)); history.push('/') }}>Delete</button>
+           {matchingOwner&& <button className='deleteButton' onClick={()=> {dispatch(removeSpot(singleSpot.id)); history.push('/') }}>Delete</button>}
+
 
           </div>
 

@@ -306,27 +306,29 @@ router.post('/', requireAuth, async (req, res, next) => {
         "price": "Price per day is required"
     }
     const errObj = {}
-    if(!address) {errObj['address'] = errorStrings['address']}
-    if(!city) {errObj['city'] = errorStrings['city']}
-    if(!state) {errObj['state'] = errorStrings['state']}
-    if(!country) {errObj['country'] = errorStrings['country']}
-    if(!lat) {errObj['lat'] = errorStrings['lat']}
-    if(!lng) {errObj['lng'] = errorStrings['lng']}
-    if(!name) {errObj['name'] = errorStrings['name']}
-    if(!description) {errObj['description'] = errorStrings['description']}
-    if(!price) {errObj['price'] = errorStrings['price']}
+    // if(!address) {errObj['address'] = errorStrings['address']}
+    // if(!city) {errObj['city'] = errorStrings['city']}
+    // if(!state) {errObj['state'] = errorStrings['state']}
+    // if(!country) {errObj['country'] = errorStrings['country']}
+    // if(!lat) {errObj['lat'] = errorStrings['lat']}
+    // if(!lng) {errObj['lng'] = errorStrings['lng']}
+    // if(!name) {errObj['name'] = errorStrings['name']}
+    // if(!description) {errObj['description'] = errorStrings['description']}
+    // if(!price) {errObj['price'] = errorStrings['price']}
 
     try{
         const newSpot = await Spot.create({ownerId: userId, address, city, state, country, lat, lng, name, description, price})
         res.json(newSpot)
     } catch(error) {
+        console.log('the backend error', error)
         error.errors.map(er => {
             errObj[er.path] = errorStrings[er.path]
+            console.log('alsdjfkladsfj', errObj)
         })
-        res.statusCode = 400
+        res.statusCode = 436
         res.json({
             message: 'Validation Error',
-            statusCode: 400,
+            statusCode: 436,
             errors: errObj
         })
     }

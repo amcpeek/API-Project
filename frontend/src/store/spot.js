@@ -1,5 +1,4 @@
 import { csrfFetch } from './csrf';
-
 const GET_SPOTS = 'spots/GET_SPOTS' //#6
 const GET_CURRENT_OWNERS_SPOTS = 'spots/GET_CURRENT_OWNERS_SPOTS' //#7
 //#8  one spot is in the oneSpot store, eventually move it here
@@ -68,11 +67,34 @@ export const getSpots = () => async dispatch => {
 }
 
 export const addSpot = (spot) => async dispatch => {
+    let newError
     const response = await csrfFetch(`/api/spots`, {
         method: 'POST',
        body: JSON.stringify(spot)
+    }).catch( async error => {
+         newError = await error.json()
+       // throw new Error(newError)
+      // if(newError )console.log('line 76', newError)
+        console.log('line 77 error', newError)
     })
-    return await response.json()
+    return newError
+    //console.log('line 76 response.json', response.json())
+    // if(!response.ok) {
+    //     let error
+    //     if(response.status === 436) {
+    //         error = await response.json()
+    //         throw new Error(error.errors, response.statusText)
+    //     }
+    // }
+
+
+
+    //return await response.json()
+    //dont need to dispatch an action
+    //bc not changing the store
+    //only looking for an error, so code as is, is fine
+
+
 }
 
 export const updateSpot = (spot) => async dispatch => {
