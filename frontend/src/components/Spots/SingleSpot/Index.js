@@ -49,15 +49,29 @@ const SingleSpot = () => {
     newSpot.SpotImages.push({id: nanoid(), url: 'https://res.cloudinary.com/fleetnation/image/private/c_fit,w_1120/g_south,l_text:style_gothic2:%C2%A9%20Natasha%20Delaney,o_20,y_10/g_center,l_watermark4,o_25,y_50/v1510636701/o1kxriotfpvzuyptnofz.jpg'})
   }
 
+  //for matching owner of spot
   const currentUserId = useSelector(state=>{return state.session.user.id})
   const [ matchingOwner, setMatchingOwner ] = useState(false)
 
   useEffect(() => {
     if(oneSpot) {
-      console.log('one spot', oneSpot)
+    //  console.log('one spot', oneSpot)
       setMatchingOwner(currentUserId === oneSpot.ownerId)
     }
   },[oneSpot])
+
+  //for matching owner of review
+  const [ matchingReviewer, setMatchingReviewer ] = useState(false)
+  useEffect(() => {
+    if(allReviews) {
+    //  setMatchingReviewer(allReviews)
+    //if currentUserId ===
+    //currentReview.
+
+    }
+  })
+
+
 
 
 
@@ -157,32 +171,32 @@ const SingleSpot = () => {
             </div>
             <button id="checkAvailabilityButton"> Check availability</button>
            </div>
-           <h4 className="underlined"><NavLink to={`/spots/${id}/edit`}>Edit Home Listing</NavLink></h4>
+           {matchingOwner&&<h4 className="underlined"><NavLink to={`/spots/${id}/edit`}>Edit Home Listing</NavLink></h4>}
            {matchingOwner&& <button className='deleteButton' onClick={()=> {dispatch(removeSpot(singleSpot.id)); history.push('/') }}>Delete</button>}
-
-
           </div>
 
         </div>
 
         <div id="SingleSpotReviews">
-          <div>
-          <button id="AddReviewButton"><NavLink to={`/spots/${id}/reviews`}>Add A Review</NavLink> </button>
-          </div>
+
 
 
 
 
            {allReviews.map((review) => (
+            <div>
+             <div>
+             {review.userId !== currentUserId && <button id="AddReviewButton"><NavLink to={`/spots/${id}/reviews`}>Add A Review</NavLink> </button> }
 
-
+             </div>
              <div className="SingleSpotReviewBox" key={review.id}>
                <div><i className="material-symbols-outlined">star </i> {review.stars} stars</div>
-                {/* <div> <i className="material-symbols-outlined">face</i> {review.User.firstName} </div> */}
+                <div> <i className="material-symbols-outlined">face</i> {review.User.firstName} </div>
                 <p>Review: {review.review}</p>
-                <p>ReviewId: {review.id} SpotId: {id} OwnerId: {review.userId}</p>
-                <h4 className="underlined"><NavLink to={`/reviews/${review.id}/${id}`}>Edit Review</NavLink></h4>
-                <button className='deleteButton' onClick={()=> handleRemoveReview(review.id) }>Delete</button>
+                {/* <p>ReviewId: {review.id} SpotId: {id} AuthorId: {review.userId} ViewerId: {currentUserId}</p> */}
+                {review.userId === currentUserId &&  <h4 className="underlined"><NavLink to={`/reviews/${review.id}/${id}`}>Edit Review</NavLink></h4>}
+                {review.userId === currentUserId && <button className='deleteButton' onClick={()=> handleRemoveReview(review.id) }>Delete</button>}
+             </div>
              </div>
             ))}
           </div>
