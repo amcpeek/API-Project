@@ -87,7 +87,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
       userId: userId
     }
   })
- 
+
   if(!theReview ) {
     res.statusCode = 404
     res.json({
@@ -139,11 +139,11 @@ router.put('/:reviewId', requireAuth, async (req, res, next) => {
       "stars": "Stars must be an integer from 1 to 5",
   }
   try{
-    if(!review) {errObj['review'] = errorStrings['review']}
-    if(!stars) {errObj['stars'] = errorStrings['stars']}
-    if(Object.keys(errObj).length) {
-        throw new Error ("Validation was not met")
-    }
+    // if(!review) {errObj['review'] = errorStrings['review']}
+    // if(!stars) {errObj['stars'] = errorStrings['stars']}
+    // if(Object.keys(errObj).length) {
+    //     throw new Error ("Validation was not met")
+    // }
        const newReview = await updatedReview.update({ review, stars })
        res.json(newReview)
 } catch(error) {

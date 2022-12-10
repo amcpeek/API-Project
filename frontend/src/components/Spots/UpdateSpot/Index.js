@@ -22,6 +22,7 @@ const UpdateSpotForm = ({spots}) => {
    const [price, setPrice] = useState(0)
    const [url, setUrl] = useState('')
    const [preview, setPreview] = useState(false)
+   const [responseErrors, setResponseErrors] = useState([])
 
    useEffect(() => {
     dispatch(getSpots())
@@ -46,7 +47,7 @@ const UpdateSpotForm = ({spots}) => {
    }, [spots]) //not sure if this is the right place to listen to, if the spot level isn't changing
 
     const handleSubmit = async (e) => {
-        console.log('if this runs, then the NavLink isnt breaking the button')
+        console.log('if this runs, then the NavLink is not breaking the button')
         e.preventDefault()
         const payload = {
             id,
@@ -54,20 +55,30 @@ const UpdateSpotForm = ({spots}) => {
             //lat, lng, //might need a way to leave out lat and lng
             name, description, price
         }
-        await dispatch(updateSpot(payload))
-
-        const imagePayload = {
-            spotId: id,
-            url, preview
+        //dont need to check for errors separately
+        //bc only returning if there are errors
+        const returnOfSpot = await dispatch(updateSpot(payload))
+        if(returnOfSpot) {
+            setResponseErrors(Object.values(returnOfSpot.errors))
+        } else {
+            const imagePayload = {
+                spotId: id,
+                url, preview
+            }
+            await dispatch(addSpotImage(imagePayload))
+            history.push(`/spots/${id}`)
         }
-        console.log('what is the image payload ', imagePayload)
-
-        const response = await dispatch(addSpotImage(imagePayload))
-        history.push(`/spots/${id}`)
     }
     return (
         <div className="modalOutside">
         <div className="modalContent">
+        <div className='LogInErrors'>
+                <ul>
+                {responseErrors.map(err => (
+                    <li key={err}>{err}</li>
+                ))}
+                </ul>
+            </div>
             <form onSubmit={handleSubmit} className="CreateSpotForm">
             <h1>Update Spot</h1>
             <div>

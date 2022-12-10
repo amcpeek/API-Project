@@ -62,23 +62,33 @@ export const getSpotReviews = (spotId) => async dispatch => {
 
 export const addSpotReview = (spotReview, id) => async dispatch => {
     console.log('is it getting to the reducer', spotReview, id)
-    await csrfFetch(`/api/spots/${id}/reviews`, {
+    const response = await csrfFetch(`/api/spots/${id}/reviews`, {
         method: 'POST',
         body: JSON.stringify(spotReview)
+    }).then(async (res) => {
+        return await res.json()
+    }).catch( async error => {
+        return await error.json()
     })
-    //not getting anything back, so not recieving any errors
+    return response
 }
 
 export const updateSpotReview = (review, reviewId) => async dispatch => {
     const response = await csrfFetch(`/api/reviews/${reviewId}`, {
         method: 'PUT',
         body: JSON.stringify(review)
+    }).then(async (res) => {
+        return await res.json()
+    }).catch( async error => {
+        return await error.json()
     })
-    if(response.ok) {
-        const review = await response.json()
-        dispatch(updateSpotReviewAction(review))
-    }
+    return response
 }
+    // if(response.ok) {
+    //     const review = await response.json()
+    //     dispatch(updateSpotReviewAction(review)) //im not sure this is needed?
+    // }
+
 
 export const removeReview = (reviewId) => async dispatch => {
     await csrfFetch(`/api/reviews/${reviewId}`, {

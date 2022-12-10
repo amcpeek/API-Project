@@ -9,6 +9,7 @@ const AddReviewForm = ({spots}) => {
     const [stars, setStars] = useState(0)
     const [spotName, setSpotName] = useState('')
     const history = useHistory()
+    const [responseErrors, setResponseErrors] = useState([])
 
     const { id } = useParams()
     const dispatch = useDispatch()
@@ -18,9 +19,13 @@ const AddReviewForm = ({spots}) => {
         const newReview = {
             review, stars
         }
-        console.log('is the new review part working', newReview)
+       // console.log('is the new review part working', newReview)
         const response = await dispatch(addSpotReview(newReview, id ))
-        history.push(`/spots/${id}`)
+        if(response.errors) {
+            setResponseErrors(Object.values(response.errors))
+        } else {
+            history.push(`/spots/${id}`)
+        }
     }
     let spot
     useEffect(() => {
@@ -34,6 +39,13 @@ const AddReviewForm = ({spots}) => {
     return (
         <div className='modalOutside'>
             <div className='modalContent'>
+            <div className='LogInErrors'>
+                <ul>
+                {responseErrors.map(err => (
+                    <li key={err}>{err}</li>
+                ))}
+                </ul>
+            </div>
                 <form onSubmit={handleSubmit} className="CreateSpotForm">
                     <h1>{spotName} Review</h1>
                     {/* <div>

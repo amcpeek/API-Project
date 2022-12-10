@@ -8,6 +8,7 @@ const UpdateReviewForm = () => {
     const [review, setReview] = useState('')
     const [stars, setStars] = useState(0)
     const history = useHistory()
+    const [responseErrors, setResponseErrors] = useState([])
 
     const { reviewId, spotId } = useParams()
     const dispatch = useDispatch()
@@ -16,7 +17,12 @@ const UpdateReviewForm = () => {
         e.preventDefault()
         const newReview = { review, stars  }
         const response = await dispatch(updateSpotReview(newReview, reviewId ))
-        history.goBack()
+        if(response.errors) {
+            setResponseErrors(Object.values(response.errors))
+        } else {
+            history.goBack()
+        }
+
     }
 
     useEffect(() => {
@@ -40,6 +46,13 @@ const UpdateReviewForm = () => {
     return (
         <div className='modalOutside'>
             <div className='modalContent'>
+            <div className='LogInErrors'>
+                <ul>
+                {responseErrors.map(err => (
+                    <li key={err}>{err}</li>
+                ))}
+                </ul>
+            </div>
                 <form onSubmit={handleSubmit} className="CreateSpotForm">
                     <h1>Review</h1>
                 <div>

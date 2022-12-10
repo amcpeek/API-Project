@@ -66,48 +66,39 @@ export const getSpots = () => async dispatch => {
     }
 }
 
+//NOTE: used .then .catch
 export const addSpot = (spot) => async dispatch => {
-    let newError
     const response = await csrfFetch(`/api/spots`, {
+        //the response is not set to the return of the fetch until after all .then and .catch are completed
         method: 'POST',
        body: JSON.stringify(spot)
-    }).catch( async error => {
-         newError = await error.json()
-       // throw new Error(newError)
-      // if(newError )console.log('line 76', newError)
-        console.log('line 77 error', newError)
+
+    }).then(async (res) => {  //above 400, that thing is a res, send it
+        return await res.json()
+    } ).catch( async error => { //below 400, that thing is an error, send it
+        console.log('123456789',error.json())
+         return await error.json()
     })
-    return newError
-    //console.log('line 76 response.json', response.json())
-    // if(!response.ok) {
-    //     let error
-    //     if(response.status === 436) {
-    //         error = await response.json()
-    //         throw new Error(error.errors, response.statusText)
-    //     }
-    // }
-
-
-
-    //return await response.json()
-    //dont need to dispatch an action
-    //bc not changing the store
-    //only looking for an error, so code as is, is fine
-
-
+    return response
 }
 
+//NOTE: used try/catch
 export const updateSpot = (spot) => async dispatch => {
-    const response = await csrfFetch(`/api/spots/${spot.id}`, {
-        method: 'PUT',
-        body: JSON.stringify(spot)
-    })
-    if(response.ok) {
-        const spot = await response.json()
-        dispatch(updateSpotAction(spot))
-    } else {
-        console.log('response', response)
+    try{
+        let response = await csrfFetch(`/api/spots/${spot.id}`, {
+            method: 'PUT',
+            body: JSON.stringify(spot)
+        })
+        //this whole if statement is unnecessary bc I don't use it for update
+        // if(response.ok) { // as written, will not have errors you can read, it says 'readable stream"
+        //     return await response.json()
+        //     //dispatch(updateSpotAction(spot)) not needed if updating state from loadSpots
+        // }
+    } catch(error) {
+       // console.log('987654321', error.json())
+        return  await error.json()
     }
+
 }
 
 export const removeSpot = (spotId) => async dispatch => {

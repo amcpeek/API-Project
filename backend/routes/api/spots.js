@@ -295,15 +295,15 @@ router.post('/', requireAuth, async (req, res, next) => {
      const userId = req.user.id
      const {address, city, state, country, lat, lng, name, description, price} = req.body
     const errorStrings = {
-        "address": "Street address is required",
-        "city": "City is required",
-        "state": "State is required",
-        "country": "Country is required",
+        "address": "Street address must be 1 to 50 characters",
+        "city": "City must be 1 to 50 characters",
+        "state": "State must be 1 to 50 characters",
+        "country": "Country must be 1 to 50 characters",
         "lat": "Latitude is not valid",
         "lng": "Longitude is not valid",
-        "name": "Name must be less than 50 characters",
-        "description": "Description is required",
-        "price": "Price per day is required"
+        "name": "Name must be must be 1 to 50 characters",
+        "description": "Description must be 1 to 500 characters",
+        "price": "Price per night must be $1-$5000"
     }
     const errObj = {}
     // if(!address) {errObj['address'] = errorStrings['address']}
@@ -323,7 +323,6 @@ router.post('/', requireAuth, async (req, res, next) => {
         console.log('the backend error', error)
         error.errors.map(er => {
             errObj[er.path] = errorStrings[er.path]
-            console.log('alsdjfkladsfj', errObj)
         })
         res.statusCode = 436
         res.json({
@@ -554,11 +553,12 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
     }
 
         try{
-            if(!review) {errObj['review'] = errorStrings['review']}
-            if(!stars) {errObj['stars'] = errorStrings['stars']}
-            if(Object.keys(errObj).length) {
-                throw new Error ("Validation was not met")
-            }
+            //I think commenting out the next 4 lines will mean the model validation is used
+            // if(!review) {errObj['review'] = errorStrings['review']}
+            // if(!stars) {errObj['stars'] = errorStrings['stars']}
+            // if(Object.keys(errObj).length) {
+            //     throw new Error ("Validation was not met")
+            // }
                const newReview = await Review.create({ userId, spotId, review, stars })
                res.json(newReview)
         } catch(error) {

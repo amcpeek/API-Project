@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addSpot } from '../../../store/spot'
 import { addSpotImage } from '../../../store/spotImage'
@@ -33,48 +33,30 @@ const AddSpotForm = () => {
             lat, lng, //might need a way to leave out lat and lng
             name, description, price
         }
-
-
-
         const response = await dispatch(addSpot(newSpot))
-        //.catch(error => { })
-        console.log('do the errors come through', response.errors)
+        if(response.errors) {
+            setResponseErrors(Object.values(response.errors))
+        } else  {
+            const payload = {
+                spotId: response.id,
+                url, preview
+            }
+            await dispatch(addSpotImage(payload))
+            history.push(`/spots/${response.id}`)
 
-        setResponseErrors(response.errors)
-
-
-        const payload = {
-            spotId: response.id,
-            url, preview
         }
-
-        await dispatch(addSpotImage(payload))
-       //if (newSpot) return <Redirect to="/"/> this line didn't work
-       history.push(`/spots/${response.id}`)
-
 
     }
 
-    // const reset = () => {
-    //     setAddress('')
-    //     setCity('')
-    //     setState('')
-    //     setCountry('')
-    //     setLat(0)
-    //     setLng(0)
-    //     setName('')
-    //     setDescription('')
-    //     setPrice(0)
-    // }
 
     return (
         <div className="modalOutside">
         <div className="modalContent">
-            {/* can later put in className in the div */}
             <div className='LogInErrors'>
                 <ul>
-                {/* {responseErrors.name.map((error) => <li key={error}>{error}</li>  )} */}
-                {<li>{responseErrors.name}</li>}
+                {responseErrors.map(err => (
+                    <li key={err}>{err}</li>
+                ))}
                 </ul>
             </div>
 
@@ -153,9 +135,6 @@ const AddSpotForm = () => {
                  value={lng}
                  onChange={(e) => setLng(e.target.value)}
                 /> */}
-
-
-
                 <div>
                     Description
                 </div>
