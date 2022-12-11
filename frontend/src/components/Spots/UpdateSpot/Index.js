@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams, NavLink, Redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateSpot, getSpots } from '../../../store/spot'
-import { addSpotImage } from '../../../store/spotImage'
+import { addSpotImage } from '../../../store/spot'
 import { useHistory } from 'react-router-dom'
 //import './AddSpot.css'
 

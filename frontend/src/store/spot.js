@@ -3,7 +3,7 @@ const GET_SPOTS = 'spots/GET_SPOTS' //#6
 const GET_CURRENT_OWNERS_SPOTS = 'spots/GET_CURRENT_OWNERS_SPOTS' //#7
 //#8  one spot is in the oneSpot store, eventually move it here
 const ADD_SPOT = 'spots/ADD_SPOT' // #9
-// #10 add image by spot id is in the spotImage reducer
+const ADD_SPOT_IMAGE = 'spot/ADD_SPOT_IMAGE'// #10
 const UPDATE_SPOT = 'spots/UPDATE_SPOT' //#11
 const REMOVE_SPOT = 'spots/REMOVE_SPOT' //#12
 const CLEAR_SPOTS = './spots/CLEAR_SPOTS'
@@ -27,6 +27,16 @@ export const addSpotAction = (spot) => {
         spot
     }
 }
+
+//10 post /:spotId/images
+export const addSpotImageAction = (image) => { //example doesn't have spotImageId
+    return {
+        type: ADD_SPOT_IMAGE,
+        image
+    }
+}
+
+
 //11 put /:spotId
 export const updateSpotAction = (spot) => {
     return {
@@ -116,6 +126,17 @@ export const getCurrentOwnersSpots = () => async dispatch => {
 
 }
 
+
+export const addSpotImage = (spotImage) => async dispatch => {
+    await csrfFetch(`/api/spots/${spotImage.spotId}/images`, {
+       method: 'POST',
+       body: JSON.stringify(spotImage)
+   })
+   // if (response.ok) {
+   //     const item = await response.json()
+   //     dispatch()
+   // }
+}
 /* -- selectors */ //not sure if this is needed with thunk action creators?
 // export const getAllSpots = (state) => {
 //     return Object.values(state.spots)
@@ -167,6 +188,8 @@ export default function spotsReducer (state = {}, action) {
             }
         case CLEAR_SPOTS:
             return {}
+            case ADD_SPOT_IMAGE:
+
         default:
             return state
     }

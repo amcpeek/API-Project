@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addSpot } from '../../../store/spot'
-import { addSpotImage } from '../../../store/spotImage'
+import { addSpotImage } from '../../../store/spot'
 import './AddSpot.css'
 import { NavLink, Redirect } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
