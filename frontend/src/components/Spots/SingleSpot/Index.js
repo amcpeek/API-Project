@@ -127,7 +127,7 @@ const SingleSpot = () => {
             <p>100% of recent guests gave the check-in process a 5-star rating.</p>
             <h3><i className="material-symbols-outlined">calendar_month</i>  Free cancellation for 48 hours.</h3>
             <div id="AirCover">
-            <div>ai</div><div>cover</div>
+            <div>am</div><div>cover</div>
             </div>
             <p>Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</p>
           </div>

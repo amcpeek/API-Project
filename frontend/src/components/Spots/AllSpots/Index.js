@@ -25,37 +25,42 @@ const AllSpots = () => {
     return dispatch(clearOneSpotAction())
   }, [dispatch]);
 
+  const nonFunctional = async (e) => {
+    e.preventDefault()
+    alert('This feature is not yet developed')
+  }
+
   return (
     <div className="HomePage">
       {/* <div>
         <h1 className="Crazy">. </h1>
       </div> */}
       <div className="HomeNavBar">
-            <button>
+            <button onClick={nonFunctional}>
             <i className="material-symbols-outlined">key</i>New</button>
-            <button>
+            <button onClick={nonFunctional}>
             <i className="material-symbols-outlined">landscape</i>Top of the world</button>
-            <button>
+            <button onClick={nonFunctional}>
             <i className="material-symbols-outlined">local_fire_department</i>Trending</button>
-            <button>
+            <button onClick={nonFunctional}>
             <i className="material-symbols-outlined">accessible_forward</i>Adapted</button>
-            <button>
+            <button onClick={nonFunctional}>
             <i className="material-symbols-outlined">sports_tennis</i>Play</button>
-            <button>
+            <button onClick={nonFunctional}>
             <i className="material-symbols-outlined">downhill_skiing</i>Skiing</button>
-            <button>
+            <button onClick={nonFunctional}>
             <i className="material-symbols-outlined">bed</i>Private rooms</button>
-            <button>
+            <button onClick={nonFunctional}>
             <i className="material-symbols-outlined">houseboat</i>Houseboats</button>
-            <button>
+            <button onClick={nonFunctional}>
             <i className="material-symbols-outlined">cottage</i>Cabins</button>
-            <button>
+            <button onClick={nonFunctional}>
             <i className="material-symbols-outlined">castle</i>Castles</button>
-            <button>
+            <button onClick={nonFunctional}>
             <i className="material-symbols-outlined">beach_access</i>Beachfront</button>
-            <button>
+            <button onClick={nonFunctional}>
             <i className="material-symbols-outlined">forest</i>Treehouses</button>
-            <button>
+            <button onClick={nonFunctional}>
             <i className="material-symbols-outlined">tune</i>Filters</button>
         </div>
 

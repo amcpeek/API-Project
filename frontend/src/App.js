@@ -34,33 +34,34 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route exact path="/signup">
+          <Route path="/signup">
             <SignupFormPage />
           </Route>
          <Route exact path={["/","/spots"]}>
             <AllSpots/>
           </Route>
-          <Route exact path="/spots/create">
+          <Route path="/spots/create">
             <AddSpotForm spots={spots}/>
           </Route>
-          <Route exact path="/spots/current">
+          <Route path="/spots/current">
             <CurrentOwnersSpots/>
           </Route>
-          <Route exact path="/spots/:id/reviews">
+          <Route path="/spots/:id/reviews">
             <AddReviewForm spots={spots}/>
           </Route>
-          <Route exact path="/spots/:id/edit">
+          <Route path="/spots/:id/edit">
                <UpdateSpotForm spots={spots}/>
            </Route>
-          <Route exact path="/spots/:id">
+          <Route path="/spots/:id">
             <SingleSpot spots={spots}/>
            </Route>
-          <Route exact path='/reviews/:reviewId/:spotId'>
+          <Route path='/reviews/:reviewId/:spotId'>
             <UpdateReviewForm/>
           </Route>
-          <Route>
-            <h2>Page not found</h2>
-          </Route>
+          <Route >
+          <h2>.</h2>
+          <h1>The page you are looking for has not yet been developed</h1>
+        </Route>
 
       </Switch>
        )}

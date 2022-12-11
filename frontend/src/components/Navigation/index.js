@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
+import * as AMLogo from '../../images/AMLogo.png'
 
 
 function Navigation({ isLoaded }){
@@ -46,13 +47,19 @@ function Navigation({ isLoaded }){
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
+  const nonFunctional = async (e) => {
+    e.preventDefault()
+    alert('This feature is not yet developed')
+  }
+
   return (
     <div id="wholeNav">
       <div id="HomeNavId">
       <NavLink exact to="/">
         <button id="HomeButton" className='noBorder'>
         <i className="material-symbols-outlined"> home</i>
-        aibnb
+         {/* <img src={AMLogo} /> */}
+        am bnb
         </button>
         </NavLink>
 
@@ -63,7 +70,7 @@ function Navigation({ isLoaded }){
         <button>
         Add guest   <i className="material-symbols-outlined">search</i>
           </button> */}
-        <button id="CenterButton">Anywhere | Any week | Add guest   <i className="material-symbols-outlined">search</i></button>
+        <button id="CenterButton" onClick={nonFunctional}>Anywhere | Any week | Add guest   <i className="material-symbols-outlined">search</i></button>
 
       </div>
       <div  className="dropdownNav">
@@ -81,7 +88,7 @@ function Navigation({ isLoaded }){
             </div>
           </div>
         )}
-        <button className='noBorder'>
+        <button className='noBorder'onClick={nonFunctional}>
         <i className="material-symbols-outlined">language</i>
         </button>
          {isLoaded && sessionLinks}
