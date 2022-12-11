@@ -8,12 +8,14 @@ My clone of the AirBnb site so far has create, read, update, and delete features
 The backend uses Sequelize and Express in Javascript. The frontend uses React and Redux in Javascript. The live site is on Render and uses PostgreSQl and locally the database is SQLite.
 ## Usage description of features.
 ## All homes page:
+Here a user can see all the sites available
 ![AllHomes]
 
 [AllHomes]:
 ./HomePage.png
 
 ## Single home page:
+This page shows information on a site, and shows different details based on what the user is authorized to see or do.
 ![SingleHome]
 
 [SingleHome]:
@@ -21,6 +23,31 @@ The backend uses Sequelize and Express in Javascript. The frontend uses React an
 
 
 ## Add a home page:
+This page is available to all logged in users.
+![CreateHome]
+
+[CreateHome]:
+./CreateHomePage.png
+
+## Road Map
+My long term goal for this project is to use API integrations so the user can create images, reviews, and descriptions for listed sites using AI. Here is the site I want to use for images: https://deepai.org/machine-learning-model/text2img. I haven't been able to find good free ones though.
+Before working on that, I want to set up AWS and making the booking feature work.
+
+## Get started using my repo locally
+Once downloading the repo in the backend folder run:
+npm install
+npx dotenv sequelize db:migrate
+npx dotenv sequelize db:seed:all
+npm start
+In the frontend folder run:
+npm install
+npm start
+
+
+## Contact Me:
+Annika McPeek
+ammcpeek@gmail.com
+linkedin.com/in/annika-mcpeek/
 
 
 
