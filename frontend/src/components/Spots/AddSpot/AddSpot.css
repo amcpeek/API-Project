@@ -30,7 +30,7 @@
     width: 500px;
 }
 
-#CreateSpotDescriptionBox {
+.CreateSpotDescriptionBox {
     /* border: 10px red solid; */
     display: flex;
     justify-content: flex-end;

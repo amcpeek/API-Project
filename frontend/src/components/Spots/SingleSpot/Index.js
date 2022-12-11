@@ -180,10 +180,13 @@ const SingleSpot = () => {
           </div>
         </div>
         <div id="SingleSpotReviews">
+        {currentUserId &&<button id="AddReviewButton"><NavLink to={`/spots/${id}/reviews`}>Add A Review</NavLink> </button> }
+             {//need to figure out how to get it not show up if you already wrote one  currentUserId && (review.userId !== currentUserId) */}
+    }
            {allReviews.map((review) => (
             <div>
              <div>
-             {currentUserId && review.userId !== currentUserId && <button id="AddReviewButton"><NavLink to={`/spots/${id}/reviews`}>Add A Review</NavLink> </button> }
+
 
              </div>
              <div className="SingleSpotReviewBox" key={review.id}>

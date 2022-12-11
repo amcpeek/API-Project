@@ -47,6 +47,7 @@ const UpdateReviewForm = () => {
         <div className='modalOutside'>
             <div className='modalContent'>
             <div className='LogInErrors'>
+            <button className="cancelButton"><NavLink to={`/spots/${review.spotId}`}>X</NavLink></button>
                 <ul>
                 {responseErrors.map(err => (
                     <li key={err}>{err}</li>
@@ -54,10 +55,9 @@ const UpdateReviewForm = () => {
                 </ul>
             </div>
                 <form onSubmit={handleSubmit} className="CreateSpotForm">
-                    <h1>Review</h1>
                 <div>
-                    <div>Description:</div>
                 <textarea
+                    className="CreateSpotDescriptionBox"
                     type='text'
                     onChange={(e) => setReview(e.target.value)}
                     value={review}
@@ -67,7 +67,6 @@ const UpdateReviewForm = () => {
                 ></textarea>
                 </div>
                 <div>
-                    <div> Stars: </div>
                 <input
                  type='number'
                  placeholder='Stars'
@@ -77,8 +76,8 @@ const UpdateReviewForm = () => {
                  onChange={(e) => setStars(e.target.value)}
                 />
                 </div>
-                <button type='submit' className="createButton" >Submit</button>
-                <button className="createButton"><NavLink to={`/`}>Cancel</NavLink></button>
+                <button type='submit' className="createButton" >Update Review</button>
+                {/* <button className="createButton"><NavLink to={`/`}>Cancel</NavLink></button> */}
 
                 </form>
             </div>

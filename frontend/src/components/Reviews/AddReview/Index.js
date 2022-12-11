@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom'
 
 const AddReviewForm = ({spots}) => {
     const [review, setReview] = useState('')
-    const [stars, setStars] = useState(0)
+    const [stars, setStars] = useState('')
     const [spotName, setSpotName] = useState('')
     const history = useHistory()
     const [responseErrors, setResponseErrors] = useState([])
@@ -39,6 +39,7 @@ const AddReviewForm = ({spots}) => {
     return (
         <div className='modalOutside'>
             <div className='modalContent'>
+
             <div className='LogInErrors'>
                 <ul>
                 {responseErrors.map(err => (
@@ -46,26 +47,20 @@ const AddReviewForm = ({spots}) => {
                 ))}
                 </ul>
             </div>
+            <button className="cancelButton"><NavLink to={`/spots/${id}`}>X</NavLink></button>
                 <form onSubmit={handleSubmit} className="CreateSpotForm">
-                    <h1>{spotName} Review</h1>
-                    {/* <div>
-                    Description
-                </div> */}
                 <div>
-                    <div>Description:</div>
                 <textarea
+                    className="CreateSpotDescriptionBox"
                     value={review}
                     onChange={(e) => setReview(e.target.value)}
                     name='review'
                     placeholder='Please write about your stay here...'
                     rows='2'
                 ></textarea>
-                {/* <div></div> */}
                 </div>
                 <div>
-                    <div>
-                    Stars:
-                    </div>
+
                 <input
                  type='number'
                  placeholder='Stars'
@@ -75,8 +70,8 @@ const AddReviewForm = ({spots}) => {
                  onChange={(e) => setStars(e.target.value)}
                 />
                 </div>
-                <button type='submit' className="createButton" >Submit</button>
-                <button className="createButton"><NavLink to={`/spots/${id}`}>Cancel</NavLink></button>
+                <button type='submit' className="createButton" >{spotName} Review</button>
+
 
                 </form>
             </div>

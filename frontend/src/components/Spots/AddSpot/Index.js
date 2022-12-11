@@ -119,7 +119,7 @@ const AddSpotForm = () => {
                 /> */}
                 <div id="why">
                     <div></div>
-                <textarea id="CreateSpotDescriptionBox"
+                <textarea className="CreateSpotDescriptionBox"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     name='description'
