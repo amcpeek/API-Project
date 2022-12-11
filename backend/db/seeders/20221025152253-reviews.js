@@ -13,27 +13,27 @@ module.exports = {
       {
         spotId: 1,
         userId: 1,
-        review: 'This place was bad',
-        stars: 1,
+        review: "We had a wonderful time here! We can't wait to come back. The host was very kind and helpful and the view was amazing.",
+        stars: 5,
       }, {
         spotId: 2,
         userId: 2,
-        review: 'This place was okay',
-        stars: 2,
+        review: 'This home was so cozy and perfect for us. We had a fantastic time.',
+        stars: 4,
       } , {
         spotId: 3,
         userId: 3,
-        review: 'This place was alright',
+        review: 'We really enjoyed our stay here. Our only concern was the beds were not that comfortable.',
         stars: 3,
       }, {
         spotId: 4,
         userId: 4,
-        review: 'This place was good',
+        review: 'This was just magical. We are so glad we came here and are looking forward to visiting again.',
         stars: 4,
       }, {
         spotId: 5,
         userId: 5,
-        review: 'This place was great',
+        review: 'This was a such a great find! The host was so helpful and had suggested for places to visit locally.',
         stars: 5,
       }
      ], {});

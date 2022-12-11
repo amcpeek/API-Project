@@ -45,7 +45,7 @@ const UpdateSpotForm = () => {
         setName(spot.name)
         setDescription(spot.description)
         setPrice(spot.price)
-        setUrl(spot.url || 'https://jweekly.com/wp-content/uploads/2021/12/Christmas-Tree-Snow-drawing-1080x675-1.jpeg')
+        setUrl(spot.url || 'https://i.pinimg.com/originals/2a/43/d6/2a43d625d02deb3c0b1179eac7f2256e.jpg')
         setPreview(false)
     }
    }, [spot]) //not sure if this is the right place to listen to, if the spot level isn't changing

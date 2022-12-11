@@ -17,7 +17,7 @@ const AddSpotForm = () => {
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState(0)
-    const [url, setUrl] = useState('https://media.istockphoto.com/id/137806346/photo/christmas-lights.jpg?s=612x612&w=0&k=20&c=ccVNtAeVuT_NrU4RgNOfndqY6Y76MSMFI4EoIX8p8lI=')
+    const [url, setUrl] = useState('https://i.pinimg.com/originals/4f/c8/78/4fc8780a9aa5873b3593cfb9abc4ffb9.jpg')
     const [preview, setPreview] = useState(false)
     const history = useHistory()
     const [responseErrors, setResponseErrors] = useState([])

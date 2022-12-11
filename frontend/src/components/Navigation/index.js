@@ -5,8 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
-import * as AMLogo from '../../images/AMLogo.png'
-
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
@@ -57,9 +55,9 @@ function Navigation({ isLoaded }){
       <div id="HomeNavId">
       <NavLink exact to="/">
         <button id="HomeButton" className='noBorder'>
-        <i className="material-symbols-outlined"> home</i>
-         {/* <img src={AMLogo} /> */}
-        am bnb
+        {/* <i className="material-symbols-outlined"> home</i> */}
+         <img src={'/favicon-32x32.png'} />
+        bnb
         </button>
         </NavLink>
 

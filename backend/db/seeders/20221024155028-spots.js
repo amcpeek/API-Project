@@ -15,7 +15,7 @@ module.exports = {
         {
         ownerId: 1,
         address: '123 A St',
-        city: 'Little Rock',
+        city: 'Morrilton',
         state: 'Arkansas',
         country: 'USA',
         lat: 34.7445,
@@ -26,7 +26,7 @@ module.exports = {
       }, {
         ownerId: 2,
         address: '456 C St',
-        city: 'Denver',
+        city: 'Woodland Park',
         state: 'Colorado',
         country: 'USA',
         lat: 39.7392,
@@ -37,8 +37,8 @@ module.exports = {
       } , {
         ownerId: 3,
         address: '789 D St',
-        city: 'Dover',
-        state: 'Delaware',
+        city: 'Happy Jack',
+        state: 'Arizona',
         country: 'USA',
         lat: 39.1582,
         lng: 75.5244,
@@ -48,8 +48,8 @@ module.exports = {
     } , {
       ownerId: 4,
       address: '101 F St',
-      city: 'Tallahassee',
-      state: 'Florida',
+      city: 'Valdez',
+      state: 'Alaska',
       country: 'USA',
       lat: 30.4383,
       lng: 84.2807,
@@ -59,8 +59,8 @@ module.exports = {
     } , {
       ownerId: 5,
       address: '112 G St',
-      city: 'Atlanta',
-      state: 'Georgia',
+      city: 'Eclectic',
+      state: 'Alabama',
       country: 'USA',
       lat: 33.7490,
       lng: 84.3880,

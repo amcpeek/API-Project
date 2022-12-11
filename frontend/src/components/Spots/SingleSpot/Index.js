@@ -76,6 +76,14 @@ const SingleSpot = () => {
 
 
 
+  if(!oneSpot) {
+    return (
+      <div>
+        <h1>.</h1>
+        <h1>This spot does not exist</h1>
+      </div>
+
+    )}
 
 
     if(oneSpot) {
