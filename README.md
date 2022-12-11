@@ -1,10 +1,35 @@
 # `AirBnB by Annika McPeek`
 
+## Link to live site:
+https://mcpeek-airbnb.onrender.com
+## Description:
+My clone of the AirBnb site so far has create, read, update, and delete features for spots and reviews. Users can log in to access these features. Below in my API documentation all of my backend routes that I created are listed, which includes functionality for booking spots and searching for spots.
+## Technologies used:
+The backend uses Sequelize and Express in Javascript. The frontend uses React and Redux in Javascript. The live site is on Render and uses PostgreSQl and locally the database is SQLite.
+## Usage description of features.
+## All homes page:
+![AllHomes]
+
+[AllHomes]:
+./HomePage.png
+
+## Single home page:
+![SingleHome]
+
+[SingleHome]:
+./SingleHomePage.png
+
+
+## Add a home page:
+
+
+
 ## Database Schema Design
 
 ![dbImage]
 
-[dbImage]: ./dbImage.png
+[dbImage]:
+./dbImage.png
 
 
 

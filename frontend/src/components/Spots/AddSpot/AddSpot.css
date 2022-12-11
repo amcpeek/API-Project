@@ -26,6 +26,10 @@
     justify-content: space-between;
 }
 
+.CreateSpotForm div input {
+    width: 500px;
+}
+
 #CreateSpotDescriptionBox {
     /* border: 10px red solid; */
     display: flex;
@@ -39,4 +43,47 @@
     border: 1px solid rgb(164, 161, 161);
     border-radius: 10px;
     box-shadow:  1px 1px 2px 2px lightgrey;
+    width: 500px;
+    height: 40px;
+    background-color: rgb(244, 47, 80);
+    color: white;
+}
+
+.cancelButton {
+    display: flex;
+    justify-content: flex-start;
+    width: 20px;
+    background-color: white;
+    border: white
+
+}
+
+
+.wholePreviewImage {
+    display: flex;
+    height: 20px;
+    width: 500px;
+}
+
+.prevImageTextBox {
+    height: 20px;
+    font-size: 12px;
+}
+
+.prevImageTextBoxText {
+    font-size: 12px;
+    height: 20px;
+}
+
+.prevImageButton {
+    width: 20px;
+}
+
+.checkbox {
+    width: 10px;
+}
+
+
+.suggestedImageUrl {
+    font-size: 12px;
 }

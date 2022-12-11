@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
 import { useParams, NavLink, Redirect } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { updateSpot, getSpots } from '../../../store/spot'
 import { addSpotImage } from '../../../store/spotImage'
 import { useHistory } from 'react-router-dom'
 //import './AddSpot.css'
 
-const UpdateSpotForm = ({spots}) => {
+const UpdateSpotForm = () => {
     const { id } = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
@@ -28,9 +28,13 @@ const UpdateSpotForm = ({spots}) => {
     dispatch(getSpots())
    }, [dispatch])
 
-   let spot
+
+
+
+   let  spot = useSelector(state=>{return state.oneSpot[id]})
    useEffect(() => {
-    spot = spots.find(spot => spot.id.toString() === id);
+
+    //spots.find(spot => spot.id.toString() === id);
     if(spot) {
         setAddress(spot.address)
         setCity(spot.city)
@@ -44,7 +48,7 @@ const UpdateSpotForm = ({spots}) => {
         setUrl(spot.url || 'https://jweekly.com/wp-content/uploads/2021/12/Christmas-Tree-Snow-drawing-1080x675-1.jpeg')
         setPreview(false)
     }
-   }, [spots]) //not sure if this is the right place to listen to, if the spot level isn't changing
+   }, [spot]) //not sure if this is the right place to listen to, if the spot level isn't changing
 
     const handleSubmit = async (e) => {
         console.log('if this runs, then the NavLink is not breaking the button')
@@ -69,9 +73,12 @@ const UpdateSpotForm = ({spots}) => {
             history.push(`/spots/${id}`)
         }
     }
+    if(!spot) { return <div>Nothing in here</div>
+    }
     return (
         <div className="modalOutside">
         <div className="modalContent">
+        <button className="cancelButton"><NavLink to={`/spots/${id}`}>X</NavLink></button>
         <div className='LogInErrors'>
                 <ul>
                 {responseErrors.map(err => (
@@ -80,7 +87,6 @@ const UpdateSpotForm = ({spots}) => {
                 </ul>
             </div>
             <form onSubmit={handleSubmit} className="CreateSpotForm">
-            <h1>Update Spot</h1>
             <div>
                     <div>
                     Name
@@ -179,10 +185,10 @@ const UpdateSpotForm = ({spots}) => {
                  onChange={(e) => setPrice(e.target.value)}
                 />
                 </div>
+                <div id='suggestedImageUrl'>
+                    Suggested Image Url
+                </div>
                 <div>
-                    <div>
-                    Image Url
-                    </div>
                  <input
                  type='text'
                  onChange={(e)=>setUrl(e.target.value)}
@@ -191,18 +197,19 @@ const UpdateSpotForm = ({spots}) => {
                  name='imageUrl'
                 />
                 </div>
-                <div>
-                    <div>
-                    Preview image?
+                <div className="wholePreviewImage">
+                    <div className="prevImageTextBox">
+                        Preview Image
                     </div>
+                    <div className="prevImageButton">
                     <input
-                type="checkbox"
-                onChange={(e) => setPreview(e.currentTarget.checked)}
-                 /></div>
-                 <div>
-                <button type='submit' className="createButton">Update</button>
-                <button className="createButton"><NavLink to={`/spots/${id}`}>Cancel</NavLink></button>
-                </div>
+                    className="checkbox"
+                    type="checkbox"
+                    onChange={(e) => setPreview(e.currentTarget.checked)}
+                    />
+                    </div>
+                 </div>
+                <button type='submit' className="createButton" >List Your Home</button>
             </form>
         </div>
         </div>

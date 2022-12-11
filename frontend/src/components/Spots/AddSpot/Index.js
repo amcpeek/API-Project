@@ -17,15 +17,12 @@ const AddSpotForm = () => {
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState(0)
-    const [url, setUrl] = useState('https://jweekly.com/wp-content/uploads/2021/12/Christmas-Tree-Snow-drawing-1080x675-1.jpeg')
+    const [url, setUrl] = useState('https://media.istockphoto.com/id/137806346/photo/christmas-lights.jpg?s=612x612&w=0&k=20&c=ccVNtAeVuT_NrU4RgNOfndqY6Y76MSMFI4EoIX8p8lI=')
     const [preview, setPreview] = useState(false)
     const history = useHistory()
     const [responseErrors, setResponseErrors] = useState([])
 
     const dispatch = useDispatch()
-
-
-
     const handleSubmit = async (e) => {
         e.preventDefault()
         const newSpot = {
@@ -52,6 +49,7 @@ const AddSpotForm = () => {
     return (
         <div className="modalOutside">
         <div className="modalContent">
+        <button className="cancelButton"><NavLink to={'/'}>X</NavLink></button>
             <div className='LogInErrors'>
                 <ul>
                 {responseErrors.map(err => (
@@ -62,11 +60,7 @@ const AddSpotForm = () => {
 
 
             <form onSubmit={handleSubmit} className="CreateSpotForm">
-                <h1>List Your Home</h1>
                 <div>
-                    <div>
-                    Name
-                    </div>
                  <input
                  type='text'
                  onChange={(e)=>setName(e.target.value)}
@@ -76,9 +70,6 @@ const AddSpotForm = () => {
                 />
                 </div>
                 <div>
-                    <div>
-                    Address
-                    </div>
                 <input
                  type='text'
                  onChange={(e)=>setAddress(e.target.value)}
@@ -88,9 +79,6 @@ const AddSpotForm = () => {
                 />
                 </div>
                 <div>
-                    <div>
-                    City
-                    </div>
                  <input
                  type='text'
                  onChange={(e)=>setCity(e.target.value)}
@@ -100,9 +88,6 @@ const AddSpotForm = () => {
                 />
                 </div>
                 <div>
-                    <div>
-                    State
-                    </div>
                  <input
                  type='text'
                  onChange={(e)=>setState(e.target.value)}
@@ -112,9 +97,6 @@ const AddSpotForm = () => {
                 />
                 </div>
                 <div>
-                    <div>
-                    Country
-                    </div>
                  <input
                  type='text'
                  onChange={(e)=>setCountry(e.target.value)}
@@ -135,9 +117,6 @@ const AddSpotForm = () => {
                  value={lng}
                  onChange={(e) => setLng(e.target.value)}
                 /> */}
-                <div>
-                    Description
-                </div>
                 <div id="why">
                     <div></div>
                 <textarea id="CreateSpotDescriptionBox"
@@ -150,9 +129,6 @@ const AddSpotForm = () => {
                 <div></div>
                 </div>
                 <div>
-                    <div>
-                    Price
-                    </div>
                 <input
                  type='number'
                  placeholder='Price'
@@ -161,10 +137,10 @@ const AddSpotForm = () => {
                  onChange={(e) => setPrice(e.target.value)}
                 />
                 </div>
+                <div id='suggestedImageUrl'>
+                    Suggested Image Url
+                </div>
                 <div>
-                    <div>
-                    Image Url
-                    </div>
                  <input
                  type='text'
                  onChange={(e)=>setUrl(e.target.value)}
@@ -174,22 +150,20 @@ const AddSpotForm = () => {
                 />
                 </div>
 
-                <div>
-                    <div>
-                    Preview image?
-                    </div>
-                    <input
-                type="checkbox"
-                onChange={(e) => setPreview(e.currentTarget.checked)}
-                 /></div>
-                 <div>
 
-                <button type='submit' className="createButton" >Submit</button>
-                {/* <button >Cancel
-                   <NavLink exact to="/"></NavLink>
-                </button> */}
-                <button className="createButton"><NavLink to={'/'}>Cancel</NavLink></button>
-                </div>
+                <div className="wholePreviewImage">
+                    <div className="prevImageTextBox">
+                        Preview Image
+                    </div>
+                    <div className="prevImageButton">
+                    <input
+                    className="checkbox"
+                    type="checkbox"
+                    onChange={(e) => setPreview(e.currentTarget.checked)}
+                    />
+                    </div>
+                 </div>
+                <button type='submit' className="createButton" >List Your Home</button>
             </form>
 
         </div>

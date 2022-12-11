@@ -76,7 +76,7 @@ export const addSpot = (spot) => async dispatch => {
     }).then(async (res) => {  //above 400, that thing is a res, send it
         return await res.json()
     } ).catch( async error => { //below 400, that thing is an error, send it
-        console.log('123456789',error.json())
+       // console.log('123456789',error.json())
          return await error.json()
     })
     return response

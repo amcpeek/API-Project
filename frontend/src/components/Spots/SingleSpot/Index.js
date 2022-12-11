@@ -11,7 +11,6 @@ import { nanoid } from 'nanoid'
 
 const SingleSpot = () => {
   const { id } = useParams();
-  const numId = id
   const dispatch = useDispatch()
   const history = useHistory()
 
@@ -49,12 +48,16 @@ const SingleSpot = () => {
     newSpot.SpotImages.push({id: nanoid(), url: 'https://res.cloudinary.com/fleetnation/image/private/c_fit,w_1120/g_south,l_text:style_gothic2:%C2%A9%20Natasha%20Delaney,o_20,y_10/g_center,l_watermark4,o_25,y_50/v1510636701/o1kxriotfpvzuyptnofz.jpg'})
   }
 
-  //for matching owner of spot
-  const currentUserId = useSelector(state=>{return state.session.user.id})
+  const currentUserId = useSelector(state=>{
+    if(state.session.user) {return state.session.user.id}
+    else {return ''}
+  })
+
   const [ matchingOwner, setMatchingOwner ] = useState(false)
 
+
   useEffect(() => {
-    if(oneSpot) {
+    if(currentUserId && oneSpot) {
     //  console.log('one spot', oneSpot)
       setMatchingOwner(currentUserId === oneSpot.ownerId)
     }
@@ -171,22 +174,16 @@ const SingleSpot = () => {
             </div>
             <button id="checkAvailabilityButton"> Check availability</button>
            </div>
-           {matchingOwner&&<h4 className="underlined"><NavLink to={`/spots/${id}/edit`}>Edit Home Listing</NavLink></h4>}
-           {matchingOwner&& <button className='deleteButton' onClick={()=> {dispatch(removeSpot(singleSpot.id)); history.push('/') }}>Delete</button>}
+
+           {currentUserId && matchingOwner&&<h4 className="underlined"><NavLink to={`/spots/${id}/edit`}>Edit Home Listing</NavLink></h4>}
+           {currentUserId && matchingOwner&& <button  className='deleteButton' onClick={()=> {dispatch(removeSpot(singleSpot.id)); history.push('/') }}>Delete</button>}
           </div>
-
         </div>
-
         <div id="SingleSpotReviews">
-
-
-
-
-
            {allReviews.map((review) => (
             <div>
              <div>
-             {review.userId !== currentUserId && <button id="AddReviewButton"><NavLink to={`/spots/${id}/reviews`}>Add A Review</NavLink> </button> }
+             {currentUserId && review.userId !== currentUserId && <button id="AddReviewButton"><NavLink to={`/spots/${id}/reviews`}>Add A Review</NavLink> </button> }
 
              </div>
              <div className="SingleSpotReviewBox" key={review.id}>
