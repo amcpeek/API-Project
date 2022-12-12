@@ -5,12 +5,11 @@ import { useDispatch } from "react-redux";
 
 import './LoginForm.css'
 
-function LoginForm() {
+function LoginForm({showModal, setShowModal}) {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const [showModal, setShowModal] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,34 +37,40 @@ function LoginForm() {
       }
     );
   }
-
+ //className was LogInForm
   return (
-    <form onSubmit={handleSubmit} className="LogInForm" >
+    <div className="realModalOutside">
+    <div className="realModalContent">
+    <form onSubmit={handleSubmit} className="CreateSpotForm" >
+      <button className="cancelButton" onClick={() => setShowModal(false)}>X</button>
 
-
+      <div>
       <label >
-        Username or Email
         <input
+          placeholder="Username or Email"
           type="text"
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
           required
         />
       </label>
+      </div>
+      <div>
       <label>
-        Password
         <input
+          placeholder="password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
       </label>
-      <div>
-        <button type="submit">Log In</button>
       </div>
       <div>
-        <button onClick={logInDemoUser}>Login as Demo User</button>
+        <button className='createButton' type="submit">Log In</button>
+      </div>
+      <div>
+        <button className='createButton' onClick={logInDemoUser}>Login as Demo User</button>
       </div>
       <div className='LogInErrors'>
         {errors.map((error, idx) => (
@@ -73,6 +78,8 @@ function LoginForm() {
         ))}
       </div>
     </form>
+    </div>
+    </div>
   );
 }
 

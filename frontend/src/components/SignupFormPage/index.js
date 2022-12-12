@@ -6,7 +6,7 @@ import * as sessionActions from "../../store/session";
 import { NavLink } from "react-router-dom";
 import './SignupForm.css';
 
-function SignupFormPage() {
+function SignupFormPage({showModal, setShowModal}) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [firstName, setFirstName] = useState("")
@@ -33,73 +33,90 @@ function SignupFormPage() {
   };
 
   return (
-    <div className ="SignUpPage">
-    <form onSubmit={handleSubmit} className="LogInForm" >
+    // <div className ="SignUpPage">
+    <div className="realModalOutside">
+    <div className="realModalContent">
+    <form onSubmit={handleSubmit} className="CreateSpotForm" >
+    <button className="cancelButton" onClick={() => setShowModal(false)}>X</button>
       <div className='LogInErrors'>
         <ul className='ulNoBullets'>
         {errors.map((error, idx) => <li key={idx}>{error}</li>  )}
         </ul>
       </div>
+      <div>
       <label>
-        First Name
         <input
+          placeholder="First Name"
           type="text"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
           required
         />
       </label>
+      </div>
+      <div>
       <label>
-        Last Name
         <input
+        placeholder="Last Name"
           type="text"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
           required
         />
       </label>
+      </div>
+      <div>
       <label>
-        Email
         <input
+          placeholder="Email"
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
       </label>
+      </div>
+      <div>
       <label>
-        Username
         <input
+          placeholder="Username"
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
         />
       </label>
+      </div>
+      <div>
       <label>
-        Password
         <input
+          placeholder="Password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
       </label>
+      </div>
+      <div>
       <label>
-        Confirm Password
         <input
+          placeholder="Confirm Password"
           type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
       </label>
+      </div>
       <div>
-      <button type="submit">Sign Up</button>
-      <button><NavLink to='/'>Cancel</NavLink></button>
+      <button className='createButton' type="submit">Sign Up</button>
+      {/* <button><NavLink to='/'>Cancel</NavLink></button> */}
       </div>
     </form>
     </div>
+    </div>
+
   );
 }
 

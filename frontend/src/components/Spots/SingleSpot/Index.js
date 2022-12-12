@@ -81,13 +81,14 @@ const SingleSpot = () => {
     }
   })
 
+  useEffect(() => {
+    if(!oneSpot) {
+      return (
+      <PageNotFound/>
+      )}
+  }, [oneSpot])
 
 
-  if(!oneSpot) {
-    return (
-    <PageNotFound/>
-
-    )}
 
 
     if(oneSpot) {
@@ -147,11 +148,9 @@ const SingleSpot = () => {
             <div id="SingleSpotReviews">
                   {currentUserId && !allReviews.find(rev => rev.userId === currentUserId)  &&<button id="addReviewButton"><NavLink to={`/spots/${id}/reviews`}>Add A Review</NavLink> </button> }
                     {allReviews.map((review) => (
-                      <div>
-                            <div>
-                            </div>
-                          <div className="SingleSpotReviewBox" key={review.id}>
-                            <div><i className="material-symbols-outlined">star </i> {review.stars} stars</div>
+                      <div key={review.id}>
+                              <div className="SingleSpotReviewBox" key={review.id}>
+                              <div><i className="material-symbols-outlined">star </i> {review.stars} stars</div>
                               <div> <i className="material-symbols-outlined">face</i> {review.User.firstName} </div>
                               <p>Review: {review.review}</p>
                               {/* <p>ReviewId: {review.id} SpotId: {id} AuthorId: {review.userId} ViewerId: {currentUserId}</p> */}

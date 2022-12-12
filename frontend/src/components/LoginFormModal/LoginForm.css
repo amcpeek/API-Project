@@ -38,8 +38,10 @@
 }
 
 .LogInErrors {
-    color: red;
+    color: rgb(244, 47, 80);
 }
+
+
 
 .LogInForm > * > input {
 

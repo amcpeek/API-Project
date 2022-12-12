@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
+import SignUpFormModal from '../SignUpFormModal'
+import CreateSpotModal from '../Spots/AddSpot/CreateSpotModal'
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
@@ -20,14 +22,14 @@ function Navigation({ isLoaded }){
     sessionLinks = (
       <>
         <LoginFormModal />
-        <NavLink to="/signup"><h5>Sign Up</h5></NavLink>
-
+        <SignUpFormModal />
       </>
     );
   }
 
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const openMenu = () => {
     if (showMenu) return;
@@ -55,7 +57,6 @@ function Navigation({ isLoaded }){
       <div id="HomeNavId">
       <NavLink exact to="/">
         <button id="HomeButton" className='noBorder'>
-        {/* <i className="material-symbols-outlined"> home</i> */}
          <img src={'/favicon-32x32.png'} />
         bnb
         </button>
@@ -82,14 +83,16 @@ function Navigation({ isLoaded }){
             <div>
             <NavLink exact to="/spots/current">Your Homes</NavLink>
             </div>
-            <div>
+            {/* <div>
             <NavLink exact to="/spots/create" id="navBar">List Your Home</NavLink>
-            </div>
+            </div> */}
+            <div onClick={() => {setShowModal(true)}}>List Your Home</div>
           </div>
         )}
         <button className='noBorder'onClick={nonFunctional}>
         <i className="material-symbols-outlined">language</i>
         </button>
+        <CreateSpotModal showModal={showModal} setShowModal={setShowModal}/>
          {isLoaded && sessionLinks}
       </div>
 
