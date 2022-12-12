@@ -48,7 +48,7 @@ const UpdateReviewForm = () => {
             <div className='modalContent'>
             <div className='LogInErrors'>
             <button className="cancelButton"><NavLink to={`/spots/${review.spotId}`}>X</NavLink></button>
-                <ul>
+                <ul className='ulNoBullets'>
                 {responseErrors.map(err => (
                     <li key={err}>{err}</li>
                 ))}

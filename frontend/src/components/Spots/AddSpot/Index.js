@@ -51,7 +51,7 @@ const AddSpotForm = () => {
         <div className="modalContent">
         <button className="cancelButton"><NavLink to={'/'}>X</NavLink></button>
             <div className='LogInErrors'>
-                <ul>
+                <ul className='ulNoBullets'>
                 {responseErrors.map(err => (
                     <li key={err}>{err}</li>
                 ))}

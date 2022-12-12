@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
-      min: 1,
+      min: 1, //doesn't need to throw error, the len through the error
        max: 5,
        len: [1,1]
       }

@@ -1,3 +1,22 @@
+.pageNotFound {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  top: 80px;
+}
+
+.notFoundImage {
+  height: 380px;
+    width: 380px;
+    border-radius: 20px;
+    border-color: white;
+    border-width: 5px;
+    border-style: solid;
+    object-fit: cover;
+}
+
 .SingleSpotMainImage img {
     height: 380px;
     width: 380px;
@@ -5,6 +24,7 @@
     border-color: white;
     border-width: 5px;
     border-style: solid;
+    object-fit: cover;
 
 }
 
@@ -24,6 +44,7 @@
     border-color: white;
     border-width: 5px;
     border-style: solid;
+
 
 }
 
@@ -95,6 +116,8 @@
     height: 200px;
 }
 
+/* //OLD drop down buttons below/ */
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -122,14 +145,11 @@
     padding: 4px;
     border-color: white;
     border-style: solid;
-    /* width: 100px; */
+    width: 100px;
     border-radius: 10px;
     height: 40px;
     display: flex;
     align-items: center;
-
-
-
   }
   .dropdownContent {
     display: none;
@@ -144,13 +164,13 @@
     display: flex;
     flex-direction: column;
     position: absolute;
-    /* right: 50px; */
+    right: 50px;
 
     background-color: #f9f9f9;
-    /* min-width: 100px; */
+    min-width: 100px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 4;
-    /* width: 80px; */
+     width: 80px;
     top: 60px;
     justify-content: center;
   }
@@ -158,7 +178,7 @@
 
   .dropdownContent a {
     color: black;
-    padding: 12px 16px;
+    /* padding: 12px 16px; */
     text-decoration: none;
     display: block;
   }
@@ -192,6 +212,18 @@
   }
 
 
+  #guestBox {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  #guestBox select {
+    background-color: white;
+    border: white;
+  }
+
+
 
   #checkInOutBox {
     border-width: 2px;
@@ -220,6 +252,12 @@
     border-bottom-color: lightgray;
     border-bottom-style: solid;
     padding: 5px;
+  }
+
+  #checkInOutDates div input {
+    background-color: white;
+    border-color: white;
+    border-style: none;
 
   }
 
@@ -243,5 +281,14 @@
 }
 
 .SingleSpotReviewBox {
-    margin: 50px;
+    /* margin: 50px; */
+}
+
+#addReviewButton {
+  background-color: white;
+  border: 1px solid rgb(164, 161, 161);
+  border-radius: 10px;
+  box-shadow:  1px 1px 2px 2px lightgrey;
+  margin-bottom: 10px;
+
 }

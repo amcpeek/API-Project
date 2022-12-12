@@ -87,3 +87,9 @@
 .suggestedImageUrl {
     font-size: 12px;
 }
+
+.ulNoBullets {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}

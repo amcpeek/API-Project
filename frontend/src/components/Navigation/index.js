@@ -73,7 +73,8 @@ function Navigation({ isLoaded }){
       </div>
       <div  className="dropdownNav">
       {/* id='rightNav' */}
-        <button className='dropButtonNav' onClick={openMenu}>Switch to hosting</button>
+      {sessionUser && <button className='dropButtonNav' onClick={openMenu}>Switch to hosting</button>}
+
         {/* noBorder */}
         {showMenu && (
           <div className='dropdownContentNav'>

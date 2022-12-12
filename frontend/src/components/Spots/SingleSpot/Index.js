@@ -8,11 +8,13 @@ import { useEffect, useState } from 'react';
 import { getSpotReviews, clearSpotReviewsStoreAction, removeReview, updateSpotReview } from '../../../store/review'
 import { useHistory } from 'react-router-dom';
 import { nanoid } from 'nanoid'
+import PageNotFound from '../../PageNotFound/Index';
 
 const SingleSpot = () => {
   const { id } = useParams();
   const dispatch = useDispatch()
   const history = useHistory()
+  const [ guestNum, setGuestsNum] = useState(1)
 
 
   useEffect(() => {
@@ -33,6 +35,11 @@ const SingleSpot = () => {
     console.log('what is review id', reviewId)
     dispatch(removeReview(reviewId))
     history.go(0)
+  }
+
+  const nonFunctional = async (e) => {
+    e.preventDefault()
+    alert('This feature is not yet developed')
   }
 
   if(oneSpot && !oneSpot.SpotImages[1]) { let newSpot = oneSpot
@@ -78,10 +85,7 @@ const SingleSpot = () => {
 
   if(!oneSpot) {
     return (
-      <div>
-        <h1>.</h1>
-        <h1>This spot does not exist</h1>
-      </div>
+    <PageNotFound/>
 
     )}
 
@@ -125,6 +129,7 @@ const SingleSpot = () => {
          ))}
          </div>
         </div>
+
         <div id="SingleSpotBottomSection">
           <div id="SingleSpotDetails">
             <h2>{singleSpot.description}</h2>
@@ -138,6 +143,31 @@ const SingleSpot = () => {
             <div>am</div><div>cover</div>
             </div>
             <p>Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</p>
+
+            <div id="SingleSpotReviews">
+                  {currentUserId && !allReviews.find(rev => rev.userId === currentUserId)  &&<button id="addReviewButton"><NavLink to={`/spots/${id}/reviews`}>Add A Review</NavLink> </button> }
+                    {allReviews.map((review) => (
+                      <div>
+                            <div>
+                            </div>
+                          <div className="SingleSpotReviewBox" key={review.id}>
+                            <div><i className="material-symbols-outlined">star </i> {review.stars} stars</div>
+                              <div> <i className="material-symbols-outlined">face</i> {review.User.firstName} </div>
+                              <p>Review: {review.review}</p>
+                              {/* <p>ReviewId: {review.id} SpotId: {id} AuthorId: {review.userId} ViewerId: {currentUserId}</p> */}
+                              {review.userId === currentUserId &&  <h4 className="underlined"><NavLink to={`/reviews/${review.id}/${id}`}>Edit Review</NavLink></h4>}
+                              {review.userId === currentUserId && <button className='deleteButton' onClick={()=> handleRemoveReview(review.id) }>Delete</button>}
+                          </div>
+                      </div>
+                    ))}
+              </div>
+
+
+
+
+
+
+
           </div>
           <div>
 
@@ -153,21 +183,42 @@ const SingleSpot = () => {
            </div>
             <div id="checkInOutBox">
               <div id="checkInOutDates">
-                  <div>CHECK-IN
+                  <div>check-in
                     <input type="date"></input>
                   </div>
-                  <div>CHECK-OUT
+                  <div>check-out
                     <input type="date"></input>
                   </div>
               </div>
-              <div className="dropdown">
-                <button  className="dropButton JCSpaceBetween">
+              {////////////}
+    }
+
+      <div id="guestBox">
+      <div>guest</div>
+      <label>
+        <select
+        onChange={(e) => setGuestsNum(e.target.value)}
+        value={guestNum}
+        >
+            <option key='1 guest'  value='1 guest'> 1 guest</option>
+            <option key='2 guests' value='2 guests'> 2 guests</option>
+            <option key='3 guests' value='3 guests'> 3 guests</option>
+            <option key='4 guests' value='4 guests'> 4 guests</option>
+            <option key='5 guests' value='5 guests'> 5 guests</option>
+        </select>
+      </label>
+      </div>
+              {////////////}
+    }
+              {/* <div className="dropdown">
+
+                <button  className="dropButton JCSpaceBetween dropdownContent">
                   <div >
                     <div>
                       GUESTS
                     </div>
                     <div>
-                      1 guest
+                      1 guest???
                     </div>
                   </div>
                   <i className="material-symbols-outlined">arrow_drop_down</i>
@@ -178,36 +229,19 @@ const SingleSpot = () => {
                   <a> 3 guests </a>
                   <a> 4 guests </a>
                 </div>
-              </div>
+              </div> */}
+
             </div>
-            <button id="checkAvailabilityButton"> Check availability</button>
+            <button onClick={nonFunctional} id="checkAvailabilityButton"> Check availability</button>
            </div>
 
            {currentUserId && matchingOwner&&<h4 className="underlined"><NavLink to={`/spots/${id}/edit`}>Edit Home Listing</NavLink></h4>}
            {currentUserId && matchingOwner&& <button  className='deleteButton' onClick={()=> {dispatch(removeSpot(singleSpot.id)); history.push('/') }}>Delete</button>}
           </div>
+
         </div>
-        <div id="SingleSpotReviews">
-        {currentUserId &&<button id="AddReviewButton"><NavLink to={`/spots/${id}/reviews`}>Add A Review</NavLink> </button> }
-             {//need to figure out how to get it not show up if you already wrote one  currentUserId && (review.userId !== currentUserId) */}
-    }
-           {allReviews.map((review) => (
-            <div>
-             <div>
 
 
-             </div>
-             <div className="SingleSpotReviewBox" key={review.id}>
-               <div><i className="material-symbols-outlined">star </i> {review.stars} stars</div>
-                <div> <i className="material-symbols-outlined">face</i> {review.User.firstName} </div>
-                <p>Review: {review.review}</p>
-                {/* <p>ReviewId: {review.id} SpotId: {id} AuthorId: {review.userId} ViewerId: {currentUserId}</p> */}
-                {review.userId === currentUserId &&  <h4 className="underlined"><NavLink to={`/reviews/${review.id}/${id}`}>Edit Review</NavLink></h4>}
-                {review.userId === currentUserId && <button className='deleteButton' onClick={()=> handleRemoveReview(review.id) }>Delete</button>}
-             </div>
-             </div>
-            ))}
-          </div>
       </div>
     );
   }

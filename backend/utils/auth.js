@@ -66,9 +66,9 @@ restoreUser,
 function (req, _res, next) {
     if (req.user) return next();
 
-    const err = new Error('Unauthorized');
+    const err = new Error('You are currently unauthorized. Try logging in first.');
     err.title = 'Unauthorized';
-    err.errors = ['Unauthorized'];
+    err.errors = ['Unauthorized: Log in first.'];
     err.status = 401;
     return next(err);
   }

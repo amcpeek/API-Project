@@ -13,6 +13,7 @@ import UpdateSpotForm from "./components/Spots/UpdateSpot/Index";
 import { getSpots } from './store/spot'
 import AddReviewForm from './components/Reviews/AddReview/Index'
 import UpdateReviewForm from "./components/Reviews/UpdateReview/Index";
+import PageNotFound from "./components/PageNotFound/Index";
 
 
 function App() {
@@ -59,8 +60,7 @@ function App() {
             <UpdateReviewForm/>
           </Route>
           <Route >
-          <h2>.</h2>
-          <h1>The page you are looking for has not yet been developed</h1>
+            <PageNotFound/>
         </Route>
 
       </Switch>

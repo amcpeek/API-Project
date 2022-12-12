@@ -42,7 +42,7 @@ const AddReviewForm = ({spots}) => {
             <div className='modalContent'>
 
             <div className='LogInErrors'>
-                <ul>
+                <ul className='ulNoBullets'>
                 {responseErrors.map(err => (
                     <li key={err}>{err}</li>
                 ))}

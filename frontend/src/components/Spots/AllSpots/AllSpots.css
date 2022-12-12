@@ -57,7 +57,8 @@
 .AllSpotsImages img {
     height: 300px;
     width: 300px;
-    border-radius: 10px;;
+    border-radius: 10px;
+    object-fit: cover;
 }
 
 .AllSpotsImages {
