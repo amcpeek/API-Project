@@ -562,8 +562,9 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
                const newReview = await Review.create({ userId, spotId, review, stars })
                res.json(newReview)
         } catch(error) {
-            console.log(error)
+
             if(error.errors) {
+              //  console.log('LINE 565 ARE WE GETTING STARS', er)
                 error.errors.map(er => {
                     errObj[er.path] = errorStrings[er.path]
                 })

@@ -21,7 +21,7 @@ module.exports = {
         lat: 34.7445,
         lng: 92.2880,
         name: 'Arkansas Home',
-        description: 'Home in Arkansas',
+        description: 'Spacious home in Arkansas in a beautiful field with a view of the surrounding valley',
         price: 100.00
       }, {
         ownerId: 2,
@@ -32,7 +32,7 @@ module.exports = {
         lat: 39.7392,
         lng: 104.9903,
         name: 'Colorado Home',
-        description: 'Home in Colorado',
+        description: 'Home in Colorado in the forest. A great getaway in any season.',
         price: 150.00
       } , {
         ownerId: 3,
@@ -42,8 +42,8 @@ module.exports = {
         country: 'USA',
         lat: 39.1582,
         lng: 75.5244,
-        name: 'Delaware Home',
-        description: 'Home in Delaware',
+        name: 'Arizona Home',
+        description: 'Home in Arizona in the pine forest. Great place for a family vacation.',
         price: 200.00
     } , {
       ownerId: 4,
@@ -53,8 +53,8 @@ module.exports = {
       country: 'USA',
       lat: 30.4383,
       lng: 84.2807,
-      name: 'Florida Home',
-      description: 'Home in Florida',
+      name: 'Alaska Home',
+      description: 'Home in Alaska surrounded by wild flowers and trees.',
       price: 250.00
     } , {
       ownerId: 5,
@@ -64,8 +64,8 @@ module.exports = {
       country: 'USA',
       lat: 33.7490,
       lng: 84.3880,
-      name: 'Georgia Home',
-      description: 'Home in Georgia',
+      name: 'Alabama Home',
+      description: 'Home in Alabama on a lake, perfect for summer fun.',
       price: 300.00
     }
 

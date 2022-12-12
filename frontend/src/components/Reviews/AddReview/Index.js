@@ -21,6 +21,7 @@ const AddReviewForm = ({spots}) => {
         }
        // console.log('is the new review part working', newReview)
         const response = await dispatch(addSpotReview(newReview, id ))
+
         if(response.errors) {
             setResponseErrors(Object.values(response.errors))
         } else {
