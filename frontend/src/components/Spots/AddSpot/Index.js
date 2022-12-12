@@ -22,8 +22,7 @@ const AddSpotForm = ({showModal, setShowModal}) => {
     const [preview, setPreview] = useState(false)
     const history = useHistory()
     const [responseErrors, setResponseErrors] = useState([])
-    // const [showModal, setShowModal] = useState(true);
-
+   
 
     const dispatch = useDispatch()
     const handleSubmit = async (e) => {
