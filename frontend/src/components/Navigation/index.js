@@ -78,7 +78,7 @@ function Navigation({ isLoaded }){
 
         {/* noBorder */}
         {showMenu && (
-          <div className='dropdownContentNav'>
+          <div className='dropdownContentNav2'>
           {/* <ul className='profile-dropdown' id='hostDropdown'> */}
             <div>
             <NavLink exact to="/spots/current">Your Homes</NavLink>
