@@ -46,8 +46,11 @@ const UpdateReviewForm = () => {
     return (
         <div className='modalOutside'>
             <div className='modalContent'>
-            <div className='LogInErrors'>
             <button className="cancelButton"><NavLink to={`/spots/${review.spotId}`}>X</NavLink></button>
+            <h3>Edit Your Review</h3>
+            <div className='LogInErrors'>
+
+
                 <ul className='ulNoBullets'>
                 {responseErrors.map(err => (
                     <li key={err}>{err}</li>

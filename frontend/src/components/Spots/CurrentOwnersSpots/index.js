@@ -24,7 +24,7 @@ const CurrentOwnersSpots = () => {
 
     return (
       <div >
-        <div className="CurrentOwnersPage">Current Owners Spots</div>
+        <div className="CurrentOwnersPage">Your Listed Homes</div>
         <div className="CurrentOwnersList">
           {ownersSpots.map(({ id, name, previewImage, city, state, description, price }) => (
             // <div key={id}><NavLink to={`/spots/${id}`}>{name}</NavLink></div>

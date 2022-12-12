@@ -22,7 +22,7 @@ const AddSpotForm = ({showModal, setShowModal}) => {
     const [preview, setPreview] = useState(false)
     const history = useHistory()
     const [responseErrors, setResponseErrors] = useState([])
-   
+
 
     const dispatch = useDispatch()
     const handleSubmit = async (e) => {
@@ -59,6 +59,7 @@ const AddSpotForm = ({showModal, setShowModal}) => {
             <div className="realModalContent">
             <>
               <button className="cancelButton" onClick={() => setShowModal(false)}>X</button>
+              <h3>Describe Your Home</h3>
              <div className='LogInErrors'>
              <ul className='ulNoBullets'>
              {responseErrors.map(err => (

@@ -29,21 +29,20 @@ li {
     left: 0;
     right: 0;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
     background-color: white;
     z-index: 3;
     border-bottom-color: lightgray;
     border-bottom-width: 1px;
     border-bottom-style: solid;
     height: 80px;
-    /* overflow: scroll; */
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 #wholeNav div {
     display: flex;
     align-items: center;
-
 }
 
 
@@ -60,6 +59,10 @@ li {
     display: flex;
 }
 
+.AroundCenterButton {
+    display: flex;
+    justify-content: center;
+}
 
 
 #CenterButton {
@@ -89,6 +92,7 @@ li {
 
     padding-left: 54px;
     padding-right: 74px;
+
 
 }
 

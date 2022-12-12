@@ -79,6 +79,7 @@ const UpdateSpotForm = () => {
         <div className="modalOutside">
         <div className="modalContent">
         <button className="cancelButton"><NavLink to={`/spots/${id}`}>X</NavLink></button>
+        <h3>Edit Your Home Listing</h3>
         <div className='LogInErrors'>
                 <ul className='ulNoBullets'>
                 {responseErrors.map(err => (

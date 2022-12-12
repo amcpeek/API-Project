@@ -122,12 +122,14 @@
 .dropdown {
     position: relative;
     display: inline-block;
+
   }
 
   .dropdownNav {
     position: relative;
     display: inline-block;
     padding-right: 50px;
+    justify-content: flex-end;
   }
 
 .dropButton {

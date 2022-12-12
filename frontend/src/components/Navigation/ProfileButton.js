@@ -30,7 +30,7 @@ function ProfileButton({ user }) {
   };
 
   return (
-    <div className='dropdownNav'>
+    <div className='dropdownNav2'>
       <button onClick={openMenu} className='dropButtonNav'>
       {/* id="LoginButton" */}
       <i className="material-symbols-outlined">menu</i>
