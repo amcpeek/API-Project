@@ -27,10 +27,11 @@ export const addSpotReviewAction = (spotReview) => {
 }
 
 //#17
-export const updateSpotReviewAction = (review) => {
+export const updateSpotReviewAction = (review, reviewId) => {
     return {
         type: UPDATE_REVIEW,
-        review
+        review,
+        reviewId
     }
 }
 
@@ -51,6 +52,7 @@ export const clearSpotReviewsStoreAction = () => {
 /* -- thunk action creators -- */
 export const getSpotReviews = (spotId) => async dispatch => {
     const response = await fetch(`/api/spots/${spotId}/reviews`)
+    console.log('is there something wrong with spot id', spotId)
     if(response.ok) {
         const spotReviews = await response.json()
         dispatch(getSpotReviewsAction(spotReviews))
@@ -78,17 +80,17 @@ export const updateSpotReview = (review, reviewId) => async dispatch => {
         method: 'PUT',
         body: JSON.stringify(review)
     }).then(async (res) => {
-
+        // if(response.ok) {
+        //     const review = await response.json()
+            dispatch(updateSpotReviewAction(review, reviewId)) //im not sure this is needed?
+       // }
         return await res.json()
     }).catch( async error => {
         return await error.json()
     })
     return response
 }
-    // if(response.ok) {
-    //     const review = await response.json()
-    //     dispatch(updateSpotReviewAction(review)) //im not sure this is needed?
-    // }
+
 
 
 export const removeReview = (reviewId) => async dispatch => {
@@ -119,11 +121,26 @@ export default function reviewsReducer (state = {}, action) {
         //goes to the backend and gets it there
         case CLEAR_REVIEWS: //just for clearing the useEffect
             return {}
-        // case UPDATE_REVIEW:
-        //     return {
-        //         ...state,
-        //         [action.review.id]: action.review
-        //     }
+        case UPDATE_REVIEW:
+            console.log('BECHTOLD',action.review, action.reviewId)
+            console.log('currentState', state)
+          //  const newReviewParts = { 'review': action.review.review, 'stars':action.review.stars}
+             const copyState =  {... state}
+            // newStateReviews.reviewId.review = action.review.review
+            //newStateReviews.reviewId.stars = action.review.stars
+            return {
+               // ...state,
+              //  [action.reviewId]:review = [action.review]
+
+
+              //  ...state, //not proven to work
+               // [action.reviewId]: ...newReviewParts
+               ...copyState,
+               [action.reviewId] : {...copyState[action.reviewId], ...action.review}
+
+            //    ...newStateReviews
+
+            }
         case REMOVE_REVIEW:
             const newState = {...state}
             delete newState[action.reviewId]

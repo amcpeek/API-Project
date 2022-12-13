@@ -19,7 +19,8 @@ const UpdateReviewForm = ({showModal, setShowModal}) => {
     }, [dispatch])
 
     const oneSpot = useSelector(state=>{return state.oneSpot[spotId]})
-    const allReviews = useSelector(state => {return Object.values(state.reviews)})
+    const allReviews = useSelector(state => {return Object.values(state.reviews)}) //not best practice to put ob.values inside, shoudl be outside
+
     const currentUserId = useSelector(state=>{
         if(state.session.user) {return state.session.user.id}
         else {return ''}
@@ -40,9 +41,12 @@ const UpdateReviewForm = ({showModal, setShowModal}) => {
         const newReview = { review, stars  }
         const response = await dispatch(updateSpotReview(newReview, currReview.id ))
         if(response.errors) {
+
             setResponseErrors(Object.values(response.errors))
         } else {
-            dispatch(getSpotReviews(spotId)).then(setShowModal(false))
+            setShowModal(false)
+          //this line of code does nothing anyway
+          //  dispatch(getSpotReviews(spotId)).then(setShowModal(false))
         }
     }
 

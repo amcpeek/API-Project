@@ -92,7 +92,7 @@ module.exports = {
       }, {
         ownerId: 3,
         address: '456 O St',
-        city: 'Mount Hood Village Oregon',
+        city: 'Mount Hood Village',
         state: 'Oregon',
         country: 'USA',
         lat: 39.7392,
