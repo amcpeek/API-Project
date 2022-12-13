@@ -59,6 +59,9 @@ function App() {
           <Route path='/reviews/:reviewId/:spotId'>
             <UpdateReviewForm/>
           </Route>
+          <Route path='/page-not-found'>
+            <PageNotFound/>
+        </Route>
           <Route >
             <PageNotFound/>
         </Route>

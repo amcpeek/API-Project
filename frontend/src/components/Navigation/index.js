@@ -86,7 +86,7 @@ function Navigation({ isLoaded }){
             {/* <div>
             <NavLink exact to="/spots/create" id="navBar">List Your Home</NavLink>
             </div> */}
-            <div onClick={() => {setShowModal(true)}}>List Your Home</div>
+            <div className={'cursor'} onClick={() => {setShowModal(true)}}>List Your Home</div>
           </div>
         )}
         <button className='noBorder'onClick={nonFunctional}>

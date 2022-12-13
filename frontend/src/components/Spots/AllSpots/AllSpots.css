@@ -85,3 +85,25 @@ a, a:visited, a:hover, a:active {
 .greyText {
     color: rgb(147, 143, 143)
 }
+
+
+.SpaceBetween {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+i {
+    position: relative;
+    top: 3px;
+}
+
+.bold {
+    font-weight: 900;
+    padding-right: 3px;
+}
+
+
+.justNextToEachOther {
+    display: flex;
+}

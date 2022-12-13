@@ -1,6 +1,6 @@
-import { useParams } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
-import {  NavLink } from 'react-router-dom';
+import {  NavLink, Route } from 'react-router-dom';
 import './SingleSpot.css'
 import { removeSpot } from '../../../store/spot';
 import { getOneSpot, clearOneSpotAction } from '../../../store/oneSpot';
@@ -20,6 +20,17 @@ const SingleSpot = () => {
   const [ guestNum, setGuestsNum] = useState(1)
   const [showModal, setShowModal] = useState(false);
 
+  const oneSpot = useSelector(state=>{return state.oneSpot[id]})
+
+  useEffect(() => {
+    if(!oneSpot) {
+      console.log('please pleas please what is !oneSpot', !oneSpot)
+    //  return <Redirect to='/page-not-found'/>
+     return <PageNotFound/>
+    }
+  }, [id])
+
+  const allReviews = useSelector(state => {  return Object.values(state.reviews)})
 
   useEffect(() => {
      dispatch(getSpotReviews(id))
@@ -30,10 +41,6 @@ const SingleSpot = () => {
     dispatch(getOneSpot(id))
     return dispatch(clearOneSpotAction())
  }, [dispatch])
-
-  const oneSpot = useSelector(state=>{return state.oneSpot[id]})
-  const allReviews = useSelector(state => {  return Object.values(state.reviews)})
-
 
   const handleRemoveReview = (reviewId) => {
     console.log('what is review id', reviewId)
@@ -85,14 +92,6 @@ const SingleSpot = () => {
     }
   })
 
-  useEffect(() => {
-    if(!oneSpot) {
-      return (
-      <PageNotFound/>
-      )}
-  }, [oneSpot])
-
-
 
 
     if(oneSpot) {
@@ -105,14 +104,14 @@ const SingleSpot = () => {
         </div>
 
         <div id='SingleSpotTopLinks'>
-        <div >
+        <div className='underlined' onClick={nonFunctional} >
         <i className="material-symbols-outlined">star </i>
         {singleSpot.avgStarRating} ·  {singleSpot.numReviews} reviews   ·
         <i className="material-symbols-outlined"> military_tech</i>
         Superhost  ·  {singleSpot.city}, {singleSpot.state}, {singleSpot.country}
         </div>
 
-        <div>
+        <div className='underlined' onClick={nonFunctional} >
         <i className="material-symbols-outlined">upload</i>Share
         <i className="material-symbols-outlined">favorite</i>
         Save
@@ -170,13 +169,6 @@ const SingleSpot = () => {
                       </div>
                     ))}
               </div>
-
-
-
-
-
-
-
           </div>
           <div>
 

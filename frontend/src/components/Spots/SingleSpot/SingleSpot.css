@@ -304,6 +304,7 @@
 
   .underlined {
      text-decoration: underline;
+     cursor: pointer
   }
 
 
@@ -329,8 +330,15 @@
 
 .editDeleteButtons {
   display: flex;
-  flex-direction: column;
-  width: 100px;
+  border: 1px solid rgb(164, 161, 161);
+
+    background-color: white;
+    border: 1px solid rgb(164, 161, 161);
+    border-radius: 10px;
+    box-shadow:  1px 1px 2px 2px lightgrey;
+    width: 500px;
+    height: 40px;
+    color: white;
 }
 
 .LeftTitle {

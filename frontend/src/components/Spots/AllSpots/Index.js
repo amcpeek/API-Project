@@ -65,7 +65,7 @@ const AllSpots = () => {
         </div>
 
         <div className="HomeList">
-                {spots.map(({ id, name, previewImage, city, state, description, price }) => (
+                {spots.map(({ id, name, previewImage, city, state, description, price, avgRating }) => (
                   <div className="AllSpotsImages" key={id}>
                     <NavLink to={`/spots/${id}`}>
                                 <div>
@@ -73,11 +73,19 @@ const AllSpots = () => {
                             src={previewImage}
                             alt={name}/>
                                 </div >
+                                <div className='SpaceBetween'>
+                                <div className='greyText' id="CityState">{city}, {state}</div>
+                                <div>
+                                <i className="material-symbols-outlined">star </i>
+                                {avgRating}
+                                </div>
 
-                      <div className='greyText' id="CityState">{city}, {state}</div>
+                                </div>
+
+
                       <div className='greyText'>{name}</div>
                       <div className='greyText'>Apr 3-8</div>
-                      <div className='greyText'>${price} night</div>
+                      <div className='justNextToEachOther'> <div className='bold'>${price}</div>  night</div>
                     </NavLink>
                   </div>
                 ))}
