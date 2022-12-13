@@ -332,3 +332,9 @@
   flex-direction: column;
   width: 100px;
 }
+
+.LeftTitle {
+  display: flex;
+  justify-content: flex-start;
+  width: 790px
+}

@@ -100,7 +100,10 @@ const SingleSpot = () => {
 
     return (
       <div className='SingleSpot'>
+        <div className='LeftTitle'>
         <h2>{singleSpot.name}</h2>
+        </div>
+
         <div id='SingleSpotTopLinks'>
         <div >
         <i className="material-symbols-outlined">star </i>

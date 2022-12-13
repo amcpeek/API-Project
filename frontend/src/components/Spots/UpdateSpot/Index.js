@@ -68,7 +68,8 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
         } else {
             const imagePayload = {
                 spotId: id,
-                url, preview
+                url,
+                preview: true
             }
             await dispatch(addSpotImage(imagePayload))
             const oneSpotHopefully = await dispatch(getOneSpot(id))
@@ -203,7 +204,7 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
                  name='imageUrl'
                 />
                 </div>
-                <div className="wholePreviewImage">
+                {/* <div className="wholePreviewImage">
                     <div className="prevImageTextBox">
                         Preview Image
                     </div>
@@ -214,7 +215,7 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
                     onChange={(e) => setPreview(e.currentTarget.checked)}
                     />
                     </div>
-                 </div>
+                 </div> */}
                 <button type='submit' className="createButton" >List Your Home</button>
             </form>
         </div>

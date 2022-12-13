@@ -57,7 +57,8 @@ const UpdateReviewForm = ({showModal, setShowModal}) => {
     return (
         <div className='realModalOutside'>
             <div className='realModalContent'>
-            <button className="cancelButton"><NavLink to={`/spots/${review.spotId}`}>X</NavLink></button>
+            {/* <button className="cancelButton"><NavLink to={`/spots/${review.spotId}`}>X</NavLink></button> */}
+            <button className="cancelButton" onClick={() => setShowModal(false)}>X</button>
             <h3>Edit Your Review</h3>
             <div className='LogInErrors'>
 

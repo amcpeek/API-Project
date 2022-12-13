@@ -42,6 +42,7 @@ const AddReviewForm = ({spots, showModal, setShowModal}) => {
         <div className='realModalOutside'>
             <div className='realModalContent'>
                  <button className="cancelButton" onClick={() => setShowModal(false)}>X</button>
+                 <h3>{oneSpot.name} Review </h3>
 
             <div className='LogInErrors'>
                 <ul className='ulNoBullets'>
@@ -51,7 +52,7 @@ const AddReviewForm = ({spots, showModal, setShowModal}) => {
                 </ul>
             </div>
             {/* <button className="cancelButton"><NavLink to={`/spots/${id}`}>X</NavLink></button> */}
-            <h3>{oneSpot.name} Review </h3>
+
                 <form onSubmit={handleSubmit} className="CreateSpotForm">
                 <div>
                 <textarea
