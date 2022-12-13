@@ -442,7 +442,7 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
         })
         return
     }
-    res.json(updatedSpot)
+    // res.json(updatedSpot)
 })
 
 //**// 12 - Delete a Spot - DONE

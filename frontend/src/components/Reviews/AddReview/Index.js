@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useParams } from 'react-router-dom'
-import { addSpotReview } from '../../../store/review'
+import { addSpotReview, getSpotReviews } from '../../../store/review'
 import { useHistory } from 'react-router-dom'
+import { getOneSpot } from '../../../store/oneSpot'
 
-const AddReviewForm = ({spots}) => {
+const AddReviewForm = ({spots, showModal, setShowModal}) => {
     const [review, setReview] = useState('')
     const [stars, setStars] = useState('')
     const [spotName, setSpotName] = useState('')
-    const history = useHistory()
+    //const history = useHistory()
     const [responseErrors, setResponseErrors] = useState([])
 
     const { id } = useParams()
@@ -25,21 +26,22 @@ const AddReviewForm = ({spots}) => {
         if(response.errors) {
             setResponseErrors(Object.values(response.errors))
         } else {
-            history.push(`/spots/${id}`)
+            dispatch(getSpotReviews(id)).then(setShowModal(false))
+            // history.push(`/spots/${id}`)
         }
     }
-    let spot
-    useEffect(() => {
-        spot = spots.find(spot => spot.id.toString() === id);
+    const oneSpot = useSelector(state=>{return state.oneSpot[id]})
+      // let spot = dispatch(getOneSpot(id))
 
-        if(spot) {
-            setSpotName(spot.name)
-        }
-    }, [spots])
+        // if(oneSpot) {
+        //     setSpotName(oneSpot.name)
+        // }
+
 
     return (
-        <div className='modalOutside'>
-            <div className='modalContent'>
+        <div className='realModalOutside'>
+            <div className='realModalContent'>
+                 <button className="cancelButton" onClick={() => setShowModal(false)}>X</button>
 
             <div className='LogInErrors'>
                 <ul className='ulNoBullets'>
@@ -48,8 +50,8 @@ const AddReviewForm = ({spots}) => {
                 ))}
                 </ul>
             </div>
-            <button className="cancelButton"><NavLink to={`/spots/${id}`}>X</NavLink></button>
-            <h3>Add Your Review </h3>
+            {/* <button className="cancelButton"><NavLink to={`/spots/${id}`}>X</NavLink></button> */}
+            <h3>{oneSpot.name} Review </h3>
                 <form onSubmit={handleSubmit} className="CreateSpotForm">
                 <div>
                 <textarea

@@ -99,6 +99,7 @@ export const updateSpot = (spot) => async dispatch => {
             method: 'PUT',
             body: JSON.stringify(spot)
         })
+        console.log('1234321', response)
         //this whole if statement is unnecessary bc I don't use it for update
         // if(response.ok) { // as written, will not have errors you can read, it says 'readable stream"
         //     return await response.json()

@@ -9,12 +9,16 @@ import { getSpotReviews, clearSpotReviewsStoreAction, removeReview, updateSpotRe
 import { useHistory } from 'react-router-dom';
 import { nanoid } from 'nanoid'
 import PageNotFound from '../../PageNotFound/Index';
+import UpdateSpotModal from '../UpdateSpot/UpdateSpotModal';
+import AddReviewModal from '../../Reviews/AddReview/AddReviewModal';
+import UpdateReviewModal from '../../Reviews/UpdateReview/UpdateReviewModal';
 
 const SingleSpot = () => {
   const { id } = useParams();
   const dispatch = useDispatch()
   const history = useHistory()
   const [ guestNum, setGuestsNum] = useState(1)
+  const [showModal, setShowModal] = useState(false);
 
 
   useEffect(() => {
@@ -146,7 +150,9 @@ const SingleSpot = () => {
             <p>Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</p>
 
             <div id="SingleSpotReviews">
-                  {currentUserId && !allReviews.find(rev => rev.userId === currentUserId)  &&<button id="addReviewButton"><NavLink to={`/spots/${id}/reviews`}>Add A Review</NavLink> </button> }
+                  {currentUserId && !allReviews.find(rev => rev.userId === currentUserId)  && <AddReviewModal/> }
+                  {/* <button id="addReviewButton"><NavLink to={`/spots/${id}/reviews`}>Add A Review</NavLink> </button> */}
+
                     {allReviews.map((review) => (
                       <div key={review.id}>
                               <div className="SingleSpotReviewBox" key={review.id}>
@@ -154,7 +160,8 @@ const SingleSpot = () => {
                               <div> <i className="material-symbols-outlined">face</i> {review.User.firstName} </div>
                               <p>Review: {review.review}</p>
                               {/* <p>ReviewId: {review.id} SpotId: {id} AuthorId: {review.userId} ViewerId: {currentUserId}</p> */}
-                              {review.userId === currentUserId &&  <h4 className="underlined"><NavLink to={`/reviews/${review.id}/${id}`}>Edit Review</NavLink></h4>}
+                              {/* <NavLink to={`/reviews/${review.id}/${id}`}>Edit Review</NavLink> */}
+                              {review.userId === currentUserId &&  <h4 className="underlined"><UpdateReviewModal/></h4>}
                               {review.userId === currentUserId && <button className='deleteButton' onClick={()=> handleRemoveReview(review.id) }>Delete</button>}
                           </div>
                       </div>
@@ -234,8 +241,12 @@ const SingleSpot = () => {
             <button onClick={nonFunctional} id="checkAvailabilityButton"> Check availability</button>
            </div>
 
-           {currentUserId && matchingOwner&&<h4 className="underlined"><NavLink to={`/spots/${id}/edit`}>Edit Home Listing</NavLink></h4>}
-           {currentUserId && matchingOwner&& <button  className='deleteButton' onClick={()=> {dispatch(removeSpot(singleSpot.id)); history.push('/') }}>Delete</button>}
+           {/* {currentUserId && matchingOwner&&<h4 className="underlined"><NavLink to={`/spots/${id}/edit`}>Edit Home Listing</NavLink></h4>} */}
+           <div className="editDeleteButtons">
+           {currentUserId && matchingOwner&&<h4 className="underlined"><UpdateSpotModal showModal={showModal} setShowModal={setShowModal}/></h4>}
+           {currentUserId && matchingOwner&& <button  className='deleteButton' onClick={()=> {dispatch(removeSpot(singleSpot.id)); history.push('/') }}>Delete Home</button>}
+           </div>
+
           </div>
 
         </div>

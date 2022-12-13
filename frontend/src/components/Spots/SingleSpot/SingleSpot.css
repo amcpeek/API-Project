@@ -326,3 +326,9 @@
   margin-bottom: 10px;
 
 }
+
+.editDeleteButtons {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+}

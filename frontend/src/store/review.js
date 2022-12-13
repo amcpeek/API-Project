@@ -78,6 +78,7 @@ export const updateSpotReview = (review, reviewId) => async dispatch => {
         method: 'PUT',
         body: JSON.stringify(review)
     }).then(async (res) => {
+
         return await res.json()
     }).catch( async error => {
         return await error.json()
@@ -118,11 +119,11 @@ export default function reviewsReducer (state = {}, action) {
         //goes to the backend and gets it there
         case CLEAR_REVIEWS: //just for clearing the useEffect
             return {}
-        case UPDATE_REVIEW:
-            return {
-                ...state,
-                [action.review.id]: action.review
-            }
+        // case UPDATE_REVIEW:
+        //     return {
+        //         ...state,
+        //         [action.review.id]: action.review
+        //     }
         case REMOVE_REVIEW:
             const newState = {...state}
             delete newState[action.reviewId]

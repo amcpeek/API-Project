@@ -4,33 +4,27 @@ import { NavLink, useParams } from 'react-router-dom'
 import { updateSpotReview, getSpotReviews } from '../../../store/review'
 import { useHistory } from 'react-router-dom'
 
-const UpdateReviewForm = () => {
+const UpdateReviewForm = ({showModal, setShowModal}) => {
     const [review, setReview] = useState('')
     const [stars, setStars] = useState(0)
-    const history = useHistory()
+    //const history = useHistory()
     const [responseErrors, setResponseErrors] = useState([])
 
-    const { reviewId, spotId } = useParams()
+    const { spotId } = useParams() //cant do this anymore, only getting spot id, but can get user id
     const dispatch = useDispatch()
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        const newReview = { review, stars  }
-        const response = await dispatch(updateSpotReview(newReview, reviewId ))
-        if(response.errors) {
-            setResponseErrors(Object.values(response.errors))
-        } else {
-            history.goBack()
-        }
-
-    }
 
     useEffect(() => {
         dispatch(getSpotReviews(spotId))
     }, [dispatch])
 
+    const oneSpot = useSelector(state=>{return state.oneSpot[spotId]})
     const allReviews = useSelector(state => {return Object.values(state.reviews)})
-    const currReview = allReviews.find(review => review.id == reviewId)
+    const currentUserId = useSelector(state=>{
+        if(state.session.user) {return state.session.user.id}
+        else {return ''}
+      })
+    const currReview = allReviews.find(review => review.userId == currentUserId)
 
     useEffect(() => {
         if(currReview) {
@@ -41,11 +35,24 @@ const UpdateReviewForm = () => {
     }, [currReview])
 
 
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const newReview = { review, stars  }
+        const response = await dispatch(updateSpotReview(newReview, currReview.id ))
+        if(response.errors) {
+            setResponseErrors(Object.values(response.errors))
+        } else {
+            dispatch(getSpotReviews(spotId)).then(setShowModal(false))
+        }
+    }
+
+
+
 
 
     return (
-        <div className='modalOutside'>
-            <div className='modalContent'>
+        <div className='realModalOutside'>
+            <div className='realModalContent'>
             <button className="cancelButton"><NavLink to={`/spots/${review.spotId}`}>X</NavLink></button>
             <h3>Edit Your Review</h3>
             <div className='LogInErrors'>

@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react'
 import { useParams, NavLink, Redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateSpot, getSpots } from '../../../store/spot'
+import { getOneSpot } from '../../../store/oneSpot'
 import { addSpotImage } from '../../../store/spot'
 import { useHistory } from 'react-router-dom'
 //import './AddSpot.css'
 
-const UpdateSpotForm = () => {
+const UpdateSpotForm = ({showModal, setShowModal}) => {
     const { id } = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
@@ -70,15 +71,19 @@ const UpdateSpotForm = () => {
                 url, preview
             }
             await dispatch(addSpotImage(imagePayload))
-            history.push(`/spots/${id}`)
+            const oneSpotHopefully = await dispatch(getOneSpot(id))
+            console.log('oneSpotHopefully',oneSpotHopefully)
+            setShowModal(false)
+
         }
     }
-    if(!spot) { return <div>Nothing in here</div>
+    if(!spot) { return <div>This form is not available</div>
     }
     return (
-        <div className="modalOutside">
-        <div className="modalContent">
-        <button className="cancelButton"><NavLink to={`/spots/${id}`}>X</NavLink></button>
+        <div className="realModalOutside">
+        <div className="realModalContent">
+        <button className="cancelButton" onClick={() => setShowModal(false)}>X</button>
+        {/* <button className="cancelButton"><NavLink to={`/spots/${id}`}>X</NavLink></button> */}
         <h3>Edit Your Home Listing</h3>
         <div className='LogInErrors'>
                 <ul className='ulNoBullets'>
