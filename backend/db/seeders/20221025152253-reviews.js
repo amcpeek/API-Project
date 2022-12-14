@@ -54,12 +54,12 @@ module.exports = {
       }, {
         spotId: 9,
         userId: 5,
-        review: 'The perfect mountain getaway. We had a great time here. It was clean, well located and had everything we needed. The owners are very communicative and went out of their way to make us feel welcome and comfortable. We love sledding on the hill across the street! Both adults and children had a great time. All round excellent!',
+        review: 'The perfect mountain getaway. We had a great time here. It was clean, well located and had everything we needed. The owners are very communicative and went out of their way to make us feel welcome and comfortable.',
         stars: 5,
       }, {
         spotId: 10,
         userId: 5,
-        review: 'We had a fantastic stay at this cute airbnb in the mountains the lake near by was really wonderful the weather was perfect our whole time there the host was very helpful the beds were comfortable, and the fire place was warm we cooked amazing food in the well supplied kitchen',
+        review: 'We had a fantastic stay at this cute airbnb in the mountains the lake near by was really wonderful the weather was perfect our whole time there the host was very helpful the beds were comfortable.',
         stars: 5,
       }, {
         spotId: 11,
@@ -104,12 +104,12 @@ module.exports = {
     }, {
       spotId: 19,
       userId: 5,
-      review: 'The perfect mountain getaway. We had a great time here. It was clean, well located and had everything we needed. The owners are very communicative and went out of their way to make us feel welcome and comfortable. We love sledding on the hill across the street! Both adults and children had a great time. All round excellent!',
+      review: 'The perfect mountain getaway. We had a great time here. It was clean, well located and had everything we needed. The owners are very communicative and went out of their way to make us feel welcome and comfortable.',
       stars: 5,
     }, {
       spotId: 20,
       userId: 5,
-      review: 'We had a fantastic stay at this cute airbnb in the mountains the lake near by was really wonderful the weather was perfect our whole time there the host was very helpful the beds were comfortable, and the fire place was warm we cooked amazing food in the well supplied kitchen',
+      review: 'We had a fantastic stay at this cute airbnb in the mountains the lake near by was really wonderful the weather was perfect our whole time there the host was very helpful the beds were comfortable.',
       stars: 5,
     }, {
       spotId: 1,
@@ -129,12 +129,12 @@ module.exports = {
     }, {
       spotId: 4,
       userId: 5,
-      review: 'The perfect mountain getaway. We had a great time here. It was clean, well located and had everything we needed. The owners are very communicative and went out of their way to make us feel welcome and comfortable. We love sledding on the hill across the street! Both adults and children had a great time. All round excellent!',
+      review: 'The perfect mountain getaway. We had a great time here. It was clean, well located and had everything we needed. The owners are very communicative and went out of their way to make us feel welcome and comfortable.',
       stars: 4,
     }, {
       spotId: 5,
       userId: 1,
-      review: 'We had a fantastic stay at this cute airbnb in the mountains the lake near by was really wonderful the weather was perfect our whole time there the host was very helpful the beds were comfortable, and the fire place was warm we cooked amazing food in the well supplied kitchen',
+      review: 'We had a fantastic stay at this cute airbnb in the mountains the lake near by was really wonderful the weather was perfect our whole time there the host was very helpful the beds were comfortable.',
       stars: 5,
     }
 
