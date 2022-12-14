@@ -27,6 +27,7 @@ export const getOneSpot = (spotId) => async dispatch => {
       //  console.log('are there spots in here', spots) // works
       //console.log('is it an array from the backend', oneSpot)
         dispatch(getOneSpotAction(oneSpot))
+        return oneSpot
     }
 }
 

@@ -8,7 +8,12 @@ function AddReviewModal() {
 
   return (
     <>
-      <button className='deleteButton' onClick={() => setShowModal(true)}>Create Review</button>
+      <div className='underlined' onClick={() => setShowModal(true)}>
+      <i className="material-symbols-outlined">
+      edit
+      </i>
+      Create
+      </div>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <AddReviewForm  showModal={showModal} setShowModal={setShowModal} />

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
+import { NavLink } from "react-router-dom";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -42,7 +43,9 @@ function ProfileButton({ user }) {
           <div>{user.email}</div>
           <div>
             <button className='deleteButton' onClick={logout}>Log Out</button>
+            <NavLink exact to="/spots/current">Your Homes</NavLink>
           </div>
+
         </div>
       )}
     </div>

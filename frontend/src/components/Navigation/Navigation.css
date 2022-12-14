@@ -30,8 +30,8 @@ li {
     border-bottom-style: solid;
     height: 80px;
 
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    justify-content: space-between;
 }
 
 #wholeNav div {

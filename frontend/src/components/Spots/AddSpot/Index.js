@@ -17,7 +17,7 @@ const AddSpotForm = ({showModal, setShowModal}) => {
     const [lng, setLng] = useState(0)
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
-    const [price, setPrice] = useState(0)
+    const [price, setPrice] = useState('')
     const [url, setUrl] = useState('https://i.pinimg.com/originals/4f/c8/78/4fc8780a9aa5873b3593cfb9abc4ffb9.jpg')
     const [preview, setPreview] = useState(false)
     const history = useHistory()
@@ -133,7 +133,7 @@ const AddSpotForm = ({showModal, setShowModal}) => {
                  value={description}
                  onChange={(e) => setDescription(e.target.value)}
                  name='description'
-                 placeholder='Please write about your home here...'
+                 placeholder='Description'
                  rows='5'
              ></textarea>
              <div></div>
@@ -145,9 +145,10 @@ const AddSpotForm = ({showModal, setShowModal}) => {
               min='1'
               value={price}
               onChange={(e) => setPrice(e.target.value)}
+              required
              />
              </div>
-             <div id='suggestedImageUrl'>
+             <div className='labelForForm'>
                  Suggested Image Url
              </div>
              <div>

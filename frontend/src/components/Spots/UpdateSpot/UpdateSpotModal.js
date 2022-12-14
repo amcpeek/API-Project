@@ -8,7 +8,7 @@ function UpdateSpotModal({showModal, setShowModal}) {
 
   return (
     <>
-      <button className='deleteButton' onClick={() => setShowModal(true)}>Update Home</button>
+      <button onClick={() => setShowModal(true)}>Update Home</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <UpdateSpotForm  showModal={showModal} setShowModal={setShowModal} />

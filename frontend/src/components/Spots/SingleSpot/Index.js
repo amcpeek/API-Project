@@ -21,26 +21,24 @@ const SingleSpot = () => {
   const [showModal, setShowModal] = useState(false);
 
   const oneSpot = useSelector(state=>{return state.oneSpot[id]})
+  const allReviews = useSelector(state => {  return Object.values(state.reviews)})
+
+  const findSpotTest = async (e) => {
+    const returnSpot = await dispatch(getOneSpot(id))
+    if(!returnSpot) {
+      history.push('/page-not-found')
+    }
+  }
 
   useEffect(() => {
-    if(!oneSpot) {
-      console.log('please pleas please what is !oneSpot', !oneSpot)
-    //  return <Redirect to='/page-not-found'/>
-     return <PageNotFound/>
-    }
-  }, [id])
-
-  const allReviews = useSelector(state => {  return Object.values(state.reviews)})
+    findSpotTest()
+    return  () => dispatch(clearOneSpotAction())
+ }, [dispatch])
 
   useEffect(() => {
      dispatch(getSpotReviews(id))
-     return dispatch(clearSpotReviewsStoreAction())
+     return () => dispatch(clearSpotReviewsStoreAction())
   }, [dispatch])
-
-  useEffect(() => {
-    dispatch(getOneSpot(id))
-    return dispatch(clearOneSpotAction())
- }, [dispatch])
 
   const handleRemoveReview = (reviewId) => {
     console.log('what is review id', reviewId)
@@ -152,20 +150,24 @@ const SingleSpot = () => {
             <p>Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</p>
 
             <div id="SingleSpotReviews">
+              <h3>Reviews</h3>
                   {currentUserId && !allReviews.find(rev => rev.userId === currentUserId)  && <AddReviewModal/> }
                   {/* <button id="addReviewButton"><NavLink to={`/spots/${id}/reviews`}>Add A Review</NavLink> </button> */}
 
                     {allReviews.map((review) => (
                       <div key={review.id}>
                               <div className="SingleSpotReviewBox" key={review.id}>
-                              <div><i className="material-symbols-outlined">star </i> {review.stars} stars</div>
-                              <div> <i className="material-symbols-outlined">face</i> {review.User.firstName} </div>
-                              <p>Review: {review.review}</p>
-                              {/* <p>ReviewId: {review.id} SpotId: {id} AuthorId: {review.userId} ViewerId: {currentUserId}</p> */}
-                              {/* <NavLink to={`/reviews/${review.id}/${id}`}>Edit Review</NavLink> */}
-                              {review.userId === currentUserId &&  <h4 className="underlined"><UpdateReviewModal/></h4>}
-                              {review.userId === currentUserId && <button className='deleteButton' onClick={()=> handleRemoveReview(review.id) }>Delete</button>}
-                          </div>
+                                    <div><i className="material-symbols-outlined">star </i> {review.stars} stars</div>
+                                    <div> <i className="material-symbols-outlined">face</i> {review.User.firstName} </div>
+                                    <p>{review.review}</p>
+                                    {/* <p>ReviewId: {review.id} SpotId: {id} AuthorId: {review.userId} ViewerId: {currentUserId}</p> */}
+                                    {/* <NavLink to={`/reviews/${review.id}/${id}`}>Edit Review</NavLink> */}
+                                    {review.userId === currentUserId &&  <><UpdateReviewModal/></>}
+                                    {review.userId === currentUserId && <button onClick={()=> handleRemoveReview(review.id) }>
+                                      <i className="material-symbols-outlined">
+                                        delete
+                                        </i></button>}
+                              </div>
                       </div>
                     ))}
               </div>
@@ -173,74 +175,52 @@ const SingleSpot = () => {
           <div>
 
           <div id="SingleSpotBooking">
-            <div className='JCSpaceBetween'>
-              <div>
-               ${singleSpot.price} night
-               </div>
-              <div>
-              <i className="material-symbols-outlined">star </i>
-              {singleSpot.avgStarRating}  ·  {singleSpot.numReviews} reviews
-              </div>
-           </div>
-            <div id="checkInOutBox">
-              <div id="checkInOutDates">
-                  <div>check-in
-                    <input type="date"></input>
-                  </div>
-                  <div>check-out
-                    <input type="date"></input>
-                  </div>
-              </div>
-              {////////////}
-    }
-
-      <div id="guestBox">
-      <div>guest</div>
-      <label>
-        <select
-        onChange={(e) => setGuestsNum(e.target.value)}
-        value={guestNum}
-        >
-            <option key='1 guest'  value='1 guest'> 1 guest</option>
-            <option key='2 guests' value='2 guests'> 2 guests</option>
-            <option key='3 guests' value='3 guests'> 3 guests</option>
-            <option key='4 guests' value='4 guests'> 4 guests</option>
-            <option key='5 guests' value='5 guests'> 5 guests</option>
-        </select>
-      </label>
-      </div>
-              {////////////}
-    }
-              {/* <div className="dropdown">
-
-                <button  className="dropButton JCSpaceBetween dropdownContent">
-                  <div >
-                    <div>
-                      GUESTS
-                    </div>
-                    <div>
-                      1 guest???
-                    </div>
-                  </div>
-                  <i className="material-symbols-outlined">arrow_drop_down</i>
-                  </button>
-                <div className="dropdownContent">
-                  <a> 1 guest </a>
-                  <a> 2 guests </a>
-                  <a> 3 guests </a>
-                  <a> 4 guests </a>
+              <div className='JCSpaceBetween'>
+                <div>
+                ${singleSpot.price} night
                 </div>
-              </div> */}
+                <div>
+                <i className="material-symbols-outlined">star </i>
+                {singleSpot.avgStarRating}  ·  {singleSpot.numReviews} reviews
+                </div>
+               </div>
+                <div id="checkInOutBox">
+                  <div id="checkInOutDates">
+                      <div>check-in
+                        <input type="date"></input>
+                      </div>
+                      <div>check-out
+                        <input type="date"></input>
+                      </div>
+                </div>
 
+                <div id="guestBox">
+                  <div>guest</div>
+                      <label>
+                        <select
+                        onChange={(e) => setGuestsNum(e.target.value)}
+                        value={guestNum}
+                        >
+                            <option key='1 guest'  value='1 guest'> 1 guest</option>
+                            <option key='2 guests' value='2 guests'> 2 guests</option>
+                            <option key='3 guests' value='3 guests'> 3 guests</option>
+                            <option key='4 guests' value='4 guests'> 4 guests</option>
+                            <option key='5 guests' value='5 guests'> 5 guests</option>
+                        </select>
+                      </label>
+
+                </div>
+
+               </div>
+              <button onClick={nonFunctional} id="checkAvailabilityButton"> Check availability</button>
+              <div className="editDeleteButtons">
+                {currentUserId && matchingOwner&&<><UpdateSpotModal showModal={showModal} setShowModal={setShowModal}/></>}
+                {currentUserId && matchingOwner&& <button onClick={()=> {dispatch(removeSpot(singleSpot.id)); history.push('/') }}>Delete Home</button>}
             </div>
-            <button onClick={nonFunctional} id="checkAvailabilityButton"> Check availability</button>
-           </div>
 
-           {/* {currentUserId && matchingOwner&&<h4 className="underlined"><NavLink to={`/spots/${id}/edit`}>Edit Home Listing</NavLink></h4>} */}
-           <div className="editDeleteButtons">
-           {currentUserId && matchingOwner&&<h4 className="underlined"><UpdateSpotModal showModal={showModal} setShowModal={setShowModal}/></h4>}
-           {currentUserId && matchingOwner&& <button  className='deleteButton' onClick={()=> {dispatch(removeSpot(singleSpot.id)); history.push('/') }}>Delete Home</button>}
-           </div>
+          </div>
+
+
 
           </div>
 

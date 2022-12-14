@@ -7,18 +7,21 @@ import { useHistory } from 'react-router-dom'
 const UpdateReviewForm = ({showModal, setShowModal}) => {
     const [review, setReview] = useState('')
     const [stars, setStars] = useState(0)
+    const [spotName, setSpotName] = useState('')
     //const history = useHistory()
     const [responseErrors, setResponseErrors] = useState([])
 
-    const { spotId } = useParams() //cant do this anymore, only getting spot id, but can get user id
+    const { id } = useParams() //cant do this anymore, only getting spot id, but can get user id
     const dispatch = useDispatch()
 
 
+
+
     useEffect(() => {
-        dispatch(getSpotReviews(spotId))
+        dispatch(getSpotReviews(id))
     }, [dispatch])
 
-    const oneSpot = useSelector(state=>{return state.oneSpot[spotId]})
+    const oneSpot = useSelector(state=>{return state.oneSpot[id]})
     const allReviews = useSelector(state => {return Object.values(state.reviews)}) //not best practice to put ob.values inside, shoudl be outside
 
     const currentUserId = useSelector(state=>{
@@ -32,8 +35,14 @@ const UpdateReviewForm = ({showModal, setShowModal}) => {
             setReview(currReview.review)
             setStars(currReview.stars)
         }
+        // console.log('ghjkjhghjkjhjkjhjkjhjkjhjh', oneSpot)
+        if(oneSpot) {
+            // console.log('what is oneSpot', oneSpot)
+            setSpotName(oneSpot.name)
+        }
 
     }, [currReview])
+
 
 
     const handleSubmit = async (e) => {
@@ -59,7 +68,7 @@ const UpdateReviewForm = ({showModal, setShowModal}) => {
             <div className='realModalContent'>
             {/* <button className="cancelButton"><NavLink to={`/spots/${review.spotId}`}>X</NavLink></button> */}
             <button className="cancelButton" onClick={() => setShowModal(false)}>X</button>
-            <h3>Edit Your Review</h3>
+            <h3>Edit Your {spotName} Review</h3>
             <div className='LogInErrors'>
 
 

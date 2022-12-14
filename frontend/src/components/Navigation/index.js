@@ -15,7 +15,10 @@ function Navigation({ isLoaded }){
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
+      <>
       <ProfileButton user={sessionUser} />
+     
+      </>
 
     );
   } else {
@@ -74,21 +77,22 @@ function Navigation({ isLoaded }){
       </div>
       <div  className="dropdownNav">
       {/* id='rightNav' */}
-      {sessionUser && <button className='dropButtonNav' onClick={openMenu}>Switch to hosting</button>}
+      {sessionUser &&<div className={'cursor'} onClick={() => {setShowModal(true)}}>Abnb your home</div> }
+      {/* {sessionUser && <button className='dropButtonNav' onClick={openMenu}>Abnb your home</button>} */}
 
         {/* noBorder */}
-        {showMenu && (
+        {/* {showMenu && (
           <div className='dropdownContentNav2'>
           {/* <ul className='profile-dropdown' id='hostDropdown'> */}
-            <div>
+            {/* <div>
             <NavLink exact to="/spots/current">Your Homes</NavLink>
             </div>
             {/* <div>
             <NavLink exact to="/spots/create" id="navBar">List Your Home</NavLink>
             </div> */}
-            <div className={'cursor'} onClick={() => {setShowModal(true)}}>List Your Home</div>
-          </div>
-        )}
+            {/* <div className={'cursor'} onClick={() => {setShowModal(true)}}>List Your Home</div> */}
+          {/* </div> */}
+
         <button className='noBorder'onClick={nonFunctional}>
         <i className="material-symbols-outlined">language</i>
         </button>

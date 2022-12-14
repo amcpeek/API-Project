@@ -85,7 +85,7 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
         <div className="realModalContent">
         <button className="cancelButton" onClick={() => setShowModal(false)}>X</button>
         {/* <button className="cancelButton"><NavLink to={`/spots/${id}`}>X</NavLink></button> */}
-        <h3>Edit Your Home Listing</h3>
+        <h3>Edit Your Listing of {spot.name}</h3>
         <div className='LogInErrors'>
                 <ul className='ulNoBullets'>
                 {responseErrors.map(err => (
@@ -94,10 +94,11 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
                 </ul>
             </div>
             <form onSubmit={handleSubmit} className="CreateSpotForm">
-            <div>
-                    <div>
+                    <div className='labelForForm'>
                     Name
                     </div>
+            <div>
+
                  <input
                  type='text'
                  onChange={(e)=>setName(e.target.value)}
@@ -106,10 +107,11 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
                  name='name'
                 />
                 </div>
-                <div>
-                    <div>
+                <div className='labelForForm'>
                     Address
                     </div>
+                <div>
+
                 <input
                  type='text'
                  onChange={(e)=>setAddress(e.target.value)}
@@ -118,10 +120,11 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
                  name='address'
                 />
                 </div>
-                <div>
-                    <div>
+                <div className='labelForForm'>
                     City
                     </div>
+                <div>
+
                  <input
                  type='text'
                  onChange={(e)=>setCity(e.target.value)}
@@ -130,10 +133,11 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
                  name='city'
                 />
                 </div>
-                <div>
-                    <div>
+                <div className='labelForForm'>
                     State
                     </div>
+                <div>
+
                  <input
                  type='text'
                  onChange={(e)=>setState(e.target.value)}
@@ -142,10 +146,11 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
                  name='state'
                 />
                 </div>
-                <div>
-                    <div>
+                <div className='labelForForm'>
                     Country
                     </div>
+                <div>
+
                  <input
                  type='text'
                  onChange={(e)=>setCountry(e.target.value)}
@@ -154,36 +159,23 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
                  name='country'
                 />
                 </div>
-                 {/* <input
-                 type='number'
-                 placeholder='Latitude'
-                 value={lat}
-                 onChange={(e) => setLat(e.target.value)}
-                />
-                 <input
-                 type='number'
-                 placeholder='Longitude'
-                 value={lng}
-                 onChange={(e) => setLng(e.target.value)}
-                /> */}
-                <div>
+                <div className='labelForForm'>
                     Description
                 </div>
-                <div id="why">
-                    <div></div>
+                <div>
                 <textarea className="CreateSpotDescriptionBox"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     name='description'
-                    placeholder='Please write about your home here...'
+                    placeholder='Description'
                     rows='5'
                 ></textarea>
-                <div></div>
                 </div>
-                <div>
-                    <div>
+                <div className='labelForForm'>
                     Price
                     </div>
+                <div>
+
                 <input
                  type='number'
                  placeholder='Price'
@@ -192,8 +184,8 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
                  onChange={(e) => setPrice(e.target.value)}
                 />
                 </div>
-                <div id='suggestedImageUrl'>
-                    Suggested Image Url
+                <div className='labelForForm'>
+                    Suggested Additional Image Url
                 </div>
                 <div>
                  <input

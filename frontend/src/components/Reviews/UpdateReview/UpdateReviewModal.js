@@ -8,7 +8,12 @@ function UpdateReviewModal() {
 
   return (
     <>
-      <button className='deleteButton' onClick={() => setShowModal(true)}>Edit Review</button>
+      <button onClick={() => setShowModal(true)}>
+      <i className="material-symbols-outlined">
+           edit_note
+        </i>
+
+      </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <UpdateReviewForm  showModal={showModal} setShowModal={setShowModal} />

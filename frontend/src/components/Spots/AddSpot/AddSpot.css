@@ -47,6 +47,11 @@
 
 .CreateSpotForm div input {
     width: 500px;
+    height: 38px;
+    border: 1px solid rgb(164, 161, 161);
+    border-radius: 10px;
+    box-shadow:  1px 1px 2px 2px lightgrey;
+
 }
 
 .CreateSpotDescriptionBox {
@@ -55,6 +60,8 @@
     justify-content: flex-end;
     width: 500px;
     font-family: 'Poppins', sans-serif;
+    border-radius: 10px;
+    box-shadow:  1px 1px 2px 2px lightgrey;
 }
 
 .createButton {
@@ -103,8 +110,9 @@
 }
 
 
-.suggestedImageUrl {
-    font-size: 12px;
+.labelForForm {
+    font-size: 13px;
+    color: rgb(164, 161, 161);
 }
 
 .ulNoBullets {
