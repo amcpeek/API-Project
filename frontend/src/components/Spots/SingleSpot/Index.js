@@ -172,8 +172,8 @@ const SingleSpot = () => {
                     ))}
               </div>
           </div>
-          <div>
 
+          <div className="rightDiv">
           <div id="SingleSpotBooking">
               <div className='JCSpaceBetween'>
                 <div>
@@ -212,17 +212,21 @@ const SingleSpot = () => {
                 </div>
 
                </div>
-              <button onClick={nonFunctional} id="checkAvailabilityButton"> Check availability</button>
-              <div className="editDeleteButtons">
-                {currentUserId && matchingOwner&&<><UpdateSpotModal showModal={showModal} setShowModal={setShowModal}/></>}
-                {currentUserId && matchingOwner&& <button onClick={()=> {dispatch(removeSpot(singleSpot.id)); history.push('/') }}>Delete Home</button>}
-            </div>
+               <button onClick={nonFunctional} id="checkAvailabilityButton"> Check availability</button>
 
+               {currentUserId && matchingOwner&& (
+                 <div className="editDeleteButtons">
+                 <><UpdateSpotModal showModal={showModal} setShowModal={setShowModal}/></>
+                 <button onClick={()=> {dispatch(removeSpot(singleSpot.id)); history.push('/') }}>Delete Home</button>
+                </div>   )}
+
+
+          </div>
           </div>
 
 
 
-          </div>
+
 
         </div>
 

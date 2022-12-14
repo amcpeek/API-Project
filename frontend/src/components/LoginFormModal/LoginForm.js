@@ -15,11 +15,12 @@ function LoginForm({showLogInModal, setShowLogInModal}) {
     e.preventDefault();
     setErrors([]);
     return dispatch(sessionActions.login({ credential, password }))
+     .then( () =>setShowLogInModal(false))
      .catch( async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
-        setShowLogInModal(true)
-      }).then(setShowLogInModal(false))
+
+      })
   };
 
 
