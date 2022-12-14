@@ -6,7 +6,7 @@ import * as sessionActions from "../../store/session";
 import { NavLink } from "react-router-dom";
 import './SignupForm.css';
 
-function SignupFormPage({showModal, setShowModal}) {
+function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [firstName, setFirstName] = useState("")
@@ -27,7 +27,7 @@ function SignupFormPage({showModal, setShowModal}) {
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
-        });
+        }).then(() => {setShowSignUpModal(false)})
     }
     return setErrors(['Confirm Password field must be the same as the Password field']);
   };
@@ -37,7 +37,7 @@ function SignupFormPage({showModal, setShowModal}) {
     <div className="realModalOutside">
     <div className="realModalContent">
     <form onSubmit={handleSubmit} className="CreateSpotForm" >
-    <button className="cancelButton" onClick={() => setShowModal(false)}>X</button>
+    <button className="cancelButton" onClick={() => setShowSignUpModal(false)}>X</button>
       <div className='LogInErrors'>
         <ul className='ulNoBullets'>
         {errors.map((error, idx) => <li key={idx}>{error}</li>  )}

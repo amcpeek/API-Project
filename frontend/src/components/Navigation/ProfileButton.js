@@ -3,10 +3,20 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import { NavLink } from "react-router-dom";
+import LoginFormModal from '../LoginFormModal';
+import SignUpFormModal from '../SignUpFormModal'
+
+//should have 2 conditions:
+//1: login & signup
+//2: profile & log out
+
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+  //const [showModal, setShowModal] = useState(false);
+  const [showLogInModal, setShowLogInModal] = useState(false);
+  const [showSignUpModal, setShowSignUpModal] = useState(false);
 
   const openMenu = () => {
     if (showMenu) return;
@@ -20,7 +30,7 @@ function ProfileButton({ user }) {
       setShowMenu(false);
     };
 
-    document.addEventListener('click', closeMenu);
+     document.addEventListener('click', closeMenu);
 
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
@@ -37,16 +47,23 @@ function ProfileButton({ user }) {
       <i className="material-symbols-outlined">menu</i>
       <i className="material-symbols-outlined"> account_circle</i>
       </button>
-      {showMenu && (
+      {showMenu && user && (
         <div className="dropdownContentNav">
-          <div>{user.username}</div>
-          <div>{user.email}</div>
-          <div>
+          <button className='deleteButton'><NavLink exact to="/spots/current">View Your Profile</NavLink></button>
             <button className='deleteButton' onClick={logout}>Log Out</button>
-            <NavLink exact to="/spots/current">Your Homes</NavLink>
-          </div>
+        </div>
+      )}
+              <LoginFormModal showLogInModal={showLogInModal} setShowLogInModal={setShowLogInModal}/>
+             <SignUpFormModal showSignUpModal={showSignUpModal} setShowSignUpModal={setShowSignUpModal}/>
+      {showMenu && !user && (
+        <div className="dropdownContentNav">
+          {/* <div className={'cursor'} onClick={() => {setShowModal(true)}}>WTF</div> */}
+          <button className='dropButtonNav' onClick={() => setShowLogInModal(true)}>Log In</button>
+          <button className='dropButtonNav' onClick={() => setShowSignUpModal(true)}>Sign Up</button>
+
 
         </div>
+
       )}
     </div>
   );

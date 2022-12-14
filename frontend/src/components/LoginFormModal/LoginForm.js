@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 
 import './LoginForm.css'
 
-function LoginForm({showModal, setShowModal}) {
+function LoginForm({showLogInModal, setShowLogInModal}) {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
@@ -19,13 +19,13 @@ function LoginForm({showModal, setShowModal}) {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       }
-    );
+    ).then(() => {setShowLogInModal(false)})
   };
 
 
 
   const logInDemoUser = (e) => {
-    const credential = 'Demo-lition'
+    const credential = 'Annika'
     // const demoEmail = 'demo@user.io'
     const password = 'password'
     e.preventDefault();
@@ -35,14 +35,14 @@ function LoginForm({showModal, setShowModal}) {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       }
-    );
+    ).then(() => {setShowLogInModal(false)})
   }
  //className was LogInForm
   return (
     <div className="realModalOutside">
     <div className="realModalContent">
     <form onSubmit={handleSubmit} className="CreateSpotForm" >
-      <button className="cancelButton" onClick={() => setShowModal(false)}>X</button>
+      <button className="cancelButton" onClick={() => setShowLogInModal(false)}>X</button>
 
       <div>
       <label >

@@ -10,25 +10,22 @@ import './Navigation.css';
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
-  //const dispatch = useDispatch()
 
-  let sessionLinks;
-  if (sessionUser) {
-    sessionLinks = (
-      <>
-      <ProfileButton user={sessionUser} />
-     
-      </>
-
-    );
-  } else {
-    sessionLinks = (
-      <>
-        <LoginFormModal />
-        <SignUpFormModal />
-      </>
-    );
-  }
+  // let sessionLinks;
+  // if (sessionUser) {
+  //   sessionLinks = (
+  //     <>
+  //     <ProfileButton user={sessionUser} />
+  //     </>
+  //   );
+  // } else {
+  //   sessionLinks = (
+  //     <>
+  //       <LoginFormModal />
+  //       <SignUpFormModal />
+  //     </>
+  //   );
+  //}
 
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
@@ -64,8 +61,8 @@ function Navigation({ isLoaded }){
         bnb
         </button>
         </NavLink>
-
       </div>
+
       <div className='AroundCenterButton'>
         {/* <button>Anywhere</button>
         <button> Any week</button>
@@ -73,11 +70,13 @@ function Navigation({ isLoaded }){
         Add guest   <i className="material-symbols-outlined">search</i>
           </button> */}
         <button id="CenterButton" onClick={nonFunctional}>Anywhere | Any week | Add guest   <i className="material-symbols-outlined">search</i></button>
-
       </div>
+
+
       <div  className="dropdownNav">
       {/* id='rightNav' */}
       {sessionUser &&<div className={'cursor'} onClick={() => {setShowModal(true)}}>Abnb your home</div> }
+      <CreateSpotModal showModal={showModal} setShowModal={setShowModal}/>
       {/* {sessionUser && <button className='dropButtonNav' onClick={openMenu}>Abnb your home</button>} */}
 
         {/* noBorder */}
@@ -96,8 +95,10 @@ function Navigation({ isLoaded }){
         <button className='noBorder'onClick={nonFunctional}>
         <i className="material-symbols-outlined">language</i>
         </button>
-        <CreateSpotModal showModal={showModal} setShowModal={setShowModal}/>
-         {isLoaded && sessionLinks}
+
+         {isLoaded && (
+           <ProfileButton user={sessionUser} />
+         )}
       </div>
 
     </div>
