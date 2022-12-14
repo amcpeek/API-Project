@@ -166,6 +166,7 @@ const AddSpotForm = ({showModal, setShowModal}) => {
               value={url}
               placeholder='ImageUrl'
               name='imageUrl'
+              required
              />
              </div>
 

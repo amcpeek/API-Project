@@ -52,16 +52,16 @@ const SingleSpot = () => {
   }
 
   if(oneSpot && !oneSpot.SpotImages[1]) { let newSpot = oneSpot
-    newSpot.SpotImages.push({id: nanoid(), url: 'https://media.istockphoto.com/id/1267541412/photo/happy-puppy-dog-celebrating-christmas-with-a-red-santa-claus-hat-and-smiling-expression.jpg?s=612x612&w=0&k=20&c=-wBVGzelUHlNcqgHo6deincDocteKEI6UbkyEonP9jc='})
+    newSpot.SpotImages.push({id: nanoid(), url: 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-21426276/original/e73091e9-7ee0-4fa1-8d63-021be82b43b8.jpeg?im_w=720'})
   }
   if(oneSpot && !oneSpot.SpotImages[2]) { let newSpot = oneSpot
-    newSpot.SpotImages.push({id: nanoid(), url: 'https://nypost.com/wp-content/uploads/sites/2/2019/12/christmas-cat-costume.jpg?quality=75&strip=all' })
+    newSpot.SpotImages.push({id: nanoid(), url: 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-21426276/original/8455fd1e-a54a-4b05-b9c7-d72850b129e3.jpeg?im_w=1200' })
   }
   if(oneSpot && !oneSpot.SpotImages[3]) { let newSpot = oneSpot
-    newSpot.SpotImages.push({id: nanoid(), url: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/hedgehog-wearing-red-christmas-santa-hat-john-daniels.jpg' })
+    newSpot.SpotImages.push({id: nanoid(), url: 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-21426276/original/e5867a71-540f-4964-bff1-0582a3734552.jpeg?im_w=720' })
   }
   if(oneSpot && !oneSpot.SpotImages[4]) { let newSpot = oneSpot
-    newSpot.SpotImages.push({id: nanoid(), url: 'https://res.cloudinary.com/fleetnation/image/private/c_fit,w_1120/g_south,l_text:style_gothic2:%C2%A9%20Natasha%20Delaney,o_20,y_10/g_center,l_watermark4,o_25,y_50/v1510636701/o1kxriotfpvzuyptnofz.jpg'})
+    newSpot.SpotImages.push({id: nanoid(), url: 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-21426276/original/72707598-ec65-4e39-9b06-6ef4e0bb4e3e.jpeg?im_w=720'})
   }
 
   const currentUserId = useSelector(state=>{
@@ -89,6 +89,10 @@ const SingleSpot = () => {
 
     }
   })
+
+  const [newSrc, setNewSrc] = useState()
+  //'https://a0.muscache.com/im/pictures/prohost-api/Hosting-21426276/original/7cceab2c-f3f2-4ed6-86b4-79bb32746dc0.jpeg?im_w=1200'
+
 
 
 
@@ -119,6 +123,7 @@ const SingleSpot = () => {
         <div className='SingleSpotAllImages'>
         <div className='SingleSpotMainImage'>
         <img
+          // onError={()=>setSrc=()}
           src={singleSpot.SpotImages[0].url}
           alt={singleSpot.name}
         />

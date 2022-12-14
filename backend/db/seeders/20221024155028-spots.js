@@ -13,6 +13,7 @@ module.exports = {
     options.tableName = 'Spots'
      return queryInterface.bulkInsert(options, [
         {
+          //1
           ownerId: 1,
       address: '112 A St',
       city: 'Eclectic',
@@ -24,6 +25,7 @@ module.exports = {
       description: 'Home in Alabama on a lake, perfect for summer fun.',
       price: 310.00
       }, {
+        //2
         ownerId: 2,
         address: '101 A St',
         city: 'Valdez',
@@ -35,6 +37,7 @@ module.exports = {
         description: 'Home in Alaska surrounded by wild flowers and trees.',
         price: 270.00,
       }, {
+        //3
         ownerId: 3,
         address: '789 A St',
         city: 'Happy Jack',
@@ -46,6 +49,7 @@ module.exports = {
         description: 'Home in Arizona in the pine forest. Great place for a family vacation.',
         price: 220.00
       }, {
+        //4
         ownerId: 4,
         address: '123 A St',
         city: 'Morrilton',
@@ -57,6 +61,7 @@ module.exports = {
         description: 'Spacious home in Arkansas in a beautiful field with a view of the surrounding valley',
         price: 190.00
       }, {
+        //5
         ownerId: 5,
         address: '456 C St',
         city: 'Big Creek',
@@ -68,6 +73,7 @@ module.exports = {
         description: 'Cozy cabin in the woods. Great hiking near by.',
         price: 140.00
       }, {
+        //6
         ownerId: 1,
         address: '456 C St',
         city: 'Woodland Park',
@@ -79,6 +85,7 @@ module.exports = {
         description: 'Home in Colorado in the forest. A great getaway in any season.',
         price: 150.00
       }, {
+        //7
         ownerId: 2,
         address: '456 C St',
         city: 'East Hampton',
@@ -90,6 +97,7 @@ module.exports = {
         description: 'Home in Connecticut on a beautiful lake.',
         price: 280.00
       }, {
+        //8
         ownerId: 3,
         address: '456 O St',
         city: 'Mount Hood Village',
@@ -100,8 +108,153 @@ module.exports = {
         name: 'Oregon Home',
         description: 'Home in Oregon in the redwoods.',
         price: 360.00
-    }
+      }, {
+        //9
+        ownerId: 4,
+        address: '123 A st',
+        city: 'Sandpoint',
+        state: 'Idaho',
+        country: 'USA',
+        lat: 1,
+        lng: 1,
+        name: 'IdaHome',
+        description: 'Home in Idaho',
+        price: 475.00
+      }, {
+        //10
+        ownerId: 5,
+        address: '123 A st',
+        city: 'Livingston',
+        state: 'Montana',
+        country: 'USA',
+        lat: 1,
+        lng: 1,
+        name: 'Montana Home',
+        description: 'Home in Montana',
+        price: 580.00
+      }, {
+        //11
+        ownerId: 1,
+        address: '',
+        city: 'Buffalo',
+        state: 'Wyoming',
+        country: 'USA',
+        lat: 1,
+        lng: 1,
+        name: 'Wyoming Home',
+        description: 'Home in Wyoming',
+        price: 240.00
+      }, {
+        //12
+        ownerId: 2,
+        address: '123 A St',
+        city: 'Custer',
+        state: 'South Dakota',
+        country: 'USA',
+        lat: 1,
+        lng: 1,
+        name: 'South Dakota Home',
+        description: 'Home in South Dakota',
+        price: 310.00
+      }, {
 
+        //13
+        ownerId: 3,
+        address: '123 A St',
+        city: 'Fargo',
+        state: 'North Dakota',
+        country: 'USA',
+        lat: 1,
+        lng: 1,
+        name: 'North Dakota Home',
+        description: 'Home in North Dakota',
+        price: 190.00
+      }, {
+        //14
+        ownerId: 4,
+        address: '123 A St',
+        city: 'Brook Park',
+        state: 'Minnesota',
+        country: 'USA',
+        lat: 1,
+        lng: 1,
+        name: 'Minnesota Home',
+        description: 'Home in Minnesota',
+        price: 175.00
+      }, {
+        //15
+        ownerId: 5,
+        address: '123 A st',
+        city: 'Friendship',
+        state: 'Wisconsin',
+        country: 'USA',
+        lat: 1,
+        lng: 1,
+        name: 'Wisconsin Home',
+        description: 'Home in Wisconsin',
+        price: 260.00
+      }, {
+        //16
+        ownerId: 1,
+        address: '123 A St',
+        city: 'South Haven',
+        state: 'Michigan',
+        country: 'USA',
+        lat: 1,
+        lng: 1,
+        name: 'Michigan Home',
+        description: 'Home in Michigan ',
+        price: 110.00
+      }, {
+
+        //17
+        ownerId: 2,
+        address: '123 A St',
+        city: 'Seattle',
+        state: 'Washington',
+        country: 'USA',
+        lat: 1,
+        lng: 1,
+        name: 'Washington Home',
+        description: 'Home in Washington',
+        price: 530.00
+      }, {
+        //18
+        ownerId: 3,
+        address: '123 A St',
+        city: 'Holualoa',
+        state: 'Hawaii',
+        country: 'USA',
+        lat: 1,
+        lng: 1,
+        name: 'Hawaiian Home',
+        description: 'Home in Hawaii',
+        price: 270.00
+      }, {
+        //19
+        ownerId: 4,
+        address: '123 A St',
+        city: 'Bethany Beach',
+        state: 'Delaware',
+        country: 'USA',
+        lat: 1,
+        lng: 1,
+        name: 'Delaware Home',
+        description: 'Home in Delaware',
+        price:  350.00
+      }, {
+        //20
+        ownerId: 5,
+        address: '123 A St',
+        city: 'Hernando Beach',
+        state: 'Florida',
+        country: 'USA',
+        lat: 1,
+        lng: 1,
+        name: 'Florida Home',
+        description: 'Home in Florida',
+        price: 190.00
+    }
     ], {});
   },
 

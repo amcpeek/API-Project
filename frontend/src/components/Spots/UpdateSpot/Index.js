@@ -200,6 +200,7 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
                  value={url}
                  placeholder='ImageUrl'
                  name='imageUrl'
+                 required
                 />
                 </div>
                 {/* <div className="wholePreviewImage">
