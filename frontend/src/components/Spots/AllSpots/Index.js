@@ -43,9 +43,11 @@ const AllSpots = () => {
             <button onClick={nonFunctional}>
             <i className="material-symbols-outlined">local_fire_department</i>Trending</button>
             <button onClick={nonFunctional}>
-            <i className="material-symbols-outlined">accessible_forward</i>Adapted</button>
-            <button onClick={nonFunctional}>
             <i className="material-symbols-outlined">sports_tennis</i>Play</button>
+
+
+            <button onClick={nonFunctional}>
+            <i className="material-symbols-outlined">beach_access</i>Beachfront</button>
             <button onClick={nonFunctional}>
             <i className="material-symbols-outlined">downhill_skiing</i>Skiing</button>
             <button onClick={nonFunctional}>
@@ -57,7 +59,9 @@ const AllSpots = () => {
             <button onClick={nonFunctional}>
             <i className="material-symbols-outlined">castle</i>Castles</button>
             <button onClick={nonFunctional}>
-            <i className="material-symbols-outlined">beach_access</i>Beachfront</button>
+            <i className="material-symbols-outlined">accessible_forward</i>Adapted</button>
+
+
             <button onClick={nonFunctional}>
             <i className="material-symbols-outlined">forest</i>Treehouses</button>
             <button onClick={nonFunctional}>
@@ -81,8 +85,6 @@ const AllSpots = () => {
                                 </div>
 
                                 </div>
-
-
                       <div className='greyText'>{name}</div>
                       <div className='greyText'>Apr 3-8</div>
                       <div className='justNextToEachOther'> <div className='bold'>${price}</div>  night</div>

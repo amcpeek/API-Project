@@ -49,8 +49,8 @@ function ProfileButton({ user }) {
       </button>
       {showMenu && user && (
         <div className="dropdownContentNav">
-          <button className='deleteButton'><NavLink exact to="/spots/current">View Your Profile</NavLink></button>
-            <button className='deleteButton' onClick={logout}>Log Out</button>
+          <button className='dropDownNavButtons roundTopFields'><NavLink exact to="/spots/current">View Your Profile</NavLink></button>
+            <button className='dropDownNavButtons roundBottomFields' onClick={logout}>Log Out</button>
         </div>
       )}
               <LoginFormModal showLogInModal={showLogInModal} setShowLogInModal={setShowLogInModal}/>
@@ -58,8 +58,8 @@ function ProfileButton({ user }) {
       {showMenu && !user && (
         <div className="dropdownContentNav">
           {/* <div className={'cursor'} onClick={() => {setShowModal(true)}}>WTF</div> */}
-          <button className='dropButtonNav' onClick={() => setShowLogInModal(true)}>Log In</button>
-          <button className='dropButtonNav' onClick={() => setShowSignUpModal(true)}>Sign Up</button>
+          <button className='dropDownNavButtons roundTopFields' onClick={() => setShowLogInModal(true)}>Log In</button>
+          <button className='dropDownNavButtons roundBottomFields' onClick={() => setShowSignUpModal(true)}>Sign Up</button>
 
 
         </div>

@@ -53,7 +53,7 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    <div id="wholeNav">
+    <div className="wholeNav">
       <div id="HomeNavId">
       <NavLink exact to="/">
         <button id="HomeButton" className='noBorder'>
@@ -74,6 +74,7 @@ function Navigation({ isLoaded }){
 
 
       <div  className="dropdownNav">
+        <div className='insideRightNav'>
       {/* id='rightNav' */}
       {sessionUser &&<div className={'cursor'} onClick={() => {setShowModal(true)}}>Abnb your home</div> }
       <CreateSpotModal showModal={showModal} setShowModal={setShowModal}/>
@@ -99,6 +100,7 @@ function Navigation({ isLoaded }){
          {isLoaded && (
            <ProfileButton user={sessionUser} />
          )}
+         </div>
       </div>
 
     </div>
