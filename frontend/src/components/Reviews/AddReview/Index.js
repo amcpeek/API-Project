@@ -41,6 +41,8 @@ const AddReviewForm = ({spots, showModal, setShowModal}) => {
     return (
         <div className='realModalOutside'>
             <div className='realModalContent'>
+            <div className='outerFormTop'>
+            <div className='formTop'>
                  <button className="cancelButton" onClick={() => setShowModal(false)}>X</button>
                  <h3>{oneSpot.name} Review </h3>
 
@@ -51,12 +53,14 @@ const AddReviewForm = ({spots, showModal, setShowModal}) => {
                 ))}
                 </ul>
             </div>
+            </div>
+             </div>
             {/* <button className="cancelButton"><NavLink to={`/spots/${id}`}>X</NavLink></button> */}
 
                 <form onSubmit={handleSubmit} className="CreateSpotForm">
                 <div>
                 <textarea
-                    className="CreateSpotDescriptionBox"
+                    className="CreateSpotDescriptionBox roundTopFields"
                     value={review}
                     onChange={(e) => setReview(e.target.value)}
                     name='review'
@@ -67,6 +71,7 @@ const AddReviewForm = ({spots, showModal, setShowModal}) => {
                 <div>
 
                 <input
+                 className='roundBottomFields'
                  type='number'
                  placeholder='Stars'
                  min='1'

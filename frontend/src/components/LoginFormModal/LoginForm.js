@@ -14,12 +14,12 @@ function LoginForm({showLogInModal, setShowLogInModal}) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ credential, password })).catch(
-      async (res) => {
+    return dispatch(sessionActions.login({ credential, password }))
+     .catch( async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
-      }
-    ).then(() => {setShowLogInModal(false)})
+        setShowLogInModal(true)
+      }).then(setShowLogInModal(false))
   };
 
 
@@ -41,12 +41,24 @@ function LoginForm({showLogInModal, setShowLogInModal}) {
   return (
     <div className="realModalOutside">
     <div className="realModalContent">
+    <div className='outerFormTop'>
+    <div className='formTop'>
+    <button className="cancelButton" onClick={() => setShowLogInModal(false)}>X</button>
+    <div className='LogInErrors'>
+        {errors.map((error, idx) => (
+          <div key={idx}>{error}</div>
+        ))}
+      </div>
+
+    </div>
+    </div>
     <form onSubmit={handleSubmit} className="CreateSpotForm" >
-      <button className="cancelButton" onClick={() => setShowLogInModal(false)}>X</button>
+
 
       <div>
       <label >
         <input
+          className='roundTopFields'
           placeholder="Username or Email"
           type="text"
           value={credential}
@@ -58,6 +70,7 @@ function LoginForm({showLogInModal, setShowLogInModal}) {
       <div>
       <label>
         <input
+          className='roundBottomFields'
           placeholder="password"
           type="password"
           value={password}
@@ -72,11 +85,7 @@ function LoginForm({showLogInModal, setShowLogInModal}) {
       <div>
         <button className='createButton' onClick={logInDemoUser}>Login as Demo User</button>
       </div>
-      <div className='LogInErrors'>
-        {errors.map((error, idx) => (
-          <div key={idx}>{error}</div>
-        ))}
-      </div>
+
     </form>
     </div>
     </div>

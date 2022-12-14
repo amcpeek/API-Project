@@ -36,16 +36,24 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
     // <div className ="SignUpPage">
     <div className="realModalOutside">
     <div className="realModalContent">
-    <form onSubmit={handleSubmit} className="CreateSpotForm" >
+    <div className='outerFormTop'>
+    <div className='formTop'>
     <button className="cancelButton" onClick={() => setShowSignUpModal(false)}>X</button>
       <div className='LogInErrors'>
         <ul className='ulNoBullets'>
         {errors.map((error, idx) => <li key={idx}>{error}</li>  )}
         </ul>
       </div>
+
+    </div>
+    </div>
+
+    <form onSubmit={handleSubmit} className="CreateSpotForm" >
+
       <div>
       <label>
         <input
+          className="roundTopFields"
           placeholder="First Name"
           type="text"
           value={firstName}
@@ -101,6 +109,7 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
       <div>
       <label>
         <input
+          className='roundBottomFields'
           placeholder="Confirm Password"
           type="password"
           value={confirmPassword}

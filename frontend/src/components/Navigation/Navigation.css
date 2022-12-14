@@ -9,13 +9,13 @@ html {
     /* font-family: 'Poppins', sans-serif; */
     /* font-family: Arial, Helvetica, sans-serif; */
     font-family: 'Poppins', sans-serif;
-
-
 }
 
 li {
     font-size: 20px;
 }
+
+
 
 .wholeNav {
     position: fixed;
@@ -138,6 +138,9 @@ background: none;
     border-bottom-right-radius: 10px;
  }
 
+ .roundAllFields > div > input {
+    border-radius: 10px;;
+ }
 
  .insideRightNav {
     display: flex;

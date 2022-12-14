@@ -83,6 +83,8 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
     return (
         <div className="realModalOutside">
         <div className="realModalContent">
+        <div className='outerFormTop'>
+        <div className='formTop'>
         <button className="cancelButton" onClick={() => setShowModal(false)}>X</button>
         {/* <button className="cancelButton"><NavLink to={`/spots/${id}`}>X</NavLink></button> */}
         <h3>Edit Your Listing of {spot.name}</h3>
@@ -93,7 +95,9 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
                 ))}
                 </ul>
             </div>
-            <form onSubmit={handleSubmit} className="CreateSpotForm">
+            </div>
+            </div>
+            <form onSubmit={handleSubmit} className="CreateSpotForm roundAllFields">
                     <div className='labelForForm'>
                     Name
                     </div>
@@ -162,8 +166,10 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
                 <div className='labelForForm'>
                     Description
                 </div>
-                <div>
-                <textarea className="CreateSpotDescriptionBox"
+                <div >
+                <textarea
+                    className="CreateSpotDescriptionBox2"
+
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     name='description'

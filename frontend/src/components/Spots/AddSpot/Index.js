@@ -59,6 +59,8 @@ const AddSpotForm = ({showModal, setShowModal}) => {
             <div className="realModalOutside">
             <div className="realModalContent">
             <>
+            <div className='outerFormTop'>
+            <div className='formTop'>
               <button className="cancelButton" onClick={() => setShowModal(false)}>X</button>
               <h3>Describe Your Home</h3>
              <div className='LogInErrors'>
@@ -67,11 +69,13 @@ const AddSpotForm = ({showModal, setShowModal}) => {
                  <li key={err}>{err}</li>
              ))}
              </ul>
+             </div>
+             </div>
          </div>
 
          <form onSubmit={handleSubmit} className="CreateSpotForm" >
              <div>
-              <input
+              <input className='roundTopFields'
               type='text'
               onChange={(e)=>setName(e.target.value)}
               value={name}
@@ -140,6 +144,7 @@ const AddSpotForm = ({showModal, setShowModal}) => {
              </div>
              <div>
              <input
+              className='roundBottomFields'
               type='number'
               placeholder='Price'
               min='1'
@@ -148,11 +153,14 @@ const AddSpotForm = ({showModal, setShowModal}) => {
               required
              />
              </div>
+             <div className='flexStart'>
              <div className='labelForForm'>
                  Suggested Image Url
              </div>
+             </div>
              <div>
               <input
+              className='roundTopFields roundBottomFields'
               type='text'
               onChange={(e)=>setUrl(e.target.value)}
               value={url}
