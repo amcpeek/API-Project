@@ -89,7 +89,8 @@ router.get('/', async (req, res, next) => {
         for (let spot of allSpots) {
             let newVar = spot.toJSON()
             const avgRating = await Review.findAll({
-                attributes: [[sequelize.fn('AVG', sequelize.col('stars')),'avgRating']],
+                // attributes: [[sequelize.fn('AVG', sequelize.col('stars')),'avgRating']],
+                attributes: [[sequelize.fn('ROUND', sequelize.fn('AVG', sequelize.col('stars')),1),'avgRating']],
                 where: {spotId : spot.id},
                 raw: true
             })

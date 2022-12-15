@@ -39,3 +39,13 @@
     /* top: 200px; */
     z-index: 1;
  }
+
+ .CurrentOwnersReviews {
+    display: flex;
+    justify-content: center;
+ }
+
+ .CurrentOwnersReviews > div {
+    width: 320px;
+    margin: 20px;
+ }

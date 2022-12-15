@@ -3,13 +3,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import {  NavLink } from 'react-router-dom';
 import { getSpots, getCurrentOwnersSpots } from '../../../store/spot'
 import './CurrentOwnersSpots.css'
+import { getUsersReviews, removeReview } from '../../../store/review';
+import UpdateReviewModal from '../../Reviews/UpdateReview/UpdateReviewModal'
+import { useHistory } from 'react-router-dom';
 
 const CurrentOwnersSpots = () => {
     const dispatch = useDispatch();
+    const history = useHistory()
 
     useEffect(() => {
       dispatch(getCurrentOwnersSpots());
     }, []);
+
+    useEffect(() => {
+      dispatch(getUsersReviews());
+    }, []);
+
+
 
 
     const ownersSpots = useSelector(state => {
@@ -20,6 +30,25 @@ const CurrentOwnersSpots = () => {
       }
     })
 
+
+    const usersReviews = useSelector(state => {
+      if(state.reviews.currentUsersReviews) {
+        return Object.values(state.reviews.currentUsersReviews)
+      } else {
+        return []
+      }
+    })
+
+    usersReviews.map((review) => {
+      console.log('can I see a single review', review.avgRating)
+
+    })
+
+    const handleRemoveReview = (reviewId) => {
+      console.log('what is review id', reviewId)
+      dispatch(removeReview(reviewId))
+      history.go(0)
+    }
 
 
     return (
@@ -50,23 +79,29 @@ const CurrentOwnersSpots = () => {
                 ))}
         </div>
 
-             {/* <div className="CurrentOwnersReviews">
-                      <h3>Reviews</h3>
-                    {allReviews.map((review) => (
-                      <div key={review.id}>
+        <h2 className='currentOwnersTitle'>Your Reviews</h2>
+
+
+
+             <div className="CurrentOwnersReviews">
+
+
+                    {usersReviews && usersReviews.map((review) => (
+                      <div  key={review.id}>
                               <div className="SingleSpotReviewBox" key={review.id}>
                                     <div><i className="material-symbols-outlined">star </i> {review.stars} stars</div>
-                                    <div> <i className="material-symbols-outlined">face</i> {review.User.firstName} </div>
+                                    <div> <i className="material-symbols-outlined">face</i> </div>
                                     <p>{review.review}</p>
-                                    {review.userId === currentUserId &&  <><UpdateReviewModal/></>}
-                                    {review.userId === currentUserId && <button onClick={()=> handleRemoveReview(review.id) }>
+
+                                    {<><UpdateReviewModal/></>}
+                                    {<button onClick={()=> handleRemoveReview(review.id) }>
                                       <i className="material-symbols-outlined">
                                         delete
                                         </i></button>}
                               </div>
                       </div>
                     ))}
-              </div> */}
+              </div>
       </div>
     );
 }

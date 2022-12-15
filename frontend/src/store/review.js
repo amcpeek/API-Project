@@ -49,6 +49,14 @@ export const clearSpotReviewsStoreAction = () => {
     }
 }
 
+export const getUsersReviewsAction = (userReviews) => {
+    return {
+        type: GET_CURRENT_USERS_REVIEWS,
+        userReviews
+    }
+
+}
+
 /* -- thunk action creators -- */
 export const getSpotReviews = (spotId) => async dispatch => {
     const response = await fetch(`/api/spots/${spotId}/reviews`)
@@ -91,6 +99,14 @@ export const updateSpotReview = (review, reviewId) => async dispatch => {
     return response
 }
 
+
+export const getUsersReviews = (userId) => async dispatch => {
+    const response = await fetch(`/api/reviews/current`)
+    if(response.ok) {
+        const allUserReviews = await response.json()
+        dispatch(getUsersReviewsAction(allUserReviews))
+    }
+}
 
 
 export const removeReview = (reviewId) => async dispatch => {
@@ -145,6 +161,16 @@ export default function reviewsReducer (state = {}, action) {
             const newState = {...state}
             delete newState[action.reviewId]
             return newState
+        case GET_CURRENT_USERS_REVIEWS:
+            console.log('aksdhjf alksdjfalkshdjfghfjghnrfiunjk re4rvdfiuhrnejkviu')
+            const usersReviews = {}
+            action.userReviews.Reviews.forEach(review => {
+                usersReviews[review.id] = review
+            })
+            return {
+                ...state,
+                ['currentUsersReviews']:usersReviews
+            }
 
 
 
