@@ -57,7 +57,7 @@ function Navigation({ isLoaded }){
       <div id="HomeNavId">
       <NavLink exact to="/">
         <button id="HomeButton" className='noBorder'>
-         <img src={'/favicon-32x32.png'} />
+         <img src={'/FamilyLogo32x32.png'} />
         bnb
         </button>
         </NavLink>
