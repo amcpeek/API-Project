@@ -21,7 +21,11 @@ const SingleSpot = () => {
   const [showModal, setShowModal] = useState(false);
 
   const oneSpot = useSelector(state=>{return state.oneSpot[id]})
-   const allReviews = useSelector(state => { return Object.values(state.reviews)})
+   let allReviews = useSelector(state => { return Object.values(state.reviews)})
+   if(allReviews) {
+    const reviewMatchesSpot =  allReviews.find(review => review.spotId == id)
+      if(! reviewMatchesSpot) allReviews = []
+      }
 
   const findSpotTest = async (e) => {
     const returnSpot = await dispatch(getOneSpot(id))
