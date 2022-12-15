@@ -21,7 +21,7 @@ const SingleSpot = () => {
   const [showModal, setShowModal] = useState(false);
 
   const oneSpot = useSelector(state=>{return state.oneSpot[id]})
-  const allReviews = useSelector(state => {  return Object.values(state.reviews)})
+   const allReviews = useSelector(state => { return Object.values(state.reviews)})
 
   const findSpotTest = async (e) => {
     const returnSpot = await dispatch(getOneSpot(id))
@@ -38,7 +38,7 @@ const SingleSpot = () => {
   useEffect(() => {
      dispatch(getSpotReviews(id))
      return () => dispatch(clearSpotReviewsStoreAction())
-  }, [dispatch])
+  }, [oneSpot])
 
   const handleRemoveReview = (reviewId) => {
     console.log('what is review id', reviewId)
@@ -81,14 +81,18 @@ const SingleSpot = () => {
 
   //for matching owner of review
   const [ matchingReviewer, setMatchingReviewer ] = useState(false)
-  useEffect(() => {
-    if(allReviews) {
-    //  setMatchingReviewer(allReviews)
-    //if currentUserId ===
-    //currentReview.
+  // useEffect(() => {
+  //   if(allReviews) {
+  //   //  setMatchingReviewer(allReviews)
+  //   //if currentUserId ===
+  //   //currentReview.
+  //   const newThing = allReviews[0]
+  //   console.log('WHAT IS ALL REVIEWS', newThing)
 
-    }
-  }, [allReviews])
+  //   }
+  // }, [allReviews[0]])
+  // review.User.firstName
+  //allReviews[0].User.firstName
 
   const [newSrc, setNewSrc] = useState()
   //'https://a0.muscache.com/im/pictures/prohost-api/Hosting-21426276/original/7cceab2c-f3f2-4ed6-86b4-79bb32746dc0.jpeg?im_w=1200'
@@ -163,7 +167,7 @@ const SingleSpot = () => {
                       <div key={review.id}>
                               <div className="SingleSpotReviewBox" key={review.id}>
                                     <div><i className="material-symbols-outlined">star </i> {review.stars} stars</div>
-                                    <div> <i className="material-symbols-outlined">face</i> {review.User.firstName} </div>
+                                    <div> <i className="material-symbols-outlined">face</i> {review.User && review.User.firstName} </div>
                                     <p>{review.review}</p>
                                     {/* <p>ReviewId: {review.id} SpotId: {id} AuthorId: {review.userId} ViewerId: {currentUserId}</p> */}
                                     {/* <NavLink to={`/reviews/${review.id}/${id}`}>Edit Review</NavLink> */}
