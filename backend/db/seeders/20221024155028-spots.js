@@ -14,7 +14,7 @@ module.exports = {
      return queryInterface.bulkInsert(options, [
         {
           //1
-          ownerId: 1,
+      ownerId: 1,
       address: '112 A St',
       city: 'Eclectic',
       state: 'Alabama',

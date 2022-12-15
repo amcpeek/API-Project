@@ -88,7 +88,7 @@ const SingleSpot = () => {
     //currentReview.
 
     }
-  })
+  }, [allReviews])
 
   const [newSrc, setNewSrc] = useState()
   //'https://a0.muscache.com/im/pictures/prohost-api/Hosting-21426276/original/7cceab2c-f3f2-4ed6-86b4-79bb32746dc0.jpeg?im_w=1200'
