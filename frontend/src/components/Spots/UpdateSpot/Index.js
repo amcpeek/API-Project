@@ -1,28 +1,25 @@
 import { useState, useEffect } from 'react'
-import { useParams, NavLink, Redirect } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateSpot, getSpots } from '../../../store/spot'
 import { getOneSpot } from '../../../store/oneSpot'
 import { addSpotImage } from '../../../store/spot'
-import { useHistory } from 'react-router-dom'
 //import './AddSpot.css'
 
 const UpdateSpotForm = ({showModal, setShowModal}) => {
     const { id } = useParams()
     const dispatch = useDispatch()
-    const history = useHistory()
-
    const [address, setAddress] = useState('')
    const [city, setCity] = useState('')
    const [state, setState] = useState('')
    const [country, setCountry] = useState('')
-   const [lat, setLat] = useState(0)
-   const [lng, setLng] = useState(0)
+//    const [lat, setLat] = useState(0)
+//    const [lng, setLng] = useState(0)
    const [name, setName] = useState('')
    const [description, setDescription] = useState('')
    const [price, setPrice] = useState(0)
    const [url, setUrl] = useState('')
-   const [preview, setPreview] = useState(false)
+//    const [preview, setPreview] = useState(false)
    const [responseErrors, setResponseErrors] = useState([])
 
    useEffect(() => {
@@ -41,13 +38,13 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
         setCity(spot.city)
         setState(spot.state)
         setCountry(spot.country)
-        setLat(spot.lat)
-        setLng(spot.lng)
+        // setLat(spot.lat)
+        // setLng(spot.lng)
         setName(spot.name)
         setDescription(spot.description)
         setPrice(spot.price)
         setUrl(spot.url || 'https://i.pinimg.com/originals/2a/43/d6/2a43d625d02deb3c0b1179eac7f2256e.jpg')
-        setPreview(false)
+        // setPreview(false)
     }
    }, [spot]) //not sure if this is the right place to listen to, if the spot level isn't changing
 

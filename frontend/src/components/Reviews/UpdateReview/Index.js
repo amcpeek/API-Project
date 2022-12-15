@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { updateSpotReview, getSpotReviews } from '../../../store/review'
-import { useHistory } from 'react-router-dom'
+
 
 const UpdateReviewForm = ({showModal, setShowModal}) => {
     const [review, setReview] = useState('')
     const [stars, setStars] = useState(0)
     const [spotName, setSpotName] = useState('')
-    //const history = useHistory()
     const [responseErrors, setResponseErrors] = useState([])
 
     const { id } = useParams() //cant do this anymore, only getting spot id, but can get user id
@@ -19,7 +18,7 @@ const UpdateReviewForm = ({showModal, setShowModal}) => {
 
     useEffect(() => {
         dispatch(getSpotReviews(id))
-    }, [dispatch])
+    }, [dispatch, id])
 
     const oneSpot = useSelector(state=>{return state.oneSpot[id]})
     const allReviews = useSelector(state => {return Object.values(state.reviews)}) //not best practice to put ob.values inside, shoudl be outside
@@ -28,7 +27,7 @@ const UpdateReviewForm = ({showModal, setShowModal}) => {
         if(state.session.user) {return state.session.user.id}
         else {return ''}
       })
-    const currReview = allReviews.find(review => review.userId == currentUserId)
+    const currReview = allReviews.find(review => review.userId === currentUserId)
 
     useEffect(() => {
         if(currReview) {
@@ -41,7 +40,7 @@ const UpdateReviewForm = ({showModal, setShowModal}) => {
             setSpotName(oneSpot.name)
         }
 
-    }, [currReview])
+    }, [currReview, oneSpot])
 
 
 

@@ -189,7 +189,7 @@ export default function spotsReducer (state = {}, action) {
             }
         case CLEAR_SPOTS:
             return {}
-            case ADD_SPOT_IMAGE:
+        // case ADD_SPOT_IMAGE: //not in use, just retrieved from the backend
 
         default:
             return state

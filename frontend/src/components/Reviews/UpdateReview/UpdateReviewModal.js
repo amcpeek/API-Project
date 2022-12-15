@@ -4,7 +4,6 @@ import UpdateReviewForm from './Index'
 
 function UpdateReviewModal() {
   const [showModal, setShowModal] = useState(false);
-{/* <Modal onClose={() => setShowModal(false)}> */}
 
   return (
     <>

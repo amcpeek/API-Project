@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {  NavLink } from 'react-router-dom';
-import { getSpots, getCurrentOwnersSpots } from '../../../store/spot'
+import {  getCurrentOwnersSpots } from '../../../store/spot'
 import './CurrentOwnersSpots.css'
 import { getUsersReviews, removeReview } from '../../../store/review';
 import UpdateReviewModal from '../../Reviews/UpdateReview/UpdateReviewModal'
@@ -13,14 +13,11 @@ const CurrentOwnersSpots = () => {
 
     useEffect(() => {
       dispatch(getCurrentOwnersSpots());
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
       dispatch(getUsersReviews());
-    }, []);
-
-
-
+    }, [dispatch]);
 
     const ownersSpots = useSelector(state => {
       if(state.spots.currentOwnersSpots) {
@@ -39,10 +36,10 @@ const CurrentOwnersSpots = () => {
       }
     })
 
-    usersReviews.map((review) => {
-      console.log('can I see a single review', review.avgRating)
+    // usersReviews.map((review) => {
+    //   console.log('can I see a single review', review.avgRating)
 
-    })
+    // })
 
     const handleRemoveReview = (reviewId) => {
       console.log('what is review id', reviewId)

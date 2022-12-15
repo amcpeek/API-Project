@@ -1,14 +1,12 @@
-import { Redirect, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
-import {  NavLink, Route } from 'react-router-dom';
 import './SingleSpot.css'
 import { removeSpot } from '../../../store/spot';
-import { getOneSpot, clearOneSpotAction } from '../../../store/oneSpot';
+import { getOneSpot } from '../../../store/oneSpot';
 import { useEffect, useState } from 'react';
-import { getSpotReviews, clearSpotReviewsStoreAction, removeReview, updateSpotReview } from '../../../store/review'
+import { getSpotReviews, removeReview} from '../../../store/review'
 import { useHistory } from 'react-router-dom';
 import { nanoid } from 'nanoid'
-import PageNotFound from '../../PageNotFound/Index';
 import UpdateSpotModal from '../UpdateSpot/UpdateSpotModal';
 import AddReviewModal from '../../Reviews/AddReview/AddReviewModal';
 import UpdateReviewModal from '../../Reviews/UpdateReview/UpdateReviewModal';
@@ -19,15 +17,16 @@ const SingleSpot = () => {
   const history = useHistory()
   const [ guestNum, setGuestsNum] = useState(1)
   const [showModal, setShowModal] = useState(false);
+  // const [newSrc, setNewSrc] = useState('https://a0.muscache.com/im/pictures/prohost-api/Hosting-21426276/original/7cceab2c-f3f2-4ed6-86b4-79bb32746dc0.jpeg?im_w=1200')
 
   const oneSpot = useSelector(state=>{return state.oneSpot[id]})
    let allReviews = useSelector(state => { return Object.values(state.reviews)})
    if(allReviews) {
-    const reviewMatchesSpot =  allReviews.find(review => review.spotId == id)
+    const reviewMatchesSpot =  allReviews.find(review => review.spotId === +id)
       if(! reviewMatchesSpot) allReviews = []
       }
 
-  const findSpotTest = async (e) => {
+  const findSpotTest = async () => {
     const returnSpot = await dispatch(getOneSpot(id))
     if(!returnSpot) {
       history.push('/page-not-found')
@@ -42,7 +41,7 @@ const SingleSpot = () => {
   useEffect(() => {
      dispatch(getSpotReviews(id))
     //  return () => dispatch(clearSpotReviewsStoreAction())
-  }, [dispatch])
+  }, [dispatch, id])
 
   const handleRemoveReview = (reviewId) => {
     console.log('what is review id', reviewId)
@@ -81,28 +80,7 @@ const SingleSpot = () => {
     //  console.log('one spot', oneSpot)
       setMatchingOwner(currentUserId === oneSpot.ownerId)
     }
-  },[oneSpot])
-
-  //for matching owner of review
-  const [ matchingReviewer, setMatchingReviewer ] = useState(false)
-  // useEffect(() => {
-  //   if(allReviews) {
-  //   //  setMatchingReviewer(allReviews)
-  //   //if currentUserId ===
-  //   //currentReview.
-  //   const newThing = allReviews[0]
-  //   console.log('WHAT IS ALL REVIEWS', newThing)
-
-  //   }
-  // }, [allReviews[0]])
-  // review.User.firstName
-  //allReviews[0].User.firstName
-
-  const [newSrc, setNewSrc] = useState()
-  //'https://a0.muscache.com/im/pictures/prohost-api/Hosting-21426276/original/7cceab2c-f3f2-4ed6-86b4-79bb32746dc0.jpeg?im_w=1200'
-
-
-
+  },[oneSpot, currentUserId])
 
     if(oneSpot) {
       const singleSpot = oneSpot
@@ -130,10 +108,11 @@ const SingleSpot = () => {
 
         <div className='SingleSpotAllImages'>
         <div className='SingleSpotMainImage'>
+          {}
         <img
-          // onError={()=>setSrc=()}
           src={singleSpot.SpotImages[0].url}
           alt={singleSpot.name}
+          // onError={()=>newSrc}
         />
         </div>
         <div className='SingleSpotFourImages'>

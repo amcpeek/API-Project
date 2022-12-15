@@ -1,15 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { addSpotReview, getSpotReviews } from '../../../store/review'
-import { useHistory } from 'react-router-dom'
-import { getOneSpot } from '../../../store/oneSpot'
 
-const AddReviewForm = ({spots, showModal, setShowModal}) => {
+const AddReviewForm = ({setShowModal}) => {
     const [review, setReview] = useState('')
     const [stars, setStars] = useState('')
-    const [spotName, setSpotName] = useState('')
-    //const history = useHistory()
     const [responseErrors, setResponseErrors] = useState([])
 
     const { id } = useParams()
@@ -80,7 +76,7 @@ const AddReviewForm = ({spots, showModal, setShowModal}) => {
                  onChange={(e) => setStars(e.target.value)}
                 />
                 </div>
-                <button type='submit' className="createButton" >{spotName} Review</button>
+                <button type='submit' className="createButton" >Review</button>
 
 
                 </form>

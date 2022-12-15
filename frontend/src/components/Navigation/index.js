@@ -1,10 +1,8 @@
 // frontend/src/components/Navigation/index.js
 import React, {useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
-import LoginFormModal from '../LoginFormModal';
-import SignUpFormModal from '../SignUpFormModal'
 import CreateSpotModal from '../Spots/AddSpot/CreateSpotModal'
 import './Navigation.css';
 
@@ -27,14 +25,14 @@ function Navigation({ isLoaded }){
   //   );
   //}
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
-  };
+  // const openMenu = () => {
+  //   if (showMenu) return;
+  //   setShowMenu(true);
+  // };
 
   useEffect(() => {
     if (!showMenu) return;
@@ -57,7 +55,7 @@ function Navigation({ isLoaded }){
       <div id="HomeNavId">
       <NavLink exact to="/">
         <button id="HomeButton" className='noBorder'>
-         <img src={'/FamilyLogo32x32.png'} />
+         <img src={'/FamilyLogo32x32.png'} alt={'HomeButton'}/>
         bnb
         </button>
         </NavLink>

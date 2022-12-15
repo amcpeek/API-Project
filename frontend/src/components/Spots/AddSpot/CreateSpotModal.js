@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Modal } from '../../../context/Modal'
 import AddSpotForm from './Index';
 
 function CreateSpotModal({showModal, setShowModal}) {
-//   const [showModal, setShowModal] = useState(false);
-{/* <Modal onClose={() => setShowModal(false)}> */}
+
 
   return (
     <>

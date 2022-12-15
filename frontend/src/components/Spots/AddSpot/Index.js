@@ -1,25 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addSpot } from '../../../store/spot'
 import { addSpotImage } from '../../../store/spot'
 import { getOneSpot } from '../../../store/oneSpot'
 import './AddSpot.css'
-import { NavLink, Redirect } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
-// import { Modal } from '../../../context/Modal'
 
 const AddSpotForm = ({showModal, setShowModal}) => {
     const [address, setAddress] = useState('')
     const [city, setCity] = useState('')
     const [state, setState] = useState('')
     const [country, setCountry] = useState('')
-    const [lat, setLat] = useState(0)
-    const [lng, setLng] = useState(0)
+    // const [lat, setLat] = useState(0)
+    // const [lng, setLng] = useState(0)
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
     const [url, setUrl] = useState('https://i.pinimg.com/originals/4f/c8/78/4fc8780a9aa5873b3593cfb9abc4ffb9.jpg')
-    const [preview, setPreview] = useState(false)
+    // const [preview, setPreview] = useState(false)
     const history = useHistory()
     const [responseErrors, setResponseErrors] = useState([])
 
@@ -29,7 +27,7 @@ const AddSpotForm = ({showModal, setShowModal}) => {
         e.preventDefault()
         const newSpot = {
             address, city, state, country,
-            lat, lng, //might need a way to leave out lat and lng
+          //  lat, lng, //might need a way to leave out lat and lng
             name, description, price
         }
         const response = await dispatch(addSpot(newSpot))

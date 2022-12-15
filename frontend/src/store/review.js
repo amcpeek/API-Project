@@ -3,7 +3,7 @@ import { csrfFetch } from './csrf';
 const GET_CURRENT_USERS_REVIEWS = 'reviews/GET_CURRENT_USERS_REVIEWS' //#13
 const GET_SPOT_REVIEWS = 'reviews/GET_SPOT_REVIEWS' //#14
 const ADD_SPOT_REVIEW = 'reviews/ADD_REVIEW' //#15
-const ADD_REVIEW_IMAGE ='reviews/ADD_REVIEW_IMAGE' //#16 maybe in a different reducer?
+// const ADD_REVIEW_IMAGE ='reviews/ADD_REVIEW_IMAGE' //#16 will not be using
 const UPDATE_REVIEW = 'reviews/UPDATE_REVIEW' //#17
 const REMOVE_REVIEW = 'reviews/REMOVE_REVIEW' //#18
 const CLEAR_REVIEWS = 'reviews/CLEAR_REVIEWS'
@@ -133,15 +133,16 @@ export default function reviewsReducer (state = {}, action) {
             return {
                 ...allSpotReviews
             }
-        case ADD_SPOT_REVIEW: //NOT NEEDED bc the getReviews
-        //goes to the backend and gets it there
+            /* - NOT IN USE */
+      //  case ADD_SPOT_REVIEW: //not currently being used, get reviews does this from the backend, not ideal practice
+
         case CLEAR_REVIEWS: //just for clearing the useEffect
             return {}
         case UPDATE_REVIEW:
-            console.log('BECHTOLD',action.review, action.reviewId)
-            console.log('currentState', state)
+            // console.log('BECHTOLD',action.review, action.reviewId)
+            // console.log('currentState', state)
           //  const newReviewParts = { 'review': action.review.review, 'stars':action.review.stars}
-             const copyState =  {... state}
+             const copyState =  {...state}
             // newStateReviews.reviewId.review = action.review.review
             //newStateReviews.reviewId.stars = action.review.stars
             return {
