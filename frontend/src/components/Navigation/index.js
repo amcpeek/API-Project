@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import CreateSpotModal from '../Spots/AddSpot/CreateSpotModal'
+import SearchModal from '../Search/SearchModal';
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
@@ -28,6 +29,7 @@ function Navigation({ isLoaded }){
   // const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showSearchModal, setShowSearchModal] = useState(false)
 
   // const openMenu = () => {
   //   if (showMenu) return;
@@ -62,12 +64,15 @@ function Navigation({ isLoaded }){
       </div>
 
       <div className='AroundCenterButton'>
-        {/* <button>Anywhere</button>
+        <button onClick={() => setShowSearchModal(true)}>Anywhere
+
+        </button>
+        <SearchModal  showSearchModal={showSearchModal} setShowSearchModal={setShowSearchModal}/>
         <button> Any week</button>
         <button>
         Add guest   <i className="material-symbols-outlined">search</i>
-          </button> */}
-        <button id="CenterButton" onClick={nonFunctional}>Anywhere | Any week | Add guest   <i className="material-symbols-outlined">search</i></button>
+          </button>
+        {/* <button id="CenterButton" onClick={nonFunctional}>Anywhere | Any week | Add guest   <i className="material-symbols-outlined">search</i></button> */}
       </div>
 
 

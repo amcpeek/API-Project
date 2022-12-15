@@ -42,13 +42,8 @@ const AddSpotForm = ({showModal, setShowModal}) => {
             await dispatch(addSpotImage(payload))
             history.push(`/spots/${response.id}`)
             dispatch(getOneSpot(response.id)).then(setShowModal(false))
-
         }
-
-
-
     }
-
 
     return (
 

@@ -295,14 +295,15 @@ router.get('/:spotId', async (req, res, next) => {
 //**// 9 - Create a Spot - DONE
 router.post('/', requireAuth, async (req, res, next) => {
      const userId = req.user.id
-     const {address, city, state, country, lat, lng, name, description, price} = req.body
+     const {address, city, state, country, name, description, price} = req.body
+     // lat, lng,
     const errorStrings = {
         "address": "Street address must be 1 to 50 characters",
         "city": "City must be 1 to 50 characters",
         "state": "State must be 1 to 50 characters",
         "country": "Country must be 1 to 50 characters",
-        "lat": "Latitude is not valid",
-        "lng": "Longitude is not valid",
+        // "lat": "Latitude is not valid",
+        // "lng": "Longitude is not valid",
         "name": "Name must be must be 1 to 50 characters",
         "description": "Description must be 1 to 500 characters",
         "price": "Price per night must be $1-$5000"
@@ -319,7 +320,8 @@ router.post('/', requireAuth, async (req, res, next) => {
     // if(!price) {errObj['price'] = errorStrings['price']}
 
     try{
-        const newSpot = await Spot.create({ownerId: userId, address, city, state, country, lat, lng, name, description, price})
+        const newSpot = await Spot.create({ownerId: userId, address, city, state, country,  name, description, price})
+        //lat, lng,
         res.json(newSpot)
     } catch(error) {
         console.log('the backend error', error)

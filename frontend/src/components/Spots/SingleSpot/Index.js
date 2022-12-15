@@ -10,6 +10,7 @@ import { nanoid } from 'nanoid'
 import UpdateSpotModal from '../UpdateSpot/UpdateSpotModal';
 import AddReviewModal from '../../Reviews/AddReview/AddReviewModal';
 import UpdateReviewModal from '../../Reviews/UpdateReview/UpdateReviewModal';
+let otherSrc = 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-21426276/original/7cceab2c-f3f2-4ed6-86b4-79bb32746dc0.jpeg?im_w=1200'
 
 const SingleSpot = () => {
   const { id } = useParams();
@@ -17,7 +18,7 @@ const SingleSpot = () => {
   const history = useHistory()
   const [ guestNum, setGuestsNum] = useState(1)
   const [showModal, setShowModal] = useState(false);
-  // const [newSrc, setNewSrc] = useState('https://a0.muscache.com/im/pictures/prohost-api/Hosting-21426276/original/7cceab2c-f3f2-4ed6-86b4-79bb32746dc0.jpeg?im_w=1200')
+   const [newSrc, setNewSrc] = useState('')
 
   const oneSpot = useSelector(state=>{return state.oneSpot[id]})
    let allReviews = useSelector(state => { return Object.values(state.reviews)})
@@ -112,7 +113,12 @@ const SingleSpot = () => {
         <img
           src={singleSpot.SpotImages[0].url}
           alt={singleSpot.name}
-          // onError={()=>newSrc}
+          onError={(e)=>{
+            if(e.target.src !== otherSrc) {
+              setNewSrc(otherSrc)
+              e.target.src = otherSrc
+            }
+          }}
         />
         </div>
         <div className='SingleSpotFourImages'>
@@ -122,6 +128,7 @@ const SingleSpot = () => {
           src={url}
           alt={singleSpot.name}
           />
+
           </div>
          ))}
          </div>

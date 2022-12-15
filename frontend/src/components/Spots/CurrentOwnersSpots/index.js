@@ -1,4 +1,4 @@
-import { useEffect} from 'react';
+import { useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {  NavLink } from 'react-router-dom';
 import {  getCurrentOwnersSpots } from '../../../store/spot'
@@ -6,10 +6,12 @@ import './CurrentOwnersSpots.css'
 import { getUsersReviews, removeReview } from '../../../store/review';
 import UpdateReviewModal from '../../Reviews/UpdateReview/UpdateReviewModal'
 import { useHistory } from 'react-router-dom';
+let otherSrc = 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-21426276/original/7cceab2c-f3f2-4ed6-86b4-79bb32746dc0.jpeg?im_w=1200'
 
 const CurrentOwnersSpots = () => {
     const dispatch = useDispatch();
     const history = useHistory()
+    const [newSrc, setNewSrc] = useState('')
 
     useEffect(() => {
       dispatch(getCurrentOwnersSpots());
@@ -58,7 +60,15 @@ const CurrentOwnersSpots = () => {
                                 <div>
                                 <img
                             src={previewImage}
-                            alt={name}/>
+                            alt={name}
+                            onError={(e)=>{
+                              if(e.target.src !== otherSrc) {
+                                setNewSrc(otherSrc)
+                                e.target.src = otherSrc
+                              }
+                              }}
+
+                            />
                                 </div >
                                 <div className='SpaceBetween'>
                                 <div className='greyText' id="CityState">{city}, {state}</div>

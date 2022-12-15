@@ -1,13 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import { getSpots} from '../../../store/spot'
 import './AllSpots.css'
+let otherSrc = 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-21426276/original/7cceab2c-f3f2-4ed6-86b4-79bb32746dc0.jpeg?im_w=1200'
 
 
 const AllSpots = () => {
   const dispatch = useDispatch();
+  const [newSrc, setNewSrc] = useState('')
   const spots = useSelector(state=> {
    // console.log('what is state', state)
     return Object.values(state.spots)});
@@ -74,7 +76,14 @@ const AllSpots = () => {
                                 <div>
                                 <img
                             src={previewImage}
-                            alt={name}/>
+                            alt={name}
+                            onError={(e)=>{
+                            if(e.target.src !== otherSrc) {
+                              setNewSrc(otherSrc)
+                              e.target.src = otherSrc
+                            }
+                            }}
+                            />
                                 </div >
                                 <div className='SpaceBetween'>
                                 <div className='greyText' id="CityState">{city}, {state}</div>
