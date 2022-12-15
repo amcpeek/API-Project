@@ -167,7 +167,10 @@ const SingleSpot = () => {
                       <div key={review.id}>
                               <div className="SingleSpotReviewBox" key={review.id}>
                                     <div><i className="material-symbols-outlined">star </i> {review.stars} stars</div>
-                                    <div> <i className="material-symbols-outlined">face</i> {review.User && review.User.firstName} </div>
+                                    <div> <i className="material-symbols-outlined">face</i>
+                                    {/* {review.User && review.User.firstName} */}
+                                    Colleen
+                                    </div>
                                     <p>{review.review}</p>
                                     {/* <p>ReviewId: {review.id} SpotId: {id} AuthorId: {review.userId} ViewerId: {currentUserId}</p> */}
                                     {/* <NavLink to={`/reviews/${review.id}/${id}`}>Edit Review</NavLink> */}
