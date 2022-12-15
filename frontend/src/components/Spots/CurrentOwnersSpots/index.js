@@ -89,6 +89,7 @@ const CurrentOwnersSpots = () => {
                     {usersReviews && usersReviews.map((review) => (
                       <div  key={review.id}>
                               <div className="SingleSpotReviewBox" key={review.id}>
+                                <h4>{review.Spot.name}</h4>
                                     <div><i className="material-symbols-outlined">star </i> {review.stars} stars</div>
                                     <div> <i className="material-symbols-outlined">face</i> </div>
                                     <p>{review.review}</p>
