@@ -162,7 +162,7 @@ export default function reviewsReducer (state = {}, action) {
             delete newState[action.reviewId]
             return newState
         case GET_CURRENT_USERS_REVIEWS:
-            console.log('aksdhjf alksdjfalkshdjfghfjghnrfiunjk re4rvdfiuhrnejkviu')
+            // console.log('aksdhjf alksdjfalkshdjfghfjghnrfiunjk re4rvdfiuhrnejkviu')
             const usersReviews = {}
             action.userReviews.Reviews.forEach(review => {
                 usersReviews[review.id] = review

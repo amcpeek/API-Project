@@ -32,13 +32,13 @@ const SingleSpot = () => {
 
   useEffect(() => {
     findSpotTest()
-    return  () => dispatch(clearOneSpotAction())
+    // return  () => dispatch(clearOneSpotAction())
  }, [dispatch])
 
   useEffect(() => {
      dispatch(getSpotReviews(id))
-     return () => dispatch(clearSpotReviewsStoreAction())
-  }, [oneSpot])
+    //  return () => dispatch(clearSpotReviewsStoreAction())
+  }, [dispatch])
 
   const handleRemoveReview = (reviewId) => {
     console.log('what is review id', reviewId)
@@ -168,12 +168,10 @@ const SingleSpot = () => {
                               <div className="SingleSpotReviewBox" key={review.id}>
                                     <div><i className="material-symbols-outlined">star </i> {review.stars} stars</div>
                                     <div> <i className="material-symbols-outlined">face</i>
-                                    {/* {review.User && review.User.firstName} */}
-                                    Colleen
+                                    {review.User && review.User.firstName}
+                                    {/* Colleen */}
                                     </div>
                                     <p>{review.review}</p>
-                                    {/* <p>ReviewId: {review.id} SpotId: {id} AuthorId: {review.userId} ViewerId: {currentUserId}</p> */}
-                                    {/* <NavLink to={`/reviews/${review.id}/${id}`}>Edit Review</NavLink> */}
                                     {review.userId === currentUserId &&  <><UpdateReviewModal/></>}
                                     {review.userId === currentUserId && <button onClick={()=> handleRemoveReview(review.id) }>
                                       <i className="material-symbols-outlined">
