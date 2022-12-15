@@ -147,3 +147,30 @@ background: none;
     flex-direction: row;
     align-items: center;
  }
+
+ .footer {
+   position: fixed;
+   width: 100%;
+   right: 50px;
+   bottom: 50px;
+   z-index: 3;
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-end;
+   align-items: flex-end;
+
+   /* padding: 30px; */
+   /* margin: 30px; */
+
+ }
+
+ .footer > a {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 180%;
+    margin: 5px;
+ }
+
+ .globe {
+    margin: 10px;
+ }

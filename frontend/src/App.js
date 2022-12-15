@@ -14,6 +14,7 @@ import { getSpots } from './store/spot'
 import AddReviewForm from './components/Reviews/AddReview/Index'
 import UpdateReviewForm from "./components/Reviews/UpdateReview/Index";
 import PageNotFound from "./components/PageNotFound/Index";
+import Footer from './components/Navigation/Footer'
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
     <>
 
       <Navigation isLoaded={isLoaded} />
+      <Footer/>
       {isLoaded && (
         <Switch>
           <Route path="/signup">

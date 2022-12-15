@@ -30,7 +30,7 @@
 }
 
 .HomeList {
-   /* background-color: lightblue; */
+   background-color: white;
    display: flex;
    flex-direction: row;
    flex-wrap: wrap;
@@ -51,7 +51,6 @@
 }
 
 .HomeNavBar > div {
-    background-color: lightgreen;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -70,7 +69,7 @@
     border-bottom-color: white;
     border-bottom-width: 50px;
     border-bottom-style: solid;
-    margin: 20px;;
+    margin: 20px;
 }
 
 

@@ -94,7 +94,7 @@ function Navigation({ isLoaded }){
           {/* </div> */}
 
         <button className='noBorder'onClick={nonFunctional}>
-        <i className="material-symbols-outlined">language</i>
+        <i className="material-symbols-outlined globe">language</i>
         </button>
 
          {isLoaded && (
