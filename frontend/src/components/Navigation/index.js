@@ -64,15 +64,15 @@ function Navigation({ isLoaded }){
       </div>
 
       <div className='AroundCenterButton'>
-        <button onClick={() => setShowSearchModal(true)}>Anywhere
+        {/* <button onClick={() => setShowSearchModal(true)}>Anywhere
 
         </button>
         <SearchModal  showSearchModal={showSearchModal} setShowSearchModal={setShowSearchModal}/>
         <button> Any week</button>
         <button>
         Add guest   <i className="material-symbols-outlined">search</i>
-          </button>
-        {/* <button id="CenterButton" onClick={nonFunctional}>Anywhere | Any week | Add guest   <i className="material-symbols-outlined">search</i></button> */}
+          </button> */}
+        <button id="CenterButton" onClick={nonFunctional}>Anywhere | Any week | Add guest   <i className="material-symbols-outlined">search</i></button>
       </div>
 
 
