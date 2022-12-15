@@ -63,7 +63,7 @@ router.get('/', async (req, res, next) => {
         if(page > 10 ) page = 10
         if(page < 1) page = 1
         if(!page) page = 1
-        if(!size) size = 20
+        if(!size) size = 30
         const where = {} //im not using this
         const allSpots = await Spot.findAll({
              limit: size,
