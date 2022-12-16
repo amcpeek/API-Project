@@ -20,6 +20,14 @@ const AddSpotForm = ({showModal, setShowModal}) => {
     // const [preview, setPreview] = useState(false)
     const history = useHistory()
     const [responseErrors, setResponseErrors] = useState([])
+       const allStates =
+    ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware",
+    "D. C.","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky",
+    "Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri",
+    "Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota",
+    ,"Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina",
+    "South Dakota","Tennessee","Texas", "U.S. Territories","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming", "International"]
+   // "U.S. Virgin Islands", "Guam", "Minor Outlying Islands", "Puerto Rico", "American Samoa", "Northern Mariana Islands"
 
 
     const dispatch = useDispatch()
@@ -94,7 +102,8 @@ const AddSpotForm = ({showModal, setShowModal}) => {
               name='city'
              />
              </div>
-             <div>
+
+             {/* <div>
               <input
               type='text'
               onChange={(e)=>setState(e.target.value)}
@@ -102,7 +111,22 @@ const AddSpotForm = ({showModal, setShowModal}) => {
               placeholder='State'
               name='state'
              />
-             </div>
+             </div> */}
+              <div className="guestBox">
+                  <div>Pick State</div>
+                      <label>
+                        <select
+                        onChange={(e) => setState(e.target.value)}
+                        value={state}
+                        >
+                            {allStates.map(state => (
+                                <option key={state} value={state}> {state}</option>
+                            ))}
+                        </select>
+                      </label>
+
+                </div> *
+
              <div>
               <input
               type='text'
@@ -148,7 +172,7 @@ const AddSpotForm = ({showModal, setShowModal}) => {
              </div>
              <div className='flexStart'>
              <div className='labelForForm'>
-                 Suggested Image Url
+                 You can use the suggested image url or paste your own below.
              </div>
              </div>
              <div>

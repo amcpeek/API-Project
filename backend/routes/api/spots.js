@@ -17,7 +17,15 @@ router.get('/test', requireAuth, (req, res) => {
 //**//6 - Get all Spots - DONE
 //**//26 - Add Query Filters to Get All Spots - DID NOT FINISH
 router.get('/', async (req, res, next) => {
-    let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query
+    let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice, region } = req.query
+    //let { region } = req.query
+    let myState = []
+    if(region === 'west') { myState = ['California', 'Oregon','Washington', 'Idaho', 'Montana', 'Wyoming', 'Nevada', 'Arizona', 'Colorado', 'Utah', 'New Mexico'] }
+    if(region === 'midwest') { myState = ['North Dakota', 'South Dakota', 'Minnesota', 'Wisconsin', 'Michigan', 'Nebraska', 'Iowa', 'Illinois', 'Indiana', 'Ohio', 'Kansas', 'Missouri']}
+    if(region === 'pacific') { myState = ['Hawaii', 'Alaska']}
+    if(region === 'south') { myState = ['Texas', 'Oklahoma', 'Arkansas', 'Louisiana', 'Mississippi', 'Alabama', 'Georgia', 'Florida', 'South Carolina', 'North Carolina', 'Tennessee', 'Kentucky', 'Virginia', 'West Virginia', 'Maryland', 'Delaware']}
+    if(region === 'northeast') { myState = ['New York', 'Maine', 'New Hampshire', 'Vermont', 'Massachusetts', 'Pennsylvania', 'New Jersey', 'Connecticut', 'Rhode Island']}
+    if(region === 'anywhere') { myState = []}
 
     const errorStrings = {
         "page": "Page must be greater than or equal to 1",
@@ -68,6 +76,15 @@ router.get('/', async (req, res, next) => {
         const allSpots = await Spot.findAll({
              limit: size,
                 offset: (page -1) * size,
+                where: {
+                    price: {
+                        [Op.lte]: maxPrice || 5000
+            //          [Op.lte]: maxPrice || 99999999999999
+                    },
+                    state: {[Op.or]: myState}
+                }
+                //add in if region = 'West'
+                //add in a where: state: {'california' || 'oregon'}
             // where: {
 
             //      lat: {

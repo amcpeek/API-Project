@@ -40,7 +40,7 @@ const AddReviewForm = ({setShowModal}) => {
             <div className='outerFormTop'>
             <div className='formTop'>
                  <button className="cancelButton" onClick={() => setShowModal(false)}>X</button>
-                 <h3>{oneSpot.name} Review </h3>
+                 <h3>Write a review of '{oneSpot.name}'</h3>
 
             <div className='LogInErrors'>
                 <ul className='ulNoBullets'>

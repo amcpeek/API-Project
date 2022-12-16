@@ -84,7 +84,7 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
         <div className='formTop'>
         <button className="cancelButton" onClick={() => setShowModal(false)}>X</button>
         {/* <button className="cancelButton"><NavLink to={`/spots/${id}`}>X</NavLink></button> */}
-        <h3>Edit Your Listing of {spot.name}</h3>
+        <h3>Edit Your Listing of '{spot.name}'</h3>
         <div className='LogInErrors'>
                 <ul className='ulNoBullets'>
                 {responseErrors.map(err => (
@@ -188,7 +188,7 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
                 />
                 </div>
                 <div className='labelForForm'>
-                    Suggested Additional Image Url
+                You can use the suggested image url or paste your own below.
                 </div>
                 <div>
                  <input

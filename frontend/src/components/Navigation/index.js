@@ -67,14 +67,14 @@ function Navigation({ isLoaded }){
       </div>
 
       <div className='AroundCenterButton'>
-        {/* <div className='CenterButton'>
+        <div className='CenterButton'>
       <SearchModal  showSearchModal={showSearchModal} setShowSearchModal={setShowSearchModal} searchContent={searchContent} setSearchContent={setSearchContent}/>
         <button onClick={() => {setShowSearchModal(true); setSearchContent('states') }}>Anywhere</button>
-        <button onClick={() => {setShowSearchModal(true); setSearchContent('calendar') }}> Any week</button>
+        <button onClick={() => {setShowSearchModal(true); setSearchContent('price') }}> Any price</button>
         <button onClick={() => {setShowSearchModal(true); setSearchContent('guests') }}>Add guests</button>
-        <i className="material-symbols-outlined">search</i>
-        </div> */}
-        <button className="CenterButton" onClick={nonFunctional}>Anywhere | Any week | Add guest   <i className="material-symbols-outlined">search</i></button>
+        <button onClick={nonFunctional}><i className="material-symbols-outlined">search</i></button>
+        </div>
+        {/* <button className="CenterButton" onClick={nonFunctional}>Anywhere | Any week | Add guest   <i className="material-symbols-outlined">search</i></button> */}
       </div>
 
 

@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
 import './SingleSpot.css'
-import { removeSpot } from '../../../store/spot';
+// import { removeSpot, getSpots } from '../../../store/spot';
 import { getOneSpot } from '../../../store/oneSpot';
 import { useEffect, useState } from 'react';
 import { getSpotReviews, removeReview} from '../../../store/review'
@@ -45,10 +45,16 @@ const SingleSpot = () => {
   }, [dispatch, id])
 
   const handleRemoveReview = (reviewId) => {
-    console.log('what is review id', reviewId)
     dispatch(removeReview(reviewId))
     history.go(0)
   }
+
+  // const handleRemoveSpot = () => {
+  //   dispatch(removeSpot(id))
+  //   .then(getSpots())
+  //    .then(history.push('/'))
+  // }
+
 
   const nonFunctional = async (e) => {
     e.preventDefault()
@@ -217,7 +223,7 @@ const SingleSpot = () => {
                {currentUserId && matchingOwner&& (
                  <div className="editDeleteButtons">
                  <><UpdateSpotModal showModal={showModal} setShowModal={setShowModal}/></>
-                 <button onClick={()=> {dispatch(removeSpot(singleSpot.id)); history.push('/') }}>Delete Home</button>
+                 {/* <button onClick={()=> {handleRemoveSpot()}}>Delete Home</button> */}
                 </div>   )}
 
 

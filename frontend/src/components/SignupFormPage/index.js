@@ -41,6 +41,7 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
     <div className='outerFormTop'>
     <div className='formTop'>
     <button className="cancelButton" onClick={() => setShowSignUpModal(false)}>X</button>
+    <h4>Sign Up Form</h4>
       <div className='LogInErrors'>
         <ul className='ulNoBullets'>
         {errors.map((error, idx) => <li key={idx}>{error}</li>  )}

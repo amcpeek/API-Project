@@ -10,17 +10,9 @@ let otherSrc = 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-21426276
 const AllSpots = () => {
   const dispatch = useDispatch();
   const [newSrc, setNewSrc] = useState('')
-  const spots = useSelector(state=> {
-   // console.log('what is state', state)
-    return Object.values(state.spots)});
- // console.log('All spotszzz', spots)
-
-  // const ownerId = useSelector(state=> {
-  //   return state.session.user.id
-  // })
-
-  //  const ownersSpots = spots.filter((spot) => ownerId === spot.ownerId)
-  //   console.log('does ownersSpots work', ownersSpots)
+    const spots = useSelector(state=> {
+    return Object.values(state.spots)
+    });
 
   useEffect(() => {
     dispatch(getSpots());
@@ -31,11 +23,10 @@ const AllSpots = () => {
     alert('This feature is not yet developed')
   }
 
+
+
   return (
     <div className="HomePage">
-      {/* <div>
-        <h1 className="Crazy">. </h1>
-      </div> */}
       <div className="HomeNavBar">
             <button onClick={nonFunctional}>
             <i className="material-symbols-outlined">key</i>New</button>
@@ -45,8 +36,6 @@ const AllSpots = () => {
             <i className="material-symbols-outlined">local_fire_department</i>Trending</button>
             <button onClick={nonFunctional}>
             <i className="material-symbols-outlined">sports_tennis</i>Play</button>
-
-
             <button onClick={nonFunctional}>
             <i className="material-symbols-outlined">beach_access</i>Beachfront</button>
             <button onClick={nonFunctional}>
@@ -61,8 +50,6 @@ const AllSpots = () => {
             <i className="material-symbols-outlined">castle</i>Castles</button>
             <button onClick={nonFunctional}>
             <i className="material-symbols-outlined">accessible_forward</i>Adapted</button>
-
-
             <button onClick={nonFunctional}>
             <i className="material-symbols-outlined">forest</i>Treehouses</button>
             <button onClick={nonFunctional}>

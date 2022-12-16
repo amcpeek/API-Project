@@ -45,6 +45,7 @@ function LoginForm({showLogInModal, setShowLogInModal}) {
     <div className='outerFormTop'>
     <div className='formTop'>
     <button className="cancelButton" onClick={() => setShowLogInModal(false)}>X</button>
+    <h4>Login Form</h4>
     <div className='LogInErrors'>
         {errors.map((error, idx) => (
           <div key={idx}>{error}</div>

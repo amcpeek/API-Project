@@ -67,11 +67,13 @@ export const clearOneSpotAction = () => {
 }
 
 /* -- thunk action creators */
-
-export const getSpots = () => async dispatch => {
-    const response = await fetch(`/api/spots`)
+//add in here you pass in the region optionally
+export const getSpots = (category, filter) => async dispatch => {
+    const response = await fetch(`/api/spots?${category}=${filter}`)
+   // console.log('is this coming through', selectedRegion)
     if(response.ok) {
         const spots = await response.json()
+        console.log('are we getting it back', spots.Spots)
         dispatch(getSpotsAction(spots.Spots))
     }
 }
@@ -154,8 +156,8 @@ export default function spotsReducer (state = {}, action) {
                 allSpots[spot.id] = spot
             })
             return {
-                ...state,
-                ...allSpots,
+               // ...state,
+                ...allSpots
             }
         case ADD_SPOT:
         if(!state[action.spot.id]) {
