@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom'
 const AddSpotForm = ({showModal, setShowModal}) => {
     const [address, setAddress] = useState('')
     const [city, setCity] = useState('')
-    const [state, setState] = useState('')
+    const [state, setState] = useState('Alabama')
     const [country, setCountry] = useState('')
     // const [lat, setLat] = useState(0)
     // const [lng, setLng] = useState(0)

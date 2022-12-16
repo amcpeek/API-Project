@@ -79,7 +79,8 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
             }
             await dispatch(addSpotImage(imagePayload))
             const oneSpotHopefully = await dispatch(getOneSpot(id))
-            console.log('oneSpotHopefully',oneSpotHopefully)
+            //dispatch(getSpots())
+            //console.log('oneSpotHopefully',oneSpotHopefully)
             setShowModal(false)
 
         }

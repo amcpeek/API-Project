@@ -136,6 +136,12 @@ const SingleSpot = () => {
           <img
           src={url}
           alt={singleSpot.name}
+          onError={(e)=>{
+            if(e.target.src !== otherSrc) {
+              setNewSrc(otherSrc)
+              e.target.src = otherSrc
+            }
+          }}
           />
 
           </div>

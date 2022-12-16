@@ -101,11 +101,11 @@ const CurrentOwnersSpots = () => {
                                     <div> <i className="material-symbols-outlined">face</i> </div>
                                     <p>{review.review}</p>
 
-                                    {<><UpdateReviewModal/></>}
+                                    {/* {<><UpdateReviewModal/></>}
                                     {<button onClick={()=> handleRemoveReview(review.id) }>
                                       <i className="material-symbols-outlined">
                                         delete
-                                        </i></button>}
+                                        </i></button>} */}
                               </div>
                       </div>
                     ))}

@@ -48,7 +48,7 @@ function Navigation({ isLoaded }){
         <button onClick={() => {setShowSearchModal(true); setSearchContent('price') }}> Any price</button>
         <>|</>
         <button onClick={() => {setShowSearchModal(true); setSearchContent('guests') }}>Add guests</button>
-        <button onClick={nonFunctional}><i className="material-symbols-outlined">search</i></button>
+        <button className='roundAllEdges' onClick={nonFunctional}><i className="material-symbols-outlined">search</i></button>
         </div>
          {/* <button className="CenterButton" onClick={nonFunctional}>Anywhere | Any week | Add guest   <i className="material-symbols-outlined">search</i></button> */}
       </div>

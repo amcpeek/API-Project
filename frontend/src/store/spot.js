@@ -110,10 +110,12 @@ export const updateSpot = (spot) => async dispatch => {
         })
         console.log('1234321', response)
         //this whole if statement is unnecessary bc I don't use it for update
-        // if(response.ok) { // as written, will not have errors you can read, it says 'readable stream"
-        //     return await response.json()
-        //     //dispatch(updateSpotAction(spot)) not needed if updating state from loadSpots
-        // }
+        if(response.ok) { // as written, will not have errors you can read, it says 'readable stream"
+
+            const newSpot =  await response.json()
+            dispatch(updateSpotAction(newSpot)) //not needed if updating state from loadSpots
+
+        }
     } catch(error) {
        // console.log('987654321', error.json())
         return  await error.json()
@@ -122,9 +124,13 @@ export const updateSpot = (spot) => async dispatch => {
 }
 
 export const removeSpot = (spotId) => async dispatch => {
-     await csrfFetch(`/api/spots/${spotId}`, {
+    const response =  await csrfFetch(`/api/spots/${spotId}`, {
         method: 'DELETE'
     })
+    if(response.ok) {
+        dispatch(removeSpotAction(spotId))
+    }
+
 }
 
 export const getCurrentOwnersSpots = () => async dispatch => {
