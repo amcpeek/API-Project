@@ -22,13 +22,14 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
-      setShowSignUpModal(false)
+     // setShowSignUpModal(false)
       return dispatch(sessionActions.signup({ firstName, lastName, email, username, password }))
+      .then(() => {setShowSignUpModal(false)})
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
         })
-        //.then(() => {setShowSignUpModal(false)})
+
     }
     return setErrors(['Confirm Password field must be the same as the Password field']);
   };

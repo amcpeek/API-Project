@@ -259,28 +259,29 @@
   }
 
 
-  #guestBox {
+  .guestBox {
     display: flex;
     justify-content: center;
     flex-direction: column;
   }
 
-  #guestBox select {
+  .guestBox select {
     background-color: white;
     border: white;
   }
 
 
 
-  #checkInOutBox {
+  .checkInOutBox {
     border-width: 2px;
     border-color: lightgray;
     border-style: solid;
     border-radius: 10px;
-    width: 100%;
+    width: 300px;
+
   }
 
-  #checkAvailabilityButton {
+  .checkAvailabilityButton {
     background-color: rgb(244, 47, 80);
     color: white;
     width: 100%;
@@ -291,25 +292,25 @@
 
   }
 
-  #checkInOutDates {
+  .checkInOutDates {
     display: flex;
   }
 
-  #checkInOutDates div {
+  .checkInOutDates div {
     border-bottom-width: 2px;
     border-bottom-color: lightgray;
     border-bottom-style: solid;
     padding: 5px;
   }
 
-  #checkInOutDates div input {
+  .checkInOutDates div input {
     background-color: white;
     border-color: white;
     border-style: none;
 
   }
 
-  #checkInOutDates div:first-child {
+  .checkInOutDates div:first-child {
     border-right-width: 2px;
     border-right-color: lightgray;
     border-right-style: solid;

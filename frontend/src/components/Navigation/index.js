@@ -9,6 +9,25 @@ import './Navigation.css';
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
+  const [showMenu, setShowMenu] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [showSearchModal, setShowSearchModal] = useState(false)
+  const [searchContent, setSearchContent] = useState('')
+  useEffect(() => {
+    if (!showMenu) return;
+    const closeMenu = () => {
+      setShowMenu(false);
+    };
+
+    document.addEventListener('click', closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
+
+  const nonFunctional = async (e) => {
+    e.preventDefault()
+    alert('This feature is not yet developed')
+  }
 
   // let sessionLinks;
   // if (sessionUser) {
@@ -27,30 +46,14 @@ function Navigation({ isLoaded }){
   //}
 
   // const dispatch = useDispatch();
-  const [showMenu, setShowMenu] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const [showSearchModal, setShowSearchModal] = useState(false)
+
 
   // const openMenu = () => {
   //   if (showMenu) return;
   //   setShowMenu(true);
   // };
 
-  useEffect(() => {
-    if (!showMenu) return;
-    const closeMenu = () => {
-      setShowMenu(false);
-    };
 
-    document.addEventListener('click', closeMenu);
-
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
-
-  const nonFunctional = async (e) => {
-    e.preventDefault()
-    alert('This feature is not yet developed')
-  }
 
   return (
     <div className="wholeNav">
@@ -64,15 +67,14 @@ function Navigation({ isLoaded }){
       </div>
 
       <div className='AroundCenterButton'>
-        {/* <button onClick={() => setShowSearchModal(true)}>Anywhere
-
-        </button>
-        <SearchModal  showSearchModal={showSearchModal} setShowSearchModal={setShowSearchModal}/>
-        <button> Any week</button>
-        <button>
-        Add guest   <i className="material-symbols-outlined">search</i>
-          </button> */}
-        <button id="CenterButton" onClick={nonFunctional}>Anywhere | Any week | Add guest   <i className="material-symbols-outlined">search</i></button>
+        {/* <div className='CenterButton'>
+      <SearchModal  showSearchModal={showSearchModal} setShowSearchModal={setShowSearchModal} searchContent={searchContent} setSearchContent={setSearchContent}/>
+        <button onClick={() => {setShowSearchModal(true); setSearchContent('states') }}>Anywhere</button>
+        <button onClick={() => {setShowSearchModal(true); setSearchContent('calendar') }}> Any week</button>
+        <button onClick={() => {setShowSearchModal(true); setSearchContent('guests') }}>Add guests</button>
+        <i className="material-symbols-outlined">search</i>
+        </div> */}
+        <button className="CenterButton" onClick={nonFunctional}>Anywhere | Any week | Add guest   <i className="material-symbols-outlined">search</i></button>
       </div>
 
 

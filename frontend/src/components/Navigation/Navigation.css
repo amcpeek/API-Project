@@ -67,7 +67,7 @@ li {
 }
 
 
-#CenterButton {
+.CenterButton {
     border-radius: 18px;
     display: flex;
     align-items: center;
@@ -77,6 +77,11 @@ li {
     border-style: solid;
 }
 
+.CenterButton > button {
+    background-color: white;
+    border: none;
+
+}
 
 
 

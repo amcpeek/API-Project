@@ -184,8 +184,8 @@ const SingleSpot = () => {
                 {singleSpot.avgStarRating}  ·  {singleSpot.numReviews} reviews
                 </div>
                </div>
-                <div id="checkInOutBox">
-                  <div id="checkInOutDates">
+                <div className="checkInOutBox">
+                  <div className="checkInOutDates">
                       <div>check-in
                         <input type="date"></input>
                       </div>
@@ -194,7 +194,7 @@ const SingleSpot = () => {
                       </div>
                 </div>
 
-                <div id="guestBox">
+                <div className="guestBox">
                   <div>guest</div>
                       <label>
                         <select
@@ -212,7 +212,7 @@ const SingleSpot = () => {
                 </div>
 
                </div>
-               <button onClick={nonFunctional} id="checkAvailabilityButton"> Check availability</button>
+               <button onClick={nonFunctional} className="checkAvailabilityButton"> Check availability</button>
 
                {currentUserId && matchingOwner&& (
                  <div className="editDeleteButtons">
