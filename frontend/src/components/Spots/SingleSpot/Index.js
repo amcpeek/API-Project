@@ -147,7 +147,7 @@ const SingleSpot = () => {
           <div id="SingleSpotDetails">
             <h2>{singleSpot.description}</h2>
             <p> 4 guests  ·  2 bedrooms  ·  2 beds  ·  1 bathroom</p>
-            <h3><i className="material-symbols-outlined"> military_tech</i>Annika is a Superhost</h3>
+            <h3><i className="material-symbols-outlined"> military_tech</i>{singleSpot.Owner.firstName} is a Superhost</h3>
             <p>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</p>
             <h3><i className="material-symbols-outlined"> key</i>  Great check-in experience</h3>
             <p>100% of recent guests gave the check-in process a 5-star rating.</p>
@@ -159,7 +159,7 @@ const SingleSpot = () => {
 
             <div id="SingleSpotReviews">
               <h3>Reviews</h3>
-                  {currentUserId && !allReviews.find(rev => rev.userId === currentUserId)  && <AddReviewModal/> }
+                  {currentUserId && !allReviews.find(rev => rev.userId === currentUserId) && !matchingOwner && <AddReviewModal/> }
                   {/* <button id="addReviewButton"><NavLink to={`/spots/${id}/reviews`}>Add A Review</NavLink> </button> */}
 
                     {allReviews.map((review) => (
