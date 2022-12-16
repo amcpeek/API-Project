@@ -501,14 +501,14 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
             where: { spotId: spotId  }
         })
 
-        if(allReviews.length === 0) {
-            res.statusCode = 404
-            res.json({
-                message: "Spot couldn't be found",
-                statusCode: 404
-            })
-            return
-        }
+        // if(allReviews.length === 0) {
+        //     res.statusCode = 404
+        //     res.json({
+        //         message: "Spot couldn't be found",
+        //         statusCode: 404
+        //     })
+        //     return
+        // }
 
         const Reviews = []
         for (let rev of allReviews) {
