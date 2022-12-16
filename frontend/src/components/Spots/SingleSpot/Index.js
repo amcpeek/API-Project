@@ -45,7 +45,7 @@ const SingleSpot = () => {
   }, [dispatch, id])
 
   const handleRemoveReview = (reviewId) => {
-    dispatch(removeReview(reviewId))
+    dispatch(removeReview(reviewId, id))
    // .then(dispatch(getOneSpot(id)))
    // .then(oneSpot = useSelector(state=>{return state.oneSpot[id]}))
 

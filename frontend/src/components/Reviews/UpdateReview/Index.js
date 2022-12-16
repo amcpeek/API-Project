@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { updateSpotReview, getSpotReviews } from '../../../store/review'
+import { getOneSpot } from '../../../store/oneSpot'
 
 
 const UpdateReviewForm = ({showModal, setShowModal}) => {
@@ -47,12 +48,14 @@ const UpdateReviewForm = ({showModal, setShowModal}) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const newReview = { review, stars  }
-        const response = await dispatch(updateSpotReview(newReview, currReview.id ))
+        const response = await dispatch(updateSpotReview(newReview, currReview.id, id ))
         if(response.errors) {
 
             setResponseErrors(Object.values(response.errors))
         } else {
+         //   getOneSpot(id)
             setShowModal(false)
+
           //this line of code does nothing anyway
           //  dispatch(getSpotReviews(spotId)).then(setShowModal(false))
         }

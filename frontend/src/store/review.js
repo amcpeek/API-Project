@@ -1,4 +1,6 @@
 import { csrfFetch } from './csrf';
+ import { getOneSpot } from './oneSpot.js'
+
 
 const GET_CURRENT_USERS_REVIEWS = 'reviews/GET_CURRENT_USERS_REVIEWS' //#13
 const GET_SPOT_REVIEWS = 'reviews/GET_SPOT_REVIEWS' //#14
@@ -76,6 +78,7 @@ export const addSpotReview = (spotReview, id) => async dispatch => {
         method: 'POST',
         body: JSON.stringify(spotReview)
     }).then(async (res) => {
+        dispatch(getOneSpot(id))
         return await res.json()
     }).catch( async error => {
         return await error.json()
@@ -83,7 +86,7 @@ export const addSpotReview = (spotReview, id) => async dispatch => {
     return response
 }
 
-export const updateSpotReview = (review, reviewId) => async dispatch => {
+export const updateSpotReview = (review, reviewId, spotId) => async dispatch => {
     const response = await csrfFetch(`/api/reviews/${reviewId}`, {
         method: 'PUT',
         body: JSON.stringify(review)
@@ -91,6 +94,8 @@ export const updateSpotReview = (review, reviewId) => async dispatch => {
         // if(response.ok) {
         //     const review = await response.json()
             dispatch(updateSpotReviewAction(review, reviewId)) //im not sure this is needed?
+            dispatch(getOneSpot(spotId))
+
        // }
         return await res.json()
     }).catch( async error => {
@@ -109,14 +114,15 @@ export const getUsersReviews = (userId) => async dispatch => {
 }
 
 
-export const removeReview = (reviewId) => async dispatch => {
-    await csrfFetch(`/api/reviews/${reviewId}`, {
+export const removeReview = (reviewId, spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/reviews/${reviewId}`, {
     method: 'DELETE'
     })
-    // if(response.ok) {
-    //     const reviews = await response.json()
-    //     dispatch(removeSpotReviewAction(reviewId))
-    // }
+    if(response.ok) {
+        const reviews = await response.json()
+        dispatch(removeSpotReviewAction(reviewId))
+        dispatch(getOneSpot(spotId))
+    }
 }
 
 
