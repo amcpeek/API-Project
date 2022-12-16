@@ -20,7 +20,7 @@ const SingleSpot = () => {
   const [showModal, setShowModal] = useState(false);
    const [newSrc, setNewSrc] = useState('')
 
-  const oneSpot = useSelector(state=>{return state.oneSpot[id]})
+  let oneSpot = useSelector(state=>{return state.oneSpot[id]})
    let allReviews = useSelector(state => { return Object.values(state.reviews)})
    if(allReviews) {
     const reviewMatchesSpot =  allReviews.find(review => review.spotId === +id)
@@ -46,12 +46,15 @@ const SingleSpot = () => {
 
   const handleRemoveReview = (reviewId) => {
     dispatch(removeReview(reviewId))
-    history.go(0)
+   // .then(dispatch(getOneSpot(id)))
+   // .then(oneSpot = useSelector(state=>{return state.oneSpot[id]}))
+
+    // history.go(0)
   }
 
   const handleRemoveSpot = () => {
     dispatch(removeSpot(id))
-    .then(getSpots())
+    .then(dispatch(getSpots()))
      .then(history.push('/'))
   }
 

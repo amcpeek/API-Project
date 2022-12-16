@@ -1,4 +1,7 @@
 import { csrfFetch } from './csrf';
+//import { useDispatch } from 'react-redux'
+
+
 const GET_SPOTS = 'spots/GET_SPOTS' //#6
 const GET_CURRENT_OWNERS_SPOTS = 'spots/GET_CURRENT_OWNERS_SPOTS' //#7
 //#8  one spot is in the oneSpot store, eventually move it here
@@ -7,6 +10,7 @@ const ADD_SPOT_IMAGE = 'spot/ADD_SPOT_IMAGE'// #10
 const UPDATE_SPOT = 'spots/UPDATE_SPOT' //#11
 const REMOVE_SPOT = 'spots/REMOVE_SPOT' //#12
 const CLEAR_SPOTS = './spots/CLEAR_SPOTS'
+
 
 
 /* -- actions -- */
@@ -68,12 +72,15 @@ export const clearOneSpotAction = () => {
 
 /* -- thunk action creators */
 //add in here you pass in the region optionally
-export const getSpots = (category, filter) => async dispatch => {
-    const response = await fetch(`/api/spots?${category}=${filter}`)
+export const getSpots = (category, filter) => async dispatch => { //
+   // const response = await fetch(`/api/spots`)
+   const response = await fetch(`/api/spots?${category}=${filter}`)
    // console.log('is this coming through', selectedRegion)
+//
     if(response.ok) {
         const spots = await response.json()
         console.log('are we getting it back', spots.Spots)
+
         dispatch(getSpotsAction(spots.Spots))
     }
 }
@@ -122,9 +129,10 @@ export const removeSpot = (spotId) => async dispatch => {
 
 export const getCurrentOwnersSpots = () => async dispatch => {
     const response = await csrfFetch('/api/spots/current')
+    //
     if(response.ok) {
         const spots = await response.json()
-        dispatch(getCurrentOwnersSpotsAction(spots))
+        (getCurrentOwnersSpotsAction(spots))
     }
 
 }
