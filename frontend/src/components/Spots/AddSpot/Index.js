@@ -103,7 +103,7 @@ const AddSpotForm = ({showModal, setShowModal}) => {
              />
              </div>
 
-             {/* <div>
+             <div>
               <input
               type='text'
               onChange={(e)=>setState(e.target.value)}
@@ -111,8 +111,8 @@ const AddSpotForm = ({showModal, setShowModal}) => {
               placeholder='State'
               name='state'
              />
-             </div> */}
-              <div className="guestBox">
+             </div>
+              {/* <div className="guestBox">
                   <div>Pick State</div>
                       <label>
                         <select
@@ -125,7 +125,7 @@ const AddSpotForm = ({showModal, setShowModal}) => {
                         </select>
                       </label>
 
-                </div> *
+                </div>  */}
 
              <div>
               <input

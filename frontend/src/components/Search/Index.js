@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { getSpots } from '../../store/spot'
 import { useDispatch } from 'react-redux'
 // import { Redirect } from 'react-router-dom'
-// import { useHistory } from 'react-router-dom'
+ import { useHistory } from 'react-router-dom'
 import AllSpots from '../Spots/AllSpots/Index'
 
 //pass in prop of which one is clicked on
@@ -12,15 +12,15 @@ function SearchForm({showSearchModal, setShowSearchModal, searchContent, setSear
     const [ guestNum, setGuestsNum] = useState(1)
     const [ kidsNum, setKidsNum] = useState(1)
     const [ petsNum, setPetsNum] = useState(1)
-    // const history = useHistory()
+    const history = useHistory()
     // const [ minPrice, setMinPrice ] = useState(1)
     const [ maxPrice, setMaxPrice ] = useState(5000)
     const Regions = ['west', 'midwest', 'south', 'northeast', 'pacific', 'anywhere']
 
     const handleSubmit = async (region) => {
         console.log('is selected region in the handle submit',region)
+        // history.push('/')
         const response = await dispatch(getSpots('region', region))
-        // .then(<AllSpots/>)
         .then(setShowSearchModal(false))
 
     }
