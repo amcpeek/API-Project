@@ -79,15 +79,14 @@
 
 
 .makeBigger {
-    font-size: 30px;
-    width: 120px;
-    border-radius: 10%;
+    font-size: 20px;
+    width: 60px;
+    border-radius: 10px;
     /* display: flex;
     justify-content: center;
     align-items: center;
     align-self: center;
     justify-items: center; */
-
 }
 
 .centerDiv {
@@ -96,4 +95,15 @@
     flex-direction: column;
     align-items: center;
 
+}
+
+.joiningGuests {
+    font-size: 20px;
+    width: 135px;
+    border-radius: 10px;
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    justify-items: center; */
 }

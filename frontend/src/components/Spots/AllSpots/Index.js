@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import { getSpots} from '../../../store/spot'
 import './AllSpots.css'
@@ -9,13 +9,22 @@ let otherSrc = 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-21426276
 
 const AllSpots = () => {
   const dispatch = useDispatch();
+  let location = useLocation()
   const [newSrc, setNewSrc] = useState('')
     const spots = useSelector(state=> {
     return Object.values(state.spots)
     });
 
   useEffect(() => {
-    dispatch(getSpots());
+    console.log('qwertyuiopoiuytrew',location.search) // gives you ?maxPrice=10
+    let newThing = location.search.split('=')
+    console.log('sdfgsgd', newThing)
+    const category = newThing[0].slice(1)
+    const filter = newThing[1]
+    console.log('sdgsdf', category, filter)
+
+
+    dispatch(getSpots(category, filter));
   }, [dispatch]);
 
   const nonFunctional = async (e) => {

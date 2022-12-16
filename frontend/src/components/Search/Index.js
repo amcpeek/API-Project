@@ -22,6 +22,7 @@ function SearchForm({showSearchModal, setShowSearchModal, searchContent, setSear
         // history.push('/')
         const response = await dispatch(getSpots('region', region))
         .then(setShowSearchModal(false))
+        .then(history.push(`/spots?region=${region}`))
 
     }
 
@@ -29,7 +30,8 @@ function SearchForm({showSearchModal, setShowSearchModal, searchContent, setSear
       e.preventDefault()
       const response = await dispatch(getSpots('maxPrice', maxPrice))
       .then(setShowSearchModal(false))
-      // .then(<Redirect to='/'/>)
+      // .then(<Redirect to=`/spots?maxPrice=${maxPrice}`/>)
+      .then(history.push(`/spots?maxPrice=${maxPrice}`))
     }
 
 if(searchContent === 'states') {
@@ -61,8 +63,8 @@ if(searchContent === 'price') {
 
              <div className='justSize'>
              <h2 className='center'>What is your max price?</h2>
-                <div className="checkInOutBox moreCheckIn">
-                  <div className="checkInOutDates">
+                <div >
+                  <div >
                       {/* <div>min price
                         <input type="number"
                         min='0'
@@ -75,6 +77,8 @@ if(searchContent === 'price') {
                       </div> */}
                       <div>
                         <form onSubmit={handleSubmitPrice} className='centerDiv'>
+                          <div>
+                          $
                         <input type="number"
                         className='makeBigger'
                         min='0'
@@ -83,6 +87,9 @@ if(searchContent === 'price') {
                         onChange={(e) => setMaxPrice(e.target.value)}
                         required
                         ></input>
+
+                          </div>
+
                         <button type='submit' className='inDevelopment'>Search</button>
                         </form>
                       </div>
@@ -106,7 +113,7 @@ if(searchContent === 'guests') {
               <select
               onChange={(e) => setGuestsNum(e.target.value)}
               value={guestNum}
-              className='makeBigger'
+              className='joiningGuests'
               >
                   <option key='1 guest'  value='1 guest'> 1 adult</option>
                   <option key='2 guests' value='2 guests'> 2 adults</option>
@@ -119,8 +126,9 @@ if(searchContent === 'guests') {
               <select
               onChange={(e) => setKidsNum(e.target.value)}
               value={kidsNum}
-              className='makeBigger'
+              className='joiningGuests'
               >
+                  <option key='1 guest'  value='1 guest'> 0 children</option>
                   <option key='1 guest'  value='1 guest'> 1 child</option>
                   <option key='2 guests' value='2 guests'> 2 children</option>
                   <option key='3 guests' value='3 guests'> 3 children</option>
@@ -132,13 +140,14 @@ if(searchContent === 'guests') {
               <select
               onChange={(e) => setPetsNum(e.target.value)}
               value={petsNum}
-              className='makeBigger'
+              className='joiningGuests'
               >
-                  <option key='1 guest'  value='1 guest'> 1 pet</option>
-                  <option key='2 guests' value='2 guests'> 2 pets</option>
-                  <option key='3 guests' value='3 guests'> 3 pets</option>
-                  <option key='4 guests' value='4 guests'> 4 pets</option>
-                  <option key='5 guests' value='5 guests'> 5 pets</option>
+                  <option key='1 guest'  value='1 guest'> 0 pets</option>
+                  <option key='1 guest'  value='1 guest'> 1 dog</option>
+                  <option key='2 guests' value='2 guests'> 1 cat</option>
+                  <option key='3 guests' value='3 guests'> 1 llama</option>
+                  <option key='4 guests' value='4 guests'> 1 hedgehog</option>
+                  <option key='5 guests' value='5 guests'> 1 turtle</option>
               </select>
             </label>
             </div>

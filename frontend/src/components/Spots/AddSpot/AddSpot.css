@@ -74,10 +74,34 @@
     border: 1px solid rgb(164, 161, 161);
     /* border-radius: 10px; */
     box-shadow:  1px 1px 2px 2px lightgrey;
+    padding-left: 5px;
 
 }
 
 
+.StateDropDownSection {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(164, 161, 161);
+    width: 507px;
+    height: 38px;
+    box-shadow:  1px 1px 2px 2px lightgrey;
+}
+
+.StateDropDownSection > label > select {
+    width: 505px;
+    height: 25px;
+    border-color: white;
+}
+
+
+
+.labelForForm {
+    font-size: 13px;
+    color: rgb(164, 161, 161);
+    padding-left: 5px;
+
+}
 
 
 
@@ -86,7 +110,7 @@
     /* border: 10px red solid; */
     display: flex;
     justify-content: flex-end;
-    width: 500px;
+    width: 503px;
     font-family: 'Poppins', sans-serif;
     /* border-radius: 10px; */
     box-shadow:  1px 1px 2px 2px lightgrey;
@@ -157,11 +181,7 @@
 }
 
 
-.labelForForm {
-    font-size: 13px;
-    color: rgb(164, 161, 161);
 
-}
 
 .ulNoBullets {
     list-style-type: none;

@@ -5,6 +5,7 @@ import { updateSpot, getSpots } from '../../../store/spot'
 import { getOneSpot } from '../../../store/oneSpot'
 import { addSpotImage } from '../../../store/spot'
 //import './AddSpot.css'
+import './UpdateSpot.css'
 
 const UpdateSpotForm = ({showModal, setShowModal}) => {
     const { id } = useParams()
@@ -21,6 +22,14 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
    const [url, setUrl] = useState('')
 //    const [preview, setPreview] = useState(false)
    const [responseErrors, setResponseErrors] = useState([])
+
+   const allStates =
+   ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware",
+   "D. C.","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky",
+   "Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri",
+   "Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota",
+   ,"Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina",
+   "South Dakota","Tennessee","Texas", "U.S. Territories","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming", "International"]
 
    useEffect(() => {
     dispatch(getSpots())
@@ -137,7 +146,7 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
                 <div className='labelForForm'>
                     State
                     </div>
-                <div>
+                {/* <div>
 
                  <input
                  type='text'
@@ -146,7 +155,25 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
                  placeholder='State'
                  name='state'
                 />
+                </div> */}
+
+                <div className='StateDropDownSection roundAllEdges'>
+
+                      <label className='roundAllEdges'>
+                        <select
+                        className='roundAllEdges'
+                        placeholder='State'
+                        onChange={(e) => setState(e.target.value)}
+                        value={state}
+                        >
+                            {allStates.map(state => (
+                                <option key={state} value={state}> {state}</option>
+                            ))}
+                        </select>
+                      </label>
+
                 </div>
+
                 <div className='labelForForm'>
                     Country
                     </div>

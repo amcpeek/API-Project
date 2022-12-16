@@ -132,7 +132,7 @@ export const getCurrentOwnersSpots = () => async dispatch => {
     //
     if(response.ok) {
         const spots = await response.json()
-        (getCurrentOwnersSpotsAction(spots))
+        dispatch(getCurrentOwnersSpotsAction(spots))
     }
 
 }
