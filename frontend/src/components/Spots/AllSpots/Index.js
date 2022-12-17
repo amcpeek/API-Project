@@ -12,16 +12,21 @@ const AllSpots = () => {
   let location = useLocation()
   const [newSrc, setNewSrc] = useState('')
     const spots = useSelector(state=> {
-    return Object.values(state.spots)
+      if(state.spots) {
+        return Object.values(state.spots)
+      } else {
+        return []
+      }
+
     });
 
   useEffect(() => {
-    console.log('qwertyuiopoiuytrew',location.search) // gives you ?maxPrice=10
+   // console.log('qwertyuiopoiuytrew',location.search) // gives you ?maxPrice=10
     let newThing = location.search.split('=')
-    console.log('sdfgsgd', newThing)
+  //  console.log('sdfgsgd', newThing)
     const category = newThing[0].slice(1)
     const filter = newThing[1]
-    console.log('sdgsdf', category, filter)
+   // console.log('sdgsdf', category, filter)
 
 
     dispatch(getSpots(category, filter));
@@ -66,6 +71,11 @@ const AllSpots = () => {
         </div>
 
         <div className="HomeList">
+          <div>{spots.length === 0 && (<div>
+            <h1>No homes meet your search criteria</h1>
+          </div>)}</div>
+
+
                 {spots.map(({ id, name, previewImage, city, state, description, price, avgRating }) => (
                   <div className="AllSpotsImages" key={id}>
                     <NavLink to={`/spots/${id}`}>

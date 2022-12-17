@@ -29,6 +29,12 @@ const CurrentOwnersSpots = () => {
       }
     })
 
+   const userFirstName = useSelector(state => {
+    if(state.session.user.firstName) {
+      return  state.session.user.firstName
+    }
+   })
+
 
     const usersReviews = useSelector(state => {
       if(state.reviews.currentUsersReviews) {
@@ -49,10 +55,12 @@ const CurrentOwnersSpots = () => {
       history.go(0)
     }
 
+    //usersReviews && usersReviews[0].User.firstName
+
 
     return (
       <div className='CurrentOwnersPage'>
-        <h2 className='currentOwnersTitle'>Your Listed Homes</h2>
+        <h2 className='currentOwnersTitle'>{userFirstName}'s Homes</h2>
         <div className="CurrentHomeList">
                 {ownersSpots.map(({ id, name, previewImage, city, state, description, price, avgRating }) => (
                   <div className="AllSpotsImages" key={id}>
@@ -86,7 +94,8 @@ const CurrentOwnersSpots = () => {
                 ))}
         </div>
 
-        <h2 className='currentOwnersTitle'>Your Reviews</h2>
+
+        <h2 className='currentOwnersTitle'>{userFirstName}'s Reviews</h2>
 
 
 
@@ -94,11 +103,12 @@ const CurrentOwnersSpots = () => {
 
 
                     {usersReviews && usersReviews.map((review) => (
-                      <div  key={review.id}>
+                       <NavLink to={`/spots/${review.spotId}`}>
+                      <div  key={review.id} className='insideCurrentOwner'>
                               <div className="SingleSpotReviewBox" key={review.id}>
-                                <h4>{review.Spot.name}</h4>
+                                <h4 className='underlined'>{review.Spot.name}</h4>
+                                <h5>{review.Spot.city}, {review.Spot.state}</h5>
                                     <div><i className="material-symbols-outlined">star </i> {review.stars} stars</div>
-                                    <div> <i className="material-symbols-outlined">face</i> </div>
                                     <p>{review.review}</p>
 
                                     {/* {<><UpdateReviewModal/></>}
@@ -108,6 +118,7 @@ const CurrentOwnersSpots = () => {
                                         </i></button>} */}
                               </div>
                       </div>
+                      </NavLink>
                     ))}
               </div>
       </div>

@@ -128,7 +128,9 @@ export const removeSpot = (spotId) => async dispatch => {
         method: 'DELETE'
     })
     if(response.ok) {
-        dispatch(removeSpotAction(spotId))
+         dispatch(removeSpotAction(spotId))
+     
+
     }
 
 }
