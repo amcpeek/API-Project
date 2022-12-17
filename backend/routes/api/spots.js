@@ -137,7 +137,7 @@ router.get('/', async (req, res, next) => {
         })
 
     } catch(error) {
-        console.log(error)
+      //  console.log(error)
         // error.errors.map(er => { //im not sure if this is needed here
         //     errObj[er.path] = errorStrings[er.path]
        // })
@@ -341,7 +341,7 @@ router.post('/', requireAuth, async (req, res, next) => {
         //lat, lng,
         res.json(newSpot)
     } catch(error) {
-        console.log('the backend error', error)
+      //  console.log('the backend error', error)
         error.errors.map(er => {
             errObj[er.path] = errorStrings[er.path]
         })
@@ -436,7 +436,7 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
         if(!price) {errObj['price'] = errorStrings['price']}
 
         if(Object.keys(errObj).length) {
-            console.log('what is this',errObj)
+          //  console.log('what is this',errObj)
             throw new Error ("Validation was not met")
 
         }
@@ -449,7 +449,7 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
         res.json(newSpot)
 
     } catch(error) {
-        console.log('testing for error ', error)
+      //  console.log('testing for error ', error)
         if(error.errors) {
             error.errors.map(er => {
                 errObj[er.path] = errorStrings[er.path]

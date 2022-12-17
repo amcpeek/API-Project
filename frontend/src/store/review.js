@@ -62,7 +62,7 @@ export const getUsersReviewsAction = (userReviews) => {
 /* -- thunk action creators -- */
 export const getSpotReviews = (spotId) => async dispatch => {
     const response = await fetch(`/api/spots/${spotId}/reviews`)
-    console.log('is there something wrong with spot id', spotId)
+   // console.log('is there something wrong with spot id', spotId)
     if(response.ok) {
         const spotReviews = await response.json()
         dispatch(getSpotReviewsAction(spotReviews))
@@ -73,7 +73,7 @@ export const getSpotReviews = (spotId) => async dispatch => {
 }
 
 export const addSpotReview = (spotReview, id) => async dispatch => {
-    console.log('is it getting to the reducer', spotReview, id)
+   // console.log('is it getting to the reducer', spotReview, id)
     const response = await csrfFetch(`/api/spots/${id}/reviews`, {
         method: 'POST',
         body: JSON.stringify(spotReview)

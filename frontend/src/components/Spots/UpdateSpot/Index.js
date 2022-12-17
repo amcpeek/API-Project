@@ -58,7 +58,7 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
    }, [spot]) //not sure if this is the right place to listen to, if the spot level isn't changing
 
     const handleSubmit = async (e) => {
-        console.log('if this runs, then the NavLink is not breaking the button')
+      //  console.log('if this runs, then the NavLink is not breaking the button')
         e.preventDefault()
         const payload = {
             id,

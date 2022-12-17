@@ -1,6 +1,6 @@
 'use strict';
 
-//bulk create files do not need to be updated for render 
+//bulk create files do not need to be updated for render
 
 const { Booking } = require('../models')
 
@@ -53,7 +53,7 @@ module.exports = {
         validate: true,
       });
     } catch (err) {
-      console.log(err);
+     // console.log(err);
       throw err;
     }
 
@@ -72,7 +72,7 @@ module.exports = {
           where: bookingInfo
         });
       } catch (err) {
-        console.log(err);
+      //  console.log(err);
         throw err;
       }
     }

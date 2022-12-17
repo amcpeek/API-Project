@@ -35,9 +35,9 @@ export default function oneSpotReducer (state = {}, action) {
     switch(action.type) {
         case GET_ONE_SPOT:
             const newSpot = {}
-            console.log('current-Action',action)
+        //    console.log('current-Action',action)
             newSpot[action.spot.id] = action.spot
-            console.log('new-Spot', newSpot)
+         //   console.log('new-Spot', newSpot)
              return  newSpot
         case CLEAR_ONE_SPOT:
             return {}

@@ -79,7 +79,7 @@ export const getSpots = (category, filter) => async dispatch => { //
 //
     if(response.ok) {
         const spots = await response.json()
-        console.log('are we getting it back', spots.Spots)
+     //   console.log('are we getting it back', spots.Spots)
 
         dispatch(getSpotsAction(spots.Spots))
     }
@@ -108,7 +108,7 @@ export const updateSpot = (spot) => async dispatch => {
             method: 'PUT',
             body: JSON.stringify(spot)
         })
-        console.log('1234321', response)
+       // console.log('1234321', response)
         //this whole if statement is unnecessary bc I don't use it for update
         if(response.ok) { // as written, will not have errors you can read, it says 'readable stream"
 

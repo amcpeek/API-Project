@@ -18,7 +18,7 @@ function SearchForm({showSearchModal, setShowSearchModal, searchContent, setSear
     const Regions = ['west', 'midwest', 'south', 'northeast', 'pacific', 'anywhere']
 
     const handleSubmit = async (region) => {
-        console.log('is selected region in the handle submit',region)
+       // console.log('is selected region in the handle submit',region)
         // history.push('/')
         const response = await dispatch(getSpots('region', region))
         .then(setShowSearchModal(false))

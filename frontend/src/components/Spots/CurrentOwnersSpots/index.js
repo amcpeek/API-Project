@@ -50,7 +50,7 @@ const CurrentOwnersSpots = () => {
     // })
 
     const handleRemoveReview = (reviewId) => {
-      console.log('what is review id', reviewId)
+     // console.log('what is review id', reviewId)
       dispatch(removeReview(reviewId))
       history.go(0)
     }
