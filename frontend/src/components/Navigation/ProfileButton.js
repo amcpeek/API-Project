@@ -52,7 +52,7 @@ function ProfileButton({ user }) {
       </button>
       {showMenu && user && (
         <div className="dropdownContentNav">
-          {/* <button className='dropDownNavButtons roundTopFields'><NavLink exact to="/spots/current">View Your Profile</NavLink></button> */}
+           <button className='dropDownNavButtons roundTopFields'><NavLink exact to="/spots/current">View Your Profile</NavLink></button>
             <button className='dropDownNavButtons roundBottomFields' onClick={logout}>Log Out</button>
         </div>
       )}
