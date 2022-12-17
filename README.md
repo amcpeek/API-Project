@@ -30,8 +30,9 @@ This page is available to all logged in users.
 ./CreateHomePage.png
 
 ## Road Map
-My long term goal for this project is to use API integrations so the user can create images, reviews, and descriptions for listed sites using AI. Here is the site I want to use for images: https://deepai.org/machine-learning-model/text2img. I haven't been able to find good free ones though.
-Before working on that, I want to set up AWS and making the booking feature work.
+My next step is continuing to build out the search feature and integrate google maps. I had seed data from 20 states and will be adding the next 30 states. Then I will start on the bookings feature.
+My long term goal for this project is to use API integrations so the user can create images, reviews, and descriptions for listed sites using AI. Here is the site I want to use for images: https://deepai.org/machine-learning-model/text2img. I haven't been able to find good free options yet.
+
 
 ## Get started using my repo locally
 Once downloading the repo in the backend folder run:

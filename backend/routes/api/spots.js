@@ -203,13 +203,13 @@ router.get('/current', requireAuth, async (req, res, next) => {
         where: {ownerId: userId}
     })
 
-    if(!allSpots[0]) {
-        res.statusCode = 403
-        res.json({
-            message: "Forbidden",
-            statusCode: 403
-        })
-    }
+    // if(!allSpots[0]) {
+    //     res.statusCode = 403
+    //     res.json({
+    //         message: "Forbidden",
+    //         statusCode: 403
+    //     })
+    // }
 
     const newSpots = []
     for (let spot of allSpots) {

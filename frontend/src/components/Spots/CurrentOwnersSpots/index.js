@@ -13,6 +13,11 @@ const CurrentOwnersSpots = () => {
     const history = useHistory()
     const [newSrc, setNewSrc] = useState('')
 
+    // useEffect(() => {
+    //  // dispatch(get)
+
+    // }, [dispatch])
+
     useEffect(() => {
       dispatch(getCurrentOwnersSpots());
     }, [dispatch]);
@@ -24,8 +29,8 @@ const CurrentOwnersSpots = () => {
     const ownersSpots = useSelector(state => {
       if(state.spots.currentOwnersSpots) {
         return Object.values(state.spots.currentOwnersSpots)
-      } else {
-        return []
+      // } else {
+      //   return []
       }
     })
 
@@ -39,8 +44,8 @@ const CurrentOwnersSpots = () => {
     const usersReviews = useSelector(state => {
       if(state.reviews.currentUsersReviews) {
         return Object.values(state.reviews.currentUsersReviews)
-      } else {
-        return []
+      // } else {
+      //   return []
       }
     })
 
@@ -62,7 +67,7 @@ const CurrentOwnersSpots = () => {
       <div className='CurrentOwnersPage'>
         <h2 className='currentOwnersTitle'>{userFirstName}'s Homes</h2>
         <div className="CurrentHomeList">
-                {ownersSpots.map(({ id, name, previewImage, city, state, description, price, avgRating }) => (
+                {ownersSpots?.map(({ id, name, previewImage, city, state, description, price, avgRating }) => (
                   <div className="AllSpotsImages" key={id}>
                     <NavLink to={`/spots/${id}`}>
                                 <div>
@@ -102,7 +107,7 @@ const CurrentOwnersSpots = () => {
              <div className="CurrentOwnersReviews">
 
 
-                    {usersReviews && usersReviews.map((review) => (
+                    {usersReviews && usersReviews?.map((review) => (
                        <NavLink to={`/spots/${review.spotId}`}>
                       <div  key={review.id} className='insideCurrentOwner'>
                               <div className="SingleSpotReviewBox" key={review.id}>

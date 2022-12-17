@@ -21,13 +21,13 @@ router.get('/current',requireAuth, async (req, res, next) => {
       where: {userId: userId}
   })
 
-  if(!allReviews[0]) {
-    res.statusCode = 403
-    res.json({
-        message: "Forbidden",
-        statusCode: 403
-    })
-  }
+  // if(!allReviews[0]) {
+  //   res.statusCode = 403
+  //   res.json({
+  //       message: "Forbidden",
+  //       statusCode: 403
+  //   })
+  // }
 
   const Reviews = []
   for (let rev of allReviews) {

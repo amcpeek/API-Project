@@ -14,8 +14,8 @@ const AllSpots = () => {
     const spots = useSelector(state=> {
       if(state.spots) {
         return Object.values(state.spots)
-      } else {
-        return []
+      // } else {
+      //   return []
       }
     });
 
@@ -66,7 +66,7 @@ const AllSpots = () => {
 
         <div className="HomeList">
           <div>{spots.length === 0 && (<div>
-            {/* <h1>No homes meet your search criteria</h1> */}
+            <h1>No homes meet your search criteria</h1>
           </div>)}</div>
 
 

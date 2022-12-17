@@ -29,6 +29,8 @@ function Navigation({ isLoaded }){
     alert('This feature is not yet developed')
   }
 
+
+
   return (
     <div className="wholeNav">
       <div id="HomeNavId">
@@ -41,7 +43,7 @@ function Navigation({ isLoaded }){
       </div>
 
       <div className='AroundCenterButton'>
-        {/* <div className='CenterButton'>
+        <div className='CenterButton'>
       <SearchModal  showSearchModal={showSearchModal} setShowSearchModal={setShowSearchModal} searchContent={searchContent} setSearchContent={setSearchContent}/>
         <button onClick={() => {setShowSearchModal(true); setSearchContent('states') }}>Anywhere</button>
         <>|</>
@@ -49,8 +51,8 @@ function Navigation({ isLoaded }){
         <>|</>
         <button onClick={() => {setShowSearchModal(true); setSearchContent('guests') }}>Add guests</button>
         <button className='roundAllEdges' onClick={nonFunctional}><i className="material-symbols-outlined">search</i></button>
-        </div> */}
-         <button className="CenterButton" onClick={nonFunctional}>Anywhere | Any week | Add guest   <i className="material-symbols-outlined">search</i></button>
+        </div>
+         {/* <button className="CenterButton" onClick={nonFunctional}>Anywhere | Any week | Add guest   <i className="material-symbols-outlined">search</i></button> */}
       </div>
 
       <div  className="dropdownNav">

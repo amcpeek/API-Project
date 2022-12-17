@@ -155,7 +155,7 @@ background: none;
 
  .footer {
    position: fixed;
-   width: 100%;
+   width: 80px;
    right: 50px;
    bottom: 50px;
    z-index: 3;
@@ -163,6 +163,7 @@ background: none;
    flex-direction: row;
    justify-content: flex-end;
    align-items: flex-end;
+   /* background-color: red; */
 
    /* padding: 30px; */
    /* margin: 30px; */

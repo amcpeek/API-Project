@@ -31,12 +31,14 @@ function LoginForm({showLogInModal, setShowLogInModal}) {
     const password = 'password'
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ credential, password })).catch(
+    return dispatch(sessionActions.login({ credential, password }))
+    .then(() => {setShowLogInModal(false)})
+    .catch(
       async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       }
-    ).then(() => {setShowLogInModal(false)})
+    )
   }
  //className was LogInForm
   return (

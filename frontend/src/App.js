@@ -34,7 +34,7 @@ function App() {
     <>
 
       <Navigation isLoaded={isLoaded} />
-      {/* <Footer/> */}
+      <Footer/>
       {isLoaded && (
         <Switch>
           <Route path="/signup">
