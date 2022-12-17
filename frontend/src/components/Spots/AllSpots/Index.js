@@ -17,18 +17,12 @@ const AllSpots = () => {
       } else {
         return []
       }
-
     });
 
   useEffect(() => {
-   // console.log('qwertyuiopoiuytrew',location.search) // gives you ?maxPrice=10
     let newThing = location.search.split('=')
-  //  console.log('sdfgsgd', newThing)
     const category = newThing[0].slice(1)
     const filter = newThing[1]
-   // console.log('sdgsdf', category, filter)
-
-
     dispatch(getSpots(category, filter));
   }, [dispatch]);
 

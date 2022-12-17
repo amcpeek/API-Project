@@ -128,11 +128,9 @@ export const removeSpot = (spotId) => async dispatch => {
         method: 'DELETE'
     })
     if(response.ok) {
+        await response.json()
          dispatch(removeSpotAction(spotId))
-     
-
     }
-
 }
 
 export const getCurrentOwnersSpots = () => async dispatch => {

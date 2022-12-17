@@ -52,9 +52,9 @@ const SingleSpot = () => {
     // history.go(0)
   }
 
-  const handleRemoveSpot = () => {
-    dispatch(removeSpot(id))
-    .then(dispatch(getSpots()))
+  const handleRemoveSpot = async () => {
+    await dispatch(removeSpot(id))
+   // .then(dispatch(getSpots()))
      .then(history.push('/'))
   }
 
