@@ -122,12 +122,12 @@ const SingleSpot = () => {
         <img
           src={singleSpot.SpotImages[0].url}
           alt={singleSpot.name}
-          onError={(e)=>{
-            if(e.target.src !== otherSrc) {
-              setNewSrc(otherSrc)
-              e.target.src = otherSrc
-            }
-          }}
+          // onError={(e)=>{
+          //   if(e.target.src !== otherSrc) {
+          //     setNewSrc(otherSrc)
+          //     e.target.src = otherSrc
+          //   }
+          // }}
         />
         </div>
         <div className='SingleSpotFourImages'>
@@ -136,12 +136,12 @@ const SingleSpot = () => {
           <img
           src={url}
           alt={singleSpot.name}
-          onError={(e)=>{
-            if(e.target.src !== otherSrc) {
-              setNewSrc(otherSrc)
-              e.target.src = otherSrc
-            }
-          }}
+          // onError={(e)=>{
+          //   if(e.target.src !== otherSrc) {
+          //     setNewSrc(otherSrc)
+          //     e.target.src = otherSrc
+          //   }
+          // }}
           />
 
           </div>

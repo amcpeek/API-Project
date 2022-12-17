@@ -69,12 +69,12 @@ const CurrentOwnersSpots = () => {
                                 <img
                             src={previewImage}
                             alt={name}
-                            onError={(e)=>{
-                              if(e.target.src !== otherSrc) {
-                                setNewSrc(otherSrc)
-                                e.target.src = otherSrc
-                              }
-                              }}
+                            // onError={(e)=>{
+                            //   if(e.target.src !== otherSrc) {
+                            //     setNewSrc(otherSrc)
+                            //     e.target.src = otherSrc
+                            //   }
+                            //   }}
 
                             />
                                 </div >
