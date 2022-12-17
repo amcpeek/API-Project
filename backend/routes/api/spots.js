@@ -125,7 +125,7 @@ router.get('/', async (req, res, next) => {
             if(allSpots) {
                 newVar.previewImage = allSpots.url
             } else {
-                newVar.previewImage = 'https://a0.muscache.com/im/pictures/d99ba571-4ea2-453d-8eb3-11459a57a038.jpg?im_w=1200'
+           //     newVar.previewImage = 'https://a0.muscache.com/im/pictures/d99ba571-4ea2-453d-8eb3-11459a57a038.jpg?im_w=1200'
             }
             Spots.push(newVar)
 
@@ -235,7 +235,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
        if(allSpots) {
         newVar.previewImage = allSpots.url
        } else {
-        newVar.previewImage = 'https://a0.muscache.com/im/pictures/0b075dc9-94b0-4b2a-8400-5c27f3492ffa.jpg?im_w=1200'
+      //  newVar.previewImage = 'https://a0.muscache.com/im/pictures/0b075dc9-94b0-4b2a-8400-5c27f3492ffa.jpg?im_w=1200'
     }
 
        newSpots.push(newVar)
@@ -284,16 +284,16 @@ router.get('/:spotId', async (req, res, next) => {
         raw: true
     })
     //console.log('what is allImages.url//////////////////////////////', allImages)
-    if(!allImages.length) {
-       // allImages.url[0] = 'https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg'
-       //console.log('what is allImages.url//////////////////////////////', allImages)
-       //allImages.push()
-       allImages = [ {
-        id:0,
-        url:'https://www.jetsetter.com//uploads/sites/7/2018/04/ye1G3gcr-1380x1035.jpeg',
-        previewImage: true
-        }]
-    }
+    // if(!allImages.length) {
+    //    // allImages.url[0] = 'https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg'
+    //    //console.log('what is allImages.url//////////////////////////////', allImages)
+    //    //allImages.push()
+    //    allImages = [ {
+    //     id:0,
+    //     url:'https://www.jetsetter.com//uploads/sites/7/2018/04/ye1G3gcr-1380x1035.jpeg',
+    //     previewImage: true
+    //     }]
+    // }
     nextPiece.SpotImages = allImages
 
     //owner info
