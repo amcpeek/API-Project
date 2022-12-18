@@ -53,13 +53,10 @@ const SingleSpot = () => {
   }
 
   const handleRemoveSpot = async () => {
-    setTimeout(() => {
-     dispatch(removeSpot(id))
-    },10000)
-
-
+    await dispatch(removeSpot(id))
+   // await dispatch(getOneSpot(id))
    // .then(dispatch(getSpots()))
-     .then(history.push('/'))
+    history.push('/')
   }
 
 
