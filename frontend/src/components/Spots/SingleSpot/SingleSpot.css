@@ -403,15 +403,48 @@
 
 .nowrap {
   display: flex;
-  justify-content: flex-start;
+  /* justify-content: flex-start; */
   /* width: 20px; */
   flex-direction: row;
   flex-wrap: nowrap;
   overflow-x:hidden;
   overflow-y:hidden;
-  width: 400px;
-  height: 20px;
+  width: 380px;
+  height: 28px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .nowrapAllSpots {
   display: flex;
@@ -439,9 +472,28 @@
 
 
 
+
+/* .nowrapReviewsTop {
+  display: flex;
+  justify-content: flex-start;
+   width: 100px;
+   height: 30px;
+  flex-direction: row;
+   flex-wrap: nowrap;
+  overflow-x:hidden;
+  overflow-wrap: break-word;
+   overflow-y:hidden;
+
+} */
+
+
 .another {
   display: flex;
   flex-direction: row;
+  /* align-items: flex-end; */
+   width: 630px;
+   font-size: 15px;
+
 }
 
 .shouldWrap {
@@ -458,3 +510,7 @@
   height: 50px; */
 
 }
+/*
+.enoughSpace {
+  width: 240px;
+} */

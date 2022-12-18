@@ -111,7 +111,9 @@ const SingleSpot = () => {
         <i className="material-symbols-outlined">star </i>
         {singleSpot.avgStarRating} ·  {singleSpot.numReviews} reviews   ·
         <i className="material-symbols-outlined"> military_tech</i>
-        Superhost  · <div className='nowrap'>{singleSpot.city}, {singleSpot.state}, {singleSpot.country}</div>
+        Superhost ·
+
+        <div className='nowrap'>{singleSpot.city}, {singleSpot.state}, {singleSpot.country}</div>
         </div>
 
         <div onClick={nonFunctional} >
