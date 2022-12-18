@@ -53,7 +53,11 @@ const SingleSpot = () => {
   }
 
   const handleRemoveSpot = async () => {
-    await dispatch(removeSpot(id))
+    setTimeout(() => {
+     dispatch(removeSpot(id))
+    },10000)
+
+
    // .then(dispatch(getSpots()))
      .then(history.push('/'))
   }
@@ -111,7 +115,7 @@ const SingleSpot = () => {
         Superhost  · <div className='nowrap'>{singleSpot.city}, {singleSpot.state}, {singleSpot.country}</div>
         </div>
 
-        <div c onClick={nonFunctional} >
+        <div onClick={nonFunctional} >
         <i className="material-symbols-outlined">upload</i>Share
         <i className="material-symbols-outlined">favorite</i>
         Save

@@ -33,6 +33,7 @@ const AllSpots = () => {
 
   const reRun = async () => {
     dispatch(getSpots())
+   // alert('This spot has no image')
   }
 
 
