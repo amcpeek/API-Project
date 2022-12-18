@@ -413,15 +413,15 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
 
      const errObj = {}
      const errorStrings = {
-        "address": "Street address is required",
-        "city": "City is required",
-        "state": "State is required",
-        "country": "Country is required",
+        "address": "Street address must be 1 to 50 characters",
+        "city": "City must be 1 to 50 characters",
+        "state": "State must be 1 to 50 characters",
+        "country": "Country must be 1 to 50 characters",
         // "lat": "Latitude is not valid",
         // "lng": "Longitude is not valid",
-        "name": "Name must be less than 50 characters",
-        "description": "Description is required",
-        "price": "Price per day is required"
+        "name": "Name must be must be 1 to 50 characters",
+        "description": "Description must be 1 to 500 characters",
+        "price": "Price per night must be $1-$5000"
     }
 
     try{
