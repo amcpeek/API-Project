@@ -53,10 +53,10 @@ const SingleSpot = () => {
   }
 
   const handleRemoveSpot = async () => {
-    await dispatch(removeSpot(id))
+     await dispatch(removeSpot(id))
    // await dispatch(getOneSpot(id))
    // .then(dispatch(getSpots()))
-    history.push('/')
+       history.push('/')
   }
 
 
