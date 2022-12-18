@@ -31,6 +31,10 @@ const AllSpots = () => {
     alert('This feature is not yet developed')
   }
 
+  const reRun = async () => {
+    dispatch(getSpots())
+  }
+
 
 
   return (
@@ -77,12 +81,13 @@ const AllSpots = () => {
                                 <img
                             src={previewImage}
                             alt={name}
-                            // onError={(e)=>{
+                            onError={(e)=>{
+                              reRun()
                             // if(e.target.src !== otherSrc) {
                             //   setNewSrc(otherSrc)
                             //   e.target.src = otherSrc
                             // }
-                            // }}
+                            }}
                             />
                                 </div >
                                 <div className='SpaceBetween'>
