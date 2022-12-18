@@ -30,12 +30,13 @@ export const login = (user) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-  console.log('WHAT IS DATA', data)
+  console.log('WHAT IS LOG IN DATA', data)
   dispatch(setUser(data.user));
   return response;
 };
 
 // frontend/src/store/session.js
+//Get current user, returns firstName, lastName, email, username
 // ...
 export const restoreUser = () => async dispatch => {
     const response = await csrfFetch('/api/session');
@@ -59,6 +60,7 @@ export const signup = (user) => async (dispatch) => {
     }),
   });
   const data = await response.json();
+  console.log('SIGN UP DIFF THAN LOG IN?', data)
   dispatch(setUser(data.user));
   return response;
 };

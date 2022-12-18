@@ -6,7 +6,8 @@ import './CurrentOwnersSpots.css'
 import { getUsersReviews, removeReview } from '../../../store/review';
 import UpdateReviewModal from '../../Reviews/UpdateReview/UpdateReviewModal'
 import { useHistory } from 'react-router-dom';
-let otherSrc = 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-21426276/original/7cceab2c-f3f2-4ed6-86b4-79bb32746dc0.jpeg?im_w=1200'
+import { restoreUser } from '../../../store/session'
+//let otherSrc = 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-21426276/original/7cceab2c-f3f2-4ed6-86b4-79bb32746dc0.jpeg?im_w=1200'
 
 const CurrentOwnersSpots = () => {
     const dispatch = useDispatch();
@@ -25,6 +26,10 @@ const CurrentOwnersSpots = () => {
     useEffect(() => {
       dispatch(getUsersReviews());
     }, [dispatch]);
+
+    useEffect(() => {
+      dispatch(restoreUser())
+    }, [dispatch])
 
     const ownersSpots = useSelector(state => {
       if(state.spots.currentOwnersSpots) {
@@ -65,7 +70,7 @@ const CurrentOwnersSpots = () => {
 
     return (
       <div className='CurrentOwnersPage'>
-        <h2 className='currentOwnersTitle'>{userFirstName}'s Homes</h2>
+        {userFirstName && <h2 className='currentOwnersTitle'>{userFirstName}'s Homes</h2>}
         <div className="CurrentHomeList">
                 {ownersSpots?.map(({ id, name, previewImage, city, state, description, price, avgRating }) => (
                   <div className="AllSpotsImages" key={id}>
@@ -100,7 +105,7 @@ const CurrentOwnersSpots = () => {
         </div>
 
 
-        <h2 className='currentOwnersTitle'>{userFirstName}'s Reviews</h2>
+        {userFirstName && <h2 className='currentOwnersTitle'>{userFirstName}'s Reviews</h2>}
 
 
 

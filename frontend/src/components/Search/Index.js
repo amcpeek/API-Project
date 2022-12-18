@@ -81,7 +81,7 @@ if(searchContent === 'price') {
                           $
                         <input type="number"
                         className='makeBigger'
-                        min='0'
+                        min='1'
                         max='5000'
                         value={maxPrice}
                         onChange={(e) => setMaxPrice(e.target.value)}

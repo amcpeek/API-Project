@@ -23,8 +23,8 @@ router.get('/', async (req, res, next) => {
     if(region === 'west') { myState = ['California', 'Oregon','Washington', 'Idaho', 'Montana', 'Wyoming', 'Nevada', 'Arizona', 'Colorado', 'Utah', 'New Mexico'] }
     if(region === 'midwest') { myState = ['North Dakota', 'South Dakota', 'Minnesota', 'Wisconsin', 'Michigan', 'Nebraska', 'Iowa', 'Illinois', 'Indiana', 'Ohio', 'Kansas', 'Missouri']}
     if(region === 'pacific') { myState = ['Hawaii', 'Alaska']}
-    if(region === 'south') { myState = ['Texas', 'Oklahoma', 'Arkansas', 'Louisiana', 'Mississippi', 'Alabama', 'Georgia', 'Florida', 'South Carolina', 'North Carolina', 'Tennessee', 'Kentucky', 'Virginia', 'West Virginia', 'Maryland', 'Delaware']}
-    if(region === 'northeast') { myState = ['New York', 'Maine', 'New Hampshire', 'Vermont', 'Massachusetts', 'Pennsylvania', 'New Jersey', 'Connecticut', 'Rhode Island']}
+    if(region === 'south') { myState = ['Texas', 'Oklahoma', 'Arkansas', 'Louisiana', 'Mississippi', 'Alabama', 'Georgia', 'Florida', 'South Carolina', 'North Carolina', 'Tennessee', 'Kentucky', 'Virginia', 'West Virginia', 'Maryland']}
+    if(region === 'northeast') { myState = ['New York', 'Maine', 'New Hampshire', 'Vermont', 'Massachusetts', 'Pennsylvania', 'New Jersey', 'Connecticut', 'Rhode Island', 'Delaware']}
     if(region === 'anywhere') { myState = []}
 
     const errorStrings = {
