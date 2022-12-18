@@ -33,25 +33,25 @@ module.exports = (sequelize, DataTypes) => {
     address: {
       type: DataTypes.STRING,
       validate: {
-        len: [1,50]
+        len: [1,30]
       }
     },
     city: {
       type: DataTypes.STRING,
       validate: {
-        len: [1,50]
+        len: [1,30]
       }
     },
     state: {
       type: DataTypes.STRING,
       validate: {
-        len: [1,50]
+        len: [1,30]
       }
     },
     country: {
       type: DataTypes.STRING,
       validate: {
-        len: [1,50]
+        len: [1,30]
       }
     },
     lat: DataTypes.DECIMAL,
@@ -59,13 +59,13 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       validate: {
-        len: [1,50]
+        len: [1,30]
       }
     },
     description: {
       type: DataTypes.STRING,
       validate: {
-        len: [1,500]
+        len: [1,255]
       }
     },
     price: {

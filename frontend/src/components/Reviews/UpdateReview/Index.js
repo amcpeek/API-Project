@@ -72,7 +72,7 @@ const UpdateReviewForm = ({showModal, setShowModal}) => {
             <div className='formTop'>
             {/* <button className="cancelButton"><NavLink to={`/spots/${review.spotId}`}>X</NavLink></button> */}
             <button className="cancelButton" onClick={() => setShowModal(false)}>X</button>
-            <h3>Edit Your Review of '{spotName}' </h3>
+            <h3 className='nowrapReviews'>Edit Your Review of '{spotName}' </h3>
             <div className='LogInErrors'>
 
 

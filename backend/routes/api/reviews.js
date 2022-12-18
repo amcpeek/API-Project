@@ -135,7 +135,7 @@ router.put('/:reviewId', requireAuth, async (req, res, next) => {
   }
   const errObj = {}
   const errorStrings = {
-      "review": "Review text is required",
+      "review": "Review text must be 1 to 255 characters",
       "stars": "Stars must be an integer from 1 to 5",
   }
   try{

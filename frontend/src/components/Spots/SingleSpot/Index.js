@@ -97,19 +97,21 @@ const SingleSpot = () => {
 
     return (
       <div className='SingleSpot'>
-        <div className='LeftTitle'>
-        <h2>{singleSpot.name}</h2>
+        <div className='justCenter'>
+          <div className='LeftTitle'>
+          <h1>{singleSpot.name}</h1>
+          </div>
         </div>
 
         <div id='SingleSpotTopLinks'>
-        <div className='underlined' onClick={nonFunctional} >
+        <div className=' another'  onClick={nonFunctional} >
         <i className="material-symbols-outlined">star </i>
         {singleSpot.avgStarRating} ·  {singleSpot.numReviews} reviews   ·
         <i className="material-symbols-outlined"> military_tech</i>
-        Superhost  ·  {singleSpot.city}, {singleSpot.state}, {singleSpot.country}
+        Superhost  · <div className='nowrap'>{singleSpot.city}, {singleSpot.state}, {singleSpot.country}</div>
         </div>
 
-        <div className='underlined' onClick={nonFunctional} >
+        <div c onClick={nonFunctional} >
         <i className="material-symbols-outlined">upload</i>Share
         <i className="material-symbols-outlined">favorite</i>
         Save
@@ -151,7 +153,9 @@ const SingleSpot = () => {
 
         <div id="SingleSpotBottomSection">
           <div id="SingleSpotDetails">
-            <h2>{singleSpot.description}</h2>
+            <div className="shouldWrap">
+            <h2 >{singleSpot.description}</h2>
+            </div>
             <p> 4 guests  ·  2 bedrooms  ·  2 beds  ·  1 bathroom</p>
             <h3><i className="material-symbols-outlined"> military_tech</i>{singleSpot.Owner.firstName} is a Superhost</h3>
             <p>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</p>
@@ -176,7 +180,7 @@ const SingleSpot = () => {
                                     {review.User && review.User.firstName}
                                     {/* Colleen */}
                                     </div>
-                                    <p>{review.review}</p>
+                                    <p className="shouldWrap">{review.review}</p>
                                     {review.userId === currentUserId &&  <><UpdateReviewModal/></>}
                                     {review.userId === currentUserId && <button onClick={()=> handleRemoveReview(review.id) }>
                                       <i className="material-symbols-outlined">

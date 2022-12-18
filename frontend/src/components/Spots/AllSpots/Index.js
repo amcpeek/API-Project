@@ -86,14 +86,14 @@ const AllSpots = () => {
                             />
                                 </div >
                                 <div className='SpaceBetween'>
-                                <div className='greyText' id="CityState">{city}, {state}</div>
+                                <div className='greyText nowrapAllSpots' id="CityState">{city}, {state}</div>
                                 <div>
                                 <i className="material-symbols-outlined">star </i>
                                 {avgRating}
                                 </div>
 
                                 </div>
-                      <div className='greyText'>{name}</div>
+                      <div className='greyText nowrapAllSpots'>{name}</div>
                       <div className='greyText'>Apr 3-8</div>
                       <div className='justNextToEachOther'> <div className='bold'>${price}</div>  night</div>
                     </NavLink>

@@ -315,14 +315,14 @@ router.post('/', requireAuth, async (req, res, next) => {
      const {address, city, state, country, name, description, price} = req.body
      // lat, lng,
     const errorStrings = {
-        "address": "Street address must be 1 to 50 characters",
-        "city": "City must be 1 to 50 characters",
-        "state": "State must be 1 to 50 characters",
-        "country": "Country must be 1 to 50 characters",
+        "address": "Street address must be 1 to 30 characters",
+        "city": "City must be 1 to 30 characters",
+        "state": "State must be 1 to 30 characters",
+        "country": "Country must be 1 to 30 characters",
         // "lat": "Latitude is not valid",
         // "lng": "Longitude is not valid",
-        "name": "Name must be must be 1 to 50 characters",
-        "description": "Description must be 1 to 500 characters",
+        "name": "Name must be must be 1 to 30 characters",
+        "description": "Description must be 1 to 255 characters",
         "price": "Price per night must be $1-$5000"
     }
     const errObj = {}
@@ -341,16 +341,26 @@ router.post('/', requireAuth, async (req, res, next) => {
         //lat, lng,
         res.json(newSpot)
     } catch(error) {
-      //  console.log('the backend error', error)
-        error.errors.map(er => {
-            errObj[er.path] = errorStrings[er.path]
-        })
-        res.statusCode = 436
+       // console.log('the backend error', error)
+       if(error.errors) {
+            error.errors.map(er => {
+                errObj[er.path] = errorStrings[er.path]
+            })
+            res.statusCode = 400
+            res.json({
+                message: 'Validation Error',
+                statusCode: 400,
+                errors: errObj
+            })
+
+       } else {
         res.json({
-            message: 'Validation Error',
-            statusCode: 436,
-            errors: errObj
+            message: 'Backend Error',
+            statusCode: 400,
+            errors: 'There was a backend error'
         })
+       }
+
     }
 })
 
@@ -413,14 +423,14 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
 
      const errObj = {}
      const errorStrings = {
-        "address": "Street address must be 1 to 50 characters",
-        "city": "City must be 1 to 50 characters",
-        "state": "State must be 1 to 50 characters",
-        "country": "Country must be 1 to 50 characters",
+        "address": "Street address must be 1 to 30 characters",
+        "city": "City must be 1 to 30 characters",
+        "state": "State must be 1 to 30 characters",
+        "country": "Country must be 1 to 30 characters",
         // "lat": "Latitude is not valid",
         // "lng": "Longitude is not valid",
-        "name": "Name must be must be 1 to 50 characters",
-        "description": "Description must be 1 to 500 characters",
+        "name": "Name must be must be 1 to 30 characters",
+        "description": "Description must be 1 to 255 characters",
         "price": "Price per night must be $1-$5000"
     }
 
@@ -570,7 +580,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
 
     const errObj = {}
     const errorStrings = {
-        "review": "Review text is required",
+        "review": "Review text must be 1 to 255 characters",
         "stars": "Stars must be an integer from 1 to 5",
     }
 

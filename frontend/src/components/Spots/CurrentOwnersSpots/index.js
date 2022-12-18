@@ -89,14 +89,14 @@ const CurrentOwnersSpots = () => {
                             />
                                 </div >
                                 <div className='SpaceBetween'>
-                                <div className='greyText' id="CityState">{city}, {state}</div>
+                                <div className='greyText nowrapAllSpots' id="CityState">{city}, {state}</div>
                                 <div>
                                 <i className="material-symbols-outlined">star </i>
                                 {avgRating}
                                 </div>
 
                                 </div>
-                      <div className='greyText'>{name}</div>
+                      <div className='greyText nowrapAllSpots'>{name}</div>
                       <div className='greyText'>Apr 3-8</div>
                       <div className='justNextToEachOther'> <div className='bold'>${price}</div>  night</div>
                     </NavLink>
@@ -116,10 +116,10 @@ const CurrentOwnersSpots = () => {
                        <NavLink to={`/spots/${review.spotId}`}>
                       <div  key={review.id} className='insideCurrentOwner'>
                               <div className="SingleSpotReviewBox" key={review.id}>
-                                <h4 className='underlined'>{review.Spot.name}</h4>
-                                <h5>{review.Spot.city}, {review.Spot.state}</h5>
+                                <h4 className='underlined shouldWrap'>{review.Spot.name}</h4>
+                                <h5 className='shouldWrap'>{review.Spot.city}, {review.Spot.state}</h5>
                                     <div><i className="material-symbols-outlined">star </i> {review.stars} stars</div>
-                                    <p>{review.review}</p>
+                                    <p className='shouldWrap'>{review.review}</p>
 
                                     {/* {<><UpdateReviewModal/></>}
                                     {<button onClick={()=> handleRemoveReview(review.id) }>
