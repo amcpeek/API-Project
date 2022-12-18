@@ -7,7 +7,7 @@ import { getUsersReviews, removeReview } from '../../../store/review';
 import UpdateReviewModal from '../../Reviews/UpdateReview/UpdateReviewModal'
 import { useHistory } from 'react-router-dom';
 import { restoreUser } from '../../../store/session'
-//let otherSrc = 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-21426276/original/7cceab2c-f3f2-4ed6-86b4-79bb32746dc0.jpeg?im_w=1200'
+let otherSrc = 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-21426276/original/7cceab2c-f3f2-4ed6-86b4-79bb32746dc0.jpeg?im_w=1200'
 
 const CurrentOwnersSpots = () => {
     const dispatch = useDispatch();
@@ -79,12 +79,12 @@ const CurrentOwnersSpots = () => {
                                 <img
                             src={previewImage}
                             alt={name}
-                            // onError={(e)=>{
-                            //   if(e.target.src !== otherSrc) {
-                            //     setNewSrc(otherSrc)
-                            //     e.target.src = otherSrc
-                            //   }
-                            //   }}
+                            onError={(e)=>{
+                              if(e.target.src !== otherSrc) {
+                                setNewSrc(otherSrc)
+                                e.target.src = otherSrc
+                              }
+                              }}
 
                             />
                                 </div >

@@ -83,11 +83,11 @@ const AllSpots = () => {
                             src={previewImage}
                             alt={name}
                             onError={(e)=>{
-                              reRun()
-                            // if(e.target.src !== otherSrc) {
-                            //   setNewSrc(otherSrc)
-                            //   e.target.src = otherSrc
-                            // }
+                            //  reRun()
+                            if(e.target.src !== otherSrc) {
+                              setNewSrc(otherSrc)
+                              e.target.src = otherSrc
+                            }
                             }}
                             />
                                 </div >
