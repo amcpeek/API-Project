@@ -30,7 +30,7 @@ export const login = (user) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-  console.log('WHAT IS LOG IN DATA', data)
+  //console.log('WHAT IS LOG IN DATA', data)
   dispatch(setUser(data.user));
   return response;
 };
@@ -60,7 +60,7 @@ export const signup = (user) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-  console.log('SIGN UP DIFF THAN LOG IN?', data)
+  //console.log('SIGN UP DIFF THAN LOG IN?', data)
   dispatch(setUser(data.user));
   return response;
 };
