@@ -16,6 +16,7 @@ function SearchForm({showSearchModal, setShowSearchModal, searchContent, setSear
     // const [ minPrice, setMinPrice ] = useState(1)
     const [ maxPrice, setMaxPrice ] = useState(5000)
     const Regions = ['west', 'midwest', 'south', 'northeast', 'pacific', 'anywhere']
+    const [searchTerm, setSearchTerm ] = useState('')
 
     const handleSubmit = async (region) => {
        // console.log('is selected region in the handle submit',region)
@@ -32,6 +33,14 @@ function SearchForm({showSearchModal, setShowSearchModal, searchContent, setSear
       .then(setShowSearchModal(false))
       // .then(<Redirect to=`/spots?maxPrice=${maxPrice}`/>)
       .then(history.push(`/spots?maxPrice=${maxPrice}`))
+    }
+
+    const handleSubmitSearchTerm = async (e) => {
+      e.preventDefault()
+      const response = await dispatch(getSpots('searchTerm', searchTerm))
+      .then(setShowSearchModal(false))
+      // .then(<Redirect to=`/spots?maxPrice=${maxPrice}`/>)
+      .then(history.push(`/spots?searchTerm=${searchTerm}`))
     }
 
 if(searchContent === 'states') {
@@ -156,6 +165,42 @@ if(searchContent === 'guests') {
 
     )
 
+}
+
+if(searchContent === 'searchTerm') {
+  return (
+
+    <div>
+
+             <div className='justSize'>
+             <h2 className='center'>Search by Anything</h2>
+                <div >
+                  <div >
+
+                      <div>
+                        <form onSubmit={handleSubmitSearchTerm} className='centerDiv'>
+                          <div>
+                        <textarea
+                            className="CreateSpotDescriptionBox roundTopFields roundBottomFields"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            name='searchTerm'
+                            placeholder='Please describe anything you are looking for in a place to stay'
+                            rows='2'
+                        ></textarea>
+
+                          </div>
+
+                        <button type='submit' className='inDevelopment'>Search</button>
+                        </form>
+                      </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+  )
 }
 
 }

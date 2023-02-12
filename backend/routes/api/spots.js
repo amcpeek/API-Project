@@ -17,15 +17,18 @@ router.get('/test', requireAuth, (req, res) => {
 //**//6 - Get all Spots - DONE
 //**//26 - Add Query Filters to Get All Spots - DID NOT FINISH
 router.get('/', async (req, res, next) => {
-    let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice, region } = req.query
+    let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice, region, searchTerm } = req.query
     //let { region } = req.query
     let myState = []
+    let mySearchTerm = ''
     if(region === 'west') { myState = ['California', 'Oregon','Washington', 'Idaho', 'Montana', 'Wyoming', 'Nevada', 'Arizona', 'Colorado', 'Utah', 'New Mexico'] }
     if(region === 'midwest') { myState = ['North Dakota', 'South Dakota', 'Minnesota', 'Wisconsin', 'Michigan', 'Nebraska', 'Iowa', 'Illinois', 'Indiana', 'Ohio', 'Kansas', 'Missouri']}
     if(region === 'pacific') { myState = ['Hawaii', 'Alaska']}
     if(region === 'south') { myState = ['Texas', 'Oklahoma', 'Arkansas', 'Louisiana', 'Mississippi', 'Alabama', 'Georgia', 'Florida', 'South Carolina', 'North Carolina', 'Tennessee', 'Kentucky', 'Virginia', 'West Virginia', 'Maryland']}
     if(region === 'northeast') { myState = ['New York', 'Maine', 'New Hampshire', 'Vermont', 'Massachusetts', 'Pennsylvania', 'New Jersey', 'Connecticut', 'Rhode Island', 'Delaware']}
     if(region === 'anywhere') { myState = []}
+    if(searchTerm) { mySearchTerm = searchTerm, console.log('mySearchTermNow', mySearchTerm)}
+    console.log('searchTerm', searchTerm, 'mySearchTerm', mySearchTerm)
 
     const errorStrings = {
         "page": "Page must be greater than or equal to 1",
@@ -81,8 +84,29 @@ router.get('/', async (req, res, next) => {
                         [Op.lte]: maxPrice || 5000
             //          [Op.lte]: maxPrice || 99999999999999
                     },
-                    state: {[Op.or]: myState}
+                    state: {[Op.or]: myState},
+                    // [Op.any] : [
+                    //     // {name:'%'+ mySearchTerm +'%'},
+                    //     // {name: 'California'}
+                    //     // {description:'%'+ mySearchTerm +'%'},
+                    //     // {city:'%'+ mySearchTerm +'%'},
+                    //     // {state:'%'+ mySearchTerm +'%'},
+                    //     // {country:'%'+ mySearchTerm +'%'},
+                    // ]
+                    [Op.or] : [
+                    {name: { [Op.like]:`%${mySearchTerm}%`}},
+                    {description: { [Op.like]:`%${mySearchTerm}%`}},
+                    {city: { [Op.like]:`%${mySearchTerm}%`}},
+                    {state: { [Op.like]:`%${mySearchTerm}%`}},
+                    {country: { [Op.like]:`%${mySearchTerm}%`}}
+                    ]
+
+
+
+
                 }
+
+
                 //add in if region = 'West'
                 //add in a where: state: {'california' || 'oregon'}
             // where: {
