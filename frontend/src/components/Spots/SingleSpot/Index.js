@@ -264,3 +264,5 @@ const SingleSpot = () => {
 };
 
 export default SingleSpot;
+
+
