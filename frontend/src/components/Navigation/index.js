@@ -14,6 +14,7 @@ function Navigation({ isLoaded }){
   const [showModal, setShowModal] = useState(false);
   const [showSearchModal, setShowSearchModal] = useState(false)
   const [searchContent, setSearchContent] = useState('')
+  
   const dispatch = useDispatch()
   useEffect(() => {
     if (!showMenu) return;
