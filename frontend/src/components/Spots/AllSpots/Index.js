@@ -30,11 +30,18 @@ const AllSpots = () => {
 
 
     const handleSubmitSearchTerm = async (searchTerm) => {
-
       const response = await dispatch(getSpots('searchTerm', searchTerm))
       .then(setShowSearchModal(false))
       // .then(<Redirect to=`/spots?maxPrice=${maxPrice}`/>)
       .then(history.push(`/spots?searchTerm=${searchTerm}`))
+    }
+
+    const handleSubmitNew = async (oneDay) => {
+
+      const response = await dispatch(getSpots('age', oneDay))
+      .then(setShowSearchModal(false))
+      // .then(<Redirect to=`/spots?maxPrice=${maxPrice}`/>)
+      .then(history.push(`/spots?age=${oneDay}`))
     }
 
     // useEffect(() => {
@@ -70,17 +77,16 @@ const AllSpots = () => {
   return (
     <div className="HomePage">
       <div className="HomeNavBar">
-            <button onClick={nonFunctional}>
-            <i className="material-symbols-outlined">key</i><div>New</div></button>
+
 
             <button onClick={() => {handleSubmitSearchTerm('view')}}>
             <i className="material-symbols-outlined">landscape</i><div>View</div></button>
+            
+            <button onClick={() => {handleSubmitSearchTerm('games')}}>
+            <i className="material-symbols-outlined">sports_tennis</i><div>Games</div></button>
 
             <button onClick={() => {handleSubmitSearchTerm('fire pit')}}>
             <i className="material-symbols-outlined">local_fire_department</i><div>Fire pit</div></button>
-
-            <button onClick={() => {handleSubmitSearchTerm('games')}}>
-            <i className="material-symbols-outlined">sports_tennis</i><div>Games</div></button>
 
             <button onClick={() => {handleSubmitSearchTerm('beach')}}>
             <i className="material-symbols-outlined">beach_access</i><div>Beach</div></button>
@@ -108,6 +114,8 @@ const AllSpots = () => {
 
             <button onClick={() => {handleSubmitSearchTerm('water')}}>
             <i className="material-symbols-outlined">kayaking</i><div>Water Front</div></button>
+            <button onClick={() => {handleSubmitNew('oneDay')}}>
+            <i className="material-symbols-outlined">key</i><div>New</div></button>
 
 
             {/* <button onClick={nonFunctional}>

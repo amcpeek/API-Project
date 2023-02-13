@@ -17,10 +17,11 @@ router.get('/test', requireAuth, (req, res) => {
 //**//6 - Get all Spots - DONE
 //**//26 - Add Query Filters to Get All Spots - DID NOT FINISH
 router.get('/', async (req, res, next) => {
-    let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice, region, searchTerm } = req.query
+    let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice, region, searchTerm, age } = req.query
     //let { region } = req.query
     let myState = []
     let mySearchTerm = ''
+    let sortDate = new Date(new Date().setFullYear(new Date().getFullYear() - 10))
     if(region === 'west') { myState = ['California', 'Oregon','Washington', 'Idaho', 'Montana', 'Wyoming', 'Nevada', 'Arizona', 'Colorado', 'Utah', 'New Mexico'] }
     if(region === 'midwest') { myState = ['North Dakota', 'South Dakota', 'Minnesota', 'Wisconsin', 'Michigan', 'Nebraska', 'Iowa', 'Illinois', 'Indiana', 'Ohio', 'Kansas', 'Missouri']}
     if(region === 'pacific') { myState = ['Hawaii', 'Alaska']}
@@ -28,7 +29,18 @@ router.get('/', async (req, res, next) => {
     if(region === 'northeast') { myState = ['New York', 'Maine', 'New Hampshire', 'Vermont', 'Massachusetts', 'Pennsylvania', 'New Jersey', 'Connecticut', 'Rhode Island', 'Delaware']}
     if(region === 'anywhere') { myState = []}
     if(searchTerm) { mySearchTerm = searchTerm, console.log('mySearchTermNow', mySearchTerm)}
+    if(age === 'oneDay'){   sortDate  = new Date(Date.now() - (60 * 60 * 1000 * 24))}
     console.log('searchTerm', searchTerm, 'mySearchTerm', mySearchTerm)
+
+    // let lastWeek = new Date()
+    //lastWeek.setDate(lastWeek.getDate()-7)
+    // lastWeek.setDate(lastWeek.getTime()-(60*60*1000))
+
+
+
+
+
+    console.log('now', new Date(), 'a year ago',new Date(new Date().setFullYear(new Date().getFullYear() - 1)) )
 
     const errorStrings = {
         "page": "Page must be greater than or equal to 1",
@@ -75,6 +87,9 @@ router.get('/', async (req, res, next) => {
         if(page < 1) page = 1
         if(!page) page = 1
         if(!size) size = 100
+
+
+
         const where = {} //im not using this
         const allSpots = await Spot.findAll({
              limit: size,
@@ -82,33 +97,71 @@ router.get('/', async (req, res, next) => {
                 where: {
                     price: {
                         [Op.lte]: maxPrice || 5000
-            //          [Op.lte]: maxPrice || 99999999999999
                     },
                     state: {[Op.or]: myState},
-                    // [Op.any] : [
-                    //     // {name:'%'+ mySearchTerm +'%'},
-                    //     // {name: 'California'}
-                    //     // {description:'%'+ mySearchTerm +'%'},
-                    //     // {city:'%'+ mySearchTerm +'%'},
-                    //     // {state:'%'+ mySearchTerm +'%'},
-                    //     // {country:'%'+ mySearchTerm +'%'},
-                    // ]
+
                     [Op.or] : [
                     {name: { [Op.like]:`%${mySearchTerm}%`}},
                     {description: { [Op.like]:`%${mySearchTerm}%`}},
                     {city: { [Op.like]:`%${mySearchTerm}%`}},
                     {state: { [Op.like]:`%${mySearchTerm}%`}},
-                    {country: { [Op.like]:`%${mySearchTerm}%`}}
-                    ]
+                    {country: { [Op.like]:`%${mySearchTerm}%`}},
+                    ],
+                    createdAt: { [Op.gte]: sortDate}
+                },
+                // include: [{
+                //         model: Review,
+                //         // right: true,
+                //         // required: false, //seems to make this whole include section not work
+                //         // raw: true, //doesn't seem to do anything
+                //         // where: {review: { [Op.like]:`%purple%`}} //this means every search query must have home #1 w/ req false
+                //         // where: {review: { [Op.like]:`%${mySearchTerm}%` || `%${'a'}%`}} //this only works if the spot AND the reivew have the given term
+                //         where: {review: { [Op.like]:`%${mySearchTerm}%` }} //this only works if the spot AND the reivew have the given term
+
+                //         // where: {
+                //         //     [Op.or] : [
+                //         //         {review: { [Op.like]:`%${mySearchTerm}%`}}
+                //         //     ]
+                //         // }
+
+                //     }]
+                 })
+
+        const allSpotsMeetsReviews = await Spot.findAll({
+            // limit: size,
+            // offset: (page -1) * size,
+            // where: {
+            //     price: {
+            //         [Op.lte]: 5000
+            //     },
+            // },
+            include: [{
+                model: Review,
+                  where: {
+                            // [Op.or] : [
+                            // {
+                                review: { [Op.like]:`%${mySearchTerm}%`}
+                            // }
+                            // ]
+                        }
+            }]
+
+        })
 
 
 
+        // let newThing = {...allSpotsMeetsReviews, ...allSpots}
+        console.log('TYUIOTY7UIYTYU', allSpots)
+        console.log('XDFBGFDSFGHHFDS', allSpotsMeetsReviews)
 
-                }
+        // for (let i = 0; i <= allSpotsMeetsReviews.length; i++) {
+        //     for (let j = 0; j <= allSpots.length; j++) {
+        //         if(allSpotsMeetsReviews[i].id === allSpots[j].id) //this is not the right way to do this
+
+        //     }
+        // }
 
 
-                //add in if region = 'West'
-                //add in a where: state: {'california' || 'oregon'}
             // where: {
 
             //      lat: {
@@ -125,7 +178,7 @@ router.get('/', async (req, res, next) => {
             //      }
 
             // }
-          })
+
           const Spots = []
         for (let spot of allSpots) {
             let newVar = spot.toJSON()
