@@ -32,12 +32,14 @@ router.get('/', async (req, res, next) => {
     if(age === 'oneDay'){   sortDate  = new Date(Date.now() - (60 * 60 * 1000 * 24))}
     console.log('searchTerm', searchTerm, 'mySearchTerm', mySearchTerm)
 
+
+
+    //set sort date to one hour
+    // if(age === 'oneDay'){   sortDate  = new Date(Date.now() - (60 * 60 * 1000 * 1))}
+    // set sort date to one week
     // let lastWeek = new Date()
     //lastWeek.setDate(lastWeek.getDate()-7)
     // lastWeek.setDate(lastWeek.getTime()-(60*60*1000))
-
-
-
 
 
     console.log('now', new Date(), 'a year ago',new Date(new Date().setFullYear(new Date().getFullYear() - 1)) )
@@ -53,17 +55,7 @@ router.get('/', async (req, res, next) => {
         "maxPrice": "Minimum price must be greater than or equal to 0"
     }
      const errObj = {}
-    // if(!page) {errObj['page'] = errorStrings['page']}
-    // if(!size) {errObj['size'] = errorStrings['size']}
-    // if(!minLat) {errObj['minLat'] = errorStrings['minLat']}
-    // if(!maxLat) {errObj['maxLat'] = errorStrings['maxLat']}
-    // if(!minLng) {errObj['minLng'] = errorStrings['minLng']}
-    // if(!maxLng) {errObj['maxLng'] = errorStrings['maxLng']}
-    // if(!minPrice) {errObj['minPrice'] = errorStrings['minPrice']}
-    // if(!maxPrice) {errObj['maxPrice'] = errorStrings['maxPrice']}
-
     try{
-       //Im not sure if any of this error handling is working
         if(page && Number.isNaN(page))  {errObj['page'] = errorStrings['page']}
         if(size && Number.isNaN(size))   {errObj['size'] = errorStrings['size']}
         if(minLat && Number.isNaN(minLat)) {errObj['minLat'] = errorStrings['minLat']}
@@ -88,9 +80,6 @@ router.get('/', async (req, res, next) => {
         if(!page) page = 1
         if(!size) size = 100
 
-
-
-        const where = {} //im not using this
         const allSpots = await Spot.findAll({
              limit: size,
                 offset: (page -1) * size,
@@ -99,7 +88,6 @@ router.get('/', async (req, res, next) => {
                         [Op.lte]: maxPrice || 5000
                     },
                     state: {[Op.or]: myState},
-
                     [Op.or] : [
                     {name: { [Op.like]:`%${mySearchTerm}%`}},
                     {description: { [Op.like]:`%${mySearchTerm}%`}},
@@ -109,75 +97,27 @@ router.get('/', async (req, res, next) => {
                     ],
                     createdAt: { [Op.gte]: sortDate}
                 },
-                // include: [{
-                //         model: Review,
-                //         // right: true,
-                //         // required: false, //seems to make this whole include section not work
-                //         // raw: true, //doesn't seem to do anything
-                //         // where: {review: { [Op.like]:`%purple%`}} //this means every search query must have home #1 w/ req false
-                //         // where: {review: { [Op.like]:`%${mySearchTerm}%` || `%${'a'}%`}} //this only works if the spot AND the reivew have the given term
-                //         where: {review: { [Op.like]:`%${mySearchTerm}%` }} //this only works if the spot AND the reivew have the given term
-
-                //         // where: {
-                //         //     [Op.or] : [
-                //         //         {review: { [Op.like]:`%${mySearchTerm}%`}}
-                //         //     ]
-                //         // }
-
-                //     }]
                  })
 
-        const allSpotsMeetsReviews = await Spot.findAll({
-            // limit: size,
-            // offset: (page -1) * size,
-            // where: {
-            //     price: {
-            //         [Op.lte]: 5000
-            //     },
-            // },
-            include: [{
-                model: Review,
-                  where: {
-                            // [Op.or] : [
-                            // {
-                                review: { [Op.like]:`%${mySearchTerm}%`}
-                            // }
-                            // ]
-                        }
-            }]
+        if(searchTerm) {
+            const allSpotsMeetsReviews = await Spot.findAll({
+                include: [{
+                    model: Review,
+                      where: {  review: { [Op.like]:`%${mySearchTerm}%`} }
+                }]
+            })
+            let setSpots = new Set()
+        for ( let i = 0; i < allSpots.length; i++) {
+                setSpots.add(allSpots[i].dataValues.id)
+        }
 
-        })
+        for ( let i = 0; i < allSpotsMeetsReviews.length; i++) {
+            if(!(setSpots.has(allSpotsMeetsReviews[i].dataValues.id))) {
+                allSpots.push(allSpotsMeetsReviews[i])
+            }
+        }
 
-
-
-        // let newThing = {...allSpotsMeetsReviews, ...allSpots}
-        console.log('TYUIOTY7UIYTYU', allSpots)
-        console.log('XDFBGFDSFGHHFDS', allSpotsMeetsReviews)
-
-        // for (let i = 0; i <= allSpotsMeetsReviews.length; i++) {
-        //     for (let j = 0; j <= allSpots.length; j++) {
-        //         if(allSpotsMeetsReviews[i].id === allSpots[j].id) //this is not the right way to do this
-
-        //     }
-        // }
-
-
-            // where: {
-
-            //      lat: {
-            //          [Op.gte]: minLat || 35, //this OR thing doesn't work
-            //          [Op.lte]: maxLat || 90
-            //      },
-            //      lng: {
-            //          [Op.gte]: minLng || -180,
-            //          [Op.lte]: maxLng || 180,
-            //      },
-            //      price: {
-            //          [Op.gte]: minPrice || 0 ,
-            //          [Op.lte]: maxPrice || 99999999999999
-            //      }
-
-            // }
+        }
 
           const Spots = []
         for (let spot of allSpots) {
