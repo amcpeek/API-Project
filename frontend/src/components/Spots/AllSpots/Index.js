@@ -42,31 +42,40 @@ const AllSpots = () => {
     <div className="HomePage">
       <div className="HomeNavBar">
             <button onClick={nonFunctional}>
-            <i className="material-symbols-outlined">key</i>New</button>
+            <i className="material-symbols-outlined">key</i><div>New</div></button>
             <button onClick={nonFunctional}>
-            <i className="material-symbols-outlined">landscape</i>Top of the world</button>
+            <i className="material-symbols-outlined">landscape</i><div>View</div></button>
             <button onClick={nonFunctional}>
-            <i className="material-symbols-outlined">local_fire_department</i>Trending</button>
+            <i className="material-symbols-outlined">local_fire_department</i><div>Fire pit</div></button>
             <button onClick={nonFunctional}>
-            <i className="material-symbols-outlined">sports_tennis</i>Play</button>
+            <i className="material-symbols-outlined">sports_tennis</i><div>Games</div></button>
             <button onClick={nonFunctional}>
-            <i className="material-symbols-outlined">beach_access</i>Beachfront</button>
+            <i className="material-symbols-outlined">beach_access</i><div>Beach</div></button>
             <button onClick={nonFunctional}>
-            <i className="material-symbols-outlined">downhill_skiing</i>Skiing</button>
+            <i className="material-symbols-outlined">downhill_skiing</i><div>Skiing</div></button>
             <button onClick={nonFunctional}>
-            <i className="material-symbols-outlined">bed</i>Private rooms</button>
+            <i className="material-symbols-outlined">cooking</i><div>Kitchen</div></button>
             <button onClick={nonFunctional}>
-            <i className="material-symbols-outlined">houseboat</i>Houseboats</button>
+            <i className="material-symbols-outlined">hiking</i><div>Hiking</div></button>
             <button onClick={nonFunctional}>
-            <i className="material-symbols-outlined">cottage</i>Cabins</button>
+            <i className="material-symbols-outlined">pets</i><div>Pet Friendly</div></button>
             <button onClick={nonFunctional}>
-            <i className="material-symbols-outlined">castle</i>Castles</button>
+            <i className="material-symbols-outlined">emoji_nature</i><div>Wildlife</div></button>
             <button onClick={nonFunctional}>
-            <i className="material-symbols-outlined">accessible_forward</i>Adapted</button>
+            <i className="material-symbols-outlined">fireplace</i><div>Fireplace</div></button>
             <button onClick={nonFunctional}>
-            <i className="material-symbols-outlined">forest</i>Treehouses</button>
+            <i className="material-symbols-outlined">forest</i><div>In the Woods</div></button>
             <button onClick={nonFunctional}>
-            <i className="material-symbols-outlined">tune</i>Filters</button>
+            <i className="material-symbols-outlined">kayaking</i><div>Water Front</div></button>
+
+
+            {/* <button onClick={nonFunctional}>
+            <i className="fa-solid fa-person-hiking"></i>X</button>
+            <button onClick={nonFunctional}>
+            <i className="material-symbols-outlined">tune</i>X</button>
+            <button onClick={nonFunctional}>
+            <i className="material-symbols-outlined">tune</i>X</button> */}
+
         </div>
 
         <div className="HomeList">

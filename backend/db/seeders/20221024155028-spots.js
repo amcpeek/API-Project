@@ -21,8 +21,8 @@ module.exports = {
       country: 'USA',
       lat: 33.7490,
       lng: 84.3880,
-      name: 'Alabama Home',
-      description: 'Home in Alabama on a lake, perfect for summer fun.',
+      name: 'Alabama Lake House',
+      description: 'Home in Alabama on a lake, perfect for summer fun in the water. It has a great view across the lake. You can sit on the porch around the outdoor fire pit. There are boats you can borrow.',
       price: 310.00
       }, {
         //2
@@ -33,8 +33,10 @@ module.exports = {
         country: 'USA',
         lat: 30.4383,
         lng: 84.2807,
-        name: 'Alaska Home',
-        description: 'Home in Alaska surrounded by wild flowers and trees.',
+        name: 'Alaska Cabin on a Lake',
+        description: `Adorable cabin in Alaska surrounded by wild flowers and trees. A great place to see wildlife.
+        There are many moose in the area. In the winter you can see the northern lights. It has an outdoor fire pit and an indoor fireplace. In the winter there is skiing at a resort near by. This is a pet friendly home. It is also near the water.
+        THere is also great hiking near by with amazing views`,
         price: 270.00,
       }, {
         //3
@@ -45,8 +47,8 @@ module.exports = {
         country: 'USA',
         lat: 39.1582,
         lng: 75.5244,
-        name: 'Arizona Home',
-        description: 'Home in Arizona in the pine forest. Great place for a family vacation.',
+        name: 'Arizona Home in the Woods',
+        description: 'Home in Arizona in the pine forest deep in a wooded area, so it is not too hot in the summer. Great place for a family vacation. There is an outdoor fire pit and a games collection inside to play by the fireplace. Great hiking near by.',
         price: 220.00
       }, {
         //4
@@ -57,8 +59,8 @@ module.exports = {
         country: 'USA',
         lat: 34.7445,
         lng: 92.2880,
-        name: 'Arkansas Home',
-        description: 'Spacious home in Arkansas in a beautiful field with a view of the surrounding valley',
+        name: 'Arkansas Home with a View',
+        description: 'Spacious home in Arkansas in a beautiful field with a view of the surrounding valley. It has a great kitchen and is a great place for a family to gather. It is pet friendly. It has an indoor gas fireplace.',
         price: 190.00
       }, {
         //5
@@ -69,8 +71,10 @@ module.exports = {
         country: 'USA',
         lat: 39.7392,
         lng: 104.9903,
-        name: 'California Home',
-        description: 'Cozy cabin in the woods. Great hiking near by.',
+        name: 'A Frame Cabin in the Sierras',
+        description: `Cozy cabin in the woods. Great hiking near by. This is a pet friendly home. We have a hot tub, and there is a swimming hole near by. The pot hole is a fun place to swim too.
+        Shaver lake and Huntington lake are a short drive away, where there are many water sport options and beaches to relax at. We have an outdoor fire pit and an indoor fireplace. You can also go skiing at China Peak, about a 20 minute drive away.
+        We also have a game room with old video games and board games.`,
         price: 140.00
       }, {
         //6
@@ -81,8 +85,8 @@ module.exports = {
         country: 'USA',
         lat: 39.7392,
         lng: 104.9903,
-        name: 'Colorado Home',
-        description: 'Home in Colorado in the forest. A great getaway in any season.',
+        name: 'Modern Colorado Home with a view',
+        description: 'This popular A-frame has an epic view in a secluded area in the woods. It has a extensive games collection, an outdoor fire pit, indoor fireplace, and skiing near by. Often at dusk you can see wildlife. There is also great hiking in the area.',
         price: 150.00
       }, {
         //7
@@ -93,8 +97,8 @@ module.exports = {
         country: 'USA',
         lat: 39.7392,
         lng: 104.9903,
-        name: 'Connecticut Home',
-        description: 'Home in Connecticut on a beautiful lake.',
+        name: 'Lake Front Cabin in the Woods',
+        description: 'This adorable cabin is directly on the water with boats available to use in the summer. It has a great games collection and an outdoor BBQ',
         price: 280.00
       }, {
         //8
@@ -105,8 +109,8 @@ module.exports = {
         country: 'USA',
         lat: 39.7392,
         lng: 104.9903,
-        name: 'Oregon Home',
-        description: 'Home in Oregon in the redwoods.',
+        name: 'Forest Home',
+        description: `Not only is this adorable A frame in the woods, a tree is literally growing through it's front porch adding extra charm. This home is pet friendly and there is great hiking near by`,
         price: 360.00
       }, {
         //9
@@ -118,7 +122,8 @@ module.exports = {
         lat: 1,
         lng: 1,
         name: 'IdaHome',
-        description: 'Home in Idaho',
+        description: `This rustic home has a spectacular view and is a great place for solitude. It is deep in the woods without wifi.
+        It does not have running water so cooking and cleaning will be outdoor activities. It is great for hiking and wildlife. There are many moose in the area`,
         price: 475.00
       }, {
         //10
@@ -129,8 +134,8 @@ module.exports = {
         country: 'USA',
         lat: 1,
         lng: 1,
-        name: 'Montana Home',
-        description: 'Home in Montana',
+        name: 'River front cabin',
+        description: 'This cabin is right on a beautiful river with an amazing view and deep in the woods, you can fall asleep the sound of the water each night. There is also a lake near by. This is a pet friendly home. There is great hiking near by.',
         price: 580.00
       }, {
         //11
@@ -141,8 +146,8 @@ module.exports = {
         country: 'USA',
         lat: 1,
         lng: 1,
-        name: 'Wyoming Home',
-        description: 'Home in Wyoming',
+        name: 'Buffalo Home',
+        description: "This home is walking distance to downtown but far enough away for a quite restful weekend away. It has an amazing view of the valley. It's  a great place to get cozy by the fireplace and read a book",
         price: 240.00
       }, {
         //12
@@ -153,8 +158,8 @@ module.exports = {
         country: 'USA',
         lat: 1,
         lng: 1,
-        name: 'South Dakota Home',
-        description: 'Home in South Dakota',
+        name: 'Tiny home in Custer',
+        description: 'This tiny home has everything you need inside including a cozy fireplace, and has an outdoor fire pit with views of the surrounding valley.',
         price: 310.00
       }, {
 
@@ -167,7 +172,7 @@ module.exports = {
         lat: 1,
         lng: 1,
         name: 'North Dakota Home',
-        description: 'Home in North Dakota',
+        description: 'This cabin has a great kitchen indoors. It also has a fireplace that heats both levels and it has a spiral staircase wrapping around it. This home is walking distance from downtown. It is pet friendly.',
         price: 190.00
       }, {
         //14
@@ -178,8 +183,8 @@ module.exports = {
         country: 'USA',
         lat: 1,
         lng: 1,
-        name: 'Minnesota Home',
-        description: 'Home in Minnesota',
+        name: 'Invisible home in the woods',
+        description: `This home blends right in with the surrounding forest, so in any season it blends in with it's surroundings. Inside it has a modern look and is very space efficient. It is pet friendly`,
         price: 175.00
       }, {
         //15
@@ -190,8 +195,8 @@ module.exports = {
         country: 'USA',
         lat: 1,
         lng: 1,
-        name: 'Wisconsin Home',
-        description: 'Home in Wisconsin',
+        name: 'Red Cabin',
+        description: 'This home as outdoor fire pit you can cook on and an indoor swing you can relax in.',
         price: 260.00
       }, {
         //16
@@ -202,8 +207,8 @@ module.exports = {
         country: 'USA',
         lat: 1,
         lng: 1,
-        name: 'Michigan Home',
-        description: 'Home in Michigan ',
+        name: 'Autumn Home in the woods',
+        description: 'This cabin is adorable all year round but in the fall is especially impressive. It has an outdoor fire pit and is walking distance from a lake great for water sports.',
         price: 110.00
       }, {
 
@@ -215,8 +220,8 @@ module.exports = {
         country: 'USA',
         lat: 1,
         lng: 1,
-        name: 'Washington Home',
-        description: 'Home in Washington',
+        name: 'Washington Home with a Lego Kitchen',
+        description: 'This home has a kitchen with lego bricks as decoration great for cooking and enjoyment. It has large glass windows on both open sides. It is walking distance from downtown.',
         price: 530.00
       }, {
         //18
@@ -228,7 +233,7 @@ module.exports = {
         lat: 1,
         lng: 1,
         name: 'Hawaiian Home',
-        description: 'Home in Hawaii',
+        description: 'This home has banana plants on the property you can eat. It is in a secluded area on in the hills with epic views. The interior has a modern vide. It is also a 15 min drive to the beach.',
         price: 270.00
       }, {
         //19
@@ -239,8 +244,8 @@ module.exports = {
         country: 'USA',
         lat: 1,
         lng: 1,
-        name: 'Delaware Home',
-        description: 'Home in Delaware',
+        name: 'Ocean front property',
+        description: 'This home is right on the water ready for perfect days on the beach. It is a large home that can fit a whole family with a kitchen large enough to cook for everyone.',
         price:  350.00
       }, {
         //20
@@ -251,8 +256,8 @@ module.exports = {
         country: 'USA',
         lat: 1,
         lng: 1,
-        name: 'Florida Home',
-        description: 'Home in Florida',
+        name: 'Florida Get Away',
+        description: 'With a pool and a lake right outside, this home is perfect for summer relaxation and water activities. It is also pet friendly. It has A/C',
         price: 190.00
     }
     ], {});

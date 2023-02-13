@@ -21,6 +21,10 @@
     border-right: none;
 }
 
+.HomeNavBar > button > div {
+    border-top: 0.2em solid white;
+}
+
 .HomeNavBar button {
     display: flex;
     flex-direction: column;
