@@ -123,7 +123,7 @@ module.exports = {
         lng: 1,
         name: 'IdaHome',
         description: `This rustic home has a spectacular view and is a great place for solitude. It is deep in the woods without wifi.
-        It does not have indoor plumbing so cooking and cleaning will be outdoor activities. It is great for hiking and wildlife. There are many moose in the area`,
+        It does not have indoor plumbing so cooking and cleaning will be outdoor activities. It is great for hiking and wildlife.`,
         price: 475.00
       }, {
         //10
