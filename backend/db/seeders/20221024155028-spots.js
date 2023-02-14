@@ -34,9 +34,7 @@ module.exports = {
         lat: 30.4383,
         lng: 84.2807,
         name: 'Alaska Cabin on a Lake',
-        description: `Adorable cabin in Alaska surrounded by wild flowers and trees. A great place to see wildlife.
-        There are many moose in the area. In the winter you can see the northern lights. It has an outdoor fire pit and an indoor fireplace. In the winter there is skiing at a resort near by. This is a pet friendly home. It is also near the water.
-        THere is also great hiking near by with amazing views`,
+        description: `Adorable cabin in Alaska surrounded by wild flowers and trees. A great place to see wildlife including moose and bears. In the winter you can see the aurora. It has an outdoor fire pit and an indoor fireplace. There's skiing near by`,
         price: 270.00,
       }, {
         //3
