@@ -6,6 +6,7 @@
 let options = {};
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
+  // options.truncate = true //I thought this might solve the reseeding starting at 6 but it didn't
 }
 // END of new code
 
@@ -59,4 +60,8 @@ module.exports = {
    down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('Users', options);
   }
+  //From the internet idea:
+  // down: async (queryInterface, Sequelize) => {
+  //   return queryInterface.dropTable('Users', null, { truncate: true, cascade: true })
+  // }
 };
