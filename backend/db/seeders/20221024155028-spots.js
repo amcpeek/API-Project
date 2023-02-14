@@ -72,9 +72,9 @@ module.exports = {
         lat: 39.7392,
         lng: 104.9903,
         name: 'A Frame Cabin in the Sierras',
-        description: `Cozy cabin in the woods. Great hiking near by. This is a pet friendly home. We have a hot tub, and there is a swimming hole near by. The pot hole is a fun place to swim too.
-        Shaver lake and Huntington lake are a short drive away, where there are many water sport options and beaches to relax at. We have an outdoor fire pit and an indoor fireplace. You can also go skiing at China Peak, about a 20 minute drive away.
-        We also have a game room with old video games and board games.`,
+        description: `  We have a hot tub, and many places to swim near by.
+        We have an outdoor fire pit and an indoor fireplace. It's a 20 min drive to skiing.
+        We also have a game room with old video games and board games. This is a pet friendly home.`,
         price: 140.00
       }, {
         //6
