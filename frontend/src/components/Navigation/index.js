@@ -14,7 +14,7 @@ function Navigation({ isLoaded }){
   const [showModal, setShowModal] = useState(false);
   const [showSearchModal, setShowSearchModal] = useState(false)
   const [searchContent, setSearchContent] = useState('')
-  
+
   const dispatch = useDispatch()
   useEffect(() => {
     if (!showMenu) return;
@@ -52,8 +52,8 @@ function Navigation({ isLoaded }){
         <>|</>
         <button onClick={() => {setShowSearchModal(true); setSearchContent('guests') }}>Add guests</button>
         <>|</>
-        <button onClick={() => {setShowSearchModal(true); setSearchContent('searchTerm') }}>Anything</button>
-        <button className='roundAllEdges' onClick={nonFunctional}><i className="material-symbols-outlined">search</i></button>
+        <button onClick={() => {setShowSearchModal(true); setSearchContent('searchTerm') }} className='topSearchButton'>Anything <i className="material-symbols-outlined">search</i></button>
+        {/* <button className='roundAllEdges' onClick={nonFunctional}><i className="material-symbols-outlined">search</i></button> */}
         </div>
           {/* <button className="CenterButton" onClick={nonFunctional}>Anywhere | Any week | Add guest   <i className="material-symbols-outlined">search</i></button> */}
       </div>
