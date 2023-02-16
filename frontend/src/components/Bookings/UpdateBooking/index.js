@@ -42,21 +42,21 @@ const UpdateBookingForm = ({showModal, setShowModal}) => {
 
 
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        const newBooking = { booking, stars  }
-        const response = await dispatch(updateSpotBooking(newBooking, currBooking.id, id ))
-        if(response.errors) {
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault()
+    //     const newBooking = { booking, stars  }
+    //     const response = await dispatch(updateSpotBooking(newBooking, currBooking.id, id ))
+    //     if(response.errors) {
 
-            setResponseErrors(Object.values(response.errors))
-        } else {
-         //   getOneSpot(id)
-            setShowModal(false)
+    //         setResponseErrors(Object.values(response.errors))
+    //     } else {
+    //      //   getOneSpot(id)
+    //         setShowModal(false)
 
-          //this line of code does nothing anyway
-          //  dispatch(getSpotBookings(spotId)).then(setShowModal(false))
-        }
-    }
+    //       //this line of code does nothing anyway
+    //       //  dispatch(getSpotBookings(spotId)).then(setShowModal(false))
+    //     }
+    // }
 
     //the add handle submit
     //  const handleSubmit = async (e) => {
@@ -103,7 +103,7 @@ const UpdateBookingForm = ({showModal, setShowModal}) => {
             </div>
             </div>
              </div>
-                <form onSubmit={handleSubmit} className="CreateSpotForm">
+                {/* <form onSubmit={handleSubmit} className="CreateSpotForm">
                 <div>
                 <textarea
                     className="CreateSpotDescriptionBox roundTopFields"
@@ -127,9 +127,10 @@ const UpdateBookingForm = ({showModal, setShowModal}) => {
                 />
                 </div>
                 <button type='submit' className="createButton" >Update Booking</button>
-                {/* <button className="createButton"><NavLink to={`/`}>Cancel</NavLink></button> */}
+                {/* <button className="createButton"><NavLink to={`/`}>Cancel</NavLink></button> /
 
                 </form>
+                */}
             </div>
 
         </div>
