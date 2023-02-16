@@ -50,7 +50,7 @@ module.exports = {
       },
       lng: {
         type: Sequelize.DECIMAL,
-    
+
       },
       name: {
         type: Sequelize.STRING,
@@ -77,7 +77,7 @@ module.exports = {
     }, options);
   },
   down: (queryInterface, Sequelize) => {
-    options.tableName = 'Spots'
-    return queryInterface.dropTable(options);
+    // options.tableName = 'Spots'
+    return queryInterface.dropTable('Spots', options);
   }
 };
