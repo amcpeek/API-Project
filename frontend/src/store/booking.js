@@ -133,7 +133,8 @@ export default function bookingsReducer (state = {}, action) {
         //#19
         case GET_CURRENT_USERS_BOOKINGS:
             const usersBookings = {}
-            action.userBookings.Bookings.forEach(booking => {
+            console.log('ACTION.USERBOOKINGS', action.userBookings )
+            action.userBookings.forEach(booking => {
                 usersBookings[booking.id] = booking
             })
             return {

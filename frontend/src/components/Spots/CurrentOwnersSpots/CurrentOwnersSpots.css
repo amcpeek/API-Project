@@ -51,3 +51,49 @@
     width: 320px;
     margin: 20px;
  }
+
+ .smallImg {
+    width: 60px;
+    height: 60px;
+    border-radius: 20px;
+    border-color: white;
+    border-width: 5px;
+    border-style: solid;
+    object-fit: cover;
+ }
+
+ .oneTrip {
+    display: flex;
+    flex-direction: row;
+    margin-left: 40px;
+    margin-right: 40px;
+    /* justify-content: center; */
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+ }
+
+ .yourTrips {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    justify-content: center;
+ }
+
+ .tripDetails {
+    min-width: 200px;
+ }
+
+
+ .outerYourTrips {
+    display: flex;
+    justify-content: center;
+    margin-left: 2vw;
+    margin-right: 2vw;
+ }
+
+ .yourTripTitle {
+    display: flex;
+    justify-content: center;
+ }
