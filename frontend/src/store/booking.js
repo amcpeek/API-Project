@@ -1,4 +1,5 @@
 import { csrfFetch } from './csrf';
+import { getOneSpot } from './oneSpot.js'
 
 const GET_CURRENT_USERS_BOOKINGS = 'bookings/GET_USERS_OWNERS_BOOKINGS' //#19
 const GET_BOOKINGS_BY_SPOT_ID = 'bookings/GET_BOOKINGS_BY_SPOT_ID' //#20
@@ -80,10 +81,13 @@ export const addSpotBooking = (spotBooking, id) => async dispatch => { //booking
          method: 'POST',
          body: JSON.stringify(spotBooking)
      }).then(async (res) => {
+        console.log('are we getting to the then?')
          dispatch(getOneSpot(id))
          return await res.json()
      }).catch( async error => {
-         return await error.json()
+        let newVar = await error.json()
+        console.log('are we getting to the catch?', newVar)
+         return newVar
      })
      return response
  }

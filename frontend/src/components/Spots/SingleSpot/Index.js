@@ -5,11 +5,13 @@ import './SingleSpot.css'
 import { getOneSpot } from '../../../store/oneSpot';
 import { useEffect, useState } from 'react';
 import { getSpotReviews, removeReview} from '../../../store/review'
+import { addSpotBookingAction } from '../../../store/booking';
 import { useHistory } from 'react-router-dom';
 import { nanoid } from 'nanoid'
 import UpdateSpotModal from '../UpdateSpot/UpdateSpotModal';
 import AddReviewModal from '../../Reviews/AddReview/AddReviewModal';
 import UpdateReviewModal from '../../Reviews/UpdateReview/UpdateReviewModal';
+import AddBookingModal from '../../Bookings/AddBooking/AddBookingModal';
 let otherSrc = 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-21426276/original/7cceab2c-f3f2-4ed6-86b4-79bb32746dc0.jpeg?im_w=1200'
 let otherSrcSide = 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-21426276/original/b8437755-535b-4a9a-a0d0-5a866b1c7659.jpeg?im_w=1200'
 
@@ -236,7 +238,18 @@ const SingleSpot = () => {
                 </div>
 
                </div>
-               <button onClick={nonFunctional} className="checkAvailabilityButton"> Check availability</button>
+
+               {currentUserId &&  <><AddBookingModal showModal={showModal} setShowModal={setShowModal}/></>}
+                                    {/* {currentUserId && <button onClick={()=> handleRemoveReview(review.id) }>
+                                      <i className="material-symbols-outlined">
+                                        delete
+                                        </i></button>} */}
+
+              {!currentUserId && <button onClick={nonFunctional} className="checkAvailabilityButton"> Log in to book</button>
+              }
+
+
+
 
                {currentUserId && matchingOwner&& (
                  <div className="editDeleteButtons">
@@ -264,5 +277,3 @@ const SingleSpot = () => {
 };
 
 export default SingleSpot;
-
-

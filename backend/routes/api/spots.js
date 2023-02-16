@@ -646,36 +646,39 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
 
      //if you are NOT spotOwner
     if(userId !== desiredSpot.ownerId) {
-           let desiredBooking = await Booking.findOne({
+           let desiredBooking = await Booking.findAll({
             where: {spotId: spotId},
             attributes: [ 'spotId', 'startDate', 'endDate' ]
         })
-            let Bookings = []
-            let newVar = desiredBooking.toJSON()
+        let Bookings = []
+        for (let book of desiredBooking) {
+            let newVar = book.toJSON()
             Bookings.push(newVar)
+        }
             res.json({Bookings})
     }
     //if you are spotOwner
     if(userId === desiredSpot.ownerId) {
 
-                let desiredBookingAll = await Booking.findOne({
+                let desiredBookingAll = await Booking.findAll({
                     where: { spotId: spotId}
                 })
+                // console.log('&&&&&&&&&&&&&&&&&&!!&&&&&&&&&&&&desiredBookingAll', desiredBookingAll)
                 let desiredBooking = await Booking.findOne({
                     where: {spotId: spotId},
                   //  attributes: [ 'spotId', 'startDate', 'endDate' ]
                 })
 
                 let Bookings = []
-                let newVar = desiredBooking.toJSON()
-
+                for (let book of desiredBookingAll) {
+                    let newVar = book.toJSON()
+                    Bookings.push(newVar)
                     const user = await User.findOne({
-                        where: {id: desiredBookingAll.userId},
+                        where: {id: desiredBooking.userId},
                         attributes: ['id', 'firstName', 'lastName']
                     })
                     newVar.User = user
-
-                Bookings.push(newVar)
+                }
                 res.json({Bookings})
                     }
   })
@@ -683,9 +686,11 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
 
   //**// 21 - Create a Booking from a Spot based on the Spot's id - DONE
   router.post('/:spotId/bookings', requireAuth, async (req, res, next) => { //in postman its spotIdForBooking
+
     const spotIdForBooking =  req.params.spotId
     const userId = req.user.id
     let { startDate, endDate } = req.body
+    console.log('XXXXXXXXXXXXXXXXXXXXXXX entering the start of create booking 21?', startDate, endDate)
 
     const ownerOfSpotCheck = await Spot.findOne({
         where: {
@@ -792,6 +797,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
         }
 
         try{
+            console.log('XXXX///XXXXX???XXXX???entering backend try block?', spotIdForBooking, userId, startDate, endDate)
             const newBooking = await Booking.create({
                 spotId: spotIdForBooking,
                 userId: userId,
@@ -799,14 +805,40 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
                 endDate: endDate
            })
             res.json(newBooking)
-
             } catch(error) {
+
+                //old way
             res.statusCode = 400
             res.json({
                 message: 'Validation Error',
                 statusCode: 400,
                 errors: errObj
             })
+
+            //new way
+
+            if(error.errors) {
+                error.errors.map(er => {
+                    errObj[er.path] = errorStrings2[er.path]
+                })
+                res.statusCode = 400
+                res.json({
+                    message: 'Validation Error',
+                    statusCode: 400,
+                    errors: errObj
+                })
+
+           } else {
+            res.json({
+                message: 'Backend Error',
+                statusCode: 400,
+                errors: 'There was a backend error'
+            })
+           }
+
+
+
+
             }
 
   })
