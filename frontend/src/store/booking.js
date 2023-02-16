@@ -167,27 +167,32 @@ export default function bookingsReducer (state = {}, action) {
                 allSpotBookings[booking.id] = booking
             })
             return {
-                ...allSpotBookings
+                ...state,
+                ['spotsBookings']:allSpotBookings
             }
         //#21
-        case ADD_BOOKING:
+        case ADD_BOOKING: //this is not putting it in the right slices
             const copyState2 =  {...state}
             return {
                 //I think it can just be ...action.booking, but I don't think it hurts to do it this way
                 ...copyState,
-               [action.bookingId] : {...copyState[action.bookingId], ...action.booking}
+                ['ownersBookings']: {[action.bookingId] : {...copyState[action.bookingId], ...action.booking}},
+                ['currentUsersBookings']: {[action.bookingId] : {...copyState[action.bookingId], ...action.booking}}
             }
         //#22
-        case UPDATE_BOOKING:
+        case UPDATE_BOOKING: //this is not putting it in the right slices
              const copyState =  {...state}
             return {
                ...copyState,
-               [action.bookingId] : {...copyState[action.bookingId], ...action.booking}
+            //    [action.bookingId] : {...copyState[action.bookingId], ...action.booking}
+            ['ownersBookings']: {[action.bookingId] : {...copyState[action.bookingId], ...action.booking}},
+            ['currentUsersBookings']: {[action.bookingId] : {...copyState[action.bookingId], ...action.booking}}
             }
         //#23
-        case REMOVE_BOOKING:
+        case REMOVE_BOOKING: //this is not putting it in the right slices
             const newState = {...state}
-            delete newState[action.bookingId]
+            delete newState['ownersBookings'][action.bookingId]
+            delete newState['currentUsersBookings'][action.bookingId]
             return newState
 
         //#24

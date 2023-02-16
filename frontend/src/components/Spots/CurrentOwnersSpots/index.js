@@ -7,7 +7,7 @@ import { getUsersReviews, removeReview, getReviewsAboutCurrent } from '../../../
 import UpdateReviewModal from '../../Reviews/UpdateReview/UpdateReviewModal'
 import { useHistory } from 'react-router-dom';
 import { restoreUser } from '../../../store/session'
-import { getUsersBookings, getOwnersBookings } from '../../../store/booking';
+import { getUsersBookings, getOwnersBookings, removeBooking } from '../../../store/booking';
 
 let otherSrc = 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-21426276/original/7cceab2c-f3f2-4ed6-86b4-79bb32746dc0.jpeg?im_w=1200'
 
@@ -24,6 +24,11 @@ const CurrentOwnersSpots = () => {
       dispatch(getOwnersBookings())
       dispatch(getReviewsAboutCurrent())
     }, [dispatch])
+
+    const handleRemoveBooking = (bookingId) => {
+      dispatch(removeBooking(bookingId)) //i dont have anything from the params
+
+    }
 
     const usersBookings = useSelector(state => {
       if(state.bookings.currentUsersBookings) {
@@ -128,7 +133,11 @@ const CurrentOwnersSpots = () => {
           {(new Date(endDate)).toLocaleDateString('en-US', {month: 'short',year:'numeric',day: 'numeric'})}
           </div>}
           <div>Total: ${  (((new Date(endDate)) - (new Date(startDate)))/(1000 * 60 * 60 * 24))*Spot.price }</div>
-          <div>Edit Delete</div>
+          <div>Edit</div>
+          <button className='whiteButton' onClick={()=> handleRemoveBooking(id) }>
+                                      <i className="material-symbols-outlined">
+                                        delete
+                                        </i></button>
 
 
             </div>
@@ -247,22 +256,17 @@ const CurrentOwnersSpots = () => {
 
 
         {userFirstName && <h2 className='yourTripTitle'>Reviews by you</h2>}
-
-
-
              <div className="CurrentOwnersReviews">
-
-
                     {usersReviews && usersReviews?.map((review) => (
                        <NavLink to={`/spots/${review.spotId}`}>
                       <div  key={review.id} className='insideCurrentOwner'>
                               <div className="SingleSpotReviewBox2" key={review.id}>
                                 <div className='underlined shouldWrap'>{review.Spot.name}</div>
 
-                                <div className='shouldWrap'>{review.Spot.city}, {review.Spot.state}</div>
+                                {/* <div className='shouldWrap'>{review.Spot.city}, {review.Spot.state}</div> */}
                                 <div>Host: {review.Spot.owner.username}</div>
                                     <div><i className="material-symbols-outlined">star </i> {review.stars} stars</div>
-                                    <div className='shouldWrap'>{review.review}</div>
+                                    <div className='shouldWrap fontSmaller'>{review.review}</div>
 
                                     {/* {<><UpdateReviewModal/></>}
                                     {<button onClick={()=> handleRemoveReview(review.id) }>
@@ -285,11 +289,11 @@ const CurrentOwnersSpots = () => {
                       <div  key={review.id} className='insideCurrentOwner'>
                               <div className="SingleSpotReviewBox2" key={review.id}>
                                 <div className='underlined shouldWrap'>{review.Spot.name}</div>
-                                <div className='shouldWrap'>{review.Spot.city}, {review.Spot.state}</div>
+                                {/* <div className='shouldWrap'>{review.Spot.city}, {review.Spot.state}</div> */}
                                 <div>Guest: {review.User.firstName}</div>
 
                                     <div><i className="material-symbols-outlined">star </i> {review.stars} stars</div>
-                                    <div className='shouldWrap'>{review.review}</div>
+                                    <div className='shouldWrap fontSmaller'>{review.review}</div>
 
                                     {/* {<><UpdateReviewModal/></>}
                                     {<button onClick={()=> handleRemoveReview(review.id) }>
