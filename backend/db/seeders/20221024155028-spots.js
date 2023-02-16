@@ -69,7 +69,7 @@ module.exports = {
         country: 'USA',
         lat: 39.7392,
         lng: 104.9903,
-        name: 'A Frame Cabin in the Sierras',
+        name: 'A-Frame Cabin in the Sierras',
         description: `  We have a hot tub, and many places to swim near by.
         We have an outdoor fire pit and an indoor fireplace. It's a 20 min drive to skiing.
         We also have a game room with old video games and board games. This is a pet friendly home.`,
