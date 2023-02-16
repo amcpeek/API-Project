@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {  NavLink } from 'react-router-dom';
 import {  getCurrentOwnersSpots } from '../../../store/spot'
 import './CurrentOwnersSpots.css'
-import { getUsersReviews, removeReview } from '../../../store/review';
+import { getUsersReviews, removeReview, getReviewsAboutCurrent } from '../../../store/review';
 import UpdateReviewModal from '../../Reviews/UpdateReview/UpdateReviewModal'
 import { useHistory } from 'react-router-dom';
 import { restoreUser } from '../../../store/session'
@@ -22,6 +22,7 @@ const CurrentOwnersSpots = () => {
       dispatch(restoreUser())
       dispatch(getUsersBookings())
       dispatch(getOwnersBookings())
+      dispatch(getReviewsAboutCurrent())
     }, [dispatch])
 
     const usersBookings = useSelector(state => {
@@ -35,6 +36,7 @@ const CurrentOwnersSpots = () => {
         return Object.values(state.bookings.ownersBookings)
       }
     })
+
 
     //future trips
     let futureBookings = []
@@ -79,24 +81,20 @@ const CurrentOwnersSpots = () => {
     const usersReviews = useSelector(state => {
       if(state.reviews.currentUsersReviews) {
         return Object.values(state.reviews.currentUsersReviews)
-      // } else {
-      //   return []
       }
     })
 
-    // usersReviews.map((review) => {
-    //   console.log('can I see a single review', review.avgRating)
+    const reviewsAboutCurrent = useSelector(state => {
+      if(state.reviews.reviewsAboutCurrent) {
+        return Object.values(state.reviews.reviewsAboutCurrent)
+      }
+    })
 
-    // })
 
     const handleRemoveReview = (reviewId) => {
-     // console.log('what is review id', reviewId)
       dispatch(removeReview(reviewId))
       history.go(0)
     }
-
-    //usersReviews && usersReviews[0].User.firstName
-
 
 
 
@@ -293,6 +291,7 @@ const CurrentOwnersSpots = () => {
                       <div  key={review.id} className='insideCurrentOwner'>
                               <div className="SingleSpotReviewBox" key={review.id}>
                                 <h4 className='underlined shouldWrap'>{review.Spot.name}</h4>
+
                                 <h5 className='shouldWrap'>{review.Spot.city}, {review.Spot.state}</h5>
                                     <div><i className="material-symbols-outlined">star </i> {review.stars} stars</div>
                                     <p className='shouldWrap'>{review.review}</p>
@@ -309,6 +308,32 @@ const CurrentOwnersSpots = () => {
               </div>
 
               {userFirstName && <h2 className='yourTripTitle'>Reviews about you</h2>}
+
+              <div className="CurrentOwnersReviews">
+
+
+                    {reviewsAboutCurrent && reviewsAboutCurrent?.map((review) => (
+                       <NavLink to={`/spots/${review.spotId}`}>
+                      <div  key={review.id} className='insideCurrentOwner'>
+                              <div className="SingleSpotReviewBox" key={review.id}>
+                                <div>{review.id}</div>
+                                <h4 className='underlined shouldWrap'>{review.Spot.name}</h4>
+                                <h5 className='shouldWrap'>{review.Spot.city}, {review.Spot.state}</h5>
+                                <h4>Guest: {review.User.firstName}</h4>
+
+                                    <div><i className="material-symbols-outlined">star </i> {review.stars} stars</div>
+                                    <p className='shouldWrap'>{review.review}</p>
+
+                                    {/* {<><UpdateReviewModal/></>}
+                                    {<button onClick={()=> handleRemoveReview(review.id) }>
+                                      <i className="material-symbols-outlined">
+                                        delete
+                                        </i></button>} */}
+                              </div>
+                      </div>
+                      </NavLink>
+                    ))}
+              </div>
       </div>
     );
 }

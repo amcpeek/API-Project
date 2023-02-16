@@ -3,6 +3,7 @@ import { csrfFetch } from './csrf';
 
 
 const GET_CURRENT_USERS_REVIEWS = 'reviews/GET_CURRENT_USERS_REVIEWS' //#13
+const GET_REVIEWS_ABOUT_CURRENT = 'reviews/GET_REVIEWS_ABOUT_CURRENT' //#13 B
 const GET_SPOT_REVIEWS = 'reviews/GET_SPOT_REVIEWS' //#14
 const ADD_SPOT_REVIEW = 'reviews/ADD_REVIEW' //#15
 // const ADD_REVIEW_IMAGE ='reviews/ADD_REVIEW_IMAGE' //#16 will not be using
@@ -55,6 +56,14 @@ export const getUsersReviewsAction = (userReviews) => {
     return {
         type: GET_CURRENT_USERS_REVIEWS,
         userReviews
+    }
+
+}
+
+export const getReviewsAboutUserAction = (aboutUserReviews) => {
+    return {
+        type: GET_REVIEWS_ABOUT_CURRENT,
+        aboutUserReviews
     }
 
 }
@@ -113,6 +122,13 @@ export const getUsersReviews = (userId) => async dispatch => {
     }
 }
 
+export const getReviewsAboutCurrent = (userId) => async dispatch => {
+    const response = await fetch(`/api/reviews/aboutcurrent`)
+    if(response.ok) {
+        const allUReviewsAboutCurrent = await response.json()
+        dispatch(getReviewsAboutUserAction(allUReviewsAboutCurrent))
+    }
+}
 
 export const removeReview = (reviewId, spotId) => async dispatch => {
     const response = await csrfFetch(`/api/reviews/${reviewId}`, {
@@ -177,6 +193,16 @@ export default function reviewsReducer (state = {}, action) {
             return {
                 ...state,
                 ['currentUsersReviews']:usersReviews
+            }
+        case GET_REVIEWS_ABOUT_CURRENT:
+            // console.log('aksdhjf alksdjfalkshdjfghfjghnrfiunjk re4rvdfiuhrnejkviu')
+            const reviewsAboutCurrent = {}
+            action.aboutUserReviews.Reviews.forEach(review => {
+                reviewsAboutCurrent[review.id] = review
+            })
+            return {
+                ...state,
+                ['reviewsAboutCurrent']:reviewsAboutCurrent
             }
 
 

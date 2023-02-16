@@ -74,6 +74,71 @@ router.get('/current',requireAuth, async (req, res, next) => {
   res.json({Reviews})
 })
 
+//**DIFFERENT!!! */
+//**// 13B - Get all Reviews of the Current User  - DONE
+router.get('/aboutcurrent',requireAuth, async (req, res, next) => {
+  const userId = req.user.id
+  const allReviews = await Review.findAll({
+    include: [{
+      model: Spot,
+      where: {ownerId: userId}
+  }]
+  })
+
+  // if(!allReviews[0]) {
+  //   res.statusCode = 403
+  //   res.json({
+  //       message: "Forbidden",
+  //       statusCode: 403
+  //   })
+  // }
+
+  const Reviews = []
+  for (let rev of allReviews) {
+     let newVar = rev.toJSON()
+
+    const user = await User.findOne({
+      where: {id: rev.userId},
+      attributes: ['id', 'firstName', 'lastName']
+    })
+    newVar.User = user
+
+    //extra code: code have done this with default scope
+    // modelName: 'Spot',
+    // defaultScope: {
+    //   attributes: {
+    //     exclude: ['createdAt', 'updatedAt']
+    //   }
+    // }
+
+     let spot = await Spot.findOne({
+      where: {id: rev.spotId},
+      attributes: {exclude: ['createdAt', 'updatedAt'] }
+     })
+     spot = spot.toJSON()
+
+     const previewImage = await SpotImage.findOne({
+      where: { spotId: spot.id},
+      attributes: ['url']
+     })
+
+     if(previewImage) { // this code is set up so if there isn't a previewImage it is excluded completely rather than null
+      spot.previewImage = previewImage.url
+     }
+
+     newVar.Spot = spot
+     const ReviewImages = await ReviewImage.findAll({
+      where: {reviewId: rev.id},
+      attributes: ['id','url']
+     })
+
+     newVar.ReviewImages = ReviewImages
+     Reviews.push(newVar)
+  }
+  res.json({Reviews})
+})
+
+
 //**// 16 - Add an Image to a Review based on the Review's id - DONE
 router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
   const userId = req.user.id
