@@ -2,6 +2,7 @@ import { useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { addSpotBooking, getSpotBookings } from '../../../store/booking'
+import { useHistory } from 'react-router-dom'
 
 const AddBookingForm = ({setShowModal}) => {
     // const [booking, setBooking] = useState('')
@@ -9,6 +10,7 @@ const AddBookingForm = ({setShowModal}) => {
 
     const { id } = useParams()
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const handleSubmit = async (e) => {
         console.log('current frontend format', start, end)
@@ -27,7 +29,7 @@ const AddBookingForm = ({setShowModal}) => {
             setResponseErrors(Object.values(response.errors))
         } else {
             dispatch(getSpotBookings(id)).then(setShowModal(false))
-            // history.push(`/spots/${id}`)
+            history.push(`/spots/current`)
         }
     }
     const oneSpot = useSelector(state=>{return state.oneSpot[id]})

@@ -42,6 +42,14 @@ router.get('/test', requireAuth, (req, res) => {
             raw: true
         })
 
+        let owner = await User.findOne({
+            where: { id: Spot2.ownerId}
+        })
+
+        if(owner) {
+            Spot2.owner = owner
+        }
+
         const spotImage = await SpotImage.findOne({
             where: {spotId: Spot2.id}
         })
@@ -214,6 +222,93 @@ router.get('/test', requireAuth, (req, res) => {
             })
         }
   })
+
+
+/** */
+/** */
+/** */
+/** */
+/** */
+/** */
+/** */
+/** */
+
+  //New Route #24 //get bookings by owner
+
+
+  router.get('/owner', requireAuth, async (req, res, next) => {
+    const ownerId = req.user.id
+
+    const allBookingsOfOwner = await Booking.findAll({
+        include: [{
+            model: Spot,
+            where: {ownerId: ownerId}
+        }
+    ]
+    })
+
+    if(!allBookingsOfOwner[0]) {
+        res.statusCode = 403
+        res.json({
+            message: "Forbidden",
+            statusCode: 403
+        })
+    }
+
+    const final = []
+    for (let booking of allBookingsOfOwner) {
+        let newVar = booking.toJSON()
+        let Spot2 = await Spot.findOne({
+            where: { id: booking.spotId},
+            attributes:  {exclude: ['description','createdAt', 'updatedAt'] },
+            raw: true
+        })
+
+        let Guest = await User.findOne({
+            where: {id: booking.userId} //probably should exclude some stuff
+        })
+
+        const spotImage = await SpotImage.findOne({
+            where: {spotId: Spot2.id}
+        })
+
+        if(spotImage) {
+            Spot2.previewImage = spotImage.url
+        }
+
+        if(Spot2) {
+            newVar.Spot = Spot2
+        }
+
+        if(Guest) {
+            newVar.Guest = Guest
+        }
+
+        final.push(newVar)
+    }
+    res.json(final)
+  })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

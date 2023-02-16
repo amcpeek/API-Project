@@ -1,11 +1,12 @@
 import { csrfFetch } from './csrf';
 import { getOneSpot } from './oneSpot.js'
 
-const GET_CURRENT_USERS_BOOKINGS = 'bookings/GET_USERS_OWNERS_BOOKINGS' //#19
+const GET_CURRENT_USERS_BOOKINGS = 'bookings/GET_USERS_BOOKINGS' //#19
 const GET_BOOKINGS_BY_SPOT_ID = 'bookings/GET_BOOKINGS_BY_SPOT_ID' //#20
 const ADD_BOOKING = 'bookings/ADD_BOOKING' // #21
 const UPDATE_BOOKING = 'bookings/UPDATE_BOOKING' //#22
 const REMOVE_BOOKING = 'bookings/REMOVE_BOOKING' //#23
+const GET_OWNERS_BOOKINGS = 'bookings/GET_OWNERS_BOOKINGS' //#24
 
 /* -- actions -- */
 
@@ -49,6 +50,15 @@ export const removeSpotBookingAction = (bookingId) => {
         bookingId
     }
 }
+
+//#24
+export const getOwnersBookingsAction = (ownersBookings) => {
+    return {
+        type: GET_OWNERS_BOOKINGS,
+        ownersBookings
+    }
+}
+
 
 /* -- thunk action creators -- */
 
@@ -126,6 +136,14 @@ export const removeBooking = (bookingId, spotId) => async dispatch => {
     }
 }
 
+//#24
+export const getOwnersBookings = () => async dispatch => {
+    const response = await fetch(`/api/bookings/owner`)
+    if(response.ok) {
+        const allOwnersBookings = await response.json()
+        dispatch(getOwnersBookingsAction(allOwnersBookings))
+    }
+}
 
 /* -- reducer -- */
 export default function bookingsReducer (state = {}, action) {
@@ -133,7 +151,7 @@ export default function bookingsReducer (state = {}, action) {
         //#19
         case GET_CURRENT_USERS_BOOKINGS:
             const usersBookings = {}
-            console.log('ACTION.USERBOOKINGS', action.userBookings )
+           // console.log('ACTION.USERBOOKINGS', action.userBookings )
             action.userBookings.forEach(booking => {
                 usersBookings[booking.id] = booking
             })
@@ -171,6 +189,19 @@ export default function bookingsReducer (state = {}, action) {
             const newState = {...state}
             delete newState[action.bookingId]
             return newState
+
+        //#24
+        case GET_OWNERS_BOOKINGS:
+            const ownersBookings = {}
+           // console.log('ACTION.USERBOOKINGS', action.userBookings )
+            action.ownersBookings.forEach(booking => {
+                ownersBookings[booking.id] = booking
+            })
+            return {
+                ...state,
+                ['ownersBookings']:ownersBookings
+            }
+
         default:
             return state
     }

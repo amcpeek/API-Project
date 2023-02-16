@@ -7,7 +7,7 @@ import { getUsersReviews, removeReview } from '../../../store/review';
 import UpdateReviewModal from '../../Reviews/UpdateReview/UpdateReviewModal'
 import { useHistory } from 'react-router-dom';
 import { restoreUser } from '../../../store/session'
-import { getUsersBookings } from '../../../store/booking';
+import { getUsersBookings, getOwnersBookings } from '../../../store/booking';
 
 let otherSrc = 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-21426276/original/7cceab2c-f3f2-4ed6-86b4-79bb32746dc0.jpeg?im_w=1200'
 
@@ -16,25 +16,12 @@ const CurrentOwnersSpots = () => {
     const history = useHistory()
     const [newSrc, setNewSrc] = useState('')
 
-    // useEffect(() => {
-    //  // dispatch(get)
-
-    // }, [dispatch])
-
     useEffect(() => {
       dispatch(getCurrentOwnersSpots());
-    }, [dispatch]);
-
-    useEffect(() => {
       dispatch(getUsersReviews());
-    }, [dispatch]);
-
-    useEffect(() => {
       dispatch(restoreUser())
-    }, [dispatch])
-
-    useEffect(() => {
       dispatch(getUsersBookings())
+      dispatch(getOwnersBookings())
     }, [dispatch])
 
     const usersBookings = useSelector(state => {
@@ -43,24 +30,36 @@ const CurrentOwnersSpots = () => {
       }
     })
 
-    //future bookings
+    const ownersBookings = useSelector(state => {
+      if(state.bookings.ownersBookings) {
+        return Object.values(state.bookings.ownersBookings)
+      }
+    })
+
+    //future trips
     let futureBookings = []
     if(usersBookings) {
-      console.log(new Date())
       futureBookings = usersBookings.filter(book => new Date(book.startDate) >= new Date())
-      console.log ('futureBookings', futureBookings)
-
     }
-
-    //past bookings
-
+    //past trips
     let pastBookings = []
     if(usersBookings) {
-      console.log(new Date())
       pastBookings = usersBookings.filter(book => new Date(book.startDate) < new Date())
-      console.log ('pastBookings', pastBookings)
-
     }
+
+    //future guests
+    let futureGuests = []
+    if(ownersBookings) {
+      futureGuests = ownersBookings.filter(book => new Date(book.startDate) >= new Date())
+    }
+    //past guests
+    let pastGuests = []
+    if(ownersBookings) {
+      pastGuests = ownersBookings.filter(book => new Date(book.startDate) < new Date())
+    }
+
+
+
 
     const ownersSpots = useSelector(state => {
       if(state.spots.currentOwnersSpots) {
@@ -124,6 +123,7 @@ const CurrentOwnersSpots = () => {
             <div className='tripDetails'>
             {/* <div>{Spot.name}</div> */}
             <div>{Spot.city}, {Spot.state}</div>
+            <div>Host: {Spot.owner.username}</div>
             {usersBookings && <div>
           {(new Date(startDate)).toLocaleDateString('en-US', {month: 'short', day: 'numeric'})}
           &nbsp;-&nbsp;
@@ -158,13 +158,49 @@ const CurrentOwnersSpots = () => {
             <div className='tripDetails'>
             {/* <div>{Spot.name}</div> */}
             <div>{Spot.city}, {Spot.state}</div>
+            <div>Host: {Spot.owner.username}</div>
             {usersBookings && <div>
           {(new Date(startDate)).toLocaleDateString('en-US', {month: 'short', day: 'numeric'})}
           &nbsp;-&nbsp;
           {(new Date(endDate)).toLocaleDateString('en-US', {month: 'short',year:'numeric',day: 'numeric'})}
           </div>}
           <div>Total: ${  (((new Date(endDate)) - (new Date(startDate)))/(1000 * 60 * 60 * 24))*Spot.price }</div>
+            </div>
 
+          </div>
+        ))}
+        </div>
+        </div>
+
+        {/* /////////// */}
+
+        <h2 className='yourTripTitle'>Future Guests</h2>
+        <div className='outerYourTrips'>
+        <div className='yourTrips'>
+        {futureGuests?.map(({id, spotId, userId, startDate, endDate, Spot, Guest}) => (
+          <div key={id} className='oneTrip'>
+
+            <img className='smallImg'
+                            src={Spot.previewImage}
+                            alt={Spot.name}
+                            onError={(e)=>{
+                              if(e.target.src !== otherSrc) {
+                                setNewSrc(otherSrc)
+                                e.target.src = otherSrc
+                              }
+                              }}
+                            />
+            <div className='tripDetails'>
+            {/* <div>{Spot.name}</div> */}
+            <div>{Spot.city}, {Spot.state}</div>
+            {futureGuests && <div>
+              <div>Guest: {Guest.username}</div>
+          {(new Date(startDate)).toLocaleDateString('en-US', {month: 'short', day: 'numeric'})}
+          &nbsp;-&nbsp;
+          {(new Date(endDate)).toLocaleDateString('en-US', {month: 'short',year:'numeric',day: 'numeric'})}
+          </div>}
+          <div>Total: ${  (((new Date(endDate)) - (new Date(startDate)))/(1000 * 60 * 60 * 24))*Spot.price }</div>
+          <div>Edit Delete</div>
 
 
             </div>
@@ -173,7 +209,43 @@ const CurrentOwnersSpots = () => {
         ))}
         </div>
         </div>
-        <h2 className='yourTripTitle'>Your Homes</h2>
+        <h2 className='yourTripTitle'>Past Guests</h2>
+        <div className='outerYourTrips'>
+        <div className='yourTrips'>
+        {pastGuests?.map(({id, spotId, userId, startDate, endDate, Spot, Guest}) => (
+          <div key={id} className='oneTrip'>
+
+            <img className='smallImg'
+                            src={Spot.previewImage}
+                            alt={Spot.name}
+                            onError={(e)=>{
+                              if(e.target.src !== otherSrc) {
+                                setNewSrc(otherSrc)
+                                e.target.src = otherSrc
+                              }
+                              }}
+                            />
+            <div className='tripDetails'>
+            {/* <div>{Spot.name}</div> */}
+            <div>{Spot.city}, {Spot.state}</div>
+            {pastGuests && <div>
+              <div>Guest: {Guest.username}</div>
+          {(new Date(startDate)).toLocaleDateString('en-US', {month: 'short', day: 'numeric'})}
+          &nbsp;-&nbsp;
+          {(new Date(endDate)).toLocaleDateString('en-US', {month: 'short',year:'numeric',day: 'numeric'})}
+          </div>}
+          <div>Total: ${  (((new Date(endDate)) - (new Date(startDate)))/(1000 * 60 * 60 * 24))*Spot.price }</div>
+            </div>
+
+          </div>
+        ))}
+        </div>
+        </div>
+
+
+
+
+        <h2 className='yourTripTitle'>Your Properties</h2>
         <div className="CurrentHomeList">
 
                 {ownersSpots?.map(({ id, name, previewImage, city, state, description, price, avgRating }) => (
@@ -209,7 +281,7 @@ const CurrentOwnersSpots = () => {
         </div>
 
 
-        {userFirstName && <h2 className='currentOwnersTitle'>{userFirstName}'s Reviews</h2>}
+        {userFirstName && <h2 className='yourTripTitle'>Reviews by you</h2>}
 
 
 
@@ -235,6 +307,8 @@ const CurrentOwnersSpots = () => {
                       </NavLink>
                     ))}
               </div>
+
+              {userFirstName && <h2 className='yourTripTitle'>Reviews about you</h2>}
       </div>
     );
 }
