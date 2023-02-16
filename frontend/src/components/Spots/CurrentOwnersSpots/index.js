@@ -8,6 +8,7 @@ import UpdateReviewModal from '../../Reviews/UpdateReview/UpdateReviewModal'
 import { useHistory } from 'react-router-dom';
 import { restoreUser } from '../../../store/session'
 import { getUsersBookings, getOwnersBookings, removeBooking } from '../../../store/booking';
+import UpdateBookingModal from '../../Bookings/UpdateBooking/UpdateBookingModal';
 
 let otherSrc = 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-21426276/original/7cceab2c-f3f2-4ed6-86b4-79bb32746dc0.jpeg?im_w=1200'
 
@@ -133,14 +134,14 @@ const CurrentOwnersSpots = () => {
           {(new Date(endDate)).toLocaleDateString('en-US', {month: 'short',year:'numeric',day: 'numeric'})}
           </div>}
           <div>Total: ${  (((new Date(endDate)) - (new Date(startDate)))/(1000 * 60 * 60 * 24))*Spot.price }</div>
-          <div>Edit</div>
+          <div className='row'>
+          <div ><UpdateBookingModal/></div>
           <button className='whiteButton' onClick={()=> handleRemoveBooking(id) }>
-                                      <i className="material-symbols-outlined">
-                                        delete
-                                        </i></button>
-
-
+                                      <i className="material-symbols-outlined"> delete </i></button>
             </div>
+
+          </div>
+
 
           </div>
         ))}

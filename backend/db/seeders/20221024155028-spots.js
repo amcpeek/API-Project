@@ -21,7 +21,7 @@ module.exports = {
       country: 'USA',
       lat: 33.7490,
       lng: 84.3880,
-      name: 'Alabama Lake House',
+      name: 'Alabama Lakeside Home',
       description: 'Home in Alabama on a lake, perfect for summer fun in the water. It has a great view across the lake. You can sit on the porch around the outdoor fire pit. There are boats you can borrow.',
       price: 310.00
       }, {

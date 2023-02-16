@@ -131,3 +131,9 @@
    background-color: white;
    border: none;
  }
+
+
+ .row {
+   display: flex;
+   flex-direction: row;
+ }
