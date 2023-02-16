@@ -50,6 +50,7 @@
  .insideCurrentOwner {
     width: 320px;
     margin: 20px;
+
  }
 
  .smallImg {
@@ -96,4 +97,24 @@
  .yourTripTitle {
     display: flex;
     justify-content: flex-start;
+ }
+
+ .SingleSpotReviewBox2 {
+   display: flex;
+   /* justify-content: center;
+   justify-content: center; */
+   flex-direction: column;
+   /* align-items: flex-start; */
+ }
+
+ .SingleSpotReviewBox2 > div {
+   margin: 0;
+   padding: 0;
+ }
+
+
+ .CurrentOwnersReviews {
+   display: flex;
+   justify-content: flex-start;
+
  }

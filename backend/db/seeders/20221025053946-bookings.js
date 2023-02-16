@@ -7,19 +7,19 @@ const { Booking } = require('../models')
 const validBookings = [
   {
     spotId: 1,
-    userId:1,
+    userId:2,
     startDate:  `2023-01-01` ,
     endDate: `2023-01-02`
   },
   {
     spotId: 2,
-    userId:2,
+    userId:3,
     startDate:  `2023-02-01` ,
     endDate: `2023-02-02`
   },
   {
     spotId: 3,
-    userId:3,
+    userId:4,
     startDate:  `2023-03-01` ,
     endDate: `2023-03-02`
   } ,   {
@@ -30,7 +30,7 @@ const validBookings = [
   },
   {
     spotId: 5,
-    userId: 5,
+    userId: 1,
     startDate:  `2023-05-01` ,
     endDate: `2023-05-02`
   }

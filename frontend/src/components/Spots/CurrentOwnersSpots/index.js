@@ -243,7 +243,66 @@ const CurrentOwnersSpots = () => {
 
 
 
-        <h2 className='yourTripTitle'>Your Properties</h2>
+
+
+
+        {userFirstName && <h2 className='yourTripTitle'>Reviews by you</h2>}
+
+
+
+             <div className="CurrentOwnersReviews">
+
+
+                    {usersReviews && usersReviews?.map((review) => (
+                       <NavLink to={`/spots/${review.spotId}`}>
+                      <div  key={review.id} className='insideCurrentOwner'>
+                              <div className="SingleSpotReviewBox2" key={review.id}>
+                                <div className='underlined shouldWrap'>{review.Spot.name}</div>
+
+                                <div className='shouldWrap'>{review.Spot.city}, {review.Spot.state}</div>
+                                <div>Host: {review.Spot.owner.username}</div>
+                                    <div><i className="material-symbols-outlined">star </i> {review.stars} stars</div>
+                                    <div className='shouldWrap'>{review.review}</div>
+
+                                    {/* {<><UpdateReviewModal/></>}
+                                    {<button onClick={()=> handleRemoveReview(review.id) }>
+                                      <i className="material-symbols-outlined">
+                                        delete
+                                        </i></button>} */}
+                              </div>
+                      </div>
+                      </NavLink>
+                    ))}
+              </div>
+
+              {userFirstName && <h2 className='yourTripTitle'>Reviews about you</h2>}
+
+              <div className="CurrentOwnersReviews">
+
+
+                    {reviewsAboutCurrent && reviewsAboutCurrent?.map((review) => (
+                       <NavLink to={`/spots/${review.spotId}`}>
+                      <div  key={review.id} className='insideCurrentOwner'>
+                              <div className="SingleSpotReviewBox2" key={review.id}>
+                                <div className='underlined shouldWrap'>{review.Spot.name}</div>
+                                <div className='shouldWrap'>{review.Spot.city}, {review.Spot.state}</div>
+                                <div>Guest: {review.User.firstName}</div>
+
+                                    <div><i className="material-symbols-outlined">star </i> {review.stars} stars</div>
+                                    <div className='shouldWrap'>{review.review}</div>
+
+                                    {/* {<><UpdateReviewModal/></>}
+                                    {<button onClick={()=> handleRemoveReview(review.id) }>
+                                      <i className="material-symbols-outlined">
+                                        delete
+                                        </i></button>} */}
+                              </div>
+                      </div>
+                      </NavLink>
+                    ))}
+              </div>
+
+              <h2 className='yourTripTitle'>Your Properties</h2>
         <div className="CurrentHomeList">
 
                 {ownersSpots?.map(({ id, name, previewImage, city, state, description, price, avgRating }) => (
@@ -277,66 +336,12 @@ const CurrentOwnersSpots = () => {
                   </div>
                 ))}
         </div>
-
-
-        {userFirstName && <h2 className='yourTripTitle'>Reviews by you</h2>}
-
-
-
-             <div className="CurrentOwnersReviews">
-
-
-                    {usersReviews && usersReviews?.map((review) => (
-                       <NavLink to={`/spots/${review.spotId}`}>
-                      <div  key={review.id} className='insideCurrentOwner'>
-                              <div className="SingleSpotReviewBox" key={review.id}>
-                                <h4 className='underlined shouldWrap'>{review.Spot.name}</h4>
-
-                                <h5 className='shouldWrap'>{review.Spot.city}, {review.Spot.state}</h5>
-                                <h4>Host: {review.Spot.owner.username}</h4>
-                                    <div><i className="material-symbols-outlined">star </i> {review.stars} stars</div>
-                                    <p className='shouldWrap'>{review.review}</p>
-
-                                    {/* {<><UpdateReviewModal/></>}
-                                    {<button onClick={()=> handleRemoveReview(review.id) }>
-                                      <i className="material-symbols-outlined">
-                                        delete
-                                        </i></button>} */}
-                              </div>
-                      </div>
-                      </NavLink>
-                    ))}
-              </div>
-
-              {userFirstName && <h2 className='yourTripTitle'>Reviews about you</h2>}
-
-              <div className="CurrentOwnersReviews">
-
-
-                    {reviewsAboutCurrent && reviewsAboutCurrent?.map((review) => (
-                       <NavLink to={`/spots/${review.spotId}`}>
-                      <div  key={review.id} className='insideCurrentOwner'>
-                              <div className="SingleSpotReviewBox" key={review.id}>
-                                <div>{review.id}</div>
-                                <h4 className='underlined shouldWrap'>{review.Spot.name}</h4>
-                                <h5 className='shouldWrap'>{review.Spot.city}, {review.Spot.state}</h5>
-                                <h4>Guest: {review.User.firstName}</h4>
-
-                                    <div><i className="material-symbols-outlined">star </i> {review.stars} stars</div>
-                                    <p className='shouldWrap'>{review.review}</p>
-
-                                    {/* {<><UpdateReviewModal/></>}
-                                    {<button onClick={()=> handleRemoveReview(review.id) }>
-                                      <i className="material-symbols-outlined">
-                                        delete
-                                        </i></button>} */}
-                              </div>
-                      </div>
-                      </NavLink>
-                    ))}
-              </div>
       </div>
     );
+
+
+
+
 }
 
 export default CurrentOwnersSpots

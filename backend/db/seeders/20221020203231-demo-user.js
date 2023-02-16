@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 let options = {};
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
+
 }
 // END of new code
 //review file has the old way
@@ -51,10 +52,32 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
     options.tableName = 'Users'
-      return queryInterface.bulkDelete(options
+    // Sequelize.query(`TRUNCATE table ${options.schema}.users RESTART IDENTITY CASCADE;`)
+   // Sequelize.truncate({ cascade: true })
+
+
+
+      return queryInterface.bulkDelete(options,
+
+
       //  {username: ['Demo-lition', 'FakeUser2','FakeUser3', 'FakeUser4', 'FakeUser5'  ]} //this line was removed
       );
   }
 };
 
 //db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+
+
+//down: async (queryInterface, Sequelize) => {
+//   const { sequelize } = queryInterface;
+//   try {
+//     await sequelize.transaction(async (transaction) => {
+//       const options = { transaction };
+//       await sequelize.query("SET FOREIGN_KEY_CHECKS = 0", options);
+//       await sequelize.query("TRUNCATE TABLE Countries", options);
+//       await sequelize.query("SET FOREIGN_KEY_CHECKS = 1", options);
+//     });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
