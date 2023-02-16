@@ -62,6 +62,14 @@ router.get('/current',requireAuth, async (req, res, next) => {
       spot.previewImage = previewImage.url
      }
 
+     const owner = await User.findOne({
+      where: { id: spot.ownerId}
+     })
+
+     if(owner) {
+      spot.owner = owner
+     }
+
      newVar.Spot = spot
      const ReviewImages = await ReviewImage.findAll({
       where: {reviewId: rev.id},

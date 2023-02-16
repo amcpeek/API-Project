@@ -293,6 +293,7 @@ const CurrentOwnersSpots = () => {
                                 <h4 className='underlined shouldWrap'>{review.Spot.name}</h4>
 
                                 <h5 className='shouldWrap'>{review.Spot.city}, {review.Spot.state}</h5>
+                                <h4>Host: {review.Spot.owner.username}</h4>
                                     <div><i className="material-symbols-outlined">star </i> {review.stars} stars</div>
                                     <p className='shouldWrap'>{review.review}</p>
 
