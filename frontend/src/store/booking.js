@@ -35,11 +35,11 @@ export const addSpotBookingAction = (spotBooking) => {
  }
 
 //#22
-export const updateSpotBookingAction = (booking, bookingId) => {
+export const updateSpotBookingAction = (newBooking, sendBookingId ) => {
     return {
         type: UPDATE_BOOKING,
-        booking,
-        bookingId
+        newBooking,
+        sendBookingId
     }
 }
 
@@ -105,15 +105,16 @@ export const addSpotBooking = (spotBooking, id) => async dispatch => { //booking
 
 //#22
 
-export const updateSpotBooking = (booking, bookingId, spotId) => async dispatch => {
-    const response = await csrfFetch(`/api/bookings/${bookingId}`, {
+export const updateSpotBooking = (newBooking, sendBookingId) => async dispatch => {
+    console.log('REDUCER BOOKING', newBooking, sendBookingId)
+    const response = await csrfFetch(`/api/bookings/${sendBookingId}`, {
         method: 'PUT',
-        body: JSON.stringify(booking)
+        body: JSON.stringify(newBooking)
     }).then(async (res) => {
         // if(response.ok) {
         //     const booking = await response.json()
-            dispatch(updateSpotBookingAction(booking, bookingId)) //im not sure this is needed?
-            dispatch(getOneSpot(spotId))
+            dispatch(updateSpotBookingAction(newBooking, sendBookingId)) //im not sure this is needed?
+            // dispatch(getOneSpot(spotId))
 
        // }
         return await res.json()

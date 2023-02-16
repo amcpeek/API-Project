@@ -17,6 +17,7 @@ const CurrentOwnersSpots = () => {
     const history = useHistory()
     const [newSrc, setNewSrc] = useState('')
 
+
     useEffect(() => {
       dispatch(getCurrentOwnersSpots());
       dispatch(getUsersReviews());
@@ -135,7 +136,7 @@ const CurrentOwnersSpots = () => {
           </div>}
           <div>Total: ${  (((new Date(endDate)) - (new Date(startDate)))/(1000 * 60 * 60 * 24))*Spot.price }</div>
           <div className='row'>
-          <div ><UpdateBookingModal/></div>
+          <div ><UpdateBookingModal bookingId={id}/></div>
           <button className='whiteButton' onClick={()=> handleRemoveBooking(id) }>
                                       <i className="material-symbols-outlined"> delete </i></button>
             </div>
@@ -259,7 +260,7 @@ const CurrentOwnersSpots = () => {
         {userFirstName && <h2 className='yourTripTitle'>Reviews by you</h2>}
              <div className="CurrentOwnersReviews">
                     {usersReviews && usersReviews?.map((review) => (
-                       <NavLink to={`/spots/${review.spotId}`}>
+                       <NavLink to={`/spots/${review.spotId}`} key={review.id} >
                       <div  key={review.id} className='insideCurrentOwner'>
                               <div className="SingleSpotReviewBox2" key={review.id}>
                                 <div className='underlined shouldWrap'>{review.Spot.name}</div>
@@ -286,7 +287,7 @@ const CurrentOwnersSpots = () => {
 
 
                     {reviewsAboutCurrent && reviewsAboutCurrent?.map((review) => (
-                       <NavLink to={`/spots/${review.spotId}`}>
+                       <NavLink to={`/spots/${review.spotId}`} key={review.id} >
                       <div  key={review.id} className='insideCurrentOwner'>
                               <div className="SingleSpotReviewBox2" key={review.id}>
                                 <div className='underlined shouldWrap'>{review.Spot.name}</div>
