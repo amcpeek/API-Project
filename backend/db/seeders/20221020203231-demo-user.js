@@ -56,3 +56,5 @@ module.exports = {
       );
   }
 };
+
+//db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
