@@ -108,57 +108,62 @@ router.get('/test', requireAuth, (req, res) => {
         })
 
         for (let alreadyBookedSpot of allBookingsOfThisSpot) { //the try catch block cannot be in the for loop
-
-            if (startDate > endDate) {  //before & after or equal a booking
-                errObj['endDate'] = errorStrings1['endDate']
-                res.statusCode = 400
-                res.json({
-                message: "Validation error",
-                statusCode: 400,
-                errors: errObj
-                })
-            } else if (startDate <= alreadyBookedSpot.startDate && endDate >= alreadyBookedSpot.endDate) {  //before & after or equal a booking
-                errObj['startDate'] = errorStrings2['startDate']
-                errObj['endDate'] = errorStrings2['endDate']
-                res.statusCode = 403
-                res.json({
-                message: "Sorry, this spot is already booked for the specified dates",
-                statusCode: 403,
-                errors: errObj
-                })
-            } else if ( startDate > alreadyBookedSpot.startDate && endDate < alreadyBookedSpot.endDate) { //after & before a booking
-                errObj['startDate'] = errorStrings2['startDate']
-                errObj['endDate'] = errorStrings2['endDate']
-                res.statusCode = 403
-                res.json({
-                message: "Sorry, this spot is already booked for the specified dates",
-                statusCode: 403,
-                errors: errObj
-                })
-            } else if(startDate <= alreadyBookedSpot.startDate && endDate > alreadyBookedSpot.startDate ) { //overlapping with start
-                errObj['startDate'] = errorStrings2['startDate']
-                res.statusCode = 403
-                res.json({
-                message: "Sorry, this spot is already booked for the specified dates",
-                statusCode: 403,
-                errors: errObj
-                })
-            } else if(endDate >= alreadyBookedSpot.endDate && startDate < alreadyBookedSpot.endDate ) { //overlapping with end
-                errObj['endDate'] = errorStrings2['endDate']
-                res.statusCode = 403
-                res.json({
-                message: "Sorry, this spot is already booked for the specified dates",
-                statusCode: 403,
-                errors: errObj
-                })
-            } else if ( startDate < currentDateTotal ) {
-                res.statusCode = 403
-                res.json({
-                message: "Past bookings can't be modified",
-                statusCode: 403,
-                })
+            console.log('abs', alreadyBookedSpot.id, 'desbi', desiredBookingId, 'sd',startDate, 'absSD', alreadyBookedSpot.startDate, 'ed', endDate, 'absED', alreadyBookedSpot.endDate)
+            if(alreadyBookedSpot.id != desiredBookingId) {
+                if (startDate > endDate) {  //before & after or equal a booking
+                    errObj['endDate'] = errorStrings1['endDate']
+                    res.statusCode = 400
+                    res.json({
+                    message: "Validation error",
+                    statusCode: 400,
+                    errors: errObj
+                    })
+                } else if (startDate <= alreadyBookedSpot.startDate && endDate >= alreadyBookedSpot.endDate) {  //before & after or equal a booking
+                    errObj['startDate'] = errorStrings2['startDate']
+                    errObj['endDate'] = errorStrings2['endDate']
+                    res.statusCode = 403
+                    res.json({
+                    message: "Sorry, this spot is already booked for the specified dates",
+                    statusCode: 403,
+                    errors: errObj
+                    })
+                } else if ( startDate > alreadyBookedSpot.startDate && endDate < alreadyBookedSpot.endDate) { //after & before a booking
+                    errObj['startDate'] = errorStrings2['startDate']
+                    errObj['endDate'] = errorStrings2['endDate']
+                    res.statusCode = 403
+                    res.json({
+                    message: "Sorry, this spot is already booked for the specified dates",
+                    statusCode: 403,
+                    errors: errObj
+                    })
+                } else if(startDate <= alreadyBookedSpot.startDate && endDate > alreadyBookedSpot.startDate ) { //overlapping with start
+                    errObj['startDate'] = errorStrings2['startDate']
+                    res.statusCode = 403
+                    res.json({
+                    message: "Sorry, this spot is already booked for the specified dates",
+                    statusCode: 403,
+                    errors: errObj
+                    })
+                } else if(endDate >= alreadyBookedSpot.endDate && startDate < alreadyBookedSpot.endDate ) { //overlapping with end
+                    errObj['endDate'] = errorStrings2['endDate']
+                    res.statusCode = 403
+                    res.json({
+                    message: "Sorry, this spot is already booked for the specified dates",
+                    statusCode: 403,
+                    errors: errObj
+                    })
+                } else if ( startDate < currentDateTotal ) {
+                    res.statusCode = 403
+                    res.json({
+                    message: "Past bookings can't be modified",
+                    statusCode: 403,
+                    })
+                    }
                 }
+
             }
+
+
 
                     try{
                     const newBooking = await currentBooking.update({

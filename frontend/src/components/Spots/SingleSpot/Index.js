@@ -241,7 +241,7 @@ const SingleSpot = () => {
 
                </div> */}
 
-               {currentUserId &&  <><AddBookingModal showModal={showModal} setShowModal={setShowModal}/></>}
+               {currentUserId && !matchingOwner && <><AddBookingModal showModal={showModal} setShowModal={setShowModal}/></>}
                                     {/* {currentUserId && <button onClick={()=> handleRemoveReview(review.id) }>
                                       <i className="material-symbols-outlined">
                                         delete
@@ -250,8 +250,10 @@ const SingleSpot = () => {
 
               {!currentUserId &&
               <button className="checkAvailabilityButton" onClick={() => setShowLogInModal(true)}>Log in to book</button>
-
               }
+
+              {currentUserId && matchingOwner && <button className="checkAvailabilityButton" onClick={() => history.push('/spots/current')}>View your properties bookings</button> }
+
 
 
 
