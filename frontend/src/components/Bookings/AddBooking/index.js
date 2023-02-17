@@ -40,7 +40,8 @@ const AddBookingForm = ({setShowModal}) => {
         // }
 
 
-        const newToday = new Date()
+        let newToday = new Date()
+        newToday.setDate(newToday.getDate() + 2)
 
         const todayFormatted =  (new Intl.DateTimeFormat('default', { dateStyle: 'full' }).format(newToday))
         const options = {
@@ -54,7 +55,7 @@ const AddBookingForm = ({setShowModal}) => {
         let today = `${arrayDay[2]}-${arrayDay[0]}-${arrayDay[1]}`
 
         let fullTom = new Date(fullDay)
-        fullTom.setDate(fullTom.getDate() + 2)
+        fullTom.setDate(fullTom.getDate() + 4)
         fullTom = (new Intl.DateTimeFormat('default', options).format(fullTom))
         console.log('fullTom', fullTom, 'fullDay', fullDay)
 
@@ -95,10 +96,10 @@ const AddBookingForm = ({setShowModal}) => {
             {/* <button className="cancelButton"><NavLink to={`/spots/${id}`}>X</NavLink></button> */}
 
                 <form onSubmit={handleSubmit} className="CreateSpotForm">
-
-                <div>
+                <div>check-in</div>
+                <div >
                 <input
-                 className='roundBottomFields'
+                 className='roundBottomFields roundTopFields'
                  type='date'
                  placeholder='2023-03-01' //tomorrow
                  min={today} //tomorrow
@@ -107,9 +108,11 @@ const AddBookingForm = ({setShowModal}) => {
                  onChange={(e) => setStart(e.target.value)}
                 />
                 </div>
+                <div>check-out</div>
                 <div>
+
                 <input
-                 className='roundBottomFields'
+                 className='roundBottomFields roundTopFields'
                  type='date'
                  placeholder='2023-03-01' //tomorrow
                  min={dayAfterTomorrow} //tomorrow

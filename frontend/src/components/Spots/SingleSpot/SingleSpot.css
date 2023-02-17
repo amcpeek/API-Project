@@ -514,3 +514,10 @@
 .enoughSpace {
   width: 240px;
 } */
+
+
+
+
+.notAllowed {
+  cursor: not-allowed;
+}

@@ -25,7 +25,7 @@
 
 .currentOwnersTitle {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 
@@ -34,7 +34,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     position: relative;
     /* top: 200px; */
     z-index: 1;
@@ -69,7 +69,7 @@
     margin-left: 40px;
     margin-right: 40px;
     /* justify-content: center; */
-    align-items: center;
+    align-items: flex-start;
     margin-top: 10px;
     margin-bottom: 10px;
  }
@@ -137,3 +137,9 @@
    display: flex;
    flex-direction: row;
  }
+
+
+ .col {
+   display: flex;
+   flex-direction: column;
+}

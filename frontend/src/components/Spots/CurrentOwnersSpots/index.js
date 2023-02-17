@@ -113,7 +113,15 @@ const CurrentOwnersSpots = () => {
         <div className='outerYourTrips'>
         <div className='yourTrips'>
         {futureBookings?.map(({id, spotId, userId, startDate, endDate, Spot}) => (
-          <div key={id} className='oneTrip'>
+
+          <div key={id} className='oneTrip col' >
+
+            <NavLink to={`/spots/${spotId}`} key={spotId} className='row'>
+
+
+
+
+
 
             <img className='smallImg'
                             src={Spot.previewImage}
@@ -135,16 +143,18 @@ const CurrentOwnersSpots = () => {
           {(new Date(endDate)).toLocaleDateString('en-US', {month: 'short',year:'numeric',day: 'numeric'})}
           </div>}
           <div>Total: ${  (((new Date(endDate)) - (new Date(startDate)))/(1000 * 60 * 60 * 24))*Spot.price }</div>
+          </div>
+          </NavLink>
+
           <div className='row'>
           <div ><UpdateBookingModal bookingId={id}/></div>
           <button className='whiteButton' onClick={()=> handleRemoveBooking(id) }>
                                       <i className="material-symbols-outlined"> delete </i></button>
             </div>
 
-          </div>
-
 
           </div>
+
         ))}
         </div>
         </div>
@@ -152,6 +162,7 @@ const CurrentOwnersSpots = () => {
         <div className='outerYourTrips'>
         <div className='yourTrips'>
         {pastBookings?.map(({id, spotId, userId, startDate, endDate, Spot}) => (
+           <NavLink to={`/spots/${spotId}`} key={spotId} >
           <div key={id} className='oneTrip'>
 
             <img className='smallImg'
@@ -177,6 +188,7 @@ const CurrentOwnersSpots = () => {
             </div>
 
           </div>
+          </NavLink>
         ))}
         </div>
         </div>
@@ -187,6 +199,8 @@ const CurrentOwnersSpots = () => {
         <div className='outerYourTrips'>
         <div className='yourTrips'>
         {futureGuests?.map(({id, spotId, userId, startDate, endDate, Spot, Guest}) => (
+          <NavLink to={`/spots/${spotId}`} key={spotId} >
+
           <div key={id} className='oneTrip'>
 
             <img className='smallImg'
@@ -209,12 +223,13 @@ const CurrentOwnersSpots = () => {
           {(new Date(endDate)).toLocaleDateString('en-US', {month: 'short',year:'numeric',day: 'numeric'})}
           </div>}
           <div>Total: ${  (((new Date(endDate)) - (new Date(startDate)))/(1000 * 60 * 60 * 24))*Spot.price }</div>
-          <div>Edit Delete</div>
+
 
 
             </div>
 
           </div>
+          </NavLink>
         ))}
         </div>
         </div>
@@ -222,6 +237,7 @@ const CurrentOwnersSpots = () => {
         <div className='outerYourTrips'>
         <div className='yourTrips'>
         {pastGuests?.map(({id, spotId, userId, startDate, endDate, Spot, Guest}) => (
+              <NavLink to={`/spots/${spotId}`} key={spotId} >
           <div key={id} className='oneTrip'>
 
             <img className='smallImg'
@@ -247,6 +263,7 @@ const CurrentOwnersSpots = () => {
             </div>
 
           </div>
+          </NavLink>
         ))}
         </div>
         </div>

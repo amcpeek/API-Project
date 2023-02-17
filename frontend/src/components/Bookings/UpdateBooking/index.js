@@ -110,10 +110,11 @@ const UpdateBookingForm = ({showModal, setShowModal, sendBookingId}) => {
         {/* <button className="cancelButton"><NavLink to={`/spots/${id}`}>X</NavLink></button> */}
 
             <form onSubmit={handleSubmit} className="CreateSpotForm">
+            <div>check-in</div>
 
             <div>
             <input
-             className='roundBottomFields'
+             className='roundBottomFields roundTopFields'
              type='date'
              placeholder='2023-03-01' //tomorrow
              min={today} //tomorrow
@@ -122,9 +123,10 @@ const UpdateBookingForm = ({showModal, setShowModal, sendBookingId}) => {
              onChange={(e) => setStart(e.target.value)}
             />
             </div>
+            <div>check-out</div>
             <div>
             <input
-             className='roundBottomFields'
+             className='roundBottomFields roundTopFields'
              type='date'
              placeholder='2023-03-01' //tomorrow
              min={dayAfterTomorrow} //tomorrow

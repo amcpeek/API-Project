@@ -49,8 +49,8 @@ function Navigation({ isLoaded }){
         <button onClick={() => {setShowSearchModal(true); setSearchContent('states') }}>Anywhere</button>
         <>|</>
         <button onClick={() => {setShowSearchModal(true); setSearchContent('price') }}> Any price</button>
-        <>|</>
-        <button onClick={() => {setShowSearchModal(true); setSearchContent('guests') }}>Add guests</button>
+        {/* <>|</>
+        <button onClick={() => {setShowSearchModal(true); setSearchContent('guests') }}>Add guests</button> */}
         <>|</>
         <button onClick={() => {setShowSearchModal(true); setSearchContent('searchTerm') }} className='topSearchButton'>Anything <i className="material-symbols-outlined">search</i></button>
         {/* <button className='roundAllEdges' onClick={nonFunctional}><i className="material-symbols-outlined">search</i></button> */}
@@ -62,9 +62,9 @@ function Navigation({ isLoaded }){
         <div className='insideRightNav'>
       {sessionUser &&<div className={'cursor'} onClick={() => {setShowModal(true)}}>Abnb your home</div> }
       <CreateSpotModal showModal={showModal} setShowModal={setShowModal}/>
-        <button className='noBorder'onClick={nonFunctional}>
+        {/* <button className='noBorder'onClick={nonFunctional}>
         <i className="material-symbols-outlined globe">language</i>
-        </button>
+        </button> */}
          {isLoaded && (
            <ProfileButton user={sessionUser} />
          )}

@@ -12,6 +12,7 @@ import UpdateSpotModal from '../UpdateSpot/UpdateSpotModal';
 import AddReviewModal from '../../Reviews/AddReview/AddReviewModal';
 import UpdateReviewModal from '../../Reviews/UpdateReview/UpdateReviewModal';
 import AddBookingModal from '../../Bookings/AddBooking/AddBookingModal';
+import LoginFormModal from '../../LoginFormModal/index';
 let otherSrc = 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-21426276/original/7cceab2c-f3f2-4ed6-86b4-79bb32746dc0.jpeg?im_w=1200'
 let otherSrcSide = 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-21426276/original/b8437755-535b-4a9a-a0d0-5a866b1c7659.jpeg?im_w=1200'
 
@@ -23,6 +24,7 @@ const SingleSpot = () => {
   const [showModal, setShowModal] = useState(false);
    const [newSrc, setNewSrc] = useState('')
    const [newSrcSide, setNewSrcSide] = useState('')
+   const [showLogInModal, setShowLogInModal] = useState(false);
 
   let oneSpot = useSelector(state=>{return state.oneSpot[id]})
    let allReviews = useSelector(state => { return Object.values(state.reviews)})
@@ -109,7 +111,7 @@ const SingleSpot = () => {
         </div>
 
         <div id='SingleSpotTopLinks'>
-        <div className=' another'  onClick={nonFunctional} >
+        <div className=' another notAllowed'  >
         <i className="material-symbols-outlined">star </i>
         {singleSpot.avgStarRating} ·  {singleSpot.numReviews} reviews   ·
         <i className="material-symbols-outlined"> military_tech</i>
@@ -118,7 +120,7 @@ const SingleSpot = () => {
         <div className='nowrap'>{singleSpot.city}, {singleSpot.state}, {singleSpot.country}</div>
         </div>
 
-        <div onClick={nonFunctional} >
+        <div className='notAllowed'>
         <i className="material-symbols-outlined">upload</i>Share
         <i className="material-symbols-outlined">favorite</i>
         Save
@@ -210,7 +212,7 @@ const SingleSpot = () => {
                 {singleSpot.avgStarRating}  ·  {singleSpot.numReviews} reviews
                 </div>
                </div>
-                <div className="checkInOutBox">
+                {/* <div className="checkInOutBox">
                   <div className="checkInOutDates">
                       <div>check-in
                         <input type="date"></input>
@@ -237,15 +239,18 @@ const SingleSpot = () => {
 
                 </div>
 
-               </div>
+               </div> */}
 
                {currentUserId &&  <><AddBookingModal showModal={showModal} setShowModal={setShowModal}/></>}
                                     {/* {currentUserId && <button onClick={()=> handleRemoveReview(review.id) }>
                                       <i className="material-symbols-outlined">
                                         delete
                                         </i></button>} */}
+                                        <LoginFormModal showLogInModal={showLogInModal} setShowLogInModal={setShowLogInModal}/>
 
-              {!currentUserId && <button onClick={nonFunctional} className="checkAvailabilityButton"> Log in to book</button>
+              {!currentUserId &&
+              <button className="checkAvailabilityButton" onClick={() => setShowLogInModal(true)}>Log in to book</button>
+
               }
 
 
