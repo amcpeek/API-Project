@@ -14,7 +14,8 @@ module.exports = {
         //should be Alabama was Arkansas 6
         {
           spotId: 1,
-          url: 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-35795005/original/8a1c0ada-2a21-466a-a434-b7e53698187e.jpeg?im_w=1200',
+          url: 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-35795005/original/464e29cb-847f-4974-8f21-0f26a7a33983.jpeg?im_w=1440',
+          //  'https://a0.muscache.com/im/pictures/prohost-api/Hosting-35795005/original/8a1c0ada-2a21-466a-a434-b7e53698187e.jpeg?im_w=1200',
           preview: true
           }, {
           spotId: 1,
