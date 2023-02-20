@@ -14,7 +14,7 @@ function SearchForm({showSearchModal, setShowSearchModal, searchContent, setSear
     const [ petsNum, setPetsNum] = useState(1)
     const history = useHistory()
     // const [ minPrice, setMinPrice ] = useState(1)
-    const [ maxPrice, setMaxPrice ] = useState(5000)
+    const [ maxPrice, setMaxPrice ] = useState(500)
     const Regions = ['west', 'midwest', 'south', 'northeast', 'pacific', 'anywhere']
     const [searchTerm, setSearchTerm ] = useState('')
 
@@ -91,7 +91,7 @@ if(searchContent === 'price') {
                         <input type="number"
                         className='makeBigger'
                         min='1'
-                        max='5000'
+                        max='500'
                         value={maxPrice}
                         onChange={(e) => setMaxPrice(e.target.value)}
                         required

@@ -38,6 +38,8 @@
     position: relative;
     /* top: 200px; */
     z-index: 1;
+    border: black solid 0.1em;
+    border-radius: 20px;
  }
 
  .CurrentOwnersReviews {
@@ -66,8 +68,8 @@
  .oneTrip {
     display: flex;
     flex-direction: row;
-    margin-left: 40px;
-    margin-right: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
     /* justify-content: center; */
     align-items: flex-start;
     margin-top: 10px;
@@ -91,8 +93,8 @@
  .outerYourTrips {
     display: flex;
     justify-content: flex-start;
-    margin-left: 2vw;
-    margin-right: 2vw;
+    /* margin-left: 2vw;
+    margin-right: 2vw; */
     border: black solid 0.1em;
      border-radius: 20px;
 

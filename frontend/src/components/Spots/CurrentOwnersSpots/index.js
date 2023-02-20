@@ -108,7 +108,7 @@ const CurrentOwnersSpots = () => {
     return (
       <div className='CurrentOwnersPage'>
 
-        {userFirstName && <h2 className='currentOwnersTitle'>{userFirstName}'s Profile</h2>}
+        {userFirstName && <h1 className='currentOwnersTitle'>{userFirstName}'s Profile</h1>}
         <h2 className='yourTripTitle'>Future Trips</h2>
         <div className='outerYourTrips'>
         <div className='yourTrips'>

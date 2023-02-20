@@ -134,7 +134,7 @@ module.exports = {
         lng: 1,
         name: 'River front cabin',
         description: 'This cabin is right on a beautiful river with an amazing view and deep in the woods, you can fall asleep the sound of the water each night. There is also a lake near by. This is a pet friendly home. There is great hiking near by.',
-        price: 580.00
+        price: 480.00
       }, {
         //11
         ownerId: 1,
@@ -220,7 +220,7 @@ module.exports = {
         lng: 1,
         name: 'Washington Home with a Lego Kitchen',
         description: 'This home has a kitchen with lego bricks as decoration great for cooking and enjoyment. It has large glass windows on both open sides. It is walking distance from downtown.',
-        price: 530.00
+        price: 430.00
       }, {
         //18
         ownerId: 3,

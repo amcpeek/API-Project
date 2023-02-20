@@ -5,11 +5,11 @@
 function Footer(){
     return (
         <div className='footer'>
-            <a
+            <a target="_blank"
               href='https://www.linkedin.com/in/annika-mcpeek/'>
               <i className="fa-brands fa-linkedin"/>
             </a>
-            <a
+            <a target="_blank"
               href='https://github.com/amcpeek/'>
               <i className="fa-brands fa-github"/>
             </a>
