@@ -168,7 +168,6 @@ const AddSpotForm = ({showModal, setShowModal}) => {
               type='number'
               placeholder='Price'
               min='1'
-              max='500'
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               required

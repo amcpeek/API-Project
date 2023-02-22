@@ -11,7 +11,7 @@ import Slider from "@mui/material/Slider";
 function SearchForm({showSearchModal, setShowSearchModal, searchContent, setSearchContent }) {
     const dispatch = useDispatch()
     const [ guestNum, setGuestsNum] = useState(1)
-    const [ kidsNum, setKidsNum] = useState(1)
+          const [ kidsNum, setKidsNum] = useState(1)
     const [ petsNum, setPetsNum] = useState(1)
     const history = useHistory()
     // const [ minPrice, setMinPrice ] = useState(1)

@@ -21,6 +21,7 @@ router.get('/', async (req, res, next) => {
     //let { region } = req.query
     let myState = []
     let mySearchTerm = ''
+    let priceRange = []
     let sortDate = new Date(new Date().setFullYear(new Date().getFullYear() - 10))
     if(region === 'west') { myState = ['California', 'Oregon','Washington', 'Idaho', 'Montana', 'Wyoming', 'Nevada', 'Arizona', 'Colorado', 'Utah', 'New Mexico'] }
     if(region === 'midwest') { myState = ['North Dakota', 'South Dakota', 'Minnesota', 'Wisconsin', 'Michigan', 'Nebraska', 'Iowa', 'Illinois', 'Indiana', 'Ohio', 'Kansas', 'Missouri']}
@@ -31,7 +32,9 @@ router.get('/', async (req, res, next) => {
     if(searchTerm) { mySearchTerm = searchTerm, console.log('mySearchTermNow', mySearchTerm)}
     if(age === 'oneDay'){   sortDate  = new Date(Date.now() - (60 * 60 * 1000 * 24))}
     console.log('searchTerm', searchTerm, 'mySearchTerm', mySearchTerm)
-    let priceRange = maxPrice.split(',')
+    if(maxPrice) {
+        priceRange = maxPrice.split(',')
+    }
     maxPrice = priceRange[1]
 
 
@@ -82,6 +85,7 @@ router.get('/', async (req, res, next) => {
         if(page < 1) page = 1
         if(!page) page = 1
         if(!size) size = 100
+        console.log('&&&&&&^^^^^^^^&&&&&&^^^^^^what is max price', maxPrice, 'minPrice', minPrice)
 
         const allSpots = await Spot.findAll({
              limit: size,
