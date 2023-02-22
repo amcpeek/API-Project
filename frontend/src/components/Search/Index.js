@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 // import { Redirect } from 'react-router-dom'
  import { useHistory } from 'react-router-dom'
 import AllSpots from '../Spots/AllSpots/Index'
+import Slider from "@mui/material/Slider";
 
 //pass in prop of which one is clicked on
 function SearchForm({showSearchModal, setShowSearchModal, searchContent, setSearchContent }) {
@@ -17,6 +18,7 @@ function SearchForm({showSearchModal, setShowSearchModal, searchContent, setSear
     const [ maxPrice, setMaxPrice ] = useState(500)
     const Regions = ['west', 'midwest', 'south', 'northeast', 'pacific', 'anywhere']
     const [searchTerm, setSearchTerm ] = useState('')
+    const [range, setRange] = useState([50, 300]);
 
     const handleSubmit = async (region) => {
        // console.log('is selected region in the handle submit',region)
@@ -29,7 +31,7 @@ function SearchForm({showSearchModal, setShowSearchModal, searchContent, setSear
 
     const handleSubmitPrice = async (e) => {
       e.preventDefault()
-      const response = await dispatch(getSpots('maxPrice', maxPrice))
+      const response = await dispatch(getSpots('maxPrice', range.toString()))
       .then(setShowSearchModal(false))
       // .then(<Redirect to=`/spots?maxPrice=${maxPrice}`/>)
       .then(history.push(`/spots?maxPrice=${maxPrice}`))
@@ -42,6 +44,14 @@ function SearchForm({showSearchModal, setShowSearchModal, searchContent, setSear
       // .then(<Redirect to=`/spots?maxPrice=${maxPrice}`/>)
       .then(history.push(`/spots?searchTerm=${searchTerm}`))
     }
+
+
+
+
+    function handleChanges(event, newValue) {
+      setRange(newValue);
+      setMaxPrice(newValue[1])
+   }
 
 if(searchContent === 'states') {
     return (
@@ -71,7 +81,7 @@ if(searchContent === 'price') {
         <div>
 
              <div className='justSize'>
-             <h2 className='center'>What is your max price?</h2>
+             <h2 className='center'>What is your price range?</h2>
                 <div >
                   <div >
                       {/* <div>min price
@@ -84,9 +94,18 @@ if(searchContent === 'price') {
 
                         </input>
                       </div> */}
+
                       <div>
                         <form onSubmit={handleSubmitPrice} className='centerDiv'>
-                          <div>
+                        <div style = {{ width: "32rem", padding: "20px" }} className='range'>
+         <Slider value = {range}
+          max={500}
+          onChange = {handleChanges}
+          valueLabelDisplay="auto"/>
+
+         The selected range is ${range[0]} - ${range[1]}
+      </div>
+                          {/* <div>
                           $
                         <input type="number"
                         className='makeBigger'
@@ -97,7 +116,7 @@ if(searchContent === 'price') {
                         required
                         ></input>
 
-                          </div>
+                          </div> */}
 
                         <button type='submit' className='inDevelopment'>Search</button>
                         </form>

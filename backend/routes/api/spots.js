@@ -31,6 +31,8 @@ router.get('/', async (req, res, next) => {
     if(searchTerm) { mySearchTerm = searchTerm, console.log('mySearchTermNow', mySearchTerm)}
     if(age === 'oneDay'){   sortDate  = new Date(Date.now() - (60 * 60 * 1000 * 24))}
     console.log('searchTerm', searchTerm, 'mySearchTerm', mySearchTerm)
+    let priceRange = maxPrice.split(',')
+    maxPrice = priceRange[1]
 
 
 
@@ -63,15 +65,16 @@ router.get('/', async (req, res, next) => {
         if(minLng && !(minLng > -180)) {errObj['minLng'] = errorStrings['minLng']}
         if(maxLng && !(maxLng < 180)) {errObj['maxLng'] = errorStrings['maxLng']}
         if(minPrice && !(minPrice > 0)) {errObj['minPrice'] = errorStrings['minPrice']}
-        if( maxPrice && Number.isNaN(maxPrice)) {errObj['maxPrice'] = errorStrings['maxPrice']}
+        // if( maxPrice && Number.isNaN(maxPrice)) {errObj['maxPrice'] = errorStrings['maxPrice']}
+        if( priceRange && Number.isNaN(priceRange[0])) {errObj['maxPrice'] = errorStrings['maxPrice']}
         page = parseInt(page)
         size = parseInt(size)
         minLat = parseFloat(minLat)
         maxLat = parseFloat(maxLat)
         minLng = parseFloat(maxLng)
         maxLng = parseFloat(maxLng)
-        minPrice = parseFloat(minPrice)
-        maxPrice = parseFloat(maxPrice)
+        minPrice = parseFloat(priceRange[0])
+        maxPrice = parseFloat(priceRange[1])
 
         if(size > 20) size = 20
         if(size < 1) size = 1
@@ -85,7 +88,8 @@ router.get('/', async (req, res, next) => {
                 offset: (page -1) * size,
                 where: {
                     price: {
-                        [Op.lte]: maxPrice || 5000
+                        [Op.lte]: maxPrice || 5000,
+                        [Op.gte]: minPrice || 0,
                     },
                     state: {[Op.or]: myState},
                     [Op.or] : [
