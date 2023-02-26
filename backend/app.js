@@ -16,6 +16,7 @@ const isProduction = environment === 'production';
 const app = express();
 app.use(morgan('dev')); //just prints info about reqs to terminal
 app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Security Middleware
@@ -43,7 +44,7 @@ if (!isProduction) {
   );
 
   // backend/app.js
-const routes = require('./routes'); //implies index.js 
+const routes = require('./routes'); //implies index.js
 
 // ...
 
