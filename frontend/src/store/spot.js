@@ -1,15 +1,7 @@
 import { csrfFetch } from './csrf';
 //import { useDispatch } from 'react-redux'
 
-if (options.method.toUpperCase() !== "GET") {
-  if (options.headers["Content-Type"] === "multipart/form-data") {
-    delete options.headers["Content-Type"];
-  } else {
-    options.headers["Content-Type"] =
-      options.headers["Content-Type"] || "application/json";
-  }
-  options.headers["XSRF-Token"] = Cookies.get("XSRF-TOKEN");
-}
+
 
 
 const GET_SPOTS = 'spots/GET_SPOTS' //#6

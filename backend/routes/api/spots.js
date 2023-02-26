@@ -1,5 +1,4 @@
-import { singlePublicFileUpload } from '../../awsS3';
-import { singleMulterUpload } from '../../awsS3';
+
 
 // backend/routes/api/session.js
 const express = require('express')
@@ -12,6 +11,8 @@ const { Op, json } = require('sequelize');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { requireAuth } = require('../../utils/auth.js');
+const { singlePublicFileUpload } = require('../../awsS3')
+const { singleMulterUpload } = require('../../awsS3')
 
 router.get('/test', requireAuth, (req, res) => {
   res.json({message: 'success'})
@@ -392,8 +393,10 @@ router.post('/', requireAuth, async (req, res, next) => {
     }
 })
 
+
 //**// 10 - Add an Image to a Spot based on the Spot's id - DONE
 router.post('/:spotId/images', singleMulterUpload("image"), requireAuth, async (req, res, next) => {
+
     const spotId = req.params.spotId
     const userId = req.user.id
     const { preview } = req.body //removed url
