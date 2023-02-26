@@ -1,3 +1,6 @@
+import { singlePublicFileUpload } from '../../awsS3';
+import { singleMulterUpload } from '../../awsS3';
+
 // backend/routes/api/session.js
 const express = require('express')
 const router = express.Router();
@@ -390,10 +393,11 @@ router.post('/', requireAuth, async (req, res, next) => {
 })
 
 //**// 10 - Add an Image to a Spot based on the Spot's id - DONE
-router.post('/:spotId/images', requireAuth, async (req, res, next) => {
+router.post('/:spotId/images', singleMulterUpload("image"), requireAuth, async (req, res, next) => {
     const spotId = req.params.spotId
     const userId = req.user.id
-    const { url, preview } = req.body
+    const { preview } = req.body //removed url
+    const awsImageUrl = await singlePublicFileUpload(req.file);
 
     const findOwnerOfSpot = await Spot.findOne({
       where: { ownerId: userId,
@@ -411,7 +415,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
     // }
 
     if( findOwnerOfSpot && userId === findOwnerOfSpot.ownerId ) {
-    const makeSpotImage = await SpotImage.create({spotId, url, preview})
+    const makeSpotImage = await SpotImage.create({spotId, url:awsImageUrl, preview, }) //removed url
     const spotImageInfo = await SpotImage.findOne({
        where: { spotId: spotId},
        attributes: [ 'id', 'url', 'preview']
