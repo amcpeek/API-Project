@@ -16,7 +16,8 @@ const AddSpotForm = ({showModal, setShowModal}) => {
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
-    const [url, setUrl] = useState('https://i.pinimg.com/originals/4f/c8/78/4fc8780a9aa5873b3593cfb9abc4ffb9.jpg')
+    const [url, setUrl] = useState(null)
+    //'https://i.pinimg.com/originals/4f/c8/78/4fc8780a9aa5873b3593cfb9abc4ffb9.jpg'
     // const [preview, setPreview] = useState(false)
     const history = useHistory()
     const [responseErrors, setResponseErrors] = useState([])
@@ -51,6 +52,11 @@ const AddSpotForm = ({showModal, setShowModal}) => {
             history.push(`/spots/${response.id}`)
             dispatch(getOneSpot(response.id)).then(setShowModal(false))
         }
+        const updateFile = (e) => {
+            const file = e.target.files[0];
+            if (file) setUrl(file);
+          };
+
     }
 
     return (
@@ -175,10 +181,17 @@ const AddSpotForm = ({showModal, setShowModal}) => {
              </div>
              <div className='flexStart'>
              <div className='labelForForm'>
-                 You can use the suggested image url or paste your own below.
+                 Attach your image file below.
              </div>
              </div>
+
              <div>
+            <label>
+              <input type="file" onChange={updateFile} />
+            </label>
+             </div>
+
+             {/* <div>
               <input
               className='roundTopFields roundBottomFields'
               type='text'
@@ -188,7 +201,7 @@ const AddSpotForm = ({showModal, setShowModal}) => {
               name='imageUrl'
               required
              />
-             </div>
+             </div> */}
 
 
              {/* <div className="wholePreviewImage">

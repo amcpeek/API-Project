@@ -1,6 +1,16 @@
 import { csrfFetch } from './csrf';
 //import { useDispatch } from 'react-redux'
 
+if (options.method.toUpperCase() !== "GET") {
+  if (options.headers["Content-Type"] === "multipart/form-data") {
+    delete options.headers["Content-Type"];
+  } else {
+    options.headers["Content-Type"] =
+      options.headers["Content-Type"] || "application/json";
+  }
+  options.headers["XSRF-Token"] = Cookies.get("XSRF-TOKEN");
+}
+
 
 const GET_SPOTS = 'spots/GET_SPOTS' //#6
 const GET_CURRENT_OWNERS_SPOTS = 'spots/GET_CURRENT_OWNERS_SPOTS' //#7
@@ -147,17 +157,12 @@ export const getCurrentOwnersSpots = () => async dispatch => {
 export const addSpotImage = (spotImage) => async dispatch => {
     await csrfFetch(`/api/spots/${spotImage.spotId}/images`, {
        method: 'POST',
+       headers: {
+        "Content-Type": "multipart/form-data",
+      },
        body: JSON.stringify(spotImage)
    })
-   // if (response.ok) {
-   //     const item = await response.json()
-   //     dispatch()
-   // }
 }
-/* -- selectors */ //not sure if this is needed with thunk action creators?
-// export const getAllSpots = (state) => {
-//     return Object.values(state.spots)
-// }
 
 /* -- reducer -- */
 
