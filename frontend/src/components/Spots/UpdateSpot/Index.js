@@ -19,9 +19,10 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
    const [name, setName] = useState('')
    const [description, setDescription] = useState('')
    const [price, setPrice] = useState(0)
-   const [url, setUrl] = useState('')
+//    const [url, setUrl] = useState('')
 //    const [preview, setPreview] = useState(false)
    const [responseErrors, setResponseErrors] = useState([])
+   const [imageFile, setImageFile] = useState(null)
 
    const allStates =
    ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware",
@@ -52,7 +53,7 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
         setName(spot.name)
         setDescription(spot.description)
         setPrice(spot.price)
-        setUrl(spot.url || 'https://i.pinimg.com/originals/2a/43/d6/2a43d625d02deb3c0b1179eac7f2256e.jpg')
+        setImageFile(spot.url || 'https://i.pinimg.com/originals/2a/43/d6/2a43d625d02deb3c0b1179eac7f2256e.jpg')
         // setPreview(false)
     }
    }, [spot]) //not sure if this is the right place to listen to, if the spot level isn't changing
@@ -74,7 +75,7 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
         } else {
             const imagePayload = {
                 spotId: id,
-                url,
+                image: imageFile,
                 preview: true
             }
             await dispatch(addSpotImage(imagePayload))
@@ -215,7 +216,19 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
                  onChange={(e) => setPrice(e.target.value)}
                 />
                 </div>
-                <div className='labelForForm'>
+                <div className='flexStart'>
+             <div className='labelForForm'>
+                 Attach your image file below.
+             </div>
+             </div>
+
+             <div>
+            <label>
+              <input type="file" onChange={(e) => setImageFile(e.target.files[0])} />
+            </label>
+             </div>
+
+                {/* <div className='labelForForm'>
                 You can use the suggested image url or paste your own below.
                 </div>
                 <div>
@@ -227,7 +240,7 @@ const UpdateSpotForm = ({showModal, setShowModal}) => {
                  name='imageUrl'
                  required
                 />
-                </div>
+                </div> */}
                 {/* <div className="wholePreviewImage">
                     <div className="prevImageTextBox">
                         Preview Image
