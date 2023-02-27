@@ -147,12 +147,18 @@ export const getCurrentOwnersSpots = () => async dispatch => {
 
 
 export const addSpotImage = (spotImage) => async dispatch => {
-    await csrfFetch(`/api/spots/${spotImage.spotId}/images`, {
+    console.log('are we getting to th4e addASpotImage in the store', spotImage)
+    const { spotId, image, preview} = spotImage;
+    const formData = new FormData()
+    formData.append("spotId", spotId);
+    formData.append("preview", preview);
+    if(image) formData.append("image", image)
+    const res = await csrfFetch(`/api/spots/${spotImage.spotId}/images`, {
        method: 'POST',
        headers: {
         "Content-Type": "multipart/form-data",
       },
-       body: JSON.stringify(spotImage)
+       body: formData
    })
 }
 

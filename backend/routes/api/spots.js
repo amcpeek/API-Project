@@ -397,10 +397,16 @@ router.post('/', requireAuth, async (req, res, next) => {
 //**// 10 - Add an Image to a Spot based on the Spot's id - DONE
 router.post('/:spotId/images', singleMulterUpload("image"), requireAuth, async (req, res, next) => {
 
+
     const spotId = req.params.spotId
     const userId = req.user.id
     const { preview } = req.body //removed url
+    console.log('backend req.body', req)
     const awsImageUrl = await singlePublicFileUpload(req.file);
+    // const awsImageUrl = await singlePublicFileUpload(url);
+    // console.log('~~~~~~~~~getting to spots/image backend', url)
+    //   const awsImageUrl = await singlePublicFileUpload(url);
+    console.log('AWS IMAGE URL!!!!', awsImageUrl)
 
     const findOwnerOfSpot = await Spot.findOne({
       where: { ownerId: userId,
@@ -418,7 +424,7 @@ router.post('/:spotId/images', singleMulterUpload("image"), requireAuth, async (
     // }
 
     if( findOwnerOfSpot && userId === findOwnerOfSpot.ownerId ) {
-    const makeSpotImage = await SpotImage.create({spotId, url:awsImageUrl, preview, }) //removed url
+    const makeSpotImage = await SpotImage.create({spotId, url:awsImageUrl, preview }) //removed url
     const spotImageInfo = await SpotImage.findOne({
        where: { spotId: spotId},
        attributes: [ 'id', 'url', 'preview']

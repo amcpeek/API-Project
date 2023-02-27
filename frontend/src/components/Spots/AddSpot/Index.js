@@ -16,8 +16,7 @@ const AddSpotForm = ({showModal, setShowModal}) => {
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
-    const [url, setUrl] = useState('dog')
-    let thing = ''
+    const [imageFile, setImageFile] = useState(null)
     //'https://i.pinimg.com/originals/4f/c8/78/4fc8780a9aa5873b3593cfb9abc4ffb9.jpg'
     // const [preview, setPreview] = useState(false)
     const history = useHistory()
@@ -41,15 +40,16 @@ const AddSpotForm = ({showModal, setShowModal}) => {
             name, description, price
         }
         const response = await dispatch(addSpot(newSpot))
-        console.log('urllll', url)
+
         if(response.errors) {
             setResponseErrors(Object.values(response.errors))
         } else  {
             const payload = {
                 spotId: response.id,
-                url,
+                image: imageFile,
                 preview : true
             }
+            console.log('PAYLOAD', payload)
             await dispatch(addSpotImage(payload))
             history.push(`/spots/${response.id}`)
             dispatch(getOneSpot(response.id)).then(setShowModal(false))
@@ -184,7 +184,7 @@ const AddSpotForm = ({showModal, setShowModal}) => {
 
              <div>
             <label>
-              <input type="file" onChange={(e) => setUrl(e.target.files[0])} />
+              <input type="file" onChange={(e) => setImageFile(e.target.files[0])} />
             </label>
              </div>
 
