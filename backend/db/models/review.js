@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Review extends Model {
     /**
@@ -12,42 +10,45 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Review.belongsTo(models.Spot, {
-        foreignKey: 'spotId',
-       // constraints: false
-      })
+        foreignKey: "spotId",
+        // constraints: false
+      });
       Review.belongsTo(models.User, {
-        foreignKey: 'userId'
-      })
+        foreignKey: "userId",
+      });
       Review.hasMany(models.ReviewImage, {
-        foreignKey: 'reviewId'
-      })
+        foreignKey: "reviewId",
+      });
     }
   }
-  Review.init({
-    spotId: {
-      type: DataTypes.INTEGER,
-      onDelete: 'CASCADE'
+  Review.init(
+    {
+      spotId: {
+        type: DataTypes.INTEGER,
+        onDelete: "CASCADE",
+      },
+      userId: DataTypes.INTEGER,
+      review: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: [1, 255],
+        },
+      },
+      stars: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          min: 1, //doesn't need to throw error, the len through the error
+          max: 5,
+          len: [1, 1],
+        },
+      },
     },
-    userId: DataTypes.INTEGER,
-    review: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1,255]
-      }
-    } ,
-    stars:  {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-      min: 1, //doesn't need to throw error, the len through the error
-       max: 5,
-       len: [1,1]
-      }
-  }
-}, {
-    sequelize,
-    modelName: 'Review',
-  });
+    {
+      sequelize,
+      modelName: "Review",
+    }
+  );
   return Review;
 };

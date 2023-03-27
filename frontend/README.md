@@ -1,4 +1,3 @@
-
 # Create React App Template is the base of Annika's AmBnB clone project
 
 A no-frills template from which to create React + Redux applications with

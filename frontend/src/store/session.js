@@ -1,10 +1,10 @@
 //This file will contain all the actions specific to the session user's information and the session user's Redux reducer.
 
 // frontend/src/store/session.js
-import { csrfFetch } from './csrf';
+import { csrfFetch } from "./csrf";
 
-const SET_USER = 'session/setUser';
-const REMOVE_USER = 'session/removeUser';
+const SET_USER = "session/setUser";
+const REMOVE_USER = "session/removeUser";
 
 const setUser = (user) => {
   return {
@@ -22,8 +22,8 @@ const removeUser = () => {
 /* -- thunk action creators -- */
 export const login = (user) => async (dispatch) => {
   const { credential, password } = user;
-  const response = await csrfFetch('/api/session', {
-    method: 'POST',
+  const response = await csrfFetch("/api/session", {
+    method: "POST",
     body: JSON.stringify({
       credential,
       password,
@@ -38,14 +38,14 @@ export const login = (user) => async (dispatch) => {
 // frontend/src/store/session.js
 //Get current user, returns firstName, lastName, email, username
 // ...
-export const restoreUser = () => async dispatch => {
-    const response = await csrfFetch('/api/session');
-    const data = await response.json();
-    dispatch(setUser(data.user));
-    return response;
-  };
-  // ...
-  // frontend/src/store/session.js
+export const restoreUser = () => async (dispatch) => {
+  const response = await csrfFetch("/api/session");
+  const data = await response.json();
+  dispatch(setUser(data.user));
+  return response;
+};
+// ...
+// frontend/src/store/session.js
 // ...
 export const signup = (user) => async (dispatch) => {
   const { firstName, lastName, username, email, password } = user;
@@ -69,8 +69,8 @@ export const signup = (user) => async (dispatch) => {
 // frontend/src/store/session.js
 // ...
 export const logout = () => async (dispatch) => {
-  const response = await csrfFetch('/api/session', {
-    method: 'DELETE',
+  const response = await csrfFetch("/api/session", {
+    method: "DELETE",
   });
   dispatch(removeUser());
   return response;

@@ -1,153 +1,136 @@
 .CurrentOwnersPage {
-
-
-    position: relative;
-    top: 90px;
-    display: flex;
-    justify-content: center;
-    /* font-size: 25px;
+  position: relative;
+  top: 90px;
+  display: flex;
+  justify-content: center;
+  /* font-size: 25px;
     font-family: 'Poppins', sans-serif;
     font-weight: 800; */
-    flex-direction: column;
+  flex-direction: column;
 }
 
-
 .CurrentOwnersList {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    /* position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* position: relative;
     top: 100px;
     z-index: 1; */
-
 }
 
 .currentOwnersTitle {
-    display: flex;
-    justify-content: flex-start;
+  display: flex;
+  justify-content: flex-start;
 }
 
-
 .CurrentHomeList {
-    /* background-color: lightblue; */
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    position: relative;
-    /* top: 200px; */
-    z-index: 1;
-    border: black solid 0.1em;
-    border-radius: 20px;
- }
+  /* background-color: lightblue; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  position: relative;
+  /* top: 200px; */
+  z-index: 1;
+  border: black solid 0.1em;
+  border-radius: 20px;
+}
 
- .CurrentOwnersReviews {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    flex-wrap: wrap;
- }
+.CurrentOwnersReviews {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 
- .insideCurrentOwner {
-    width: 320px;
-    margin: 20px;
+.insideCurrentOwner {
+  width: 320px;
+  margin: 20px;
+}
 
- }
+.smallImg {
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
+  border-color: white;
+  border-width: 5px;
+  border-style: solid;
+  object-fit: cover;
+}
 
- .smallImg {
-    width: 100px;
-    height: 100px;
-    border-radius: 20px;
-    border-color: white;
-    border-width: 5px;
-    border-style: solid;
-    object-fit: cover;
- }
+.oneTrip {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  margin-right: 10px;
+  /* justify-content: center; */
+  align-items: flex-start;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
- .oneTrip {
-    display: flex;
-    flex-direction: row;
-    margin-left: 10px;
-    margin-right: 10px;
-    /* justify-content: center; */
-    align-items: flex-start;
-    margin-top: 10px;
-    margin-bottom: 10px;
- }
+.yourTrips {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 
- .yourTrips {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+  justify-content: flex-start;
+}
 
-    justify-content: flex-start;
+.tripDetails {
+  min-width: 200px;
+}
 
- }
-
- .tripDetails {
-    min-width: 200px;
- }
-
-
- .outerYourTrips {
-    display: flex;
-    justify-content: flex-start;
-    /* margin-left: 2vw;
+.outerYourTrips {
+  display: flex;
+  justify-content: flex-start;
+  /* margin-left: 2vw;
     margin-right: 2vw; */
-    border: black solid 0.1em;
-     border-radius: 20px;
+  border: black solid 0.1em;
+  border-radius: 20px;
+}
 
+.yourTripTitle {
+  display: flex;
+  justify-content: flex-start;
+}
 
- }
-
- .yourTripTitle {
-    display: flex;
-    justify-content: flex-start;
-
- }
-
- .SingleSpotReviewBox2 {
-   display: flex;
-   /* justify-content: center;
+.SingleSpotReviewBox2 {
+  display: flex;
+  /* justify-content: center;
    justify-content: center; */
-   flex-direction: column;
-   /* align-items: flex-start; */
- }
+  flex-direction: column;
+  /* align-items: flex-start; */
+}
 
- .SingleSpotReviewBox2 > div {
-   margin: 0;
-   padding: 0;
- }
+.SingleSpotReviewBox2 > div {
+  margin: 0;
+  padding: 0;
+}
 
+.CurrentOwnersReviews {
+  display: flex;
+  justify-content: flex-start;
+  border: black solid 0.1em;
+  border-radius: 20px;
+}
 
- .CurrentOwnersReviews {
-   display: flex;
-   justify-content: flex-start;
-   border: black solid 0.1em;
-   border-radius: 20px;
+.fontSmaller {
+  font-size: x-small;
+}
 
- }
+.whiteButton {
+  background-color: white;
+  border: none;
+}
 
+.row {
+  display: flex;
+  flex-direction: row;
+}
 
- .fontSmaller {
-   font-size: x-small;
- }
-
-
- .whiteButton {
-   background-color: white;
-   border: none;
- }
-
-
- .row {
-   display: flex;
-   flex-direction: row;
- }
-
-
- .col {
-   display: flex;
-   flex-direction: column;
+.col {
+  display: flex;
+  flex-direction: column;
 }

@@ -9,96 +9,88 @@
 
 .notFoundImage {
   height: 380px;
-    width: 380px;
-    border-radius: 20px;
-    border-color: white;
-    border-width: 5px;
-    border-style: solid;
-    object-fit: cover;
+  width: 380px;
+  border-radius: 20px;
+  border-color: white;
+  border-width: 5px;
+  border-style: solid;
+  object-fit: cover;
 }
 
 .SingleSpotMainImage img {
-    height: 380px;
-    width: 380px;
-    border-radius: 20px;
-    border-color: white;
-    border-width: 5px;
-    border-style: solid;
-    object-fit: cover;
-
+  height: 380px;
+  width: 380px;
+  border-radius: 20px;
+  border-color: white;
+  border-width: 5px;
+  border-style: solid;
+  object-fit: cover;
 }
 
 .SingleSpot {
-    position: relative;
-    top: 80px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
+  position: relative;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .SingleSpotFourImagesOne img {
-    height: 180px;
-    width: 180px;
-    border-radius: 20px;
-    border-color: white;
-    border-width: 5px;
-    border-style: solid;
-    object-fit: cover;
-
-
+  height: 180px;
+  width: 180px;
+  border-radius: 20px;
+  border-color: white;
+  border-width: 5px;
+  border-style: solid;
+  object-fit: cover;
 }
 
 .SingleSpotFourImages {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: Center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: Center;
 }
 
 .SingleSpotAllImages {
-    display: flex;
-    width: 800px;
-    justify-content: center;
-
+  display: flex;
+  width: 800px;
+  justify-content: center;
 }
 
 #SingleSpotTopLinks {
-    display: flex;
-    justify-content: space-between;
-    /* text-decoration: underline; */
-    border-bottom-color: white;
-    border-bottom-width: 20px;
-    border-bottom-style: solid;
-    width: 780px;
-
+  display: flex;
+  justify-content: space-between;
+  /* text-decoration: underline; */
+  border-bottom-color: white;
+  border-bottom-width: 20px;
+  border-bottom-style: solid;
+  width: 780px;
 }
 
 #SingleSpotDetails p {
-    color: rgb(181, 177, 177)
+  color: rgb(181, 177, 177);
 }
 
 #AirCover {
-    display: flex;
-    font-size: 150%;
-    font-weight: 1200;
-    /* height: 50px; */
-    align-items: flex-end;
-
-
+  display: flex;
+  font-size: 150%;
+  font-weight: 1200;
+  /* height: 50px; */
+  align-items: flex-end;
 }
 
 #AirCover div:first-child {
-    color: red
+  color: red;
 }
 
 #SingleSpotDetails {
-    /* width: 100%; */
+  /* width: 100%; */
 }
 
 #SingleSpotBottomSection {
-    display: flex;
-    justify-content: space-between;
-    width: 800px;
+  display: flex;
+  justify-content: space-between;
+  width: 800px;
 }
 
 #SingleSpotBottomSection > div {
@@ -106,256 +98,244 @@
 }
 
 .JCSpaceBetween {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 #SingleSpotBooking {
-    /* width: 375px; */
-    border-width: 2px;
-    border-color: lightgray;
-    border-style: solid;
-    border-radius: 10px;
-    box-shadow:  1px 1px 2px 2px lightgrey;
-     padding: 8%;
-     /* height: 250px; */
-    display: flex;
-     justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    width: 75%;
-    margin-left: 3%;
+  /* width: 375px; */
+  border-width: 2px;
+  border-color: lightgray;
+  border-style: solid;
+  border-radius: 10px;
+  box-shadow: 1px 1px 2px 2px lightgrey;
+  padding: 8%;
+  /* height: 250px; */
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 75%;
+  margin-left: 3%;
 }
 
 /* //OLD drop down buttons below/ */
 
 .dropdown {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
+}
 
-  }
+.dropdownNav {
+  position: relative;
+  display: flex;
+  /* padding-right: 50px; */
+  justify-content: flex-end;
+}
 
-  .dropdownNav {
-    position: relative;
-    display: flex;
-    /* padding-right: 50px; */
-    justify-content: flex-end;
-  }
-
-  .dropdownNav2 {
-    position: relative;
-    display: inline-block;
-    /* padding-right: 50px; */
-    justify-content: flex-end;
-  }
+.dropdownNav2 {
+  position: relative;
+  display: inline-block;
+  /* padding-right: 50px; */
+  justify-content: flex-end;
+}
 
 .dropButton {
-    background-color: white;
-    padding: 4px;
-    border-color: white;
-    border-style: solid;
-    width: 335px;
-    border-radius: 10px;
-    height: 50px;
-    display: flex;
-    align-items: flex-start;
-  }
-  .dropButtonNav {
-    background-color: white;
-    padding: 4px;
-    border-color: white;
-    border-style: solid;
-    /* width: 100px; */
-    border-radius: 10px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-  }
-  .dropdownContent {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 3;
-    width: 340px;
-  }
-  .dropdownContentNav {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    right: 10px;
-    border-radius: 10px;
+  background-color: white;
+  padding: 4px;
+  border-color: white;
+  border-style: solid;
+  width: 335px;
+  border-radius: 10px;
+  height: 50px;
+  display: flex;
+  align-items: flex-start;
+}
+.dropButtonNav {
+  background-color: white;
+  padding: 4px;
+  border-color: white;
+  border-style: solid;
+  /* width: 100px; */
+  border-radius: 10px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+.dropdownContent {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+  width: 340px;
+}
+.dropdownContentNav {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 10px;
+  border-radius: 10px;
 
-    background-color: #f9f9f9;
-    /* min-width: 100px; */
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 4;
-     /* width: 80px; */
-    top: 60px;
-    justify-content: center;
-    width: 220px;
-  }
+  background-color: #f9f9f9;
+  /* min-width: 100px; */
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 4;
+  /* width: 80px; */
+  top: 60px;
+  justify-content: center;
+  width: 220px;
+}
 
-  .dropdownContentNav2 {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    right: 145px;
+.dropdownContentNav2 {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 145px;
 
-    background-color: #f9f9f9;
-    /* min-width: 100px; */
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 4;
-     /* width: 80px; */
-    top: 60px;
-    justify-content: center;
-  }
+  background-color: #f9f9f9;
+  /* min-width: 100px; */
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 4;
+  /* width: 80px; */
+  top: 60px;
+  justify-content: center;
+}
 
+.dropdownContent a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdownContentNav a {
+  /* color: rgb(145, 143, 143); */
+  /* padding: 12px 16px; */
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
+}
 
-  .dropdownContent a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  .dropdownContentNav a {
-    /* color: rgb(145, 143, 143); */
-    /* padding: 12px 16px; */
-    text-decoration: none;
-    display: block;
-    font-size: 14px;
-  }
+.dropdownContentNav div {
+  color: rgb(145, 143, 143);
+  /* padding: 12px 16px; */
+  text-decoration: none;
+  display: block;
+  font-size: 12px;
+}
 
-  .dropdownContentNav div {
-    color: rgb(145, 143, 143);
-    /* padding: 12px 16px; */
-    text-decoration: none;
-    display: block;
-    font-size: 12px;
-  }
+.dropdownContentNav2 div {
+  color: rgb(145, 143, 143);
+  /* padding: 12px 16px; */
+  text-decoration: none;
+  display: block;
+  font-size: 12px;
+}
 
+.dropdownContent a:hover {
+  background-color: #f1f1f1;
+}
+/* .dropdownContentNav a:hover {background-color: #f1f1f1} */
 
-  .dropdownContentNav2 div {
-    color: rgb(145, 143, 143);
-    /* padding: 12px 16px; */
-    text-decoration: none;
-    display: block;
-    font-size: 12px;
-  }
+.dropdown:hover .dropdownContent {
+  display: block;
+}
 
-  .dropdownContent a:hover {background-color: #f1f1f1}
-  /* .dropdownContentNav a:hover {background-color: #f1f1f1} */
+.dropdownNav:hover .dropdownContent {
+  display: block;
+}
 
+.guestBox {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
 
-  .dropdown:hover .dropdownContent {
-    display: block;
-  }
+.guestBox select {
+  background-color: white;
+  border: white;
+}
 
+.checkInOutBox {
+  border-width: 2px;
+  border-color: lightgray;
+  border-style: solid;
+  border-radius: 10px;
+  width: 300px;
+}
 
-  .dropdownNav:hover .dropdownContent {
-    display: block;
-  }
+.checkAvailabilityButton {
+  background-color: rgb(244, 47, 80);
+  color: white;
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 15px;
+  margin-top: 20px;
+}
 
+.checkInOutDates {
+  display: flex;
+}
 
-  .guestBox {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-  }
+.checkInOutDates div {
+  border-bottom-width: 2px;
+  border-bottom-color: lightgray;
+  border-bottom-style: solid;
+  padding: 5px;
+}
 
-  .guestBox select {
-    background-color: white;
-    border: white;
-  }
+.checkInOutDates div input {
+  background-color: white;
+  border-color: white;
+  border-style: none;
+}
 
+.checkInOutDates div:first-child {
+  border-right-width: 2px;
+  border-right-color: lightgray;
+  border-right-style: solid;
+}
 
-
-  .checkInOutBox {
-    border-width: 2px;
-    border-color: lightgray;
-    border-style: solid;
-    border-radius: 10px;
-    width: 300px;
-
-  }
-
-  .checkAvailabilityButton {
-    background-color: rgb(244, 47, 80);
-    color: white;
-    width: 100%;
-    height: 40px;
-    border-radius: 10px;
-    font-size: 15px;
-    margin-top: 20px;
-
-  }
-
-  .checkInOutDates {
-    display: flex;
-  }
-
-  .checkInOutDates div {
-    border-bottom-width: 2px;
-    border-bottom-color: lightgray;
-    border-bottom-style: solid;
-    padding: 5px;
-  }
-
-  .checkInOutDates div input {
-    background-color: white;
-    border-color: white;
-    border-style: none;
-
-  }
-
-  .checkInOutDates div:first-child {
-    border-right-width: 2px;
-    border-right-color: lightgray;
-    border-right-style: solid;
-
-  }
-
-  .underlined {
-     text-decoration: underline;
-     cursor: pointer
-  }
-
+.underlined {
+  text-decoration: underline;
+  cursor: pointer;
+}
 
 .deleteButton {
-    background-color: white;
-    border: 1px solid rgb(164, 161, 161);
-    border-radius: 10px;
-    box-shadow:  1px 1px 2px 2px lightgrey;
+  background-color: white;
+  border: 1px solid rgb(164, 161, 161);
+  border-radius: 10px;
+  box-shadow: 1px 1px 2px 2px lightgrey;
 }
 
 .SingleSpotReviewBox button {
-    background-color: white;
-    border: none;
+  background-color: white;
+  border: none;
 }
 
 #addReviewButton {
   background-color: white;
   border: 1px solid rgb(164, 161, 161);
   border-radius: 10px;
-  box-shadow:  1px 1px 2px 2px lightgrey;
+  box-shadow: 1px 1px 2px 2px lightgrey;
   margin-bottom: 10px;
-
 }
 
 .editDeleteButtons {
   display: flex;
   /* border: 1px solid rgb(164, 161, 161); */
 
-    /* background-color: white;
+  /* background-color: white;
     border: 1px solid rgb(164, 161, 161);
     border-radius: 10px;
     box-shadow:  1px 1px 2px 2px lightgrey; */
-    width: 100%;
-    height: 40px;
-    /* color: white; */
-    margin-top: 20px;;
+  width: 100%;
+  height: 40px;
+  /* color: white; */
+  margin-top: 20px;
 }
 
 .editDeleteButtons button {
@@ -365,8 +345,7 @@
   /* border: 1px solid rgb(164, 161, 161); */
   /* border-radius: 10px; */
   border: none;
-  box-shadow:  1px 1px 2px 2px lightgrey;
-
+  box-shadow: 1px 1px 2px 2px lightgrey;
 }
 
 .LeftTitle {
@@ -375,9 +354,7 @@
   /* width: 20px; */
   flex-direction: row;
   /* flex-wrap:wrap; */
-  overflow-x:hidden;
-
-
+  overflow-x: hidden;
 }
 
 .justCenter {
@@ -388,18 +365,16 @@
   display: flex;
   border: 1px solid rgb(164, 161, 161);
 
-    background-color: white;
-    border: 1px solid rgb(164, 161, 161);
-    border-radius: 10px;
-    box-shadow:  1px 1px 2px 2px lightgrey;
-    width: 335px;
-    height: 40px;
-    justify-content: center;
-    align-items: center;
-    /* color: white; */
-
+  background-color: white;
+  border: 1px solid rgb(164, 161, 161);
+  border-radius: 10px;
+  box-shadow: 1px 1px 2px 2px lightgrey;
+  width: 335px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  /* color: white; */
 }
-
 
 .nowrap {
   display: flex;
@@ -407,44 +382,11 @@
   /* width: 20px; */
   flex-direction: row;
   flex-wrap: nowrap;
-  overflow-x:hidden;
-  overflow-y:hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   width: 380px;
   height: 28px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .nowrapAllSpots {
   display: flex;
@@ -452,8 +394,8 @@
   /* width: 20px; */
   flex-direction: row;
   flex-wrap: nowrap;
-  overflow-x:hidden;
-  overflow-y:hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   width: 260px;
   height: 20px;
 }
@@ -464,14 +406,11 @@
   /* width: 20px; */
   flex-direction: row;
   flex-wrap: nowrap;
-  overflow-x:hidden;
-  overflow-y:hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   width: 500px;
   /* height: 20px; */
 }
-
-
-
 
 /* .nowrapReviewsTop {
   display: flex;
@@ -486,14 +425,12 @@
 
 } */
 
-
 .another {
   display: flex;
   flex-direction: row;
   /* align-items: flex-end; */
-   width: 630px;
-   font-size: 15px;
-
+  width: 630px;
+  font-size: 15px;
 }
 
 .shouldWrap {
@@ -501,22 +438,18 @@
   justify-content: flex-start;
   /* width: 20px; */
   /*flex-direction: row; */
-   /* flex-wrap: wrap; */
+  /* flex-wrap: wrap; */
   overflow-wrap: break-word;
 
   /* overflow-x:hidden; */
   /* overflow-y:hidden; */
   /* width: 380px;
   height: 50px; */
-
 }
 /*
 .enoughSpace {
   width: 240px;
 } */
-
-
-
 
 .notAllowed {
   cursor: not-allowed;

@@ -1,121 +1,110 @@
-
-
 .HomeNavBar {
-    display: flex;
-    position: sticky;
-    top: 80px;
-    right: 0;
-    z-index: 2;
-    width: 100%;
-    justify-content: space-around;
-    background-color: white;
-    height: 90px;
-    align-items: center;
-    /* border-bottom-color: lightgray;
+  display: flex;
+  position: sticky;
+  top: 80px;
+  right: 0;
+  z-index: 2;
+  width: 100%;
+  justify-content: space-around;
+  background-color: white;
+  height: 90px;
+  align-items: center;
+  /* border-bottom-color: lightgray;
     border-bottom-width: 1px;
     border-bottom-style: solid; */
-    /* box-shadow: 0px 1px 3px lightgrey; */
-    /* overflow: scroll; */
-    /* padding-right: 50px;
+  /* box-shadow: 0px 1px 3px lightgrey; */
+  /* overflow: scroll; */
+  /* padding-right: 50px;
     padding-left: 50px; */
-    border-right: none;
+  border-right: none;
 }
 
 .HomeNavBar > button > div {
-    border-top: 0.2em solid white;
+  border-top: 0.2em solid white;
 }
 
 .HomeNavBar button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: white;
-    background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: white;
+  background: white;
 }
 
 .HomeList {
-   /* background-color: purple; */
-   display: flex;
-   flex-direction: row;
-   flex-wrap: wrap;
-   justify-content: center;
-   position: relative;
-   top: 60px;
-   z-index: 1;
+  /* background-color: purple; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  top: 60px;
+  z-index: 1;
 }
 
-
 .HomeNavBar div button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* display: flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* display: flex;
     justify-content: center;
     align-items: center; */
 }
 
 .HomeNavBar > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-
-
 .AllSpotsImages img {
-    height: 300px;
-    width: 300px;
-    border-radius: 10px;
-    object-fit: cover;
-
+  height: 300px;
+  width: 300px;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
 .AllSpotsImages {
-    /* border-bottom-color: white; */
-    /* border-bottom-width: 50px; */
-    /* border-bottom-style: solid; */
-    margin: 20px;
-    /* background-color: green; */
-    /* height: 300px; */
+  /* border-bottom-color: white; */
+  /* border-bottom-width: 50px; */
+  /* border-bottom-style: solid; */
+  margin: 20px;
+  /* background-color: green; */
+  /* height: 300px; */
 }
 
-
-
-a, a:visited, a:hover, a:active {
-    color: black;
-    text-decoration: none;
-
-
+a,
+a:visited,
+a:hover,
+a:active {
+  color: black;
+  text-decoration: none;
 }
 
 #CityState {
-    color: black;
-    font-weight: 800;
+  color: black;
+  font-weight: 800;
 }
 
 .greyText {
-    color: rgb(147, 143, 143)
+  color: rgb(147, 143, 143);
 }
 
-
 .SpaceBetween {
-    display: flex;
-    justify-content: space-between;
-
+  display: flex;
+  justify-content: space-between;
 }
 
 i {
-    position: relative;
-    top: 3px;
+  position: relative;
+  top: 3px;
 }
 
 .bold {
-    font-weight: 900;
-    padding-right: 3px;
+  font-weight: 900;
+  padding-right: 3px;
 }
 
-
 .justNextToEachOther {
-    display: flex;
+  display: flex;
 }

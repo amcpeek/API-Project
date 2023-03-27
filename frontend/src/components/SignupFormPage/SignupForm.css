@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
 /* dont use this too board
  form {
     font-family: 'Open Sans';
@@ -11,8 +11,8 @@
 } */
 
 .SignUpPage {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    top: 100px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 100px;
 }

@@ -1,26 +1,26 @@
 // backend/routes/api/index.js
-const router = require('express').Router();
+const router = require("express").Router();
 
-const sessionRouter = require('./session.js');
-const usersRouter = require('./users.js');
-const spotsRouter = require('./spots.js');
-const reviewsRouter = require('./reviews.js');
-const bookingsRouter = require('./bookings.js');
-const reviewImagesRouter = require('./reviewImage.js');
-const spotImagesRouter = require('./spotImage.js');
-const { requireAuth } = require('../../utils/auth.js');
+const sessionRouter = require("./session.js");
+const usersRouter = require("./users.js");
+const spotsRouter = require("./spots.js");
+const reviewsRouter = require("./reviews.js");
+const bookingsRouter = require("./bookings.js");
+const reviewImagesRouter = require("./reviewImage.js");
+const spotImagesRouter = require("./spotImage.js");
+const { requireAuth } = require("../../utils/auth.js");
 
-router.get('/test', requireAuth, (req, res) => {
-  res.json({message: 'success'})
-})
+router.get("/test", requireAuth, (req, res) => {
+  res.json({ message: "success" });
+});
 
-router.use('/session', sessionRouter);
-router.use('/users', usersRouter);
-router.use('/spots', spotsRouter);
-router.use('/reviews', reviewsRouter);
-router.use('/review-images', reviewImagesRouter);
-router.use('/spot-images', spotImagesRouter);
-router.use('/bookings', bookingsRouter);
+router.use("/session", sessionRouter);
+router.use("/users", usersRouter);
+router.use("/spots", spotsRouter);
+router.use("/reviews", reviewsRouter);
+router.use("/review-images", reviewImagesRouter);
+router.use("/spot-images", spotImagesRouter);
+router.use("/bookings", bookingsRouter);
 
 // backend/routes/api/index.js
 // ...
@@ -30,17 +30,17 @@ router.use('/bookings', bookingsRouter);
 //     res.json({ requestBody: req.body });
 //   });
 
-  // ...
+// ...
 
-  // backend/routes/api/index.js
+// backend/routes/api/index.js
 // ...
 
 //this part added it at the end of 3
 const { restoreUser } = require("../../utils/auth.js");
 
 // Connect restoreUser middleware to the API router
-  // If current user session is valid, set req.user to the user in the database
-  // If current user session is not valid, set req.user to null
+// If current user session is valid, set req.user to the user in the database
+// If current user session is not valid, set req.user to null
 router.use(restoreUser);
 
 // backend/routes/api/index.js
@@ -49,13 +49,11 @@ router.use(restoreUser);
 //const { restoreUser } = require("../../utils/auth.js");
 
 // Connect restoreUser middleware to the API router
-  // If current user session is valid, set req.user to the user in the database
-  // If current user session is not valid, set req.user to null
+// If current user session is valid, set req.user to the user in the database
+// If current user session is not valid, set req.user to null
 router.use(restoreUser);
 
-
-
-router.post('/test', (req, res) => {
+router.post("/test", (req, res) => {
   res.json({ requestBody: req.body });
 });
 
